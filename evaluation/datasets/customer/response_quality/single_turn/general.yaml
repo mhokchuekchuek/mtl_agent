@@ -1,0 +1,21 @@
+name: response_quality_general
+description: General response quality tests
+
+test_cases:
+  - id: product_info_headphones
+    input:
+      question: "Tell me about Wireless Bluetooth Headphones"
+    expected_output:
+      response_quality: "Wireless Bluetooth Headphones, 840"
+
+  - id: product_info_smart_speaker
+    input:
+      question: "How much is the Smart Home Speaker?"
+    expected_output:
+      response_quality: "Smart Home Speaker, 949"
+
+  - id: product_count
+    input:
+      question: "How many products do you have?"
+    expected_output:
+      response_quality: "100"

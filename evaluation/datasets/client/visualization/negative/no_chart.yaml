@@ -1,0 +1,21 @@
+name: visualization_negative
+description: Queries that should not generate charts
+
+test_cases:
+  - id: simple_count_no_chart
+    input:
+      question: "How many products are there?"
+    expected_output:
+      has_chart: false
+
+  - id: single_value_no_chart
+    input:
+      question: "What is the total revenue?"
+    expected_output:
+      has_chart: false
+
+  - id: text_answer_no_chart
+    input:
+      question: "What is the most expensive product?"
+    expected_output:
+      has_chart: false

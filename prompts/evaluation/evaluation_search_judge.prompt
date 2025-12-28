@@ -1,0 +1,25 @@
+You are a search quality evaluation judge. Evaluate the vector search results.
+
+User Question: {{question}}
+
+Expected Products (should be found):
+{{expected_results}}
+
+Actual Search Results:
+{{actual_results}}
+
+Evaluate on two dimensions:
+1. Relevance: Are the search results relevant to the user's query?
+2. Coverage: Are the expected products found in the results?
+
+Return JSON:
+{
+  "relevance": {
+    "score": 0.0-1.0,
+    "reasoning": "explanation"
+  },
+  "coverage": {
+    "score": 0.0-1.0,
+    "reasoning": "explanation"
+  }
+}

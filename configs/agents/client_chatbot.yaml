@@ -1,0 +1,45 @@
+# Client Chatbot Agent Configuration
+# Internal BI chatbot for business users (Thai + English)
+# Inherits from shared.yaml
+
+client_chatbot:
+  prompt_label: "latest"
+
+  agents:
+    translation:
+      model: "gpt-4o-mini"
+      prompt_name: "client_chatbot_translation"
+      temperature: 0.3
+
+    orchestrator:
+      model: "gpt-4o-mini"
+      prompt_name: "client_chatbot_orchestrator"
+      temperature: 0.3
+
+    chat_history:
+      model: "gpt-4o-mini"
+      prompt_name: "client_chatbot_chat_history"
+      temperature: 0.7
+      max_iterations: 5
+      recursion_limit: 25
+      tools:
+        sql:
+          model: "gpt-4o-mini"
+          prompt_name: "client_chatbot_sql_generate"
+          temperature: 0
+
+    insight:
+      model: "gpt-4o-mini"
+      prompt_name: "client_chatbot_insight"
+      temperature: 0.7
+      max_iterations: 5
+      recursion_limit: 25
+      tools:
+        sql:
+          model: "gpt-4o-mini"
+          prompt_name: "client_chatbot_sql_generate"
+          temperature: 0
+        visualization:
+          model: "gpt-4o-mini"
+          prompt_name: "client_chatbot_visualization"
+          temperature: 0

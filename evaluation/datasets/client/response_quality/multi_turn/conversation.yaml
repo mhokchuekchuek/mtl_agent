@@ -1,0 +1,25 @@
+name: client_response_quality_multi_turn
+description: Multi-turn client response quality tests with specific queries
+
+test_cases:
+  - id: customer_details_flow
+    turns:
+      - input:
+          question: "Tell me about Mark Wilson"
+        expected_output:
+          response_quality: "Mark Wilson, angela23@gmail.com"
+      - input:
+          question: "How much has he spent?"
+        expected_output:
+          response_quality: "5591"
+
+  - id: category_drill_down
+    turns:
+      - input:
+          question: "How many products are in Gadgets & Electronics?"
+        expected_output:
+          response_quality: "12"
+      - input:
+          question: "Which is the most expensive?"
+        expected_output:
+          response_quality: "4K Action Camera, 1450"

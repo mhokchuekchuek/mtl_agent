@@ -1,0 +1,1 @@
+"""Postgres store repository package."""

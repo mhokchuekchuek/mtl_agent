@@ -1,0 +1,21 @@
+name: sql_join
+description: Test JOIN queries
+
+test_cases:
+  - id: customer_order_count
+    input:
+      question: "Which customers have the most orders?"
+    expected_output:
+      sql: "SELECT c.customer_name, COUNT(o.order_id) as order_count FROM Customers c JOIN Orders o ON c.customer_id = o.customer_id GROUP BY c.customer_id ORDER BY order_count DESC LIMIT 5"
+
+  - id: product_quantity_sold
+    input:
+      question: "Which products have been sold the most?"
+    expected_output:
+      sql: "SELECT p.product_name, SUM(od.quantity) as total_qty FROM Products p JOIN OrderDetails od ON p.product_id = od.product_id GROUP BY p.product_id ORDER BY total_qty DESC LIMIT 5"
+
+  - id: customer_total_spent
+    input:
+      question: "How much has each customer spent in total?"
+    expected_output:
+      sql: "SELECT c.customer_name, SUM(o.total_amount) as total_spent FROM Customers c JOIN Orders o ON c.customer_id = o.customer_id GROUP BY c.customer_id ORDER BY total_spent DESC"

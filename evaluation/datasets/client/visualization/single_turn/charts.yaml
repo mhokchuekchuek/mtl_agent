@@ -1,0 +1,24 @@
+name: visualization_charts
+description: Chart generation tests
+
+test_cases:
+  - id: bar_chart_category
+    input:
+      question: "Show me a bar chart of products by category"
+    expected_output:
+      has_chart: true
+      chart_type: "bar"
+
+  - id: line_chart_monthly_revenue
+    input:
+      question: "Create a line chart of monthly revenue"
+    expected_output:
+      has_chart: true
+      chart_type: "line"
+
+  - id: pie_chart_orders
+    input:
+      question: "Show me a pie chart of orders by category"
+    expected_output:
+      has_chart: true
+      chart_type: "pie"

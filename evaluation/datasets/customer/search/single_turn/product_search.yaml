@@ -1,0 +1,28 @@
+name: product_search
+description: Vector search for products
+
+test_cases:
+  - id: search_wireless_headphones
+    input:
+      question: "I'm looking for wireless headphones"
+    expected_output:
+      search_results:
+        ["Wireless Bluetooth Headphones", "Noise Cancelling Headphones"]
+
+  - id: search_smart_home
+    input:
+      question: "I need something for my smart home"
+    expected_output:
+      search_results: ["Smart Home Speaker", "Smart Plug", "Smart Light Bulb"]
+
+  - id: search_coffee
+    input:
+      question: "I want to make coffee at home"
+    expected_output:
+      search_results: ["Espresso Coffee Maker", "Smart Coffee Mug"]
+
+  - id: search_gaming
+    input:
+      question: "I need gaming accessories"
+    expected_output:
+      search_results: ["Gaming Headset", "Wireless Gaming Mouse"]

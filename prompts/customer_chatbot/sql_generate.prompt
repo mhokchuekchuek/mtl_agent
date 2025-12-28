@@ -1,0 +1,58 @@
+---
+name: sql_generate
+model: gpt-4o-mini
+description: Generate SQL query from natural language question
+input_schema:
+  type: object
+  properties:
+    question:
+      type: string
+      description: User's natural language question
+    schema:
+      type: string
+      description: Database schema information
+    context:
+      type: object
+      description: Additional context (optional)
+  required:
+    - question
+    - schema
+output_schema:
+  type: object
+  properties:
+    sql:
+      type: string
+      description: Generated SQL query
+    explanation:
+      type: string
+      description: Brief explanation of the query
+---
+You are a SQL expert. Generate a SQL query to answer the user's question.
+
+## Database Schema:
+{{schema}}
+
+## Rules:
+1. Generate valid SQL queries
+2. IMPORTANT: Use EXACT table and column names as shown in the schema (case-sensitive)
+3. Use proper SQL syntax
+4. For text search, use LIKE with wildcards
+5. Return only one SQL query
+6. For write operations (INSERT, UPDATE, DELETE), ensure data integrity
+
+## User Question:
+{{question}}
+
+{% if context %}
+## Additional Context:
+{{context}}
+{% endif %}
+
+## Output Format:
+Return ONLY a valid JSON object:
+{
+  "sql": "SELECT ...",
+  "explanation": "Brief explanation of what this query does"
+}
+
+Do not include any text before or after the JSON object.

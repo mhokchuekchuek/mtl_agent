@@ -1,0 +1,33 @@
+name: sql_analytics
+description: BI analytics SQL queries
+
+test_cases:
+  - id: total_revenue
+    input:
+      question: "What is the total revenue?"
+    expected_output:
+      sql: "SELECT SUM(total_amount) FROM Orders"
+
+  - id: products_by_category
+    input:
+      question: "How many products are in each category?"
+    expected_output:
+      sql: "SELECT category, COUNT(*) as cnt FROM Products GROUP BY category ORDER BY cnt DESC"
+
+  - id: monthly_revenue
+    input:
+      question: "Show me monthly revenue"
+    expected_output:
+      sql: "SELECT strftime('%Y-%m', order_date) as month, SUM(total_amount) as revenue FROM Orders GROUP BY month ORDER BY month"
+
+  - id: top_customers
+    input:
+      question: "Who are the top 5 customers by spending?"
+    expected_output:
+      sql: "SELECT c.customer_name, SUM(o.total_amount) as total_spent FROM Customers c JOIN Orders o ON c.customer_id = o.customer_id GROUP BY c.customer_id ORDER BY total_spent DESC LIMIT 5"
+
+  - id: unique_customers
+    input:
+      question: "How many unique customers have placed orders?"
+    expected_output:
+      sql: "SELECT COUNT(DISTINCT customer_id) FROM Orders"

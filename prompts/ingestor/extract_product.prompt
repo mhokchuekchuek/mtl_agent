@@ -1,0 +1,65 @@
+---
+name: extract_product
+model: gpt-4o-mini
+description: Extract structured product information from PDF text content
+input_schema:
+  type: object
+  properties:
+    text:
+      type: string
+      description: Raw text content from product PDF
+  required:
+    - text
+output_schema:
+  type: object
+  properties:
+    product_name:
+      type: string
+    description:
+      type: string
+    specifications:
+      type: object
+    features:
+      type: array
+      items:
+        type: object
+        properties:
+          title:
+            type: string
+          description:
+            type: string
+    summary:
+      type: string
+---
+You are a product data extractor. Extract structured information from the following product document.
+
+## Input Document:
+{{text}}
+
+## Instructions:
+1. Extract the product name from the title
+2. Extract the description paragraph
+3. Extract all specifications as key-value pairs
+4. Extract all features with their titles and descriptions
+5. Extract the closing summary paragraph (if present)
+
+## Output Format:
+Return ONLY a valid JSON object with the following structure:
+{
+  "product_name": "...",
+  "description": "...",
+  "specifications": {
+    "product_type": "...",
+    "category": "...",
+    "dimensions": "...",
+    "weight": "...",
+    ...
+  },
+  "features": [
+    {"title": "...", "description": "..."},
+    ...
+  ],
+  "summary": "..."
+}
+
+Do not include any text before or after the JSON object.

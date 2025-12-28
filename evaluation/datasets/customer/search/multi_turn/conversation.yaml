@@ -1,0 +1,31 @@
+name: search_multi_turn
+description: Multi-turn product search conversations
+
+test_cases:
+  - id: refine_search
+    turns:
+      - input:
+          question: "I need headphones"
+        expected_output:
+          search_results:
+            [
+              "Wireless Bluetooth Headphones",
+              "Noise Cancelling Headphones",
+              "Gaming Headset",
+            ]
+      - input:
+          question: "Which one has noise cancelling?"
+        expected_output:
+          response_quality: "Noise Cancelling Headphones"
+
+  - id: compare_products
+    turns:
+      - input:
+          question: "Show me smart speakers"
+        expected_output:
+          search_results:
+            ["Smart Home Speaker", "Bluetooth Soundbar", "Portable Speaker"]
+      - input:
+          question: "Which is the most expensive?"
+        expected_output:
+          sql: "SELECT * FROM Products WHERE product_name IN ('Smart Home Speaker', 'Bluetooth Soundbar', 'Portable Speaker') ORDER BY price DESC LIMIT 1"

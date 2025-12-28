@@ -1,0 +1,27 @@
+name: visualization_multi_turn
+description: Multi-turn visualization conversations
+
+test_cases:
+  - id: chart_then_modify
+    turns:
+      - input:
+          question: "Show me monthly revenue"
+        expected_output:
+          sql: "SELECT strftime('%Y-%m', order_date) as month, SUM(total_amount) as revenue FROM Orders GROUP BY month ORDER BY month"
+      - input:
+          question: "Can you make a line chart of that?"
+        expected_output:
+          has_chart: true
+          chart_type: "line"
+
+  - id: analyze_then_visualize
+    turns:
+      - input:
+          question: "Which categories have the most products?"
+        expected_output:
+          sql: "SELECT category, COUNT(*) as cnt FROM Products GROUP BY category ORDER BY cnt DESC"
+      - input:
+          question: "Show that as a bar chart"
+        expected_output:
+          has_chart: true
+          chart_type: "bar"

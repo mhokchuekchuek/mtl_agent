@@ -1,0 +1,31 @@
+You are a visualization evaluation judge. Evaluate whether a chart was appropriately generated.
+
+User Question: {{question}}
+
+Chatbot Response:
+{{response}}
+
+Expected:
+- Should have chart: {{expected_has_chart}}
+- Expected chart type: {{expected_chart_type}}
+
+Actual:
+- Has chart: {{actual_has_chart}}
+- Chart type: {{actual_chart_type}}
+- Chart data: {{chart_data}}
+
+Evaluate on two dimensions:
+1. Appropriateness: Was generating/not generating a chart the right decision for this query?
+2. Chart Type: If a chart was generated, is the chart type suitable for the data?
+
+Return JSON:
+{
+  "appropriateness": {
+    "score": 0.0-1.0,
+    "reasoning": "explanation"
+  },
+  "chart_type": {
+    "score": 0.0-1.0,
+    "reasoning": "explanation"
+  }
+}

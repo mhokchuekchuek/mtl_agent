@@ -1,0 +1,171 @@
+services:
+  # ==============================================================================
+  # Redis - Caching for LiteLLM proxy and session memory
+  # ==============================================================================
+  redis:
+    image: redis/redis-stack-server:latest
+    container_name: erp-agent-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - erp-agent-network
+
+  # ==============================================================================
+  # PostgreSQL - Database for LiteLLM proxy
+  # ==============================================================================
+  postgres:
+    image: postgres:15-alpine
+    container_name: erp-agent-postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=erp_agent
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./data/init_postgres.sql:/docker-entrypoint-initdb.d/init_postgres.sql:ro
+    networks:
+      - erp-agent-network
+
+  # ==============================================================================
+  # Qdrant - Vector database for semantic search
+  # ==============================================================================
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: erp-agent-qdrant
+    ports:
+      - "6333:6333" # REST API
+      - "6334:6334" # gRPC
+    volumes:
+      - qdrant_storage:/qdrant/storage
+    environment:
+      - QDRANT__SERVICE__GRPC_PORT=6334
+    networks:
+      - erp-agent-network
+
+  # ==============================================================================
+  # LiteLLM Proxy - Centralized LLM gateway with caching
+  # ==============================================================================
+  litellm-proxy:
+    image: ghcr.io/berriai/litellm:main-latest
+    container_name: erp-agent-litellm
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./configs/litellm/proxy_config.yaml:/app/config.yaml:ro
+      - ./prompts:/app/prompts:ro
+    env_file:
+      - .env
+    command:
+      ["--config", "/app/config.yaml", "--port", "4000", "--detailed_debug"]
+    depends_on:
+      - redis
+      - postgres
+    networks:
+      - erp-agent-network
+    restart: unless-stopped
+
+  # ==============================================================================
+  # API - FastAPI application with ERP agent
+  # ==============================================================================
+  api:
+    build:
+      context: .
+      dockerfile: docker/api/Dockerfile
+    container_name: erp-agent-api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data:ro
+      - ./src:/app/src
+      - ./libs:/app/libs
+      - ./configs:/app/configs:ro
+    env_file:
+      - .env
+    environment:
+      - LITELLM_PROXY_URL=http://litellm-proxy:4000
+      - QDRANT_HOST=qdrant
+      - QDRANT_PORT=6333
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
+      - POSTGRES_DB=erp_agent
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - ERP_DATABASE_PATH=/app/data/erp_database.db
+    depends_on:
+      - litellm-proxy
+      - qdrant
+      - redis
+      - postgres
+    networks:
+      - erp-agent-network
+    restart: unless-stopped
+
+  # ==============================================================================
+  # Customer UI - Streamlit Customer Support
+  # ==============================================================================
+  customer-ui:
+    build:
+      context: .
+      dockerfile: docker/ui/customer.Dockerfile
+    container_name: erp-agent-customer-ui
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./ui:/app/ui
+      - ./configs:/app/configs:ro
+    env_file:
+      - .env
+    environment:
+      - API_BASE_URL=http://api:8000
+    depends_on:
+      - api
+    networks:
+      - erp-agent-network
+    restart: unless-stopped
+
+  # ==============================================================================
+  # Client UI - Streamlit BI Analytics
+  # ==============================================================================
+  client-ui:
+    build:
+      context: .
+      dockerfile: docker/ui/client.Dockerfile
+    container_name: erp-agent-client-ui
+    ports:
+      - "8502:8502"
+    volumes:
+      - ./ui:/app/ui
+      - ./configs:/app/configs:ro
+    env_file:
+      - .env
+    environment:
+      - API_BASE_URL=http://api:8000
+    depends_on:
+      - api
+    networks:
+      - erp-agent-network
+    restart: unless-stopped
+
+# ==============================================================================
+# Networks
+# ==============================================================================
+networks:
+  erp-agent-network:
+    driver: bridge
+
+# ==============================================================================
+# Volumes - For data persistence
+# ==============================================================================
+volumes:
+  redis_data:
+    driver: local
+  postgres_data:
+    driver: local
+  qdrant_storage:
+    driver: local

@@ -1,0 +1,33 @@
+name: sql_analytics_multi_turn
+description: Multi-turn analytics conversations
+
+test_cases:
+  - id: revenue_drill_down
+    turns:
+      - input:
+          question: "What is the total revenue?"
+        expected_output:
+          sql: "SELECT SUM(total_amount) FROM Orders"
+      - input:
+          question: "Break it down by month"
+        expected_output:
+          sql: "SELECT strftime('%Y-%m', order_date) as month, SUM(total_amount) as revenue FROM Orders GROUP BY month ORDER BY month"
+      - input:
+          question: "Which month had the highest revenue?"
+        expected_output:
+          sql: "SELECT strftime('%Y-%m', order_date) as month, SUM(total_amount) as revenue FROM Orders GROUP BY month ORDER BY revenue DESC LIMIT 1"
+
+  - id: customer_analysis
+    turns:
+      - input:
+          question: "Show me top customers"
+        expected_output:
+          sql: "SELECT c.customer_name, SUM(o.total_amount) as total_spent FROM Customers c JOIN Orders o ON c.customer_id = o.customer_id GROUP BY c.customer_id ORDER BY total_spent DESC LIMIT 10"
+      - input:
+          question: "Tell me more about Jason Fritz"
+        expected_output:
+          sql: "SELECT * FROM Customers WHERE customer_name = 'Jason Fritz'"
+      - input:
+          question: "What did he order?"
+        expected_output:
+          sql: "SELECT o.order_id, o.order_date, o.total_amount FROM Orders o JOIN Customers c ON o.customer_id = c.customer_id WHERE c.customer_name = 'Jason Fritz'"

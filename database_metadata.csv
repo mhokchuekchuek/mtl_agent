@@ -1,0 +1,33 @@
+table_name,column_name,data_type,description
+Products,product_id,INTEGER,Unique identifier for each product
+Products,product_name,TEXT,Name of the product
+Products,product_type,TEXT,"Type of the product (e.g., Electronics, Home Appliances)"
+Products,category,TEXT,Category of the product
+Products,price,INTEGER,Price of the product in USD
+Warehouses,warehouse_id,INTEGER,Unique identifier for each warehouse
+Warehouses,warehouse_name,TEXT,Name of the warehouse
+Warehouses,location,TEXT,Location of the warehouse
+Inventory,product_id,INTEGER,Reference to the product
+Inventory,color,TEXT,Color of the product
+Inventory,quantity,INTEGER,Quantity of the product in stock
+Inventory,warehouse_id,INTEGER,Reference to the warehouse
+Customers,customer_id,INTEGER,Unique identifier for each customer
+Customers,customer_name,TEXT,Name of the customer
+Customers,email,TEXT,Email address of the customer
+Customers,phone_number,TEXT,Phone number of the customer
+Customers,address,TEXT,Address of the customer
+Suppliers,supplier_id,INTEGER,Unique identifier for each supplier
+Suppliers,supplier_name,TEXT,Name of the supplier
+Suppliers,contact,TEXT,Contact information for the supplier
+Suppliers,address,TEXT,Address of the supplier
+Orders,order_id,INTEGER,Unique identifier for each order
+Orders,order_date,TIMESTAMP,Date and time when the order was placed
+Orders,customer_id,INTEGER,Reference to the customer who placed the order
+Orders,total_amount,INTEGER,Total amount of the order
+OrderDetails,order_detail_id,INTEGER,Unique identifier for each order detail
+OrderDetails,order_id,INTEGER,Reference to the order
+OrderDetails,product_id,INTEGER,Reference to the product in the order
+OrderDetails,color,TEXT,Color of the product in the order
+OrderDetails,quantity,INTEGER,Quantity of the product in the order
+OrderDetails,price,INTEGER,Price per unit of the product
+OrderDetails,total_price,INTEGER,Total price for the product (quantity * price)

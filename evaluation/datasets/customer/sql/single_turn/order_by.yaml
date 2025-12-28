@@ -1,0 +1,21 @@
+name: sql_order_by
+description: Test ORDER BY and LIMIT queries
+
+test_cases:
+  - id: most_expensive_product
+    input:
+      question: "What is the most expensive product?"
+    expected_output:
+      sql: "SELECT * FROM Products ORDER BY price DESC LIMIT 1"
+
+  - id: cheapest_products
+    input:
+      question: "Show me the 3 cheapest products"
+    expected_output:
+      sql: "SELECT * FROM Products ORDER BY price ASC LIMIT 3"
+
+  - id: top_5_expensive
+    input:
+      question: "List top 5 most expensive products"
+    expected_output:
+      sql: "SELECT * FROM Products ORDER BY price DESC LIMIT 5"

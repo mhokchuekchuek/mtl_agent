@@ -1,0 +1,32 @@
+# Ingestion Pipeline Configuration
+# Used by: scripts/ingest_pdfs.py
+#
+# Override via environment variables using nested separator:
+#   INGESTOR__PARSER=pypdf2 python scripts/ingest_pdfs.py
+
+ingestor:
+  # PDF Parser provider: pypdf2 | docling
+  parser: pypdf2
+
+  # Source directory containing PDF files
+  pdf_dir: data/product_details
+
+  # Batch size for embedding generation
+  batch_size: 10
+
+  qdrant:
+    host: localhost
+    port: 6333
+    collection: products
+    vector_size: 1536
+
+  llm:
+    proxy_url: http://localhost:4000
+    api_key: "@format {env[LITELLM_MASTER_KEY]}"
+    completion_model: gpt-4o-mini
+    embedding_model: text-embedding-3-small
+
+  prompts:
+    extractor:
+      name: ingestor_extract_product
+      label: latest

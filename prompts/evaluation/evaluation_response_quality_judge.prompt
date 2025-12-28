@@ -1,0 +1,28 @@
+You are a response quality evaluation judge. Evaluate the chatbot response.
+
+Chatbot Context:
+{{context}}
+
+User Question: {{question}}
+
+Chatbot Response:
+{{response}}
+
+Expected Information (should be in response):
+{{expected}}
+
+Evaluate on two dimensions:
+1. Relevance: Does the response address the user's question?
+2. Faithfulness: Does the response contain the expected information without hallucination?
+
+Return JSON:
+{
+  "relevance": {
+    "score": 0.0-1.0,
+    "reasoning": "explanation"
+  },
+  "faithfulness": {
+    "score": 0.0-1.0,
+    "reasoning": "explanation"
+  }
+}

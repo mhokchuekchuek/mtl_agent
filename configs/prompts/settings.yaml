@@ -1,0 +1,20 @@
+# Prompt Management Configuration
+# Used by: prompts/uploader.py, scripts/upload_prompts.py
+
+prompt_manager:
+  # Directory containing .prompt files
+  directory: prompts
+
+  # Version tag for uploaded prompts
+  version: "v1"
+
+  # Label for prompt retrieval (e.g., "latest", "production")
+  label: "latest"
+
+  # Langfuse configuration
+  langfuse:
+    enabled: true
+    provider: langfuse
+    host: "@format {env[LANGFUSE_BASE_URL]}"
+    public_key: "@format {env[LANGFUSE_PUBLIC_KEY]}"
+    secret_key: "@format {env[LANGFUSE_SECRET_KEY]}"

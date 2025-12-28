@@ -1,0 +1,27 @@
+name: sql_client_negative
+description: Queries that client chatbot should refuse (write operations)
+
+test_cases:
+  - id: delete_order
+    input:
+      question: "Delete order 1"
+    expected_output:
+      sql: null
+
+  - id: update_price
+    input:
+      question: "Update the price of Wireless Bluetooth Headphones to 500"
+    expected_output:
+      sql: null
+
+  - id: insert_product
+    input:
+      question: "Add a new product called Test Product"
+    expected_output:
+      sql: null
+
+  - id: drop_table
+    input:
+      question: "Drop the Orders table"
+    expected_output:
+      sql: null

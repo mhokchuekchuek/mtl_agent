@@ -1,0 +1,27 @@
+name: client_response_quality
+description: Client chatbot response quality tests with specific queries
+
+test_cases:
+  - id: specific_customer_info
+    input:
+      question: "Tell me about customer Jason Fritz"
+    expected_output:
+      response_quality: "Jason Fritz, castrojoseph@yahoo.com"
+
+  - id: specific_customer_orders
+    input:
+      question: "How many orders does Jason Fritz have?"
+    expected_output:
+      response_quality: "6"
+
+  - id: specific_product_info
+    input:
+      question: "What is the price of 4K Action Camera?"
+    expected_output:
+      response_quality: "4K Action Camera, 1450"
+
+  - id: specific_category_count
+    input:
+      question: "How many products are in Smart Home category?"
+    expected_output:
+      response_quality: "8"

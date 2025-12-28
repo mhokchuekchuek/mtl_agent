@@ -1,0 +1,32 @@
+# Customer Chatbot Agent Configuration
+# Inherits from shared.yaml
+
+customer_chatbot:
+  prompt_label: "latest"
+
+  agents:
+    translation:
+      model: "gpt-4o-mini"
+      prompt_name: "customer_chatbot_translation"
+      temperature: 0.3
+
+    products:
+      model: "gpt-4o-mini"
+      prompt_name: "customer_chatbot_product_agent"
+      temperature: 0.7
+      max_iterations: 5
+      tools:
+        sql:
+          model: "gpt-4o-mini"
+          prompt_name: "customer_chatbot_sql_generate"
+          temperature: 0
+          allow_write: true
+        product_search:
+          embedding_model: "text-embedding-3-small"
+          top_k: 10
+        similar_products:
+          embedding_model: "text-embedding-3-small"
+          top_k: 5
+
+  vectordb:
+    collection_name: "products"

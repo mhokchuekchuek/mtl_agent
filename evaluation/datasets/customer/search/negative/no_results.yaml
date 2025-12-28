@@ -1,0 +1,15 @@
+name: search_negative
+description: Search queries that should not find results or be refused
+
+test_cases:
+  - id: search_nonexistent_product
+    input:
+      question: "Do you have flying cars?"
+    expected_output:
+      search_results: []
+
+  - id: search_competitor_product
+    input:
+      question: "I want iPhone 15"
+    expected_output:
+      search_results: []

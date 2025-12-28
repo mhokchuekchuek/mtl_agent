@@ -1,0 +1,25 @@
+name: response_quality_multi_turn
+description: Multi-turn response quality tests
+
+test_cases:
+  - id: product_price_range
+    turns:
+      - input:
+          question: "Show me products under 50 baht"
+        expected_output:
+          response_quality: "Educational Robot, Waterproof Phone Case, Smart Plug"
+      - input:
+          question: "Which one is the cheapest?"
+        expected_output:
+          response_quality: "Educational Robot, 13"
+
+  - id: headphones_comparison
+    turns:
+      - input:
+          question: "I want headphones"
+        expected_output:
+          response_quality: "Wireless Bluetooth Headphones, Noise Cancelling Headphones"
+      - input:
+          question: "Which one is cheaper?"
+        expected_output:
+          response_quality: "Wireless Bluetooth Headphones, 840"

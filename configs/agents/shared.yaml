@@ -1,0 +1,40 @@
+# Shared Agent Configuration
+# Common settings inherited by all agent configs
+
+shared:
+  llm:
+    proxy_url: "@format {env[LITELLM_PROXY_URL]}"
+    api_key: "@format {env[LITELLM_MASTER_KEY]}"
+    default_model: "gpt-4o-mini"
+    temperature: 0.7
+    max_tokens: 2000
+
+  observability:
+    provider: langfuse
+    host: "@format {env[LANGFUSE_BASE_URL]}"
+    public_key: "@format {env[LANGFUSE_PUBLIC_KEY]}"
+    secret_key: "@format {env[LANGFUSE_SECRET_KEY]}"
+
+  checkpointer:
+    provider: redis
+    host: "@format {env[REDIS_HOST]}"
+    port: "@format {env[REDIS_PORT]}"
+    ttl: 60 # minutes
+    refresh_on_read: true
+
+  vectordb:
+    provider: qdrant
+    host: "@format {env[QDRANT_HOST]}"
+    port: "@format {env[QDRANT_PORT]}"
+
+  database:
+    provider: sqlite
+    path: "@format {env[ERP_DATABASE_PATH]}"
+
+  store:
+    provider: postgres
+    host: "@format {env[POSTGRES_HOST]}"
+    port: "@format {env[POSTGRES_PORT]}"
+    database: "@format {env[POSTGRES_DB]}"
+    user: "@format {env[POSTGRES_USER]}"
+    password: "@format {env[POSTGRES_PASSWORD]}"
