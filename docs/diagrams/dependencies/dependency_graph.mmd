@@ -1,0 +1,24 @@
+flowchart TB
+    A["build_chatbot_service()"] --> B["ConfigSelector"]
+    A --> C["LLMClientSelector<br/>litellm"]
+    A --> D["LLMClientSelector<br/>langchain"]
+    A --> E["SQLSelector"]
+    A --> F["VectorStoreSelector"]
+    A --> G["ObservabilitySelector"]
+    A --> H["PromptManagerSelector"]
+
+    A --> I["KeyValueSelector<br/>redis"]
+    I --> J["RedisCheckpointerRepository"]
+
+    A --> K["PostgresStoreRepository"]
+
+    A --> L["SQLTool"]
+    A --> M["ProductSearchTool"]
+    A --> N["SimilarProductsTool"]
+
+    A --> O["TranslationAgent"]
+    A --> P["ProductAgent"]
+
+    A --> Q["CustomerChatbotWorkflow"]
+    Q --> R["CustomerChatbotRepository"]
+    R --> S["ChatbotService"]

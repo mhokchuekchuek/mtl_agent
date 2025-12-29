@@ -8,14 +8,12 @@ ProductAgent uses LangChain v1's `create_agent` to build a ReAct (Reasoning + Ac
 
 ## Architecture
 
-```
-ProductAgent
-    │
-    └── LLM decides which tool(s) to use:
-        ├── ProductSearchTool  - semantic search by name/description
-        ├── SimilarProductsTool - find similar products
-        └── SQLTool - stock, price, compare queries
-```
+<details>
+<summary>View ProductAgent Architecture</summary>
+
+![ProductAgent Architecture](../images/agents/products.png)
+
+</details>
 
 ## Capabilities
 

@@ -1,0 +1,13 @@
+flowchart TB
+    A["User Query"] --> B["TranslationAgent"]
+    B --> C{"Orchestrator<br/>Router"}
+
+    C -->|chat_history| D["CustomerChatHistoryAgent<br/>ReAct"]
+    C -->|insight| E["CustomerInsightAgent<br/>ReAct"]
+
+    D --> D1["SQLTool<br/>PostgreSQL"]
+    E --> E1["SQLTool<br/>SQLite"]
+    E --> E2["VisualizationTool"]
+
+    D1 --> F["TranslationAgent<br/>output"]
+    E2 --> F

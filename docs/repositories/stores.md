@@ -12,26 +12,12 @@ Stores persist conversation data permanently. Used for:
 
 ## Architecture
 
-```
-ChatbotRepository._save_to_store()
-      │
-      ▼
-┌─────────────────────────────────────────┐
-│       PostgresStoreRepository           │
-│  ┌───────────────────────────────────┐  │
-│  │ PostgresStore(                    │  │
-│  │   conn=psycopg.connect(...)       │  │
-│  │ )                                 │  │
-│  └───────────────────────────────────┘  │
-│                                         │
-│  put(namespace, key, value)             │
-│  get(namespace, key) → Item             │
-│  search(namespace) → list[Item]         │
-└─────────────────────────────────────────┘
-      │
-      ▼
-  PostgreSQL
-```
+<details>
+<summary>View Store Architecture</summary>
+
+![Store Architecture](../images/repositories/store.png)
+
+</details>
 
 ## Base Interface
 

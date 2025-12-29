@@ -1,0 +1,21 @@
+flowchart TB
+    subgraph Workflow["CustomerChatbotWorkflow"]
+        subgraph Redis["Redis Checkpointer"]
+            R1["Per-thread"]
+            R2["TTL: 60min"]
+            R3["Auto-save"]
+            R4["State mgmt"]
+        end
+
+        subgraph Postgres["Postgres Store"]
+            P1["Cross-thread"]
+            P2["Permanent"]
+            P3["Manual save"]
+            P4["Search/Query"]
+        end
+
+        INVOKE["invoke()"]
+    end
+
+    INVOKE -.->|auto| Redis
+    INVOKE -.->|every turn| Postgres

@@ -132,3 +132,10 @@ cython_debug/
 
 # Tasks folder (internal)
 tasks/*
+
+# Node modules
+node_modules/
+
+# Results and improvement folders
+results/
+improvement/

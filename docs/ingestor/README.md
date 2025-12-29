@@ -40,12 +40,12 @@ ingestor/
 | Embed | Generate vector embeddings from content | |
 | Store | Save embeddings and metadata to Qdrant | |
 
-```text
-┌─────────────┐     ┌───────────────┐     ┌─────────────┐     ┌────────────────┐     ┌─────────────┐
-│  Raw Text   │ --> │ Build Prompt  │ --> │  Call LLM   │ --> │ Parse Response │ --> │ Structured  │
-│  (from PDF) │     │ (text+schema) │     │(GPT-4o-mini)│     │ (extract JSON) │     │    Data     │
-└─────────────┘     └───────────────┘     └─────────────┘     └────────────────┘     └─────────────┘
-```
+<details>
+<summary>View Pipeline Diagram</summary>
+
+![Ingestor Pipeline](../images/ingestor/pipeline.png)
+
+</details>
 
 ## Output
 

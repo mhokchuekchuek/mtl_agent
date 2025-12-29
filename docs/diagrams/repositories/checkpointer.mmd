@@ -1,0 +1,11 @@
+flowchart TB
+    A["LangGraph Workflow"] --> B
+
+    subgraph B["RedisCheckpointerRepository"]
+        C["RedisSaver"]
+        D["redis_client"]
+        E["ttl=3600"]
+        F["refresh_on_read=True"]
+    end
+
+    B --> G["Redis"]

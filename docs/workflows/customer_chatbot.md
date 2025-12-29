@@ -11,27 +11,12 @@ Uses LangGraph with fixed flow:
 
 ## Workflow
 
-```
-User Query
-    │
-    ▼
-┌─────────────────┐
-│ translate_input │  ← TranslationAgent (detect + translate to English)
-└─────────────────┘
-    │
-    ▼
-┌─────────────────┐
-│  product_agent  │  ← ProductAgent (ReAct with tools)
-└─────────────────┘
-    │
-    ▼
-┌─────────────────┐
-│translate_output │  ← TranslationAgent (translate back to user language)
-└─────────────────┘
-    │
-    ▼
-Response
-```
+<details>
+<summary>View Workflow Diagram</summary>
+
+![Customer Chatbot Workflow](../images/workflows/customer_chatbot.png)
+
+</details>
 
 ## Memory
 

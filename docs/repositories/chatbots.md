@@ -11,24 +11,12 @@ Chatbot repositories:
 
 ## Architecture
 
-```
-ChatbotService
-      │
-      ▼
-┌─────────────────────────────────────────┐
-│       CustomerChatbotRepository         │
-│  ┌───────────────────────────────────┐  │
-│  │ workflow.build().compile(         │  │
-│  │   checkpointer=redis,             │  │
-│  │   store=postgres                  │  │
-│  │ )                                 │  │
-│  └───────────────────────────────────┘  │
-│                                         │
-│  invoke() → run graph + save to store   │
-│  get_history() → from checkpointer      │
-│  clear_conversation() → delete checkpoint│
-└─────────────────────────────────────────┘
-```
+<details>
+<summary>View Chatbot Repository Architecture</summary>
+
+![Chatbot Repository Architecture](../images/repositories/chatbot.png)
+
+</details>
 
 ## Base Interface
 

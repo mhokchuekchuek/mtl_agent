@@ -13,50 +13,12 @@
 
 ## Layer Diagram
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                        API Layer                             │
-│  src/api/routes/          - HTTP endpoints                   │
-└─────────────────────────────────────────────────────────────┘
-                              │
-                              ▼
-┌─────────────────────────────────────────────────────────────┐
-│                   Dependencies Layer                         │
-│  src/dependencies/        - DI wiring (build_chatbot_service)│
-└─────────────────────────────────────────────────────────────┘
-                              │
-                              ▼
-┌─────────────────────────────────────────────────────────────┐
-│                      Usecase Layer                           │
-│  src/usecases/            - Business logic orchestration     │
-│  ChatbotService           - Generic chatbot operations       │
-└─────────────────────────────────────────────────────────────┘
-                              │
-                              ▼
-┌─────────────────────────────────────────────────────────────┐
-│                    Repository Layer                          │
-│  src/repositories/                                           │
-│  ├── chatbots/            - Compile workflow + memory mgmt   │
-│  ├── checkpointers/       - Short-term memory (Redis)        │
-│  └── stores/              - Long-term memory (Postgres)      │
-└─────────────────────────────────────────────────────────────┘
-                              │
-                              ▼
-┌─────────────────────────────────────────────────────────────┐
-│                      Modules Layer                           │
-│  src/modules/agents/      - AI agents (Translation, Product) │
-│  src/modules/tools/       - LangChain tools (SQL, VectorDB)  │
-│  src/modules/workflows/   - LangGraph workflows (uncompiled) │
-└─────────────────────────────────────────────────────────────┘
-                              │
-                              ▼
-┌─────────────────────────────────────────────────────────────┐
-│                   Infrastructure Layer                       │
-│  libs/database/           - SQL, Vector, KeyValue clients    │
-│  libs/llm/                - LLM clients, prompts, observ.    │
-│  libs/configs/            - Configuration management         │
-└─────────────────────────────────────────────────────────────┘
-```
+<details>
+<summary>View Layer Architecture</summary>
+
+![Layer Architecture](../images/architecture/layers.png)
+
+</details>
 
 ## Layers
 

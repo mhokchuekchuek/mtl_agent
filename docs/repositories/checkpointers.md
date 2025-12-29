@@ -11,24 +11,12 @@ Checkpointers store LangGraph state per thread. Used for:
 
 ## Architecture
 
-```
-LangGraph Workflow
-      │
-      ▼
-┌─────────────────────────────────────────┐
-│     RedisCheckpointerRepository         │
-│  ┌───────────────────────────────────┐  │
-│  │ RedisSaver(                       │  │
-│  │   redis_client,                   │  │
-│  │   ttl=3600,        # 60 min       │  │
-│  │   refresh_on_read=True            │  │
-│  │ )                                 │  │
-│  └───────────────────────────────────┘  │
-└─────────────────────────────────────────┘
-      │
-      ▼
-   Redis
-```
+<details>
+<summary>View Checkpointer Architecture</summary>
+
+![Checkpointer Architecture](../images/repositories/checkpointer.png)
+
+</details>
 
 ## Base Interface
 

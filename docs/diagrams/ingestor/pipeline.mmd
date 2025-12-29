@@ -1,0 +1,5 @@
+flowchart LR
+    A["Raw Text<br/>from PDF"] --> B["Build Prompt<br/>text + schema"]
+    B --> C["Call LLM<br/>GPT-4o-mini"]
+    C --> D["Parse Response<br/>extract JSON"]
+    D --> E["Structured<br/>Data"]

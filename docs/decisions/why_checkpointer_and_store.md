@@ -75,26 +75,12 @@ Chose **Option 3: Checkpointer + Store**.
 
 ## Architecture
 
-```
-┌─────────────────────────────────────────────────────────┐
-│                    CustomerChatbotWorkflow               │
-├─────────────────────────────────────────────────────────┤
-│                                                          │
-│  ┌──────────────┐              ┌──────────────────┐     │
-│  │    Redis     │              │    Postgres      │     │
-│  │ Checkpointer │              │      Store       │     │
-│  ├──────────────┤              ├──────────────────┤     │
-│  │ • Per-thread │              │ • Cross-thread   │     │
-│  │ • TTL: 60min │              │ • Permanent      │     │
-│  │ • Auto-save  │              │ • Manual save    │     │
-│  │ • State mgmt │              │ • Search/Query   │     │
-│  └──────────────┘              └──────────────────┘     │
-│         ↑                              ↑                 │
-│         │ (auto)                       │ (every turn)    │
-│         └──────────── invoke() ────────┘                 │
-│                                                          │
-└─────────────────────────────────────────────────────────┘
-```
+<details>
+<summary>View Memory Architecture</summary>
+
+![Memory Architecture](../images/decisions/memory_architecture.png)
+
+</details>
 
 ## Data Flow
 

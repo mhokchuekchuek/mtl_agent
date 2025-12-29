@@ -70,14 +70,12 @@ ReAct agents are non-deterministic—the LLM decides tool calls, order, and term
 
 ### Decision Framework
 
-```
-Task characteristics:
-├── Predictable steps? → Workflow
-├── Latency <1s? → Direct calls/chains  
-├── Cost-sensitive? → Minimize LLM calls
-├── Needs audit trail? → Fixed paths
-└── Unknown/unpredictable? → ReAct Agent
-```
+<details>
+<summary>View Decision Framework</summary>
+
+![ReAct Decision Framework](../images/decisions/react_decision.png)
+
+</details>
 
 **Rule of thumb**: If you can draw the flow as a flowchart with fixed steps → use workflow. If the LLM needs to discover/adapt → use ReAct.
 

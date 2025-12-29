@@ -1,0 +1,19 @@
+flowchart TB
+    subgraph Usecase["Usecase Layer"]
+        U1["ChatbotService"]
+    end
+
+    subgraph Repository["Repository Layer"]
+        R1["ChatbotRepo<br/>compile + invoke"]
+        R2["Checkpointer<br/>Redis"]
+        R3["StoreRepo<br/>Postgres"]
+    end
+
+    subgraph Modules["Modules Layer"]
+        M1["Workflows"]
+        M2["Agents"]
+        M3["Tools"]
+    end
+
+    Usecase --> Repository
+    Repository --> Modules

@@ -12,27 +12,12 @@ Domain-specific data access layer. Repositories abstract infrastructure from bus
 
 ## Architecture
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                      Usecase Layer                           │
-│  ChatbotService                                              │
-└─────────────────────────────────────────────────────────────┘
-                              │
-                              ▼
-┌─────────────────────────────────────────────────────────────┐
-│                    Repository Layer                          │
-│  ┌─────────────────┐  ┌──────────────┐  ┌────────────────┐  │
-│  │ ChatbotRepo     │  │ Checkpointer │  │ StoreRepo      │  │
-│  │ (compile+invoke)│  │ (Redis)      │  │ (Postgres)     │  │
-│  └─────────────────┘  └──────────────┘  └────────────────┘  │
-└─────────────────────────────────────────────────────────────┘
-                              │
-                              ▼
-┌─────────────────────────────────────────────────────────────┐
-│                      Modules Layer                           │
-│  Workflows (uncompiled) │ Agents │ Tools                     │
-└─────────────────────────────────────────────────────────────┘
-```
+<details>
+<summary>View Repository Architecture</summary>
+
+![Repository Architecture](../images/repositories/layers.png)
+
+</details>
 
 ## Repository vs libs/
 

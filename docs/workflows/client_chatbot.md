@@ -7,21 +7,12 @@ Internal BI chatbot workflow for business users (Thai + English).
 
 ## Architecture
 
-```
-User Query → TranslationAgent → Orchestrator (Router)
-                                      ↓
-                         ┌────────────┴────────────┐
-                         ↓                         ↓
-            CustomerChatHistoryAgent      CustomerInsightAgent
-                   (ReAct)                     (ReAct)
-                      ↓                           ↓
-                  SQLTool                     SQLTool
-                (PostgreSQL)                 (SQLite)
-                                                  ↓
-                                          VisualizationTool
-                                      ↓
-                              TranslationAgent (output)
-```
+<details>
+<summary>View Architecture Diagram</summary>
+
+![Client Chatbot Architecture](../images/workflows/client_chatbot.png)
+
+</details>
 
 ## Use Cases
 

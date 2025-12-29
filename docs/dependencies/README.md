@@ -29,37 +29,12 @@ result = service.chat("หาลำโพง", "thread-123", "user-456")
 
 ## Dependency Graph
 
-```
-build_chatbot_service()
-    │
-    ├── ConfigSelector.create() → settings
-    │
-    ├── LLMClientSelector.create("litellm") → litellm_client
-    ├── LLMClientSelector.create("langchain") → langchain_client
-    ├── SQLSelector.create() → sql_client
-    ├── VectorStoreSelector.create() → vector_store
-    ├── ObservabilitySelector.create() → observability
-    ├── PromptManagerSelector.create() → prompt_manager
-    │
-    ├── KeyValueSelector.create("redis") → redis_client
-    │       │
-    │       └── RedisCheckpointerRepository(redis_client)
-    │
-    ├── PostgresStoreRepository(...) → store_repo
-    │
-    ├── SQLTool(sql_client, litellm_client, ...)
-    ├── ProductSearchTool(vector_store, litellm_client)
-    ├── SimilarProductsTool(vector_store, litellm_client)
-    │
-    ├── TranslationAgent(litellm_client, ...)
-    ├── ProductAgent(langchain_client, tools, ...)
-    │
-    ├── CustomerChatbotWorkflow(agents) → workflow (uncompiled)
-    │
-    ├── CustomerChatbotRepository(workflow, checkpoint_repo, store_repo)
-    │
-    └── ChatbotService(chatbot_repo) → RETURN
-```
+<details>
+<summary>View Dependency Graph</summary>
+
+![Dependency Graph](../images/dependencies/dependency_graph.png)
+
+</details>
 
 ## Config Loading
 

@@ -1,0 +1,37 @@
+flowchart TB
+    subgraph API["API Layer"]
+        A1["src/api/routes/<br/>HTTP endpoints"]
+    end
+
+    subgraph Dependencies["Dependencies Layer"]
+        D1["src/dependencies/<br/>DI wiring"]
+    end
+
+    subgraph Usecase["Usecase Layer"]
+        U1["src/usecases/<br/>Business logic"]
+        U2["ChatbotService"]
+    end
+
+    subgraph Repository["Repository Layer"]
+        R1["chatbots/<br/>Compile + memory"]
+        R2["checkpointers/<br/>Redis"]
+        R3["stores/<br/>Postgres"]
+    end
+
+    subgraph Modules["Modules Layer"]
+        M1["agents/"]
+        M2["tools/"]
+        M3["workflows/"]
+    end
+
+    subgraph Infrastructure["Infrastructure Layer"]
+        I1["libs/database/"]
+        I2["libs/llm/"]
+        I3["libs/configs/"]
+    end
+
+    API --> Dependencies
+    Dependencies --> Usecase
+    Usecase --> Repository
+    Repository --> Modules
+    Modules --> Infrastructure

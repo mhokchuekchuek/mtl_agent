@@ -1,0 +1,6 @@
+flowchart TB
+    A["ProductAgent"] --> B["LLM decides tools"]
+
+    B --> C["ProductSearchTool<br/>semantic search"]
+    B --> D["SimilarProductsTool<br/>recommendations"]
+    B --> E["SQLTool<br/>stock, price, compare"]

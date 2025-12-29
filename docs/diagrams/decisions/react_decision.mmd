@@ -1,0 +1,10 @@
+flowchart TB
+    A["Task characteristics"] --> B{"Predictable<br/>steps?"}
+    B -->|Yes| C["Workflow"]
+    B -->|No| D{"Latency<br/>&lt;1s?"}
+    D -->|Yes| E["Direct calls/chains"]
+    D -->|No| F{"Cost<br/>sensitive?"}
+    F -->|Yes| G["Minimize LLM calls"]
+    F -->|No| H{"Needs audit<br/>trail?"}
+    H -->|Yes| I["Fixed paths"]
+    H -->|No| J["ReAct Agent"]

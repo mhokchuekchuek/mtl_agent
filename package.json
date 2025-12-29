@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "diagrams": "python scripts/generate_diagrams.py"
+  },
+  "devDependencies": {
+    "@mermaid-js/mermaid-cli": "^11.12.0"
+  }
+}

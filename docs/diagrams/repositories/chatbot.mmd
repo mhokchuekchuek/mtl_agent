@@ -1,0 +1,9 @@
+flowchart TB
+    A["ChatbotService"] --> B
+
+    subgraph B["CustomerChatbotRepository"]
+        C["workflow.build().compile(<br/>checkpointer=redis,<br/>store=postgres<br/>)"]
+        D["invoke() - run graph + save"]
+        E["get_history() - from checkpointer"]
+        F["clear_conversation() - delete"]
+    end
