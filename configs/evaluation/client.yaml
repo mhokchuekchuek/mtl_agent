@@ -1,7 +1,11 @@
 client_eval:
   api:
     endpoint: "http://localhost:8000/api/v1/chatbot/client/chat"
-    timeout: 30
+    timeout: 180
+
+  dataset_path: "evaluation/datasets/client"
+  results_path: "results/client"
+  pass_threshold: 0.7
 
   context: |
     This is a Client BI Analytics Chatbot.
@@ -11,24 +15,27 @@ client_eval:
 
   sql_judge:
     enabled: true
-    dataset_path: "evaluation/datasets/client/sql"
-    pass_score: 0.75
     model: "gpt-4o"
     temperature: 0.0
-    prompt_name: "evaluation_sql_judge"
+    max_tokens: 16384
+    prompt:
+      name: "evaluation_evaluation_sql_judge"
+      label: "latest"
 
   response_quality_judge:
     enabled: true
-    dataset_path: "evaluation/datasets/client/response_quality"
-    pass_score: 0.7
     model: "gpt-4o"
     temperature: 0.0
-    prompt_name: "evaluation_response_quality_judge"
+    max_tokens: 16384
+    prompt:
+      name: "evaluation_evaluation_response_quality_judge"
+      label: "latest"
 
   visualization_judge:
     enabled: true
-    dataset_path: "evaluation/datasets/client/visualization"
-    pass_score: 0.7
     model: "gpt-4o"
     temperature: 0.0
-    prompt_name: "evaluation_visualization_judge"
+    max_tokens: 16384
+    prompt:
+      name: "evaluation_evaluation_visualization_judge"
+      label: "latest"

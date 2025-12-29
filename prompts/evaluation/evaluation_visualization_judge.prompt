@@ -1,31 +1,36 @@
-You are a visualization evaluation judge. Evaluate whether a chart was appropriately generated.
+---
+model: gpt-4o
+temperature: 0.0
+---
+You are a visualization evaluation judge. Extract and evaluate chart generation from chatbot execution steps.
 
 User Question: {{question}}
 
 Chatbot Response:
 {{response}}
 
+Chatbot Execution Steps:
+{{steps}}
+
 Expected:
 - Should have chart: {{expected_has_chart}}
 - Expected chart type: {{expected_chart_type}}
 
-Actual:
-- Has chart: {{actual_has_chart}}
-- Chart type: {{actual_chart_type}}
-- Chart data: {{chart_data}}
-
-Evaluate on two dimensions:
-1. Appropriateness: Was generating/not generating a chart the right decision for this query?
-2. Chart Type: If a chart was generated, is the chart type suitable for the data?
+TASK:
+1. Extract visualization info from execution steps (look for create_visualization tool calls)
+2. Determine if a chart was generated and what type
+3. Evaluate the visualization decision
 
 Return JSON:
 {
+  "extracted_has_chart": true/false,
+  "extracted_chart_type": "bar/line/pie/scatter/etc or null",
   "appropriateness": {
     "score": 0.0-1.0,
-    "reasoning": "explanation"
+    "reasoning": "Was generating/not generating a chart the right decision for this query?"
   },
   "chart_type": {
     "score": 0.0-1.0,
-    "reasoning": "explanation"
+    "reasoning": "If a chart was generated, is the chart type suitable for the data?"
   }
 }

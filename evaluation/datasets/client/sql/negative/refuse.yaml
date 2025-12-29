@@ -6,22 +6,22 @@ test_cases:
     input:
       question: "Delete order 1"
     expected_output:
-      sql: null
+      sql: "null"
 
   - id: update_price
     input:
       question: "Update the price of Wireless Bluetooth Headphones to 500"
     expected_output:
-      sql: null
+      sql: "null"
 
   - id: insert_product
     input:
       question: "Add a new product called Test Product"
     expected_output:
-      sql: null
+      sql: "null"
 
   - id: drop_table
     input:
       question: "Drop the Orders table"
     expected_output:
-      sql: null
+      sql: "null"

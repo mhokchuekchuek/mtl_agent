@@ -25,13 +25,16 @@ class DatasetLoader:
         self.project_root = project_root or PROJECT_ROOT
 
     def load_dataset(self, dataset_path: str) -> list[TestCase]:
-        """Load all test cases from a dataset path.
+        """Load all test cases from a dataset path recursively.
+
+        Scans all subdirectories (e.g., sql/, search/, response_quality/)
+        and their turn type folders (single_turn/, multi_turn/, negative/).
 
         Args:
-            dataset_path: Full path from project root like "evaluation/datasets/customer/sql".
+            dataset_path: Path like "evaluation/datasets/customer".
 
         Returns:
-            List of TestCase objects from all YAML files in the path.
+            List of TestCase objects from all YAML files.
         """
         full_path = self.project_root / dataset_path
         if not full_path.exists():
@@ -40,40 +43,30 @@ class DatasetLoader:
 
         test_cases = []
 
-        # Load from subdirectories (single_turn, multi_turn, negative)
-        for subdir in ["single_turn", "multi_turn", "negative"]:
-            subdir_path = full_path / subdir
-            if subdir_path.exists():
-                test_cases.extend(self._load_from_directory(subdir_path))
-
-        # Also load any YAML files directly in the path
-        test_cases.extend(self._load_from_directory(full_path, recursive=False))
-
-        logger.info(f"Loaded {len(test_cases)} test cases from {dataset_path}")
-        return test_cases
-
-    def _load_from_directory(
-        self, directory: Path, recursive: bool = True
-    ) -> list[TestCase]:
-        """Load test cases from YAML files in a directory.
-
-        Args:
-            directory: Directory path.
-            recursive: Whether to search subdirectories.
-
-        Returns:
-            List of TestCase objects.
-        """
-        test_cases = []
-        pattern = "**/*.yaml" if recursive else "*.yaml"
-
-        for yaml_file in directory.glob(pattern):
+        # Recursively find all YAML files
+        for yaml_file in full_path.rglob("*.yaml"):
             try:
+                # Determine source_folder from path
+                # e.g., customer/sql/single_turn/aggregation.yaml -> single_turn
+                relative_path = yaml_file.relative_to(full_path)
+                parts = relative_path.parts
+
+                # Find turn type in path (single_turn, multi_turn, negative)
+                source_folder = "single_turn"  # default
+                for part in parts:
+                    if part in ("single_turn", "multi_turn", "negative"):
+                        source_folder = part
+                        break
+
                 cases = self._load_yaml_file(yaml_file)
+                for case in cases:
+                    case.source_folder = source_folder
                 test_cases.extend(cases)
+
             except Exception as e:
                 logger.error(f"Error loading {yaml_file}: {e}")
 
+        logger.info(f"Loaded {len(test_cases)} test cases from {dataset_path}")
         return test_cases
 
     def _load_yaml_file(self, file_path: Path) -> list[TestCase]:
@@ -134,19 +127,3 @@ class DatasetLoader:
                 input=raw.get("input", {}),
                 expected_output=raw.get("expected_output", {}),
             )
-
-    def list_datasets(self) -> list[str]:
-        """List available dataset paths.
-
-        Returns:
-            List of dataset paths like ["customer/sql", "client/visualization"].
-        """
-        datasets = []
-
-        for chatbot_dir in self.base_path.iterdir():
-            if chatbot_dir.is_dir() and not chatbot_dir.name.startswith("_"):
-                for category_dir in chatbot_dir.iterdir():
-                    if category_dir.is_dir() and not category_dir.name.startswith("_"):
-                        datasets.append(f"{chatbot_dir.name}/{category_dir.name}")
-
-        return sorted(datasets)

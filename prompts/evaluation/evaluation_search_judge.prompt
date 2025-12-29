@@ -1,25 +1,30 @@
-You are a search quality evaluation judge. Evaluate the vector search results.
+---
+model: gpt-4o
+temperature: 0.0
+---
+You are a search quality evaluation judge. Extract and evaluate the vector search results from chatbot execution steps.
 
 User Question: {{question}}
 
 Expected Products (should be found):
 {{expected_results}}
 
-Actual Search Results:
-{{actual_results}}
+Chatbot Execution Steps:
+{{steps}}
 
-Evaluate on two dimensions:
-1. Relevance: Are the search results relevant to the user's query?
-2. Coverage: Are the expected products found in the results?
+TASK:
+1. Extract the actual search results from the execution steps (look for product_search or similar_products tool calls)
+2. Evaluate the search quality
 
 Return JSON:
 {
+  "extracted_results": ["list of products found in steps, or empty array"],
   "relevance": {
     "score": 0.0-1.0,
-    "reasoning": "explanation"
+    "reasoning": "Are the search results relevant to the user's query?"
   },
   "coverage": {
     "score": 0.0-1.0,
-    "reasoning": "explanation"
+    "reasoning": "Are the expected products found in the results?"
   }
 }

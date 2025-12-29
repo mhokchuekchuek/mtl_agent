@@ -1,7 +1,11 @@
 customer_eval:
   api:
     endpoint: "http://localhost:8000/api/v1/chatbot/customer/chat"
-    timeout: 30
+    timeout: 180
+
+  dataset_path: "evaluation/datasets/customer"
+  results_path: "results/customer"
+  pass_threshold: 0.7
 
   context: |
     This is a Customer Support Chatbot.
@@ -12,21 +16,27 @@ customer_eval:
 
   sql_judge:
     enabled: true
-    dataset_path: "evaluation/datasets/customer/sql"
-    pass_score: 0.75
     model: "gpt-4o"
     temperature: 0.0
-    prompt_name: "evaluation_sql_judge"
+    max_tokens: 16384
+    prompt:
+      name: "evaluation_evaluation_sql_judge"
+      label: "latest"
 
   search_judge:
     enabled: true
-    dataset_path: "evaluation/datasets/customer/search"
-    pass_score: 0.6
+    model: "gpt-4o"
+    temperature: 0.0
+    max_tokens: 16384
+    prompt:
+      name: "evaluation_evaluation_search_judge"
+      label: "latest"
 
   response_quality_judge:
     enabled: true
-    dataset_path: "evaluation/datasets/customer/response_quality"
-    pass_score: 0.7
     model: "gpt-4o"
     temperature: 0.0
-    prompt_name: "evaluation_response_quality_judge"
+    max_tokens: 16384
+    prompt:
+      name: "evaluation_evaluation_response_quality_judge"
+      label: "latest"

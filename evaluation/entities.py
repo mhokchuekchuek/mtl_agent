@@ -40,10 +40,23 @@ class TestCase:
     expected_output: dict[str, Any] | None = None
     turns: list[Turn] | None = None
     tags: list[str] = field(default_factory=list)
+    source_folder: str = "single_turn"  # single_turn, multi_turn, or negative
 
     def is_multi_turn(self) -> bool:
         """Check if this is a multi-turn test case."""
         return self.turns is not None and len(self.turns) > 0
+
+
+@dataclass
+class TurnResult:
+    """Result for a single turn in multi-turn evaluation."""
+
+    turn: int
+    input_data: dict[str, Any]
+    output_data: dict[str, Any]
+    expected: dict[str, Any] | None
+    judge_results: dict[str, JudgeResult]
+    latency_ms: float
 
 
 @dataclass
@@ -59,3 +72,18 @@ class EvaluationResult:
     passed: bool
     trace_id: str | None = None
     latency_ms: float | None = None
+    # For multi-turn: per-turn results
+    turns: list[TurnResult] | None = None
+
+
+@dataclass
+class EvaluationSummary:
+    """Summary of evaluation results."""
+
+    dataset_path: str
+    total_tests: int
+    passed_tests: int
+    failed_tests: int
+    pass_rate: float
+    average_score: float
+    results: list[EvaluationResult] = field(default_factory=list)
