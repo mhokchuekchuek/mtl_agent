@@ -1,40 +1,82 @@
-# CustomerChatHistoryAgent
+# Customer Chat History Agent
 
-ReAct agent for looking up customer chat history from PostgreSQL.
+ReAct agent for looking up customer chat conversations.
 
 ## Location
+
 `src/modules/agents/client/chat_history.py`
 
-## Purpose
+## Class: CustomerChatHistoryAgent
 
-Queries LangGraph's `store` table to find customer conversations.
+Inherits from `BaseAgent`.
 
-## Tools
-- `SQLTool` with PostgreSQLClient
+### Purpose
 
-## Database
-Queries `store` table (created by LangGraph PostgresStore):
-- `namespace` - array of namespace components
-- `key` - unique record key
-- `value` - JSONB conversation data
-- `created_at`, `updated_at` - timestamps
+Look up customer chat history from PostgreSQL LangGraph store. Uses ReAct pattern with SQLTool.
 
-## Usage
+### Configuration
+
+| Property | Value |
+|----------|-------|
+| LLM | ChatOpenAI |
+| Pattern | ReAct (LangGraph) |
+| Tools | SQLTool (PostgreSQL) |
+| Prompt | `client_chatbot_chat_history` |
+
+### Input State
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `translated_query` | str | Query in English |
+| `messages` | list | Conversation history (optional) |
+
+### Output State
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `response` | str | Chat history results |
+| `steps` | list | Tool calls made |
+
+### Code Flow
+
+```mermaid
+flowchart TD
+    A[1. Get Prompt from Langfuse] --> B[2. Build ReAct agent with tools]
+    B --> C[3. Build messages with history]
+    C --> D[4. LLM decides action]
+    D --> E[5. Call SQLTool to query store table]
+    E --> F[6. Format and return results]
+```
+
+### Example Flows
+
+**Query: "What did customer 123 ask yesterday?"**
+```
+LLM → SQLTool (query store table) → Response
+```
+
+**Query: "Find complaints about shipping"**
+```
+LLM → SQLTool (search conversations) → Response
+```
+
+### Tools
+
+| Tool | Location | Purpose |
+|------|----------|---------|
+| ClientChatHistorySQLTool | [sql/client/chat_history.md](../../tools/knowledge_retrieval/sql/client/chat_history.md) | Query PostgreSQL store table |
+
+### Usage
 
 ```python
 from src.modules.agents.client.chat_history import CustomerChatHistoryAgent
 
 agent = CustomerChatHistoryAgent(
-    llm=chat_openai,
+    llm=llm,
     prompt_manager=prompt_manager,
-    tools=[sql_tool_postgres],
-    prompt_name="client_chatbot_chat_history",
-    max_iterations=5,
+    tools=[chat_history_sql_tool],
 )
 
-result = agent.execute({"translated_query": "Find chat with customer 123"})
-# result = {"response": "Found 3 conversations..."}
+result = agent.execute({"translated_query": "Show customer complaints"})
+# Returns: {"response": "...", "steps": [...]}
 ```
-
-## Config
-`configs/agents/client_chatbot.yaml` → `agents.chat_history`

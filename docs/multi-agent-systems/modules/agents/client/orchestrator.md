@@ -1,41 +1,66 @@
-# OrchestratorAgent
+# Orchestrator Agent
 
-Router agent that classifies user intent for client chatbot.
+Router agent that classifies intent and routes to appropriate agent.
 
 ## Location
+
 `src/modules/agents/client/orchestrator.py`
 
-## Purpose
+## Class: OrchestratorAgent
 
-Decides whether user query should go to:
-- `CustomerChatHistoryAgent` - for chat history lookup
-- `CustomerInsightAgent` - for BI analytics
+Inherits from `BaseAgent`.
 
-## Intents
+### Purpose
 
-### `chat_history`
-- Looking up customer conversations
-- Searching chat history by customer ID, name, date
+Classifies user intent and routes to either `chat_history` or `insight` agent.
 
-### `insight`
-- Analyzing business data
-- Creating reports/visualizations
-- Querying sales, orders, inventory
+### Configuration
 
-## Usage
+| Property | Value |
+|----------|-------|
+| LLM | ChatOpenAI |
+| Prompt | `client_chatbot_orchestrator` |
 
-```python
-from src.modules.agents.client.orchestrator import OrchestratorAgent, Intent
+### Input State
 
-agent = OrchestratorAgent(
-    llm=chat_openai,
-    prompt_manager=prompt_manager,
-    prompt_name="client_chatbot_orchestrator",
-)
+| Field | Type | Description |
+|-------|------|-------------|
+| `translated_query` | str | Query in English |
 
-result = agent.execute({"translated_query": "Show me sales this month"})
-# result = {"intent": Intent.INSIGHT}
+### Output State
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `intent` | Intent | `CHAT_HISTORY` or `INSIGHT` |
+
+### Code Flow
+
+```mermaid
+flowchart TD
+    A[1. Get Prompt from Langfuse] --> B[2. Compile with datetime context]
+    B --> C[3. LLM classifies intent]
+    C --> D{4. Parse response}
+    D -->|chat_history| E[Return CHAT_HISTORY]
+    D -->|other| F[Return INSIGHT]
 ```
 
-## Config
-`configs/agents/client_chatbot.yaml` → `agents.orchestrator`
+### Intent Types
+
+| Intent | Description | Routes to |
+|--------|-------------|-----------|
+| `CHAT_HISTORY` | Looking up customer conversations | ChatHistoryAgent |
+| `INSIGHT` | BI analytics / reporting / visualization | InsightAgent |
+
+### Usage
+
+```python
+from src.modules.agents.client.orchestrator import OrchestratorAgent
+
+agent = OrchestratorAgent(
+    llm=llm,
+    prompt_manager=prompt_manager,
+)
+
+result = agent.execute({"translated_query": "Show me customer complaints"})
+# Returns: {"intent": Intent.CHAT_HISTORY}
+```
