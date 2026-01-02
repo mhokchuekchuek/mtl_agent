@@ -31,11 +31,7 @@ Documentation for the MTL Agent ERP multi-agent system.
 | Data Sources | ERP database, product PDFs | [data-sources/](data-sources/README.md) |
 | Ingestor | PDF ingestion pipeline | [ingestor/](ingestor/README.md) |
 
-## API
 
-| Section | Purpose | Documentation |
-|---------|---------|---------------|
-| API | REST API architecture | [api/](api/README.md) |
 
 ## Evaluation
 

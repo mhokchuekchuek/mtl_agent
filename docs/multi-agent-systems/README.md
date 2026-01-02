@@ -16,6 +16,8 @@ This system implements two chatbot workflows:
 | Repositories | Data access layer | [repositories/](repositories/README.md) |
 | Usecases | Business orchestration | [usecases/](usecases/README.md) |
 | Dependencies | Dependency injection | [dependencies/](dependencies/README.md) |
+| API | REST API endpoints | [api/](api/README.md) |
+| UI | Streamlit user interface | [ui/](ui/) |
 | CLI | Command-line interface | [cli/](cli/README.md) |
 
 ## Modules
