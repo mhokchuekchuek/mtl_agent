@@ -1,0 +1,14 @@
+name: conversation_context
+description: Multi-turn chat history exploration
+
+test_cases:
+  - id: find_then_drill_down
+    turns:
+      - input:
+          question: "Show me recent customer conversations"
+        expected_output:
+          response_quality: "conversation, customer"
+      - input:
+          question: "What did the first customer ask about?"
+        expected_output:
+          response_quality: "question, asked"

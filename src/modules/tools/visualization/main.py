@@ -46,7 +46,7 @@ class VisualizationTool(BaseTool):
     args_schema: Type[BaseModel] = VisualizationInput
     llm_client: Optional[BaseLLM] = None
     prompt_manager: Optional[BasePromptManager] = None
-    prompt_name: str = "client_chatbot_visualization"
+    prompt_name: str = "tools_client_visualization"
     prompt_label: Optional[str] = None
 
     class Config:
@@ -56,7 +56,7 @@ class VisualizationTool(BaseTool):
         self,
         llm_client: BaseLLM,
         prompt_manager: BasePromptManager,
-        prompt_name: str = "client_chatbot_visualization",
+        prompt_name: str = "tools_client_visualization",
         prompt_label: Optional[str] = None,
         **kwargs,
     ):

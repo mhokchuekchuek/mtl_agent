@@ -1,7 +1,7 @@
 """Client chatbot evaluation dependency initialization."""
 
-from evaluation.datasets.loader import DatasetLoader
 from evaluation.judges.selector import JudgeSelector
+from evaluation.loader import DatasetLoader
 from evaluation.repositories.main import EvaluationRepository
 from evaluation.usecases.main import EvaluationService
 from libs.configs.selector import ConfigSelector
@@ -27,7 +27,7 @@ def build_evaluation_service() -> tuple[EvaluationService, str]:
     """Build and return the client evaluation service.
 
     Returns:
-        Tuple of (EvaluationService, dataset_path)
+        Tuple of (EvaluationService, dataset_path, results_path)
     """
     config = ConfigSelector.create(provider="dynaconf")
     shared = config.shared
@@ -73,7 +73,9 @@ def build_evaluation_service() -> tuple[EvaluationService, str]:
             prompt_manager=prompt_manager,
             sql_client=sql_client,
             schema=schema,
-            prompt_name=prompt_cfg.name if prompt_cfg else "evaluation_sql_judge",
+            prompt_name=prompt_cfg.name
+            if prompt_cfg
+            else "evaluation_judges_sql_judge",
             prompt_label=prompt_cfg.label if prompt_cfg else "latest",
             context=context,
         )
@@ -97,7 +99,7 @@ def build_evaluation_service() -> tuple[EvaluationService, str]:
             prompt_manager=prompt_manager,
             prompt_name=prompt_cfg.name
             if prompt_cfg
-            else "evaluation_response_quality_judge",
+            else "evaluation_judges_response_quality_judge",
             prompt_label=prompt_cfg.label if prompt_cfg else "latest",
             context=context,
         )
@@ -121,7 +123,7 @@ def build_evaluation_service() -> tuple[EvaluationService, str]:
             prompt_manager=prompt_manager,
             prompt_name=prompt_cfg.name
             if prompt_cfg
-            else "evaluation_visualization_judge",
+            else "evaluation_judges_visualization_judge",
             prompt_label=prompt_cfg.label if prompt_cfg else "latest",
         )
         judges.append(judge)
@@ -147,4 +149,4 @@ def build_evaluation_service() -> tuple[EvaluationService, str]:
 
     service = EvaluationService(evaluation_repo=evaluation_repo)
 
-    return service, dataset_path
+    return service, dataset_path, results_path

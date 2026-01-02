@@ -5,12 +5,13 @@ from langgraph.graph import END, StateGraph
 from libs.logger.logger import get_logger
 from src.modules.agents.products.main import ProductAgent
 from src.modules.agents.translation.main import TranslationAgent
+from src.modules.workflows.base import BaseWorkflow
 from src.modules.workflows.customer_chatbot.state import ShoppingState
 
 logger = get_logger(__name__)
 
 
-class CustomerChatbotWorkflow:
+class CustomerChatbotWorkflow(BaseWorkflow):
     """Customer chatbot workflow definition.
 
     Defines the graph structure:
@@ -74,14 +75,26 @@ class CustomerChatbotWorkflow:
 
     def _run_product_agent(self, state: ShoppingState) -> dict:
         """Run product agent with translated query."""
-        input_data = {"query": state["translated_query"]}
+        messages = state.get("messages", [])
+        logger.info(f"ProductAgent input: {len(messages)} messages in state")
+        input_data = {
+            "query": state["translated_query"],
+            "messages": messages,
+            "customer_id": state.get("customer_id"),
+        }
         result = self.product_agent.execute(input_data)
 
-        # Get tool steps from product agent if available
         tool_steps = result.get("steps", [])
+
+        new_messages = self._build_conversation_messages(
+            query=state["translated_query"],
+            response=result["response"],
+            tool_steps=tool_steps,
+        )
 
         return {
             "response": result["response"],
+            "messages": new_messages,
             "steps": [
                 {
                     "name": "product_agent",

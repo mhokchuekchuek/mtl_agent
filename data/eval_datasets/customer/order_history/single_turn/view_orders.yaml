@@ -1,0 +1,15 @@
+name: view_orders
+description: Customer viewing their own order history
+
+test_cases:
+  - id: view_my_orders
+    input:
+      question: "Show me my orders"
+    expected_output:
+      sql: "SELECT * FROM Orders WHERE customer_id = 1 ORDER BY order_date DESC"
+
+  - id: count_my_orders
+    input:
+      question: "How many orders have I placed?"
+    expected_output:
+      sql: "SELECT COUNT(*) FROM Orders WHERE customer_id = 1"

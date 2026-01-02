@@ -117,6 +117,9 @@ class PostgreSQLClient(BaseSQLDatabase):
         """
         try:
             with self.connection.cursor() as cursor:
+                # If no params, escape % to avoid psycopg placeholder interpretation
+                if not params:
+                    query = query.replace("%", "%%")
                 cursor.execute(query, params)
                 results = cursor.fetchall()
 
@@ -216,6 +219,14 @@ class PostgreSQLClient(BaseSQLDatabase):
         except psycopg.Error as e:
             logger.error(f"Get schema failed: {e}", exc_info=True)
             raise
+
+    def get_db_type(self) -> str:
+        """Get the database type identifier.
+
+        Returns:
+            "postgresql" as the database type
+        """
+        return "postgresql"
 
     def __enter__(self) -> "PostgreSQLClient":
         """Context manager entry."""

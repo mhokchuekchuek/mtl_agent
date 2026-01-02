@@ -237,6 +237,14 @@ class SQLiteClient(BaseSQLDatabase):
         tables = self.get_tables()
         return {table: self.get_schema(table) for table in tables}
 
+    def get_db_type(self) -> str:
+        """Get the database type identifier.
+
+        Returns:
+            "sqlite" as the database type
+        """
+        return "sqlite"
+
     def __enter__(self) -> "SQLiteClient":
         """Context manager entry."""
         return self

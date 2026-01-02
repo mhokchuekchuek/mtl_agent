@@ -36,5 +36,40 @@ class BaseAgent(ABC):
         """
         pass
 
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(name='{self.name}')"
+    def _build_messages_with_history(
+        self, query: str, history: list
+    ) -> list[dict[str, str]]:
+        """Build messages list including conversation history.
+
+        Converts LangChain message objects (AIMessage, HumanMessage, ToolMessage)
+        into a list of role/content dicts for agent consumption.
+
+        Args:
+            query: Current user query.
+            history: List of previous messages from state.
+
+        Returns:
+            List of message dicts with role and content.
+        """
+        messages = []
+
+        for msg in history:
+            msg_type = getattr(msg, "type", None)
+            content = getattr(msg, "content", str(msg))
+
+            if msg_type == "ai" or msg_type == "assistant":
+                messages.append({"role": "assistant", "content": content})
+            elif msg_type == "human" or msg_type == "user":
+                messages.append({"role": "user", "content": content})
+            elif msg_type == "tool":
+                tool_name = getattr(msg, "name", "tool")
+                messages.append(
+                    {
+                        "role": "assistant",
+                        "content": f"[Tool Result from {tool_name}]: {content}",
+                    }
+                )
+
+        messages.append({"role": "user", "content": query})
+
+        return messages

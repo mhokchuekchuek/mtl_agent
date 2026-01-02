@@ -8,38 +8,41 @@ client_chatbot:
   agents:
     translation:
       model: "gpt-4o-mini"
-      prompt_name: "client_chatbot_translation"
+      prompt_name: "agents_client_translation"
       temperature: 0.3
+      max_tokens: 8192
 
     orchestrator:
       model: "gpt-4o-mini"
-      prompt_name: "client_chatbot_orchestrator"
+      prompt_name: "agents_client_orchestrator"
       temperature: 0.3
 
     chat_history:
       model: "gpt-4o-mini"
-      prompt_name: "client_chatbot_chat_history"
+      prompt_name: "agents_client_chat_history"
       temperature: 0.7
       max_iterations: 5
       recursion_limit: 25
       tools:
-        sql:
+        chat_history_sql:
           model: "gpt-4o-mini"
-          prompt_name: "client_chatbot_sql_generate"
+          prompt_name: "tools_client_chat_history_sql"
           temperature: 0
 
     insight:
       model: "gpt-4o-mini"
-      prompt_name: "client_chatbot_insight"
+      prompt_name: "agents_client_insight"
       temperature: 0.7
       max_iterations: 5
       recursion_limit: 25
       tools:
-        sql:
+        analytics_sql:
           model: "gpt-4o-mini"
-          prompt_name: "client_chatbot_sql_generate"
+          prompt_name: "tools_client_analytics_sql"
           temperature: 0
+          max_tokens: 16384
         visualization:
           model: "gpt-4o-mini"
-          prompt_name: "client_chatbot_visualization"
+          prompt_name: "tools_client_visualization"
           temperature: 0
+          max_tokens: 16384

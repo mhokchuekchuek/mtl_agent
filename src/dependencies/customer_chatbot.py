@@ -9,7 +9,18 @@ from libs.llm.observability.selector import ObservabilitySelector
 from libs.llm.prompt_manager.selector import PromptManagerSelector
 from src.modules.agents.products.main import ProductAgent
 from src.modules.agents.translation.main import TranslationAgent
-from src.modules.tools.knowledge_retrieval.sql.main import SQLTool
+from src.modules.tools.knowledge_retrieval.sql.customer.cancel_order import (
+    CancelOrderSQLTool,
+)
+from src.modules.tools.knowledge_retrieval.sql.customer.order import (
+    CustomerOrderSQLTool,
+)
+from src.modules.tools.knowledge_retrieval.sql.customer.place_order import (
+    PlaceOrderSQLTool,
+)
+from src.modules.tools.knowledge_retrieval.sql.customer.product import (
+    CustomerProductSQLTool,
+)
 from src.modules.tools.knowledge_retrieval.vectordb.search import ProductSearchTool
 from src.modules.tools.knowledge_retrieval.vectordb.similar import SimilarProductsTool
 from src.modules.workflows.customer_chatbot.main import CustomerChatbotWorkflow
@@ -52,13 +63,43 @@ def build_chatbot_service() -> ChatbotService:
         default_max_tokens=shared.llm.max_tokens,
     )
 
-    # LangChain client - for SQL tool (generate)
-    sql_llm_client = LLMClientSelector.create(
+    # LangChain client - for product SQL tool (generate)
+    product_sql_llm_client = LLMClientSelector.create(
         provider="langchain",
         proxy_url=shared.llm.proxy_url,
         api_key=shared.llm.api_key,
-        default_model=chatbot.agents.products.tools.sql.model,
-        default_temperature=chatbot.agents.products.tools.sql.temperature,
+        default_model=chatbot.agents.products.tools.product_sql.model,
+        default_temperature=chatbot.agents.products.tools.product_sql.temperature,
+        default_max_tokens=shared.llm.max_tokens,
+    )
+
+    # LangChain client - for order SQL tool (generate)
+    order_sql_llm_client = LLMClientSelector.create(
+        provider="langchain",
+        proxy_url=shared.llm.proxy_url,
+        api_key=shared.llm.api_key,
+        default_model=chatbot.agents.products.tools.order_sql.model,
+        default_temperature=chatbot.agents.products.tools.order_sql.temperature,
+        default_max_tokens=shared.llm.max_tokens,
+    )
+
+    # LangChain client - for place order SQL tool (generate)
+    place_order_sql_llm_client = LLMClientSelector.create(
+        provider="langchain",
+        proxy_url=shared.llm.proxy_url,
+        api_key=shared.llm.api_key,
+        default_model=chatbot.agents.products.tools.place_order_sql.model,
+        default_temperature=chatbot.agents.products.tools.place_order_sql.temperature,
+        default_max_tokens=shared.llm.max_tokens,
+    )
+
+    # LangChain client - for cancel order SQL tool (generate)
+    cancel_order_sql_llm_client = LLMClientSelector.create(
+        provider="langchain",
+        proxy_url=shared.llm.proxy_url,
+        api_key=shared.llm.api_key,
+        default_model=chatbot.agents.products.tools.cancel_order_sql.model,
+        default_temperature=chatbot.agents.products.tools.cancel_order_sql.temperature,
         default_max_tokens=shared.llm.max_tokens,
     )
 
@@ -129,23 +170,59 @@ def build_chatbot_service() -> ChatbotService:
 
     # === Create Tools ===
 
-    sql_tool = SQLTool(
+    product_sql_tool = CustomerProductSQLTool(
         sql_client=sql_client,
-        llm_client=sql_llm_client,
+        llm_client=product_sql_llm_client,
         prompt_manager=prompt_manager,
-        prompt_name=chatbot.agents.products.tools.sql.prompt_name,
+        prompt_name=chatbot.agents.products.tools.product_sql.prompt_name,
         prompt_label=prompt_label,
-        allow_write=chatbot.agents.products.tools.sql.allow_write,
+        allow_write=chatbot.agents.products.tools.product_sql.allow_write,
+        allowed_tables=list(chatbot.agents.products.tools.product_sql.allowed_tables),
+    )
+
+    order_sql_tool = CustomerOrderSQLTool(
+        sql_client=sql_client,
+        llm_client=order_sql_llm_client,
+        prompt_manager=prompt_manager,
+        prompt_name=chatbot.agents.products.tools.order_sql.prompt_name,
+        prompt_label=prompt_label,
+        allow_write=chatbot.agents.products.tools.order_sql.allow_write,
+        allowed_tables=list(chatbot.agents.products.tools.order_sql.allowed_tables),
     )
 
     product_search_tool = ProductSearchTool(
         vector_store=vector_store,
         llm_client=vector_llm_client,
+        similarity_threshold=chatbot.agents.products.tools.product_search.similarity_threshold,
     )
 
     similar_products_tool = SimilarProductsTool(
         vector_store=vector_store,
         llm_client=vector_llm_client,
+    )
+
+    place_order_sql_tool = PlaceOrderSQLTool(
+        sql_client=sql_client,
+        llm_client=place_order_sql_llm_client,
+        prompt_manager=prompt_manager,
+        prompt_name=chatbot.agents.products.tools.place_order_sql.prompt_name,
+        prompt_label=prompt_label,
+        allow_write=chatbot.agents.products.tools.place_order_sql.allow_write,
+        allowed_tables=list(
+            chatbot.agents.products.tools.place_order_sql.allowed_tables
+        ),
+    )
+
+    cancel_order_sql_tool = CancelOrderSQLTool(
+        sql_client=sql_client,
+        llm_client=cancel_order_sql_llm_client,
+        prompt_manager=prompt_manager,
+        prompt_name=chatbot.agents.products.tools.cancel_order_sql.prompt_name,
+        prompt_label=prompt_label,
+        allow_write=chatbot.agents.products.tools.cancel_order_sql.allow_write,
+        allowed_tables=list(
+            chatbot.agents.products.tools.cancel_order_sql.allowed_tables
+        ),
     )
 
     # === Create Agents ===
@@ -176,7 +253,14 @@ def build_chatbot_service() -> ChatbotService:
     product_agent = ProductAgent(
         llm=product_llm,
         prompt_manager=prompt_manager,
-        tools=[sql_tool, product_search_tool, similar_products_tool],
+        tools=[
+            product_sql_tool,
+            order_sql_tool,
+            place_order_sql_tool,
+            cancel_order_sql_tool,
+            product_search_tool,
+            similar_products_tool,
+        ],
         prompt_name=chatbot.agents.products.prompt_name,
         prompt_label=prompt_label,
         max_iterations=chatbot.agents.products.max_iterations,

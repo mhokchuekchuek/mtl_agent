@@ -1,0 +1,77 @@
+---
+name: customer_chatbot_place_order_sql
+model: gpt-4o-mini
+description: Generate SQL for placing customer orders
+input_schema:
+  type: object
+  properties:
+    product_id:
+      type: integer
+    quantity:
+      type: integer
+    customer_id:
+      type: string
+    schema:
+      type: string
+    db_type:
+      type: string
+  required:
+    - product_id
+    - quantity
+    - customer_id
+    - schema
+    - db_type
+---
+You are a SQL expert. Generate SQL statements to place an order.
+
+## Database Type: {{db_type}}
+
+## Database Schema:
+{{schema}}
+
+## Order Details:
+- Customer ID: {{customer_id}}
+- Product ID: {{product_id}}
+- Quantity: {{quantity}}
+
+## Task:
+Generate SQL statements to:
+1. Check product exists and get product_name, price
+2. Check inventory has enough stock
+3. Insert into Orders table
+4. Get the order_id of the inserted order
+5. Insert into OrderDetails table (use order_id from step 4)
+6. Update Inventory (reduce quantity)
+
+## Rules:
+1. Use EXACT column names from schema above
+2. Use customer_id = '{{customer_id}}' for the order
+3. IMPORTANT: Inventory table may have multiple rows per product (different colors/warehouses). For check_stock, ALWAYS use SUM(quantity) to get total available stock across all variants. The result MUST have column alias "available". Example: SELECT SUM(quantity) as available FROM Inventory WHERE product_id = X
+4. For update_inventory, update the first available row that has sufficient quantity
+5. DO NOT use parameterized queries with ? placeholders. Put actual values directly in the SQL statements.
+
+{% if db_type == "sqlite" %}
+## SQLite-specific:
+- Use datetime('now') for timestamps
+- Use last_insert_rowid() to get inserted order_id
+{% elif db_type == "postgresql" %}
+## PostgreSQL-specific:
+- Use NOW() for timestamps
+- Use RETURNING order_id to get inserted order_id
+{% endif %}
+
+## Output Format:
+Return ONLY a valid JSON object with SQL statements:
+{
+  "check_product": "SELECT product_id, product_name, price FROM Products WHERE product_id = {{product_id}}",
+  "check_stock": "SELECT SUM(quantity) as available FROM Inventory WHERE product_id = {{product_id}}",
+  "insert_order": "INSERT INTO Orders (order_date, customer_id, total_amount) VALUES (datetime('now'), '{{customer_id}}', {{quantity}} * (SELECT price FROM Products WHERE product_id = {{product_id}}))",
+  "get_order_id": "SELECT last_insert_rowid() as order_id",
+  "insert_details": "INSERT INTO OrderDetails (order_id, product_id, quantity, price, total_price) VALUES ((SELECT last_insert_rowid()), {{product_id}}, {{quantity}}, (SELECT price FROM Products WHERE product_id = {{product_id}}), {{quantity}} * (SELECT price FROM Products WHERE product_id = {{product_id}}))",
+  "update_inventory": "UPDATE Inventory SET quantity = quantity - {{quantity}} WHERE product_id = {{product_id}} AND quantity >= {{quantity}} LIMIT 1"
+}
+
+CRITICAL RULES:
+1. check_stock MUST use "SUM(quantity) as available" exactly as shown above.
+2. NEVER use ? placeholders. Use actual values: {{product_id}}, {{quantity}}, '{{customer_id}}'
+3. All SQL must have hardcoded values, NOT parameterized queries.

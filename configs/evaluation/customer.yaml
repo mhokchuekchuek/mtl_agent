@@ -3,7 +3,8 @@ customer_eval:
     endpoint: "http://localhost:8000/api/v1/chatbot/customer/chat"
     timeout: 180
 
-  dataset_path: "evaluation/datasets/customer"
+  dataset_path: failed_round2/customer
+  # dataset_path: "data/eval_datasets/customer"
   results_path: "results/customer"
   pass_threshold: 0.7
 
@@ -20,7 +21,7 @@ customer_eval:
     temperature: 0.0
     max_tokens: 16384
     prompt:
-      name: "evaluation_evaluation_sql_judge"
+      name: "evaluation_judges_sql_judge"
       label: "latest"
 
   search_judge:
@@ -29,7 +30,7 @@ customer_eval:
     temperature: 0.0
     max_tokens: 16384
     prompt:
-      name: "evaluation_evaluation_search_judge"
+      name: "evaluation_judges_search_judge"
       label: "latest"
 
   response_quality_judge:
@@ -38,5 +39,5 @@ customer_eval:
     temperature: 0.0
     max_tokens: 16384
     prompt:
-      name: "evaluation_evaluation_response_quality_judge"
+      name: "evaluation_judges_response_quality_judge"
       label: "latest"

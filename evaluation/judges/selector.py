@@ -11,9 +11,8 @@ class JudgeSelector(BaseToolSelector):
         ...     provider="sql",
         ...     llm_client=llm_client,
         ...     prompt_manager=prompt_manager,
-        ...     sql_client=sql_client,
         ...     schema=schema,
-        ...     prompt_name="evaluation_sql_judge",
+        ...     prompt_name="evaluation_judges_sql_judge",
         ... )
     """
 

@@ -1,0 +1,15 @@
+name: lookup_conversation
+description: Look up customer chat conversations
+
+test_cases:
+  - id: find_customer_conversations
+    input:
+      question: "What did Brenda Ross ask about?"
+    expected_output:
+      response_quality: "conversation, chat history"
+
+  - id: search_topic_in_chats
+    input:
+      question: "Which customers asked about headphones?"
+    expected_output:
+      response_quality: "customer, headphones"

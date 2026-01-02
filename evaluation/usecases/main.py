@@ -1,5 +1,8 @@
 """Evaluation service use case."""
 
+import csv
+from pathlib import Path
+
 from evaluation.entities import EvaluationResult, EvaluationSummary
 from evaluation.repositories.base import BaseEvaluationRepository
 from libs.logger.logger import get_logger
@@ -76,6 +79,75 @@ class EvaluationService:
         print("\n" + "=" * 60)
         print("Evaluation Summary")
         print("=" * 60)
+
+    def save_summary_csv(self, summary: EvaluationSummary, results_path: str):
+        """Save evaluation summary as CSV.
+
+        Args:
+            summary: Evaluation summary with results
+            results_path: Path to save summary.csv
+        """
+        results_dir = Path(results_path)
+        results_dir.mkdir(parents=True, exist_ok=True)
+        csv_path = results_dir / "summary.csv"
+
+        # Collect all judge names from results
+        all_judges = set()
+        for result in summary.results:
+            for judge_name in result.judge_results.keys():
+                # Remove turn suffix for multi-turn (e.g., sql_turn_0 -> sql)
+                base_name = judge_name.split("_turn_")[0]
+                all_judges.add(base_name)
+
+        judge_columns = sorted(all_judges)
+
+        # Write CSV
+        with open(csv_path, "w", newline="") as f:
+            fieldnames = [
+                "test_id",
+                "turn_type",
+                "passed",
+                "overall_score",
+                "latency_ms",
+            ] + [f"{j}_score" for j in judge_columns]
+
+            writer = csv.DictWriter(f, fieldnames=fieldnames)
+            writer.writeheader()
+
+            for result in summary.results:
+                # Determine turn_type from test structure
+                if result.turns:
+                    turn_type = "multi_turn"
+                elif any(
+                    jr.metadata.get("is_negative")
+                    for jr in result.judge_results.values()
+                ):
+                    turn_type = "negative"
+                else:
+                    turn_type = "single_turn"
+
+                row = {
+                    "test_id": result.test_id,
+                    "turn_type": turn_type,
+                    "passed": result.passed,
+                    "overall_score": round(result.overall_score, 2),
+                    "latency_ms": round(result.latency_ms) if result.latency_ms else "",
+                }
+
+                # Add judge scores (average across turns for multi-turn)
+                for judge in judge_columns:
+                    scores = []
+                    for jname, jr in result.judge_results.items():
+                        if jname == judge or jname.startswith(f"{judge}_turn_"):
+                            scores.append(jr.score)
+                    if scores:
+                        row[f"{judge}_score"] = round(sum(scores) / len(scores), 2)
+                    else:
+                        row[f"{judge}_score"] = ""
+
+                writer.writerow(row)
+
+        logger.info(f"Summary CSV saved: {csv_path}")
 
         print(f"\nDataset: {summary.dataset_path}")
         print(f"Tests: {summary.total_tests}")

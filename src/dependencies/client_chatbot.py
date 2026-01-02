@@ -11,7 +11,12 @@ from src.modules.agents.client.chat_history import CustomerChatHistoryAgent
 from src.modules.agents.client.insight import CustomerInsightAgent
 from src.modules.agents.client.orchestrator import OrchestratorAgent
 from src.modules.agents.translation.main import TranslationAgent
-from src.modules.tools.knowledge_retrieval.sql.main import SQLTool
+from src.modules.tools.knowledge_retrieval.sql.client.analytics import (
+    ClientAnalyticsSQLTool,
+)
+from src.modules.tools.knowledge_retrieval.sql.client.chat_history import (
+    ClientChatHistorySQLTool,
+)
 from src.modules.tools.visualization.main import VisualizationTool
 from src.modules.workflows.client_chatbot.main import ClientChatbotWorkflow
 from src.repositories.chatbots.client.main import ClientChatbotRepository
@@ -57,18 +62,18 @@ def build_client_chatbot_service() -> ChatbotService:
         provider="langchain",
         proxy_url=shared.llm.proxy_url,
         api_key=shared.llm.api_key,
-        default_model=chatbot.agents.chat_history.tools.sql.model,
-        default_temperature=chatbot.agents.chat_history.tools.sql.temperature,
+        default_model=chatbot.agents.chat_history.tools.chat_history_sql.model,
+        default_temperature=chatbot.agents.chat_history.tools.chat_history_sql.temperature,
         default_max_tokens=shared.llm.max_tokens,
     )
 
-    # LangChain client - for insight SQL tool
-    insight_sql_llm_client = LLMClientSelector.create(
+    # LangChain client - for analytics SQL tool
+    analytics_sql_llm_client = LLMClientSelector.create(
         provider="langchain",
         proxy_url=shared.llm.proxy_url,
         api_key=shared.llm.api_key,
-        default_model=chatbot.agents.insight.tools.sql.model,
-        default_temperature=chatbot.agents.insight.tools.sql.temperature,
+        default_model=chatbot.agents.insight.tools.analytics_sql.model,
+        default_temperature=chatbot.agents.insight.tools.analytics_sql.temperature,
         default_max_tokens=shared.llm.max_tokens,
     )
 
@@ -133,23 +138,21 @@ def build_client_chatbot_service() -> ChatbotService:
     # === Create Tools ===
 
     # SQL tool for PostgreSQL (chat history)
-    sql_tool_postgres = SQLTool(
+    chat_history_sql_tool = ClientChatHistorySQLTool(
         sql_client=postgres_client,
         llm_client=chat_history_sql_llm_client,
         prompt_manager=prompt_manager,
-        prompt_name=chatbot.agents.chat_history.tools.sql.prompt_name,
+        prompt_name=chatbot.agents.chat_history.tools.chat_history_sql.prompt_name,
         prompt_label=prompt_label,
-        allow_write=False,
     )
 
-    # SQL tool for SQLite (ERP data)
-    sql_tool_sqlite = SQLTool(
+    # SQL tool for SQLite (ERP analytics)
+    analytics_sql_tool = ClientAnalyticsSQLTool(
         sql_client=sqlite_client,
-        llm_client=insight_sql_llm_client,
+        llm_client=analytics_sql_llm_client,
         prompt_manager=prompt_manager,
-        prompt_name=chatbot.agents.insight.tools.sql.prompt_name,
+        prompt_name=chatbot.agents.insight.tools.analytics_sql.prompt_name,
         prompt_label=prompt_label,
-        allow_write=False,
     )
 
     # Visualization tool
@@ -201,7 +204,7 @@ def build_client_chatbot_service() -> ChatbotService:
     chat_history_agent = CustomerChatHistoryAgent(
         llm=chat_history_llm,
         prompt_manager=prompt_manager,
-        tools=[sql_tool_postgres],
+        tools=[chat_history_sql_tool],
         prompt_name=chatbot.agents.chat_history.prompt_name,
         prompt_label=prompt_label,
         max_iterations=chatbot.agents.chat_history.max_iterations,
@@ -217,7 +220,7 @@ def build_client_chatbot_service() -> ChatbotService:
     insight_agent = CustomerInsightAgent(
         llm=insight_llm,
         prompt_manager=prompt_manager,
-        tools=[sql_tool_sqlite, visualization_tool],
+        tools=[analytics_sql_tool, visualization_tool],
         prompt_name=chatbot.agents.insight.prompt_name,
         prompt_label=prompt_label,
         max_iterations=chatbot.agents.insight.max_iterations,

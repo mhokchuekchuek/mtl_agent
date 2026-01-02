@@ -1,0 +1,15 @@
+name: order_details
+description: Multi-turn order history drill down
+
+test_cases:
+  - id: orders_then_details
+    turns:
+      - input:
+          question: "Show me my recent orders"
+        expected_output:
+          sql: "SELECT * FROM Orders WHERE customer_id = 1 ORDER BY order_date DESC"
+      - input:
+          question: "What did I order in the first one?"
+        expected_output:
+          sql: "SELECT p.product_name, od.quantity, od.price FROM OrderDetails od JOIN Products p ON od.product_id = p.product_id WHERE od.order_id"
+          response_quality: "product_name, quantity"

@@ -1,0 +1,18 @@
+name: order_then_delete
+description: Multi-turn flow for placing an order then deleting it
+
+test_cases:
+  - id: place_order_then_cancel
+    turns:
+      - input:
+          question: "I want to buy Smart Plug"
+        expected_output:
+          response_quality: "Smart Plug, 30"
+      - input:
+          question: "Yes, I want to order 1"
+        expected_output:
+          response_quality: "Order confirmation"
+      - input:
+          question: "Actually, I want to cancel that order"
+        expected_output:
+          response_quality: "order cancelled, deleted"

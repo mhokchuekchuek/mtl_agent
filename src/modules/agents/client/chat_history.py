@@ -1,6 +1,8 @@
 """Customer chat history agent for looking up chat conversations."""
 
+from datetime import datetime
 from typing import Any
+from zoneinfo import ZoneInfo
 
 from langchain.agents import create_agent
 from langchain.tools import BaseTool
@@ -52,40 +54,20 @@ class CustomerChatHistoryAgent(BaseAgent):
 
         self._agent = self._build_agent()
 
-    def _build_messages_with_history(
-        self, query: str, history: list
-    ) -> list[dict[str, str]]:
-        """Build messages list including conversation history.
-
-        Args:
-            query: Current user query.
-            history: List of previous messages from state.
-
-        Returns:
-            List of message dicts with role and content.
-        """
-        messages = []
-
-        for msg in history:
-            msg_type = getattr(msg, "type", None)
-            content = getattr(msg, "content", str(msg))
-
-            if msg_type == "ai" or msg_type == "assistant":
-                messages.append({"role": "assistant", "content": content})
-            elif msg_type == "human" or msg_type == "user":
-                messages.append({"role": "user", "content": content})
-
-        messages.append({"role": "user", "content": query})
-
-        return messages
-
     def _build_agent(self):
         """Build the ReAct agent."""
         prompt_obj = self.prompt_manager.get_prompt(
             self.prompt_name,
             label=self.prompt_label,
         )
-        system_prompt = prompt_obj.compile()
+
+        # Compile prompt with current datetime context
+        tz = ZoneInfo("Asia/Bangkok")
+        now = datetime.now(tz)
+        system_prompt = prompt_obj.compile(
+            current_datetime=now.strftime("%Y-%m-%d %H:%M"),
+            timezone="Asia/Bangkok",
+        )
 
         agent = create_agent(
             model=self.llm,

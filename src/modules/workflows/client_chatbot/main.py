@@ -7,12 +7,13 @@ from src.modules.agents.client.chat_history import CustomerChatHistoryAgent
 from src.modules.agents.client.insight import CustomerInsightAgent
 from src.modules.agents.client.orchestrator import Intent, OrchestratorAgent
 from src.modules.agents.translation.main import TranslationAgent
+from src.modules.workflows.base import BaseWorkflow
 from src.modules.workflows.client_chatbot.state import ClientChatbotState
 
 logger = get_logger(__name__)
 
 
-class ClientChatbotWorkflow:
+class ClientChatbotWorkflow(BaseWorkflow):
     """Client chatbot workflow definition.
 
     Defines the graph structure:
@@ -118,13 +119,23 @@ class ClientChatbotWorkflow:
 
     def _run_chat_history(self, state: ClientChatbotState) -> dict:
         """Run chat history agent."""
-        input_data = {"translated_query": state["translated_query"]}
+        input_data = {
+            "translated_query": state["translated_query"],
+            "messages": state.get("messages", []),
+        }
         result = self.chat_history_agent.execute(input_data)
 
         tool_steps = result.get("steps", [])
 
+        new_messages = self._build_conversation_messages(
+            query=state["translated_query"],
+            response=result["response"],
+            tool_steps=tool_steps,
+        )
+
         return {
             "response": result["response"],
+            "messages": new_messages,
             "steps": [
                 {
                     "name": "chat_history_agent",
@@ -137,13 +148,23 @@ class ClientChatbotWorkflow:
 
     def _run_insight(self, state: ClientChatbotState) -> dict:
         """Run insight agent."""
-        input_data = {"translated_query": state["translated_query"]}
+        input_data = {
+            "translated_query": state["translated_query"],
+            "messages": state.get("messages", []),
+        }
         result = self.insight_agent.execute(input_data)
 
         tool_steps = result.get("steps", [])
 
+        new_messages = self._build_conversation_messages(
+            query=state["translated_query"],
+            response=result["response"],
+            tool_steps=tool_steps,
+        )
+
         return {
             "response": result["response"],
+            "messages": new_messages,
             "chart_html": result.get("chart_html"),
             "steps": [
                 {

@@ -1,0 +1,15 @@
+name: order_validation
+description: Validate product exists before ordering
+
+test_cases:
+  - id: order_valid_product
+    input:
+      question: "I want to order Smart Fitness Tracker"
+    expected_output:
+      sql: "SELECT * FROM Products WHERE product_name LIKE '%Fitness Tracker%'"
+
+  - id: order_with_quantity
+    input:
+      question: "ขอสั่ง Mechanical Keyboard 2 ตัว"
+    expected_output:
+      sql: "SELECT * FROM Products WHERE product_name LIKE '%Mechanical Keyboard%'"

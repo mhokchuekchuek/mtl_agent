@@ -1,6 +1,8 @@
 """Product agent for handling product-related queries using ReAct pattern."""
 
+from datetime import datetime
 from typing import Any
+from zoneinfo import ZoneInfo
 
 from langchain.agents import create_agent
 from langchain.tools import BaseTool
@@ -61,7 +63,14 @@ class ProductAgent(BaseAgent):
             self.prompt_name,
             label=self.prompt_label,
         )
-        system_prompt = prompt_obj.compile()
+
+        # Compile prompt with current datetime context
+        tz = ZoneInfo("Asia/Bangkok")
+        now = datetime.now(tz)
+        system_prompt = prompt_obj.compile(
+            current_datetime=now.strftime("%Y-%m-%d %H:%M"),
+            timezone="Asia/Bangkok",
+        )
 
         # Create agent using LangChain v1 API
         agent = create_agent(
@@ -71,37 +80,6 @@ class ProductAgent(BaseAgent):
         )
 
         return agent
-
-    def _build_messages_with_history(
-        self, query: str, history: list
-    ) -> list[dict[str, str]]:
-        """Build messages list including conversation history.
-
-        Args:
-            query: Current user query.
-            history: List of previous messages from state.
-
-        Returns:
-            List of message dicts with role and content.
-        """
-        messages = []
-
-        # Add conversation history
-        for msg in history:
-            # Handle different message types (AIMessage, HumanMessage, etc.)
-            msg_type = getattr(msg, "type", None)
-            content = getattr(msg, "content", str(msg))
-
-            if msg_type == "ai" or msg_type == "assistant":
-                messages.append({"role": "assistant", "content": content})
-            elif msg_type == "human" or msg_type == "user":
-                messages.append({"role": "user", "content": content})
-            # Skip system messages or other types
-
-        # Add current query
-        messages.append({"role": "user", "content": query})
-
-        return messages
 
     def _extract_tool_steps(self, messages: list) -> list[dict]:
         """Extract tool calls from agent messages.
@@ -143,6 +121,7 @@ class ProductAgent(BaseAgent):
             state: Current state with keys:
                 - query: str - user's product query
                 - messages: list - conversation history (optional)
+                - customer_id: str - customer ID for order placement (optional)
 
         Returns:
             Updated state with:
@@ -151,6 +130,13 @@ class ProductAgent(BaseAgent):
         """
         query = state.get("query", "")
         history = state.get("messages", [])
+        customer_id = state.get("customer_id")
+
+        # Set customer_id on tools that need it
+        if customer_id:
+            for tool in self.tools:
+                if hasattr(tool, "set_customer_id"):
+                    tool.set_customer_id(customer_id)
 
         if not query:
             return {

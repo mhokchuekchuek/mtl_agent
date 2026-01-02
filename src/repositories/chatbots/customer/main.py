@@ -3,10 +3,13 @@
 from typing import Optional
 
 from libs.llm.observability.base import BaseObservability
+from libs.logger.logger import get_logger
 from src.modules.workflows.customer_chatbot.main import CustomerChatbotWorkflow
 from src.repositories.chatbots.base import BaseChatbotRepository
 from src.repositories.checkpointers.base import BaseCheckpointerRepository
 from src.repositories.stores.base import BaseStoreRepository
+
+logger = get_logger(__name__)
 
 
 class CustomerChatbotRepository(BaseChatbotRepository):
@@ -55,9 +58,16 @@ class CustomerChatbotRepository(BaseChatbotRepository):
         Returns:
             Final state with response and steps.
         """
+        # Get conversation history from checkpointer
+        history = self.get_history(thread_id)
+        logger.info(
+            f"Retrieved {len(history)} messages from history for thread {thread_id}"
+        )
+
         initial_state = {
-            "messages": [],
+            "messages": history,
             "query": query,
+            "customer_id": user_id,
             "user_language": None,
             "translated_query": None,
             "response": None,

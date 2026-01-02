@@ -1,7 +1,9 @@
 """Orchestrator agent for routing client chatbot requests."""
 
+from datetime import datetime
 from enum import Enum
 from typing import Any
+from zoneinfo import ZoneInfo
 
 from langchain_openai import ChatOpenAI
 
@@ -70,7 +72,14 @@ class OrchestratorAgent(BaseAgent):
                 self.prompt_name,
                 label=self.prompt_label,
             )
-            system_prompt = prompt_obj.compile()
+
+            # Compile prompt with current datetime context
+            tz = ZoneInfo("Asia/Bangkok")
+            now = datetime.now(tz)
+            system_prompt = prompt_obj.compile(
+                current_datetime=now.strftime("%Y-%m-%d %H:%M"),
+                timezone="Asia/Bangkok",
+            )
 
             messages = [
                 {"role": "system", "content": system_prompt},

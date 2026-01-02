@@ -118,6 +118,8 @@ class PromptUploader:
     def _get_prompt_name(self, filepath: Path) -> str:
         """Generate prompt name from directory structure.
 
+        prompts/agents/customer/product_agent.prompt -> agents_customer_product_agent
+        prompts/tools/client/analytics_sql.prompt -> tools_client_analytics_sql
         prompts/ingestor/extract_product.prompt -> ingestor_extract_product
 
         Args:
@@ -127,14 +129,8 @@ class PromptUploader:
             Prompt name string
         """
         relative_path = filepath.relative_to(self.prompts_dir)
-        parts = relative_path.parts
-
-        if len(parts) >= 2:
-            category = parts[0]
-            name = filepath.stem
-            return f"{category}_{name}"
-
-        return filepath.stem
+        parts = list(relative_path.parts[:-1]) + [filepath.stem]
+        return "_".join(parts)
 
     def process(self) -> int:
         """Upload all prompts to Langfuse.

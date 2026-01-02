@@ -79,7 +79,7 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./data:/app/data:ro
+      - ./data:/app/data
       - ./src:/app/src
       - ./libs:/app/libs
       - ./configs:/app/configs:ro

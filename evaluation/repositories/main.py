@@ -8,9 +8,9 @@ from pathlib import Path
 import requests
 import yaml
 
-from evaluation.datasets.loader import DatasetLoader
 from evaluation.entities import EvaluationResult, JudgeResult, TestCase, TurnResult
 from evaluation.judges.base import BaseJudge
+from evaluation.loader import DatasetLoader
 from evaluation.repositories.base import BaseEvaluationRepository
 from libs.logger.logger import get_logger
 
@@ -112,11 +112,16 @@ class EvaluationRepository(BaseEvaluationRepository):
 
         return results
 
-    def _invoke_chatbot(self, query: str, thread_id: str) -> dict:
+    def _invoke_chatbot(self, query: str, thread_id: str, user_id: str = "1") -> dict:
         """Invoke chatbot API."""
         response = requests.post(
             self.endpoint,
-            json={"query": query, "thread_id": thread_id, "include_steps": True},
+            json={
+                "query": query,
+                "thread_id": thread_id,
+                "user_id": user_id,
+                "include_steps": True,
+            },
             timeout=self.timeout,
         )
         response.raise_for_status()
@@ -241,8 +246,7 @@ class EvaluationRepository(BaseEvaluationRepository):
         error: str | None = None,
     ):
         """Save result as results.yaml and detail.yaml in a folder."""
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        folder_name = f"{result.test_id}_{timestamp}"
+        folder_name = result.test_id
         result_folder = results_dir / folder_name
         result_folder.mkdir(parents=True, exist_ok=True)
 

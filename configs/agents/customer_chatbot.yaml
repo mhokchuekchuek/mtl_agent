@@ -7,23 +7,57 @@ customer_chatbot:
   agents:
     translation:
       model: "gpt-4o-mini"
-      prompt_name: "customer_chatbot_translation"
+      prompt_name: "agents_customer_translation"
       temperature: 0.3
+      max_tokens: 8192
 
     products:
       model: "gpt-4o-mini"
-      prompt_name: "customer_chatbot_product_agent"
+      prompt_name: "agents_customer_product_agent"
       temperature: 0.7
       max_iterations: 5
       tools:
-        sql:
+        product_sql:
           model: "gpt-4o-mini"
-          prompt_name: "customer_chatbot_sql_generate"
+          prompt_name: "tools_customer_product_sql"
+          temperature: 0
+          allow_write: false
+          allowed_tables:
+            - "Products"
+            - "Inventory"
+            - "Warehouses"
+        order_sql:
+          model: "gpt-4o-mini"
+          prompt_name: "tools_customer_order_sql"
+          temperature: 0
+          allow_write: false
+          allowed_tables:
+            - "Orders"
+            - "OrderDetails"
+            - "Products"
+        place_order_sql:
+          model: "gpt-4o-mini"
+          prompt_name: "tools_customer_place_order_sql"
           temperature: 0
           allow_write: true
+          allowed_tables:
+            - "Orders"
+            - "OrderDetails"
+            - "Inventory"
+            - "Products"
+        cancel_order_sql:
+          model: "gpt-4o-mini"
+          prompt_name: "tools_customer_cancel_order_sql"
+          temperature: 0
+          allow_write: true
+          allowed_tables:
+            - "Orders"
+            - "OrderDetails"
+            - "Inventory"
         product_search:
           embedding_model: "text-embedding-3-small"
           top_k: 10
+          similarity_threshold: 0.5
         similar_products:
           embedding_model: "text-embedding-3-small"
           top_k: 5

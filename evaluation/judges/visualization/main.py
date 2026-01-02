@@ -64,7 +64,8 @@ class VisualizationJudge(BaseJudge):
         if expected_has_chart is None and expected_chart_type is None:
             return None
 
-        is_negative_case = expected_has_chart == "null"
+        # Check if chart is NOT expected (false, "null", or False)
+        is_negative_case = expected_has_chart in ("null", False, "false")
 
         question = input_data.get("question", "")
         response = output_data.get("response", "")
@@ -75,7 +76,7 @@ class VisualizationJudge(BaseJudge):
             steps, ["create_visualization", "create_chart"]
         )
 
-        # Handle negative case early: expected has_chart: "null"
+        # Handle negative case early: expected has_chart: false/null
         if is_negative_case:
             if not viz_tool_calls:
                 return JudgeResult(
@@ -87,7 +88,7 @@ class VisualizationJudge(BaseJudge):
                 return JudgeResult(
                     score=0.0,
                     passed=False,
-                    reasoning=f"Should not create chart but did",
+                    reasoning="Should not create chart but did",
                     metadata={"viz_tool_calls": viz_tool_calls},
                 )
 

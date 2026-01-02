@@ -76,3 +76,12 @@ class BaseSQLDatabase(ABC):
             Exception: If query fails
         """
         pass
+
+    @abstractmethod
+    def get_db_type(self) -> str:
+        """Get the database type identifier.
+
+        Returns:
+            Database type string (e.g., "sqlite", "postgresql", "mysql")
+        """
+        pass

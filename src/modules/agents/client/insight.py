@@ -1,6 +1,9 @@
 """Customer insight agent for BI analytics and visualizations."""
 
+import json
+from datetime import datetime
 from typing import Any
+from zoneinfo import ZoneInfo
 
 from langchain.agents import create_agent
 from langchain.tools import BaseTool
@@ -52,40 +55,20 @@ class CustomerInsightAgent(BaseAgent):
 
         self._agent = self._build_agent()
 
-    def _build_messages_with_history(
-        self, query: str, history: list
-    ) -> list[dict[str, str]]:
-        """Build messages list including conversation history.
-
-        Args:
-            query: Current user query.
-            history: List of previous messages from state.
-
-        Returns:
-            List of message dicts with role and content.
-        """
-        messages = []
-
-        for msg in history:
-            msg_type = getattr(msg, "type", None)
-            content = getattr(msg, "content", str(msg))
-
-            if msg_type == "ai" or msg_type == "assistant":
-                messages.append({"role": "assistant", "content": content})
-            elif msg_type == "human" or msg_type == "user":
-                messages.append({"role": "user", "content": content})
-
-        messages.append({"role": "user", "content": query})
-
-        return messages
-
     def _build_agent(self):
         """Build the ReAct agent."""
         prompt_obj = self.prompt_manager.get_prompt(
             self.prompt_name,
             label=self.prompt_label,
         )
-        system_prompt = prompt_obj.compile()
+
+        # Compile prompt with current datetime context
+        tz = ZoneInfo("Asia/Bangkok")
+        now = datetime.now(tz)
+        system_prompt = prompt_obj.compile(
+            current_datetime=now.strftime("%Y-%m-%d %H:%M"),
+            timezone="Asia/Bangkok",
+        )
 
         agent = create_agent(
             model=self.llm,
@@ -156,22 +139,48 @@ class CustomerInsightAgent(BaseAgent):
 
             result_messages = result.get("messages", [])
             response = ""
-            chart_html = None
+            chart_htmls = []
 
-            # Extract response and any chart HTML from messages
+            # Extract response and chart HTML from messages
             for msg in result_messages:
+                msg_type = getattr(msg, "type", None)
                 content = getattr(msg, "content", str(msg))
 
-                # Check if this is a tool response containing chart HTML
-                if "<div" in content and "plotly" in content.lower():
-                    chart_html = content
-                elif hasattr(msg, "role") and msg.role == "assistant":
-                    response = content
+                # Extract chart HTML from tool responses (visualization tool output)
+                if msg_type == "tool" and "plotly" in content.lower():
+                    # Tool returns JSON: {"request": ..., "results": "<html>"}
+                    try:
+                        tool_result = json.loads(content)
+                        if isinstance(tool_result, dict) and "results" in tool_result:
+                            html = tool_result["results"]
+                            if "<div" in html:
+                                chart_htmls.append(html)
+                    except (json.JSONDecodeError, TypeError):
+                        # Fallback: content might be raw HTML
+                        if "<div" in content:
+                            chart_htmls.append(content)
 
-            # If no explicit assistant response, use last message
-            if not response and result_messages:
-                last_message = result_messages[-1]
-                response = getattr(last_message, "content", str(last_message))
+            # Get the final assistant response (last AI message)
+            for msg in reversed(result_messages):
+                msg_type = getattr(msg, "type", None)
+                if msg_type == "ai":
+                    response = getattr(msg, "content", str(msg))
+                    # Remove any raw HTML/chart content that may have leaked into response
+                    if "<div" in response or "<script" in response:
+                        import re
+
+                        # Remove HTML tags and script blocks
+                        response = re.sub(
+                            r"<div[^>]*>.*?</div>", "", response, flags=re.DOTALL
+                        )
+                        response = re.sub(
+                            r"<script[^>]*>.*?</script>", "", response, flags=re.DOTALL
+                        )
+                        response = response.strip()
+                    break
+
+            # Combine all chart HTMLs if multiple visualizations were created
+            chart_html = "\n".join(chart_htmls) if chart_htmls else None
 
             steps = self._extract_tool_steps(result_messages)
 

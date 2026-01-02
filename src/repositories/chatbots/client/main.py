@@ -55,8 +55,11 @@ class ClientChatbotRepository(BaseChatbotRepository):
         Returns:
             Final state with response, steps, and optional chart_html.
         """
+        # Get conversation history from checkpointer
+        history = self.get_history(thread_id)
+
         initial_state = {
-            "messages": [],
+            "messages": history,
             "query": query,
             "user_language": None,
             "translated_query": None,

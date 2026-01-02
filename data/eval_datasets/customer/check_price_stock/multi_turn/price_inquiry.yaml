@@ -1,0 +1,29 @@
+name: sql_multi_turn_conversation
+description: Multi-turn SQL query conversations
+
+test_cases:
+  - id: product_price_inquiry
+    turns:
+      - input:
+          question: "I want headphones"
+        expected_output:
+          response_quality: "We have Wireless Bluetooth Headphones and Noise Cancelling Headphones"
+      - input:
+          question: "How much is the noise cancelling one?"
+        expected_output:
+          sql: "SELECT price FROM Products WHERE product_name = 'Noise Cancelling Headphones'"
+
+  - id: product_category_drill_down
+    turns:
+      - input:
+          question: "What categories do you have?"
+        expected_output:
+          sql: "SELECT DISTINCT category FROM Products"
+      - input:
+          question: "Show me Smart Home products"
+        expected_output:
+          sql: "SELECT * FROM Products WHERE category = 'Smart Home'"
+      - input:
+          question: "Which one is the most expensive?"
+        expected_output:
+          sql: "SELECT * FROM Products WHERE category = 'Smart Home' ORDER BY price DESC LIMIT 1"

@@ -37,12 +37,15 @@ def main():
         from evaluation.dependencies.client import build_evaluation_service
 
     # Build service
-    service, dataset_path = build_evaluation_service()
+    service, dataset_path, results_path = build_evaluation_service()
 
     logger.info(f"Dataset path: {dataset_path}")
 
     # Run evaluation
     summary = service.run_evaluation(dataset_path)
+
+    # Save summary CSV
+    service.save_summary_csv(summary, results_path)
 
     # Print summary
     service.print_summary(summary)

@@ -1,0 +1,9 @@
+name: sql_aggregation
+description: Test COUNT, SUM, AVG aggregation queries
+
+test_cases:
+  - id: count_home_kitchen
+    input:
+      question: "How many products are in Home & Kitchen category?"
+    expected_output:
+      sql: "SELECT COUNT(*) FROM Products WHERE category = 'Home & Kitchen'"
