@@ -1,5 +1,5 @@
 ---
-name: customer_chatbot_place_order_sql
+name: tools_customer_place_order_sql
 model: gpt-4o-mini
 description: Generate SQL for placing customer orders
 input_schema:
@@ -37,18 +37,20 @@ You are a SQL expert. Generate SQL statements to place an order.
 ## Task:
 Generate SQL statements to:
 1. Check product exists and get product_name, price
-2. Check inventory has enough stock
+2. Check inventory has enough stock (get color of available stock)
 3. Insert into Orders table
 4. Get the order_id of the inserted order
-5. Insert into OrderDetails table (use order_id from step 4)
+5. Insert into OrderDetails table (use ORDER_ID_PLACEHOLDER as placeholder)
 6. Update Inventory (reduce quantity)
 
 ## Rules:
 1. Use EXACT column names from schema above
 2. Use customer_id = '{{customer_id}}' for the order
-3. IMPORTANT: Inventory table may have multiple rows per product (different colors/warehouses). For check_stock, ALWAYS use SUM(quantity) to get total available stock across all variants. The result MUST have column alias "available". Example: SELECT SUM(quantity) as available FROM Inventory WHERE product_id = X
-4. For update_inventory, update the first available row that has sufficient quantity
-5. DO NOT use parameterized queries with ? placeholders. Put actual values directly in the SQL statements.
+3. IMPORTANT: Inventory table may have multiple rows per product (different colors/warehouses). For check_stock, get the first row with sufficient quantity and include the color.
+4. For update_inventory, update the SAME color row that was checked in check_stock
+5. For insert_details, include the color from check_stock
+6. DO NOT use parameterized queries with ? placeholders. Put actual values directly in the SQL statements.
+7. CRITICAL: Use ORDER_ID_PLACEHOLDER as literal text in insert_details. It will be replaced by actual order_id later.
 
 {% if db_type == "sqlite" %}
 ## SQLite-specific:
@@ -62,16 +64,20 @@ Generate SQL statements to:
 
 ## Output Format:
 Return ONLY a valid JSON object with SQL statements:
+```json
 {
   "check_product": "SELECT product_id, product_name, price FROM Products WHERE product_id = {{product_id}}",
-  "check_stock": "SELECT SUM(quantity) as available FROM Inventory WHERE product_id = {{product_id}}",
-  "insert_order": "INSERT INTO Orders (order_date, customer_id, total_amount) VALUES (datetime('now'), '{{customer_id}}', {{quantity}} * (SELECT price FROM Products WHERE product_id = {{product_id}}))",
+  "check_stock": "SELECT quantity as available, color FROM Inventory WHERE product_id = {{product_id}} AND quantity >= {{quantity}} LIMIT 1",
+  "insert_order": "INSERT INTO Orders (order_date, customer_id, total_amount, status) VALUES (datetime('now'), '{{customer_id}}', {{quantity}} * (SELECT price FROM Products WHERE product_id = {{product_id}}), 'completed')",
   "get_order_id": "SELECT last_insert_rowid() as order_id",
-  "insert_details": "INSERT INTO OrderDetails (order_id, product_id, quantity, price, total_price) VALUES ((SELECT last_insert_rowid()), {{product_id}}, {{quantity}}, (SELECT price FROM Products WHERE product_id = {{product_id}}), {{quantity}} * (SELECT price FROM Products WHERE product_id = {{product_id}}))",
+  "insert_details": "INSERT INTO OrderDetails (order_id, product_id, color, quantity, price, total_price) VALUES (ORDER_ID_PLACEHOLDER, {{product_id}}, (SELECT color FROM Inventory WHERE product_id = {{product_id}} AND quantity >= {{quantity}} LIMIT 1), {{quantity}}, (SELECT price FROM Products WHERE product_id = {{product_id}}), {{quantity}} * (SELECT price FROM Products WHERE product_id = {{product_id}}))",
   "update_inventory": "UPDATE Inventory SET quantity = quantity - {{quantity}} WHERE product_id = {{product_id}} AND quantity >= {{quantity}} LIMIT 1"
 }
+```
 
 CRITICAL RULES:
-1. check_stock MUST use "SUM(quantity) as available" exactly as shown above.
-2. NEVER use ? placeholders. Use actual values: {{product_id}}, {{quantity}}, '{{customer_id}}'
-3. All SQL must have hardcoded values, NOT parameterized queries.
+1. check_stock MUST return both "available" (quantity) and "color" columns.
+2. insert_details MUST use ORDER_ID_PLACEHOLDER (literal text, not a variable) and include color.
+3. update_inventory MUST update only ONE row using LIMIT 1.
+4. NEVER use ? placeholders. Use actual values: {{product_id}}, {{quantity}}, '{{customer_id}}'
+5. All SQL must have hardcoded values, NOT parameterized queries.
