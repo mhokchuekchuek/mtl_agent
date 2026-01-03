@@ -1,72 +1,84 @@
 # Judges
 
-Judges evaluate chatbot responses using LLM-as-Judge pattern.
+LLM-as-Judge implementations for evaluating chatbot responses.
 
-## Available Judges
+## Overview
 
-| Judge | Expected Field | Description |
-|-------|----------------|-------------|
-| [SQLJudge](sql.md) | `sql` | SQL query correctness |
-| [SearchJudge](search.md) | `search_results` | Vector search quality |
-| [ResponseQualityJudge](response-quality.md) | `response_quality` | Response relevance and faithfulness |
-| [VisualizationJudge](visualization.md) | `has_chart`, `chart_type` | Chart generation quality |
+All judges follow the same pattern:
+1. Check if expected field exists (skip if not)
+2. Handle negative cases (expected: "null")
+3. Extract relevant data from agent steps
+4. Send to LLM for evaluation
+5. Return score with sub-scores and reasoning
 
-## Skip Logic
+## Judges
 
-Judges automatically skip if their expected field is missing:
+| Judge | Expected Field | Sub-scores | Link |
+|-------|----------------|------------|------|
+| SQL | `sql` | result_match, efficiency | [sql.md](sql.md) |
+| Search | `search_results` | relevance, coverage | [search.md](search.md) |
+| Visualization | `has_chart`, `chart_type` | appropriateness, chart_type | [visualization.md](visualization.md) |
+| Response Quality | `response_quality` | relevance, faithfulness | [response_quality.md](response_quality.md) |
 
-```yaml
-expected_output:
-  response_quality: "100 products"
-  # sql key missing = SQLJudge skips (returns None)
-  # search_results key missing = SearchJudge skips
+## Base Class
+
+All judges extend `BaseJudge`:
+
+```python
+class BaseJudge(ABC):
+    name: str = "base_judge"
+    strategy: EvaluationStrategy = EvaluationStrategy.FINAL_RESPONSE
+
+    @abstractmethod
+    def evaluate(
+        self,
+        input_data: dict,
+        output_data: dict,
+        expected: dict | None = None,
+    ) -> JudgeResult | None:
+        pass
 ```
 
-## Negative Cases
-
-Use `"null"` string to test that chatbot should NOT perform an action:
-
-```yaml
-# Should NOT generate SQL
-expected_output:
-  sql: "null"
-
-# Should NOT perform search
-expected_output:
-  search_results: "null"
-
-# Should NOT create chart
-expected_output:
-  has_chart: "null"
-```
-
-## Return Type
-
-All judges return `JudgeResult | None`:
+## JudgeResult
 
 ```python
 @dataclass
 class JudgeResult:
-    score: float          # 0.0 to 1.0
-    passed: bool          # score >= threshold
-    reasoning: str        # Human-readable explanation
-    metadata: dict        # Sub-scores and details
+    score: float        # 0.0 - 1.0
+    passed: bool        # score >= threshold
+    reasoning: str      # Human-readable explanation
+    metadata: dict      # Sub-scores, extracted values
 ```
 
-- Returns `JudgeResult` - evaluated
-- Returns `None` - skipped (no expected field)
+## Evaluation Strategy
 
-## Sub-Scores
+| Strategy | Description |
+|----------|-------------|
+| `FINAL_RESPONSE` | Evaluate final response only |
+| `SINGLE_STEP` | Evaluate specific tool execution |
+| `TRAJECTORY` | Evaluate entire execution path |
 
-Each judge has specific sub-scores in `metadata`:
+## Negative Cases
 
-| Judge | Sub-Scores |
-|-------|------------|
-| SQLJudge | `syntax`, `correctness` |
-| SearchJudge | `relevance`, `coverage` |
-| ResponseQualityJudge | `relevance`, `faithfulness` |
-| VisualizationJudge | `appropriateness`, `chart_type` |
+For testing that the agent correctly refuses or skips actions:
 
-## Pass Threshold
+| Expected Value | Meaning |
+|----------------|---------|
+| `sql: "null"` | Should not generate SQL |
+| `search_results: []` | Should return no results |
+| `has_chart: false` | Should not create chart |
+| `response_quality: "null"` | Should not respond |
 
-Default pass threshold is `0.7` (configurable in config YAML).
+## Pass Thresholds
+
+| Judge | Threshold |
+|-------|-----------|
+| SQL | 0.7 |
+| Search | 0.6 |
+| Visualization | 0.7 |
+| Response Quality | 0.7 |
+
+## References
+
+- [BaseJudge](../../../evaluation/judges/base.py)
+- [JudgeSelector](../../../evaluation/judges/selector.py)

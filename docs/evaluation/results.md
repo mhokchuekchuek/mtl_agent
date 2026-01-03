@@ -1,22 +1,27 @@
 # Results Format
 
-Evaluation results are saved to `results/{chatbot}/{turn_type}/{test_id}_{timestamp}/`.
+Evaluation results are saved to `results/{chatbot}/{category}/{test_id}/`.
 
 ## Directory Structure
 
 ```
 results/
 ├── customer/
-│   ├── single_turn/
-│   │   └── count_all_products_20251229_173000/
-│   │       ├── results.yaml
-│   │       └── detail.yaml
-│   ├── multi_turn/
-│   │   └── product_price_inquiry_20251229_173500/
-│   │       ├── results.yaml
-│   │       └── detail.yaml
+│   ├── browse_products/
+│   │   └── single_turn/
+│   │       └── search_wireless_headphones/
+│   │           ├── results.yaml
+│   │           └── detail.yaml
+│   ├── place_order/
+│   │   └── multi_turn/
+│   │       └── place_order_flow/
+│   │           ├── results.yaml
+│   │           └── detail.yaml
 │   └── negative/
-│       └── ...
+│       └── single_turn/
+│           └── refuse_unauthorized/
+│               ├── results.yaml
+│               └── detail.yaml
 └── client/
     └── ...
 ```
@@ -28,7 +33,7 @@ Summary file with scores and truncated output.
 ### Single-Turn
 
 ```yaml
-test_id: count_all_products
+test_id: search_wireless_headphones
 type: single_turn
 passed: true
 overall_score: 0.85
@@ -36,41 +41,35 @@ latency_ms: 5234
 timestamp: '2025-12-29T17:30:00'
 
 input:
-  question: "How many products do you have?"
+  question: "I'm looking for wireless headphones"
 
 output:
-  response: "We have 100 products in our catalog..."  # truncated to 200 chars
+  response: "Here are some wireless headphones..."  # truncated
 
 expected:
-  sql: "SELECT COUNT(*) FROM Products"
+  search_results: ["Wireless Bluetooth Headphones", "Noise Cancelling Headphones"]
 
 judge_results:
-  sql:
-    score: 0.9
+  search:
+    score: 0.85
     passed: true
-    sub_scores:
-      syntax:
-        score: 1.0
-        reasoning: "Query is syntactically correct"
-      correctness:
-        score: 0.8
-        reasoning: "Query returns correct result"
-  response_quality:
-    score: 0.8
-    passed: true
+    expected:
+      results: ["Wireless Bluetooth Headphones", "Noise Cancelling Headphones"]
+    actual:
+      results: ["Wireless Bluetooth Headphones", "Noise Cancelling Headphones"]
     sub_scores:
       relevance:
         score: 0.9
-        reasoning: "Response directly answers the question"
-      faithfulness:
-        score: 0.7
-        reasoning: "Response grounded in execution results"
+        reasoning: "Results are relevant to query"
+      coverage:
+        score: 0.8
+        reasoning: "All expected products found"
 ```
 
 ### Multi-Turn
 
 ```yaml
-test_id: product_price_inquiry
+test_id: place_order_flow
 type: multi_turn
 passed: true
 overall_score: 0.73
@@ -80,43 +79,29 @@ timestamp: '2025-12-29T17:35:00'
 turns:
   - turn: 0
     input:
-      question: "I want headphones"
+      question: "I want to order headphones"
     output:
       response: "Here are some headphones options..."
     expected:
-      response_quality: "Wireless Bluetooth Headphones, Noise Cancelling Headphones"
+      search_results: ["Wireless Bluetooth Headphones"]
     latency_ms: 15000
     judge_results:
-      response_quality:
+      search:
         score: 0.9
         passed: true
-        sub_scores:
-          relevance:
-            score: 1.0
-            reasoning: "..."
-          faithfulness:
-            score: 0.8
-            reasoning: "..."
 
   - turn: 1
     input:
-      question: "How much is the noise cancelling one?"
+      question: "Order the first one"
     output:
-      response: "The Noise Cancelling Headphones costs $985..."
+      response: "Order placed successfully..."
     expected:
-      sql: "SELECT price FROM Products WHERE product_name = 'Noise Cancelling Headphones'"
+      sql: "INSERT INTO orders..."
     latency_ms: 8347
     judge_results:
       sql:
         score: 0.75
         passed: true
-        sub_scores:
-          syntax:
-            score: 1.0
-            reasoning: "..."
-          correctness:
-            score: 0.5
-            reasoning: "..."
 ```
 
 ## detail.yaml
@@ -131,23 +116,21 @@ output:
   steps:
     - name: translation_agent
       input:
-        user_input: "How many products do you have?"
-        target_lang: "en"
+        query: "I'm looking for wireless headphones"
       output:
-        translated_text: "How many products do you have?"
+        translated_query: "I'm looking for wireless headphones"
         detected_lang: "en"
     - name: product_agent
       input:
-        query: "How many products do you have?"
+        query: "I'm looking for wireless headphones"
       output:
-        response: "We have 100 products..."
+        response: "Here are some wireless headphones..."
       tool_calls:
-        - name: sql_query
+        - name: product_search
           input:
-            question: "How many products are there?"
+            query: "wireless headphones"
           output:
-            sql: "SELECT COUNT(*) FROM Products"
-            results: [{"COUNT(*)": 100}]
+            results: [...]
 ```
 
 ### Multi-Turn
@@ -157,20 +140,26 @@ turns:
   - turn: 0
     output:
       response: "Full response..."
-      steps:
-        - name: translation_agent
-          input: {...}
-          output: {...}
-        - name: product_agent
-          input: {...}
-          output: {...}
-          tool_calls: [...]
+      steps: [...]
 
   - turn: 1
     output:
       response: "Full response..."
       steps: [...]
 ```
+
+## Summary CSV
+
+`summary.csv` is generated with aggregated scores:
+
+| Column | Description |
+|--------|-------------|
+| test_id | Test case ID |
+| turn_type | single_turn, multi_turn, negative |
+| passed | true/false |
+| overall_score | Average of all judge scores |
+| latency_ms | Total latency |
+| {judge}_score | Score per judge |
 
 ## Score Interpretation
 

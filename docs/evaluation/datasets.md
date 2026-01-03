@@ -1,120 +1,130 @@
 # Datasets
 
-Test cases are stored as YAML files in `evaluation/datasets/`.
+Test case format and structure.
 
-## Directory Structure
+## Location
+
+`data/eval_datasets/`
+
+## Structure
 
 ```
-evaluation/datasets/
+data/eval_datasets/
 ├── customer/
-│   ├── sql/
+│   ├── browse_products/
 │   │   ├── single_turn/
-│   │   ├── multi_turn/
-│   │   └── negative/
-│   ├── search/
-│   │   ├── single_turn/
-│   │   ├── multi_turn/
-│   │   └── negative/
-│   └── response_quality/
-│       ├── single_turn/
-│       └── multi_turn/
+│   │   └── multi_turn/
+│   ├── check_price_stock/
+│   ├── place_order/
+│   ├── order_history/
+│   └── negative/
 └── client/
-    ├── sql/
-    ├── visualization/
-    └── response_quality/
+    ├── analytics/
+    ├── visualizations/
+    ├── chat_history/
+    ├── customer_insights/
+    └── negative/
 ```
 
-## YAML Format
+## Test Case Format
 
-### Single-Turn Test Case
+### Single-Turn
 
 ```yaml
-name: sql_aggregation
-description: Test COUNT, SUM, AVG queries
+name: product_search
+description: Vector search for products
 
 test_cases:
-  - id: count_all_products
+  - id: search_wireless_headphones
     input:
-      question: "How many products do you have?"
+      question: "I'm looking for wireless headphones"
     expected_output:
-      sql: "SELECT COUNT(*) FROM Products"
-
-  - id: product_info
-    input:
-      question: "Tell me about Wireless Bluetooth Headphones"
-    expected_output:
-      response_quality: "Wireless Bluetooth Headphones, 840"
+      search_results: ["Wireless Bluetooth Headphones", "Noise Cancelling Headphones"]
 ```
 
-### Multi-Turn Test Case
+### Multi-Turn
 
 ```yaml
-name: search_multi_turn
-description: Multi-turn product search
+name: refine_search
+description: Multi-turn product search refinement
 
 test_cases:
-  - id: refine_search
+  - id: refine_category
     turns:
       - input:
-          question: "I need headphones"
+          question: "Show me electronics"
         expected_output:
-          search_results: ["Wireless Bluetooth Headphones", "Noise Cancelling Headphones"]
+          sql: "SELECT * FROM products WHERE category = 'Electronics'"
       - input:
-          question: "Which one has noise cancelling?"
+          question: "Only those under $100"
         expected_output:
-          response_quality: "Noise Cancelling Headphones"
+          sql: "SELECT * FROM products WHERE category = 'Electronics' AND price < 100"
 ```
 
-## Expected Output Fields
+## Expected Fields
 
-| Field | Judge | Description |
-|-------|-------|-------------|
-| `sql` | SQLJudge | Expected SQL query |
-| `search_results` | SearchJudge | Expected product names in results |
-| `response_quality` | ResponseQualityJudge | Key facts expected in response |
-| `has_chart` | VisualizationJudge | Whether chart should be generated |
-| `chart_type` | VisualizationJudge | Expected chart type (bar, line, pie) |
+| Field | Judge | Example |
+|-------|-------|---------|
+| `sql` | SQLJudge | `"SELECT * FROM products"` |
+| `search_results` | SearchJudge | `["Product A", "Product B"]` |
+| `has_chart` | VisualizationJudge | `true` |
+| `chart_type` | VisualizationJudge | `"bar"` |
+| `response_quality` | ResponseQualityJudge | `"Should explain product features"` |
 
-## Skip vs Negative Cases
+## Negative Cases
 
-### Skip (Judge not evaluated)
-No key in expected_output = judge skips this test case
-
-```yaml
-expected_output:
-  response_quality: "100 products"
-  # sql key missing = SQLJudge skips
-```
-
-### Negative Case (Should NOT do something)
-Use `"null"` string value = judge checks that action was NOT taken
+Use to test that agent correctly refuses or skips actions:
 
 ```yaml
-# Should NOT generate SQL
+# Should not generate SQL
 expected_output:
   sql: "null"
 
-# Should NOT perform search
+# Should not search
 expected_output:
   search_results: "null"
 
-# Should NOT create chart
-expected_output:
-  has_chart: "null"
-```
-
-### Empty Results (Search only)
-Use empty array `[]` = search should return no results
-
-```yaml
+# Should return no results
 expected_output:
   search_results: []
+
+# Should not create chart
+expected_output:
+  has_chart: false
 ```
 
-## Folder Categories
+## Test Categories
 
-| Folder | Description |
-|--------|-------------|
-| `single_turn/` | One question, one response |
-| `multi_turn/` | Conversation with multiple exchanges |
-| `negative/` | Cases where chatbot should refuse/not act |
+### Customer Chatbot
+
+| Category | Description |
+|----------|-------------|
+| `browse_products` | Product search and listing |
+| `check_price_stock` | Price and availability queries |
+| `place_order` | Order placement flow |
+| `order_history` | View past orders |
+| `negative` | Unauthorized actions |
+
+### Client Chatbot
+
+| Category | Description |
+|----------|-------------|
+| `analytics` | Business analytics queries |
+| `visualizations` | Chart generation |
+| `chat_history` | Customer conversation lookup |
+| `customer_insights` | Customer data analysis |
+| `negative` | Write operations, unauthorized |
+
+## DatasetLoader
+
+```python
+loader = DatasetLoader()
+test_cases = loader.load_dataset("data/eval_datasets/customer")
+```
+
+Recursively loads all `.yaml` files and returns `TestCase` objects.
+
+## References
+
+- [DatasetLoader](../../evaluation/loader.py)
+- [TestCase entity](../../evaluation/entities.py)

@@ -1,6 +1,6 @@
-# SearchJudge
+# Search Judge
 
-Evaluates vector search quality using LLM-as-Judge.
+Evaluates vector search quality.
 
 ## Expected Field
 
@@ -9,98 +9,47 @@ expected_output:
   search_results: ["Wireless Bluetooth Headphones", "Noise Cancelling Headphones"]
 ```
 
-## Skip Condition
+## Scoring
 
-Skips if `search_results` key is missing from expected_output.
+| Sub-score | Weight | Description |
+|-----------|--------|-------------|
+| Relevance | 50% | Are results relevant to query? |
+| Coverage | 50% | Are expected products found? |
 
-## Negative Case
+**Pass threshold**: 0.6
 
-```yaml
-# Chatbot should NOT perform search
-expected_output:
-  search_results: "null"
+## Flow
+
+```mermaid
+flowchart TD
+    STEPS[Agent Steps] --> EXT[Extract search tool calls]
+    EXT --> LLM[LLM Judge]
+    EXPECT[Expected Results] --> LLM
+    LLM --> SCORE[Score]
 ```
 
-## Empty Results Case
+## Negative Cases
 
 ```yaml
-# Search should return no results
+# Should not search
+expected_output:
+  search_results: "null"
+
+# Should return no results
 expected_output:
   search_results: []
 ```
 
-## Sub-Scores
+## Tool Names
 
-| Sub-Score | Description |
-|-----------|-------------|
-| `relevance` | Are results relevant to the query? |
-| `coverage` | Are expected products found in results? |
+Extracts from these tool calls:
+- `product_search`
+- `similar_products`
 
-## Evaluation Process
+## Prompt
 
-1. Extract `product_search` and `similar_products` tool calls
-2. LLM evaluates:
-   - Relevance of returned products
-   - Coverage of expected products
-3. Overall score = average of sub-scores
+`evaluation_judges_search_judge`
 
-## Example Results
+## References
 
-### Positive Case (Pass)
-
-```yaml
-judge_results:
-  search:
-    score: 0.85
-    passed: true
-    sub_scores:
-      relevance:
-        score: 0.9
-        reasoning: "All results are headphone products"
-      coverage:
-        score: 0.8
-        reasoning: "Found 2 of 3 expected products"
-```
-
-### Negative Case (Pass)
-
-```yaml
-# expected: search_results: "null"
-judge_results:
-  search:
-    score: 1.0
-    passed: true
-    reasoning: "Correctly did not perform search"
-```
-
-### Empty Results Case (Pass)
-
-```yaml
-# expected: search_results: []
-judge_results:
-  search:
-    score: 1.0
-    passed: true
-    reasoning: "Correctly returned no results"
-```
-
-## Configuration
-
-```yaml
-# configs/evaluation/customer.yaml
-search_judge:
-  enabled: true
-  model: "gpt-4o"
-  temperature: 0.0
-  max_tokens: 16384
-  prompt:
-    name: "evaluation_evaluation_search_judge"
-    label: "latest"
-```
-
-## Prompt Template
-
-The judge uses a Langfuse prompt with variables:
-- `question` - User question
-- `expected_results` - Expected product names
-- `steps` - Extracted search tool calls
+- [SearchJudge](../../../evaluation/judges/search/main.py)
