@@ -6,66 +6,128 @@ Product and inventory queries for customers.
 
 `src/modules/tools/knowledge_retrieval/sql/customer/product.py`
 
-## Class: CustomerProductSQLTool
+## Prompt
 
-Inherits from `SQLTool`.
+[tools_customer_product_sql](../../../../../prompts/tools/customer/product_sql.md)
 
-### Purpose
+## Overview
 
-Query product information - details, prices, stock levels, and inventory. Restricted to product-related tables only.
+Query product information - details, prices, stock levels. **Read-only** tool restricted to product-related tables.
 
-### Configuration
-
-| Property | Value |
-|----------|-------|
-| Tables | Products, Inventory (restricted) |
-| Write | No (read-only) |
-| Filter | `allowed_tables` validation |
-| Prompt | `tools_customer_product_sql` |
-
-### Input Schema
+## Input
 
 | Field | Type | Description |
 |-------|------|-------------|
 | `question` | str | Question about products or inventory |
 
-### Code Flow
+## Flow Diagram
 
 ```mermaid
 flowchart TD
-    A[1. Get Prompt from Langfuse] --> B[2. Compile prompt with filtered schema + question]
-    B --> C[3. LLM generates SQL]
-    C --> D[4. Validate SQL is safe]
-    D --> E[5. Validate only allowed tables accessed]
-    E --> F[6. Execute SQL on database]
-    F --> G[7. Return product results]
+    START[Customer asks about products] --> PROMPT[1. Load prompt from Langfuse]
+    
+    PROMPT --> SCHEMA[2. Get schema for allowed tables only]
+    SCHEMA --> |Products, Inventory| COMPILE[3. Compile prompt]
+    
+    COMPILE --> LLM[4. LLM generates SQL]
+    LLM --> VALIDATE[5. Validate SQL]
+    
+    VALIDATE --> CHECK_TABLES{Tables allowed?}
+    CHECK_TABLES --> |No| REJECT[Reject: Forbidden table access]
+    
+    CHECK_TABLES --> |Yes| CHECK_SAFE{SQL is safe?}
+    CHECK_SAFE --> |No| REJECT2[Reject: Security violation]
+    
+    CHECK_SAFE --> |Yes| EXECUTE[6. Execute SQL]
+    EXECUTE --> |Query| PROD_TBL[(Products)]
+    EXECUTE --> |Query| INV_TBL[(Inventory)]
+    
+    PROD_TBL --> RESULTS[7. Return results]
+    INV_TBL --> RESULTS
 ```
 
-### Security
+## Database Access
 
-- **Schema filtering**: Only Products and Inventory tables shown to LLM
-- **Table validation**: Rejects queries accessing Orders, Customers, etc.
+### Allowed Tables (Read-Only)
 
-### Usage
+| Table | Columns | Description |
+|-------|---------|-------------|
+| Products | product_id, product_name, category, price, description | Product catalog |
+| Inventory | product_id, quantity, color, warehouse_id | Stock levels |
 
+### Forbidden Tables
+
+| Table | Reason |
+|-------|--------|
+| Customers | Privacy - customer data |
+| Orders | Privacy - other customers' orders |
+| OrderDetails | Privacy - order details |
+
+### Security Validation
+
+```mermaid
+flowchart LR
+    SQL[Generated SQL] --> V1{Contains forbidden table?}
+    V1 --> |Yes| FAIL[Reject]
+    V1 --> |No| V2{Has dangerous keywords?}
+    V2 --> |Yes| FAIL
+    V2 --> |No| PASS[Execute]
+```
+
+Blocked patterns:
+- `DROP`, `DELETE`, `UPDATE`, `INSERT` (write operations)
+- Access to Customers, Orders, OrderDetails tables
+
+## Example
+
+### Input
+```
+Customer: Is the Gaming Chair in stock?
+```
+
+### Generated SQL
+```sql
+SELECT p.product_name, i.quantity, i.color
+FROM Products p
+JOIN Inventory i ON p.product_id = i.product_id
+WHERE p.product_name LIKE '%Gaming Chair%'
+```
+
+### Database Query
+
+| Table | Operation | Purpose |
+|-------|-----------|---------|
+| Products | SELECT | Get product name, price |
+| Inventory | SELECT | Get stock quantity by color |
+
+### Response
 ```python
-from src.modules.tools.knowledge_retrieval.sql.customer.product import CustomerProductSQLTool
-
-tool = CustomerProductSQLTool(
-    sql_client=sql_client,
-    llm_client=llm_client,
-    prompt_manager=prompt_manager,
-    allowed_tables=["Products", "Inventory", "Warehouses"],
-)
-
-# Example queries
-tool._run("Show me all laptops under $1000")
-tool._run("Is the iPhone 15 in stock?")
+{
+    "sql": "SELECT p.product_name, i.quantity, i.color FROM Products p JOIN Inventory i ON p.product_id = i.product_id WHERE p.product_name LIKE '%Gaming Chair%'",
+    "results": [
+        {"product_name": "Gaming Chair", "quantity": 24, "color": "Gold"}
+    ]
+}
 ```
 
-### Example Questions
+**Database Changes**: None (read-only)
 
-- "Show me all laptops under $1000"
-- "Is the iPhone 15 in stock?"
-- "What colors are available for product X?"
-- "Which products are on sale?"
+## Example Questions
+
+| Question | Tables Accessed |
+|----------|-----------------|
+| "Show me all laptops under $1000" | Products |
+| "Is the iPhone 15 in stock?" | Products, Inventory |
+| "What colors are available for Gaming Chair?" | Products, Inventory |
+| "How many products do you have?" | Products |
+
+## Error Cases
+
+| Error | Cause | Response |
+|-------|-------|----------|
+| Forbidden table access | Query tries to access Orders/Customers | Reject with error message |
+| SQL security violation | Contains DROP/DELETE/UPDATE | Reject with error message |
+
+## References
+
+- [CustomerProductSQLTool](../../../../../../src/modules/tools/knowledge_retrieval/sql/customer/product.py)

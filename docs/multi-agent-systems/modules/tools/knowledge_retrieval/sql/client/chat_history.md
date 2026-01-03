@@ -6,6 +6,10 @@ Query customer chat conversation history from PostgreSQL store.
 
 `src/modules/tools/knowledge_retrieval/sql/client/chat_history.py`
 
+## Prompt
+
+[tools_client_chat_history_sql](../../../../../prompts/tools/client/chat_history_sql.md)
+
 ## Class: ClientChatHistorySQLTool
 
 Inherits from `SQLTool`.

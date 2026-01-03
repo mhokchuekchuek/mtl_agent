@@ -48,7 +48,7 @@ Extracts from these tool calls:
 
 ## Prompt
 
-`evaluation_judges_search_judge`
+[search_judge.md](../../prompts/evaluation/judges/search_judge.md)
 
 ## References
 

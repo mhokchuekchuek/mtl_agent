@@ -6,6 +6,10 @@ BI analytics tool for internal client users.
 
 `src/modules/tools/knowledge_retrieval/sql/client/analytics.py`
 
+## Prompt
+
+[tools_client_analytics_sql](../../../../../prompts/tools/client/analytics_sql.md)
+
 ## Class: ClientAnalyticsSQLTool
 
 Inherits from `SQLTool`.

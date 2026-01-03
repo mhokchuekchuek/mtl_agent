@@ -6,6 +6,10 @@ ReAct agent for looking up customer chat conversations.
 
 `src/modules/agents/client/chat_history.py`
 
+## Prompt
+
+[chat_history.md](../../../../prompts/agents/client/chat_history.md)
+
 ## Class: CustomerChatHistoryAgent
 
 Inherits from `BaseAgent`.

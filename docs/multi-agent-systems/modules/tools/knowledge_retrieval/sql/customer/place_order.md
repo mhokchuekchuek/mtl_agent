@@ -1,103 +1,196 @@
 # Place Order SQL Tool
 
-Create orders for customers using LLM-generated SQL.
+Create orders for customers.
 
 ## Location
 
 `src/modules/tools/knowledge_retrieval/sql/customer/place_order.py`
 
-## Class: PlaceOrderSQLTool
+## Prompt
 
-Inherits from `SQLTool`.
+[tools_customer_place_order_sql](../../../../../prompts/tools/customer/place_order_sql.md)
 
-### Purpose
+## Overview
 
-Place orders for products. Requires explicit user confirmation before writing to database.
+This tool handles order placement. Requires explicit customer confirmation before writing to database.
 
-### Configuration
-
-| Property | Value |
-|----------|-------|
-| Tables | Orders, OrderDetails, Inventory |
-| Write | Yes (INSERT, UPDATE enabled) |
-| Filter | `customer_id` required |
-| Prompt | `tools_customer_place_order_sql` |
-
-### Input Schema
+## Input
 
 | Field | Type | Description |
 |-------|------|-------------|
 | `product_id` | int | Product ID to order |
 | `quantity` | int | Quantity to order (>= 1) |
-| `confirmed` | bool | Set true only after user confirms |
+| `confirmed` | bool | `true` after customer confirms |
 
-### Code Flow
+## Flow Diagram
 
 ```mermaid
 flowchart TD
-    A[1. Get Prompt from Langfuse] --> B[2. LLM generates multi-step SQL]
-    B --> C[3. Check product exists]
-    C --> D[4. Check stock available]
-    D --> E{5. User confirmed?}
-    E -->|No| F[Return order summary for confirmation]
-    E -->|Yes| G[6. INSERT into Orders]
-    G --> H[7. Get new order_id]
-    H --> I[8. INSERT into OrderDetails]
-    I --> J[9. UPDATE Inventory]
-    J --> K[10. Return success with order_id]
+    START[Customer requests order] --> GEN[LLM generates SQL statements]
+    
+    GEN --> CHECK_PROD[1. Check product]
+    CHECK_PROD --> |Query| PROD_TBL[(Products)]
+    PROD_TBL --> |product_name, price| CHECK_PROD
+    
+    CHECK_PROD --> CHECK_STOCK[2. Check stock]
+    CHECK_STOCK --> |Query| INV_TBL[(Inventory)]
+    INV_TBL --> |quantity available| CHECK_STOCK
+    
+    CHECK_STOCK --> CONFIRM{3. Customer confirmed?}
+    
+    CONFIRM --> |Not yet| SUMMARY[Return order summary]
+    SUMMARY --> WAIT[Wait for confirmation]
+    
+    CONFIRM --> |Yes| INSERT_ORDER[4. Create Order]
+    INSERT_ORDER --> |INSERT| ORDERS_TBL[(Orders)]
+    
+    ORDERS_TBL --> GET_ID[5. Get Order ID]
+    GET_ID --> |SELECT last_insert| GET_ID
+    
+    GET_ID --> INSERT_DETAIL[6. Create Order Details]
+    INSERT_DETAIL --> |INSERT| DETAILS_TBL[(OrderDetails)]
+    
+    INSERT_DETAIL --> UPDATE_INV[7. Deduct Stock]
+    UPDATE_INV --> |UPDATE quantity - N| INV_TBL
+    
+    UPDATE_INV --> SUCCESS[Success!]
 ```
 
-### Two-Step Confirmation
+## Database Changes
 
-1. **First call** (`confirmed=false`): Returns order summary, NO database write
-2. **Second call** (`confirmed=true`): Actually places the order
+### Tables Involved
 
-### Usage
+| Table | Operation | Description |
+|-------|-----------|-------------|
+| Products | SELECT | Get product info (name, price) |
+| Inventory | SELECT | Check available stock |
+| Orders | INSERT | Create new order record |
+| OrderDetails | INSERT | Create order line items |
+| Inventory | UPDATE | Deduct stock by ordered quantity |
 
+### Step-by-Step Database Operations
+
+#### Step 1: Check Product (SELECT)
+```sql
+SELECT product_id, product_name, price 
+FROM Products 
+WHERE product_id = {product_id}
+```
+- **Purpose**: Verify product exists and get price
+- **Fail**: Returns error if product_id not found
+
+#### Step 2: Check Stock (SELECT)
+```sql
+SELECT quantity 
+FROM Inventory 
+WHERE product_id = {product_id}
+```
+- **Purpose**: Verify sufficient stock available
+- **Fail**: Returns error if stock < requested quantity
+
+#### Step 3: Wait for Confirmation (No DB change)
+- If `confirmed=false`, returns order summary for customer review
+- **No database writes at this step**
+
+#### Step 4: Create Order (INSERT)
+```sql
+INSERT INTO Orders (customer_id, order_date, status, total_amount)
+VALUES ({customer_id}, date('now'), 'pending', {total_price})
+```
+- **Table**: Orders
+- **New Record**: Order with status = 'pending'
+
+#### Step 5: Get Order ID (SELECT)
+```sql
+SELECT last_insert_rowid() as order_id
+```
+- **Purpose**: Get newly created order_id for OrderDetails
+
+#### Step 6: Create Order Details (INSERT)
+```sql
+INSERT INTO OrderDetails (order_id, product_id, quantity, unit_price)
+VALUES ({order_id}, {product_id}, {quantity}, {price})
+```
+- **Table**: OrderDetails
+- **New Record**: Line item for the order
+
+#### Step 7: Deduct Stock (UPDATE)
+```sql
+UPDATE Inventory 
+SET quantity = quantity - {quantity}
+WHERE product_id = {product_id}
+```
+- **Table**: Inventory
+- **Change**: Reduces quantity by ordered amount
+
+## Two-Step Confirmation
+
+Prevents accidental orders:
+
+| Call | confirmed | Database Write | Response |
+|------|-----------|----------------|----------|
+| First | `false` | ❌ No write | Order summary + await confirmation |
+| Second | `true` | ✅ Write | Order completed |
+
+## Example
+
+### Input
+```
+Customer: Order 2 gaming chairs
+```
+
+### Step 1: First Call (confirmed=false)
 ```python
-from src.modules.tools.knowledge_retrieval.sql.customer.place_order import PlaceOrderSQLTool
-
-tool = PlaceOrderSQLTool(
-    sql_client=sql_client,
-    llm_client=llm_client,
-    prompt_manager=prompt_manager,
-    allowed_tables=["Orders", "OrderDetails", "Inventory", "Products"],
-    customer_id="cust_123",
-)
-
-# Step 1: Get order summary
-result = tool._run(product_id=5, quantity=2, confirmed=False)
-# Returns: {"needs_confirmation": True, "product_name": "iPhone", "total_price": 1998, ...}
-
-# Step 2: Confirm order
-result = tool._run(product_id=5, quantity=2, confirmed=True)
-# Returns: {"success": True, "order_id": 1001, ...}
+tool._run(product_id=10, quantity=2, confirmed=False)
 ```
 
-### Return Format
-
-**Before confirmation:**
+**Response:**
 ```python
 {
     "success": True,
     "needs_confirmation": True,
-    "product_id": 5,
-    "product_name": "iPhone 15",
+    "product_name": "Gaming Chair",
     "quantity": 2,
-    "price_per_unit": 999,
-    "total_price": 1998,
-    "available_stock": 50,
-    "message": "Please confirm: Order 2x iPhone 15 for $1998?"
+    "price_per_unit": 279,
+    "total_price": 558,
+    "available_stock": 24,
+    "message": "Please confirm: Order 2x Gaming Chair for $558?"
 }
 ```
 
-**After confirmation:**
+**Database**: No changes
+
+### Step 2: Second Call (confirmed=true)
+```python
+tool._run(product_id=10, quantity=2, confirmed=True)
+```
+
+**Response:**
 ```python
 {
     "success": True,
     "order_id": 1001,
-    "product_id": 5,
-    "quantity": 2,
-    "stages": {...}  # SQL executed at each stage
+    "product_id": 10,
+    "quantity": 2
 }
 ```
+
+**Database Changes:**
+
+| Table | Before | After |
+|-------|--------|-------|
+| Orders | - | New row: order_id=1001, customer_id=1, status='pending', total=558 |
+| OrderDetails | - | New row: order_id=1001, product_id=10, qty=2, price=279 |
+| Inventory (Gaming Chair) | quantity=24 | quantity=22 |
+
+## Error Cases
+
+| Error | Cause | Database |
+|-------|-------|----------|
+| Product not found | product_id doesn't exist | No changes |
+| Insufficient stock | Requested > available | No changes |
+| Customer ID not set | customer_id is null | No changes |
+
+## References
+
+- [PlaceOrderSQLTool](../../../../../../src/modules/tools/knowledge_retrieval/sql/customer/place_order.py)

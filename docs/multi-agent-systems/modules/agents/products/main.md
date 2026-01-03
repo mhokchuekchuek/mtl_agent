@@ -6,6 +6,10 @@ ReAct agent for handling product-related queries.
 
 `src/modules/agents/products/main.py`
 
+## Prompt
+
+[product_agent.md](../../../../prompts/agents/customer/product_agent.md)
+
 ## Class: ProductAgent
 
 Inherits from `BaseAgent`.

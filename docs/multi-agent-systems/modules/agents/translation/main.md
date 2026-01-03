@@ -6,6 +6,10 @@ Agent for translating text between Thai and English.
 
 `src/modules/agents/translation/main.py`
 
+## Prompt
+
+[translation.md](../../../../prompts/agents/translation.md)
+
 ## Class: TranslationAgent
 
 Inherits from `BaseAgent`.

@@ -6,6 +6,10 @@ ReAct agent for BI analytics and visualizations.
 
 `src/modules/agents/client/insight.py`
 
+## Prompt
+
+[insight.md](../../../../prompts/agents/client/insight.md)
+
 ## Class: CustomerInsightAgent
 
 Inherits from `BaseAgent`.

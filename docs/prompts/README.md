@@ -151,3 +151,44 @@ Prompts are named based on directory structure:
 | `LANGFUSE_PUBLIC_KEY` | Langfuse public API key |
 | `LANGFUSE_SECRET_KEY` | Langfuse secret API key |
 | `LANGFUSE_HOST` | Langfuse host (default: cloud) |
+
+## Prompt Catalog
+
+### Agents
+
+| Prompt | Description | Used By |
+|--------|-------------|---------|
+| [orchestrator](agents/client/orchestrator.md) | Route queries to appropriate agents | Client Chatbot |
+| [insight](agents/client/insight.md) | Generate insights from data | Client Chatbot |
+| [chat_history](agents/client/chat_history.md) | Search and summarize chat history | Client Chatbot |
+| [translation](agents/client/translation.md) | Detect language and translate | Client Chatbot |
+| [product_agent](agents/customer/product_agent.md) | Handle product queries | Customer Chatbot |
+| [translation](agents/customer/translation.md) | Detect language and translate | Customer Chatbot |
+
+### Tools
+
+| Prompt | Description | Used By |
+|--------|-------------|---------|
+| [analytics_sql](tools/client/analytics_sql.md) | Generate SQL for analytics queries | Client SQL Tool |
+| [chat_history_sql](tools/client/chat_history_sql.md) | Generate SQL for chat history | Client SQL Tool |
+| [visualization](tools/client/visualization.md) | Generate Plotly chart code | Visualization Tool |
+| [product_sql](tools/customer/product_sql.md) | Generate SQL for product queries | Customer SQL Tool |
+| [order_sql](tools/customer/order_sql.md) | Generate SQL for order queries | Customer SQL Tool |
+| [place_order_sql](tools/customer/place_order_sql.md) | Generate SQL for placing orders | Place Order Tool |
+| [cancel_order_sql](tools/customer/cancel_order_sql.md) | Generate SQL for cancelling orders | Cancel Order Tool |
+
+### Evaluation
+
+| Prompt | Description | Used By |
+|--------|-------------|---------|
+| [sql_judge](evaluation/judges/sql_judge.md) | Judge SQL query correctness | SQL Judge |
+| [search_judge](evaluation/judges/search_judge.md) | Judge search result quality | Search Judge |
+| [visualization_judge](evaluation/judges/visualization_judge.md) | Judge chart generation | Visualization Judge |
+| [response_quality_judge](evaluation/judges/response_quality_judge.md) | Judge response quality | Response Quality Judge |
+| [sql_extractor](evaluation/extractors/sql_extractor.md) | Extract SQL from responses | SQL Extractor |
+
+### Ingestor
+
+| Prompt | Description | Used By |
+|--------|-------------|---------|
+| [extract_product](ingestor/extract_product.md) | Extract product info from PDF | Ingestion Pipeline |

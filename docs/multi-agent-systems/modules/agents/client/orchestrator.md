@@ -6,6 +6,10 @@ Router agent that classifies intent and routes to appropriate agent.
 
 `src/modules/agents/client/orchestrator.py`
 
+## Prompt
+
+[orchestrator.md](../../../../prompts/agents/client/orchestrator.md)
+
 ## Class: OrchestratorAgent
 
 Inherits from `BaseAgent`.

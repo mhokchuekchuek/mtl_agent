@@ -6,6 +6,10 @@ Create Plotly visualizations using LLM-generated code.
 
 `src/modules/tools/visualization/main.py`
 
+## Prompt
+
+[tools_client_visualization](../../../../prompts/tools/client/visualization.md)
+
 ## Overview
 
 Create Plotly charts from data using natural language requests. Uses LLM to generate Plotly code, then executes in a sandboxed environment.

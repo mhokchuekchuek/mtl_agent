@@ -45,7 +45,7 @@ Judge receives chatbot context (permissions, restrictions) to evaluate if respon
 
 ## Prompt
 
-`evaluation_judges_response_quality_judge`
+[response_quality_judge.md](../../prompts/evaluation/judges/response_quality_judge.md)
 
 ## References
 

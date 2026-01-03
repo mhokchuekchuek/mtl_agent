@@ -50,12 +50,10 @@ expected_output:
 - Pass: No SQL operations found
 - Fail: SQL was generated
 
-## Prompts
+## Prompt
 
-| Prompt | Purpose |
-|--------|---------|
-| `evaluation_extractors_sql_extractor` | Extract SQL from steps |
-| `evaluation_judges_sql_judge` | Judge SQL correctness |
+- [sql_judge.md](../../prompts/evaluation/judges/sql_judge.md) - Judge SQL correctness
+- [sql_extractor.md](../../prompts/evaluation/extractors/sql_extractor.md) - Extract SQL from steps
 
 ## References
 

@@ -47,7 +47,7 @@ Extracts from these tool calls:
 
 ## Prompt
 
-`evaluation_judges_visualization_judge`
+[visualization_judge.md](../../prompts/evaluation/judges/visualization_judge.md)
 
 ## References
 

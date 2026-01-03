@@ -44,10 +44,13 @@ pip install -r requirements.txt
 # 3. Start services (includes API and UI)
 docker-compose up -d
 
-# 4. Ingest knowledge base
+# 4. Run database migrations
+./scripts/run_migrations.sh
+
+# 5. Ingest knowledge base
 python scripts/ingest_pdfs.py
 
-# 5. Upload prompts (optional)
+# 6. Upload prompts (optional)
 python scripts/upload_prompts.py
 ```
 

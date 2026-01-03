@@ -1,106 +1,195 @@
 # Cancel Order SQL Tool
 
-Cancel orders for customers using LLM-generated SQL.
+Cancel customer orders and restore inventory.
 
 ## Location
 
 `src/modules/tools/knowledge_retrieval/sql/customer/cancel_order.py`
 
-## Class: CancelOrderSQLTool
+## Prompt
 
-Inherits from `SQLTool`.
+[tools_customer_cancel_order_sql](../../../../../prompts/tools/customer/cancel_order_sql.md)
 
-### Purpose
+## Overview
 
-Cancel customer orders. Verifies ownership, updates status, and restores inventory. Requires explicit user confirmation.
+This tool handles order cancellation. Requires explicit customer confirmation before updating database. Automatically restores inventory when order is cancelled.
 
-### Configuration
-
-| Property | Value |
-|----------|-------|
-| Tables | Orders, OrderDetails, Inventory |
-| Write | Yes (UPDATE enabled) |
-| Filter | `customer_id` required |
-| Prompt | `tools_customer_cancel_order_sql` |
-
-### Input Schema
+## Input
 
 | Field | Type | Description |
 |-------|------|-------------|
 | `order_id` | int | Order ID to cancel |
-| `confirmed` | bool | Set true only after user confirms |
+| `confirmed` | bool | `true` after customer confirms |
 
-### Code Flow
+## Flow Diagram
 
 ```mermaid
 flowchart TD
-    A[1. Get Prompt from Langfuse] --> B[2. LLM generates multi-step SQL]
-    B --> C[3. Check order exists and belongs to customer]
-    C --> D[4. Check order not already cancelled]
-    D --> E[5. Get order details]
-    E --> F{6. User confirmed?}
-    F -->|No| G[Return order summary for confirmation]
-    F -->|Yes| H[7. UPDATE Orders status to cancelled]
-    H --> I[8. UPDATE Inventory to restore stock]
-    I --> J[9. Return success]
+    START[Customer requests cancellation] --> GEN[LLM generates SQL statements]
+    
+    GEN --> CHECK_ORDER[1. Check order ownership]
+    CHECK_ORDER --> |Query| ORDERS_TBL[(Orders)]
+    ORDERS_TBL --> |order belongs to customer?| CHECK_ORDER
+    
+    CHECK_ORDER --> CHECK_STATUS[2. Check order status]
+    CHECK_STATUS --> |Query| ORDERS_TBL
+    ORDERS_TBL --> |current status| CHECK_STATUS
+    
+    CHECK_STATUS --> GET_DETAILS[3. Get order details]
+    GET_DETAILS --> |Query| DETAILS_TBL[(OrderDetails)]
+    DETAILS_TBL --> |product_id, quantity| GET_DETAILS
+    
+    GET_DETAILS --> CONFIRM{4. Customer confirmed?}
+    
+    CONFIRM --> |Not yet| SUMMARY[Return order summary]
+    SUMMARY --> WAIT[Wait for confirmation]
+    
+    CONFIRM --> |Yes| UPDATE_STATUS[5. Update status to 'cancelled']
+    UPDATE_STATUS --> |UPDATE| ORDERS_TBL
+    
+    UPDATE_STATUS --> RESTORE_INV[6. Restore inventory]
+    RESTORE_INV --> |UPDATE quantity + N| INV_TBL[(Inventory)]
+    
+    RESTORE_INV --> SUCCESS[Success!]
 ```
 
-### Two-Step Confirmation
+## Database Changes
 
-1. **First call** (`confirmed=false`): Returns order details, NO database write
-2. **Second call** (`confirmed=true`): Actually cancels the order
+### Tables Involved
 
-### Usage
+| Table | Operation | Description |
+|-------|-----------|-------------|
+| Orders | SELECT | Verify order exists and belongs to customer |
+| Orders | SELECT | Check current status (not already cancelled) |
+| OrderDetails | SELECT | Get items to restore inventory |
+| Orders | UPDATE | Set status to 'cancelled' |
+| Inventory | UPDATE | Add back the cancelled quantities |
 
+### Step-by-Step Database Operations
+
+#### Step 1: Check Order Ownership (SELECT)
+```sql
+SELECT order_id, customer_id, order_date, total_amount 
+FROM Orders 
+WHERE order_id = {order_id} AND customer_id = {customer_id}
+```
+- **Purpose**: Verify order exists AND belongs to this customer
+- **Fail**: Returns error if order not found or belongs to different customer
+
+#### Step 2: Check Order Status (SELECT)
+```sql
+SELECT status 
+FROM Orders 
+WHERE order_id = {order_id}
+```
+- **Purpose**: Verify order is not already cancelled
+- **Fail**: Returns error if status = 'cancelled'
+
+#### Step 3: Get Order Details (SELECT)
+```sql
+SELECT od.product_id, od.quantity, p.product_name
+FROM OrderDetails od
+JOIN Products p ON od.product_id = p.product_id
+WHERE od.order_id = {order_id}
+```
+- **Purpose**: Get items for inventory restoration and confirmation display
+
+#### Step 4: Wait for Confirmation (No DB change)
+- If `confirmed=false`, returns order summary for customer review
+- **No database writes at this step**
+
+#### Step 5: Update Order Status (UPDATE)
+```sql
+UPDATE Orders 
+SET status = 'cancelled'
+WHERE order_id = {order_id}
+```
+- **Table**: Orders
+- **Change**: status changes from 'pending' to 'cancelled'
+
+#### Step 6: Restore Inventory (UPDATE)
+```sql
+UPDATE Inventory 
+SET quantity = quantity + {quantity}
+WHERE product_id = {product_id}
+```
+- **Table**: Inventory
+- **Change**: Adds back the cancelled quantity to stock
+
+## Two-Step Confirmation
+
+Prevents accidental cancellations:
+
+| Call | confirmed | Database Write | Response |
+|------|-----------|----------------|----------|
+| First | `false` | ❌ No write | Order summary + await confirmation |
+| Second | `true` | ✅ Write | Order cancelled + inventory restored |
+
+## Example
+
+### Input
+```
+Customer: Cancel my order #1001
+```
+
+### Step 1: First Call (confirmed=false)
 ```python
-from src.modules.tools.knowledge_retrieval.sql.customer.cancel_order import CancelOrderSQLTool
-
-tool = CancelOrderSQLTool(
-    sql_client=sql_client,
-    llm_client=llm_client,
-    prompt_manager=prompt_manager,
-    allowed_tables=["Orders", "OrderDetails", "Inventory"],
-    customer_id="cust_123",
-)
-
-# Step 1: Get order details
-result = tool._run(order_id=1001, confirmed=False)
-# Returns: {"needs_confirmation": True, "order_id": 1001, "products": ["2x iPhone"], ...}
-
-# Step 2: Confirm cancellation
-result = tool._run(order_id=1001, confirmed=True)
-# Returns: {"success": True, "new_status": "cancelled", ...}
+tool._run(order_id=1001, confirmed=False)
 ```
 
-### Return Format
-
-**Before confirmation:**
+**Response:**
 ```python
 {
     "success": True,
     "needs_confirmation": True,
     "order_id": 1001,
-    "order_date": "2024-01-15",
-    "total_amount": 1998,
+    "order_date": "2025-01-03",
+    "total_amount": 558,
     "status": "pending",
-    "products": ["2x iPhone 15"],
-    "message": "Please confirm: Cancel Order #1001 (2x iPhone 15) for $1998?"
+    "products": ["2x Gaming Chair"],
+    "message": "Please confirm: Cancel Order #1001 (2x Gaming Chair) for $558?"
 }
 ```
 
-**After confirmation:**
+**Database**: No changes
+
+### Step 2: Second Call (confirmed=true)
+```python
+tool._run(order_id=1001, confirmed=True)
+```
+
+**Response:**
 ```python
 {
     "success": True,
     "order_id": 1001,
     "previous_status": "pending",
-    "new_status": "cancelled",
-    "stages": {...}  # SQL executed at each stage
+    "new_status": "cancelled"
 }
 ```
 
-### Security
+**Database Changes:**
 
-- **Ownership check**: Only orders belonging to the customer can be cancelled
-- **Status check**: Already cancelled orders are rejected
-- **Inventory restore**: Stock is returned when order is cancelled
+| Table | Before | After |
+|-------|--------|-------|
+| Orders (order_id=1001) | status='pending' | status='cancelled' |
+| Inventory (Gaming Chair) | quantity=22 | quantity=24 (restored) |
+
+## Error Cases
+
+| Error | Cause | Database |
+|-------|-------|----------|
+| Order not found | order_id doesn't exist | No changes |
+| Not your order | order belongs to different customer | No changes |
+| Already cancelled | status is already 'cancelled' | No changes |
+| Customer ID not set | customer_id is null | No changes |
+
+## Security
+
+- Orders can only be cancelled by the customer who placed them
+- SQL includes `customer_id` filter to prevent unauthorized cancellation
+- Already cancelled orders cannot be cancelled again
+
+## References
+
+- [CancelOrderSQLTool](../../../../../../src/modules/tools/knowledge_retrieval/sql/customer/cancel_order.py)
