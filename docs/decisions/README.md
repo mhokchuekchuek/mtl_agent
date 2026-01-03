@@ -28,4 +28,4 @@ Architecture and technology decisions for the project.
 
 | Decision | Description |
 |----------|-------------|
-| [Why SQL Judge](why_sql_judge.md) | Why use LLM-as-Judge for SQL evaluation |
+| [Why LLM-as-Judge](why_llm_as_judge.md) | Why use LLM-as-Judge pattern for evaluation |

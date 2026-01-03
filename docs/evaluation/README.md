@@ -94,4 +94,4 @@ evaluation/
 
 | Decision | Link |
 |----------|------|
-| LLM-as-Judge (SQL) | [why_sql_judge.md](../decisions/why_sql_judge.md) |
+| LLM-as-Judge | [why_llm_as_judge.md](../decisions/why_llm_as_judge.md) |

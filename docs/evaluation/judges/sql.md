@@ -60,4 +60,4 @@ expected_output:
 ## References
 
 - [SQLJudge](../../../evaluation/judges/sql/main.py)
-- [Decision: Why SQL Judge](../../decisions/why_sql_judge.md)
+- [Decision: LLM-as-Judge](../../decisions/why_llm_as_judge.md)
