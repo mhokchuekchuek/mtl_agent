@@ -39,3 +39,29 @@ docker-compose up -d api
 ```
 
 Access at: http://localhost:8000
+
+## Server Startup
+
+The API command creates a FastAPI app and runs it with uvicorn:
+
+```python
+fastapi_app = create_app(settings=settings)
+uvicorn.run(
+    fastapi_app,
+    host=host,
+    port=port,
+    reload=reload,
+)
+```
+
+## Endpoints
+
+| Endpoint | Method | Purpose |
+|----------|--------|---------|
+| `/api/v1/chatbot/customer/chat` | POST | Customer chatbot |
+| `/api/v1/chatbot/client/chat` | POST | Client chatbot |
+| `/health` | GET | Health check |
+
+## Full Code
+
+See [`main.py`](../../../main.py) - `api` command

@@ -1,70 +1,125 @@
 # Multi-Agent Systems
 
-Documentation for the MTL Agent multi-agent system architecture, mirroring the `src/` code structure.
+Documentation for the MTL Agent multi-agent chatbot system.
 
 ## Overview
 
-This system implements two chatbot workflows:
-- **Client Chatbot**: Analytics, insights, and visualization for internal users
-- **Customer Chatbot**: Product search, orders, and support for customers
+Two LangGraph-based chatbot workflows:
 
-## Architecture Layers
+| Chatbot | Target Users | Purpose |
+|---------|--------------|---------|
+| **Customer Chatbot** | External (shoppers) | Product search, orders, support |
+| **Client Chatbot** | Internal (BI analysts) | Analytics, insights, visualization |
 
-| Layer | Purpose | Documentation |
-|-------|---------|---------------|
-| Modules | Core business logic (agents, tools, workflows) | [modules/](modules/) |
-| Repositories | Data access layer | [repositories/](repositories/README.md) |
-| Usecases | Business orchestration | [usecases/](usecases/README.md) |
-| Dependencies | Dependency injection | [dependencies/](dependencies/README.md) |
-| API | REST API endpoints | [api/](api/README.md) |
-| UI | Streamlit user interface | [ui/](ui/) |
-| CLI | Command-line interface | [cli/](cli/README.md) |
+## Documentation
 
-## Modules
+| Section | Description | Link |
+|---------|-------------|------|
+| **Architecture** | Code and system architecture | [architecture/README.md](architecture/README.md) |
+| **Modules** | Workflows, agents, tools | [modules/README.md](modules/README.md) |
+| **Repositories** | Data access layer | [repositories/README.md](repositories/README.md) |
+| **Usecases** | Business orchestration | [usecases/README.md](usecases/README.md) |
+| **Dependencies** | Dependency injection | [dependencies/README.md](dependencies/README.md) |
+| **Configs** | Configuration files | [configs/README.md](configs/README.md) |
+| **API** | REST API endpoints | [api/README.md](api/README.md) |
+| **CLI** | Command-line interface | [cli/README.md](cli/README.md) |
 
-### Agents
-LLM-powered agents that handle specific tasks.
+## System Architecture
 
-| Agent | Purpose | Documentation |
-|-------|---------|---------------|
-| Client Orchestrator | Routes client requests | [agents/client/orchestrator.md](modules/agents/client/orchestrator.md) |
-| Client Insight | Generates business insights | [agents/client/insight.md](modules/agents/client/insight.md) |
-| Client Chat History | Manages conversation context | [agents/client/chat_history.md](modules/agents/client/chat_history.md) |
-| Products | Product information agent | [agents/products/](modules/agents/products/products.md) |
-| Translation | Language translation | [agents/translation/](modules/agents/translation/translation.md) |
-
-### Tools
-LangChain tools used by agents.
-
-| Tool | Purpose | Documentation |
-|------|---------|---------------|
-| SQL (Base) | Base SQL query generation | [tools/knowledge_retrieval/sql.md](modules/tools/knowledge_retrieval/sql.md) |
-| VectorDB | Semantic search | [tools/knowledge_retrieval/vectordb.md](modules/tools/knowledge_retrieval/vectordb.md) |
-| Visualization | Chart generation | [tools/visualization/](modules/tools/visualization/README.md) |
-
-### Workflows
-LangGraph workflows that orchestrate agents.
-
-| Workflow | Purpose | Documentation |
-|----------|---------|---------------|
-| Client Chatbot | Internal analytics workflow | [workflows/client_chatbot/](modules/workflows/client_chatbot/client_chatbot.md) |
-| Customer Chatbot | Customer-facing workflow | [workflows/customer_chatbot/](modules/workflows/customer_chatbot/customer_chatbot.md) |
-
-## Code Structure Mapping
-
+```mermaid
+flowchart TD
+    subgraph Entry
+        UI[Streamlit UI]
+        API[FastAPI API]
+    end
+    
+    subgraph Application
+        DEP[Dependencies]
+        SVC[ChatbotService]
+        REPO[ChatbotRepository]
+    end
+    
+    subgraph Modules
+        WF[Workflows]
+        AG[Agents]
+        TL[Tools]
+    end
+    
+    subgraph Infrastructure
+        RD[(Redis)]
+        PG[(PostgreSQL)]
+        QD[(Qdrant)]
+        SQL[(SQLite)]
+        LLM[LLM API]
+    end
+    
+    UI --> API
+    API --> DEP
+    DEP --> SVC
+    SVC --> REPO
+    REPO --> WF
+    WF --> AG
+    AG --> TL
+    REPO --> RD
+    REPO --> PG
+    TL --> SQL
+    TL --> QD
+    AG --> LLM
 ```
-src/                              docs/multi-agent-systems/
-├── modules/                      ├── modules/
-│   ├── agents/                   │   ├── agents/
-│   │   ├── client/               │   │   ├── client/
-│   │   ├── products/             │   │   ├── products/
-│   │   └── translation/          │   │   └── translation/
-│   ├── tools/                    │   ├── tools/
-│   │   └── knowledge_retrieval/  │   │   └── knowledge_retrieval/
-│   └── workflows/                │   └── workflows/
-│       ├── client_chatbot/       │       ├── client_chatbot/
-│       └── customer_chatbot/     │       └── customer_chatbot/
-├── repositories/                 ├── repositories/
-├── usecases/                     ├── usecases/
-└── dependencies/                 └── dependencies/
+
+## Chatbot Workflows
+
+### Customer Chatbot
+
+```mermaid
+flowchart LR
+    Input --> Translation
+    Translation --> ProductAgent
+    ProductAgent --> Output
 ```
+
+**Tools**: SQL (product, order), VectorDB (search, similar)
+
+### Client Chatbot
+
+```mermaid
+flowchart LR
+    Input --> Translation
+    Translation --> Orchestrator
+    Orchestrator --> |CHAT_HISTORY| ChatHistoryAgent
+    Orchestrator --> |INSIGHT| InsightAgent
+    ChatHistoryAgent --> Output
+    InsightAgent --> Output
+```
+
+**Tools**: SQL (analytics, chat_history), Visualization (charts)
+
+## Quick Start
+
+```bash
+# Start API server
+python main.py api
+
+# Start Customer UI
+python main.py customer_ui
+
+# Start Client UI
+python main.py client_ui
+```
+
+## Design Decisions
+
+| Decision | Link |
+|----------|------|
+| ReAct & LangGraph | [why_react_and_langgraph.md](../decisions/why_react_and_langgraph.md) |
+| Checkpointer + Store | [why_checkpointer_and_store.md](../decisions/why_checkpointer_and_store.md) |
+| OpenAI Model | [why_openai_model.md](../decisions/why_openai_model.md) |
+| Langfuse | [why_langfuse.md](../decisions/why_langfuse.md) |
+
+## Future Improvements
+
+| Improvement | Link |
+|-------------|------|
+| Workflow Orchestrator | [workflow_orchestrator.md](../future_improvements/workflow_orchestrator.md) |
+| Async Store Writes | [async_store_writes.md](../future_improvements/async_store_writes.md) |
+| Embedding Models | [embedding_models.md](../future_improvements/embedding_models.md) |
