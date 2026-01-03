@@ -57,7 +57,7 @@ customer_chatbot:
         product_search:
           embedding_model: "text-embedding-3-small"
           top_k: 10
-          similarity_threshold: 0.5
+          similarity_threshold: 0.35
         similar_products:
           embedding_model: "text-embedding-3-small"
           top_k: 5
