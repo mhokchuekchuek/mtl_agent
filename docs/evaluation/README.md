@@ -57,6 +57,7 @@ python scripts/run_eval.py client
 | Datasets | Test case format and structure | [datasets.md](datasets.md) |
 | Configs | Evaluation configuration | [configs.md](configs.md) |
 | Results | Output format and interpretation | [results.md](results.md) |
+| Examples | Real single/multi-turn examples | [examples.md](examples.md) |
 
 ## Judges
 
