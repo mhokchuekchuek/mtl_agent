@@ -79,6 +79,12 @@ flowchart LR
 |----------|-------------|------|
 | Checkpointer + Store | Why we use both memory types | [why_checkpointer_and_store.md](../../decisions/why_checkpointer_and_store.md) |
 
+## Future Improvements
+
+| Improvement | Description | Link |
+|-------------|-------------|------|
+| Async Store Writes | Queue or scheduled job for async Postgres writes | [async_store_writes.md](../../future_improvements/async_store_writes.md) |
+
 ## File Structure
 
 ```
