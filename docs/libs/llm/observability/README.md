@@ -1,20 +1,33 @@
-# LLM Observability
+# **👁️ LLM Observability**
 
 LLM tracing and monitoring using the provider/selector pattern.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `libs/llm/observability/`
 
-## Providers
 
-| Provider | Description | Documentation |
-|----------|-------------|---------------|
-| `langfuse` | Langfuse Cloud tracing | [langfuse.md](langfuse.md) |
+---
 
-## Classes
 
-### BaseObservability
+## **📦 Providers**
+
+| | |
+|:---:|:---:|
+| [📊 **Langfuse**](langfuse.md)<br/>Langfuse Cloud tracing | |
+
+
+---
+
+
+## **🔧 Classes**
+
+
+### 🎯 **BaseObservability**
 
 Abstract base class for observability clients.
 
@@ -27,7 +40,8 @@ Abstract base class for observability clients.
 | `trace_generation(**kwargs)` | Trace LLM generation |
 | `is_available()` | Check if backend is available |
 
-### ObservabilitySelector
+
+### 🔀 **ObservabilitySelector**
 
 Selector for observability providers.
 

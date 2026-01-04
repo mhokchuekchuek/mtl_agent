@@ -8,7 +8,7 @@ Create orders for customers.
 
 ## Prompt
 
-[tools_customer_place_order_sql](../../../../../prompts/tools/customer/place_order_sql.md)
+[tools_customer_place_order_sql](../../../../../../prompts/tools/customer/place_order_sql.md)
 
 ## Overview
 
@@ -24,37 +24,7 @@ This tool handles order placement. Requires explicit customer confirmation befor
 
 ## Flow Diagram
 
-```mermaid
-flowchart TD
-    START[Customer requests order] --> GEN[LLM generates SQL statements]
-    
-    GEN --> CHECK_PROD[1. Check product]
-    CHECK_PROD --> |Query| PROD_TBL[(Products)]
-    PROD_TBL --> |product_name, price| CHECK_PROD
-    
-    CHECK_PROD --> CHECK_STOCK[2. Check stock]
-    CHECK_STOCK --> |Query| INV_TBL[(Inventory)]
-    INV_TBL --> |quantity available| CHECK_STOCK
-    
-    CHECK_STOCK --> CONFIRM{3. Customer confirmed?}
-    
-    CONFIRM --> |Not yet| SUMMARY[Return order summary]
-    SUMMARY --> WAIT[Wait for confirmation]
-    
-    CONFIRM --> |Yes| INSERT_ORDER[4. Create Order]
-    INSERT_ORDER --> |INSERT| ORDERS_TBL[(Orders)]
-    
-    ORDERS_TBL --> GET_ID[5. Get Order ID]
-    GET_ID --> |SELECT last_insert| GET_ID
-    
-    GET_ID --> INSERT_DETAIL[6. Create Order Details]
-    INSERT_DETAIL --> |INSERT| DETAILS_TBL[(OrderDetails)]
-    
-    INSERT_DETAIL --> UPDATE_INV[7. Deduct Stock]
-    UPDATE_INV --> |UPDATE quantity - N| INV_TBL
-    
-    UPDATE_INV --> SUCCESS[Success!]
-```
+![Flow Diagram](../../../../../../assets/diagrams/modules/customer_place_order_1.png)
 
 ## Database Changes
 

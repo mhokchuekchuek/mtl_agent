@@ -1,12 +1,21 @@
-# LLM-as-Judge Design Decision
+# **📝 LLM-as-Judge Design Decision**
 
-## Context
+
+---
+
+
+## **📋 Context**
 
 We need to evaluate chatbot responses across multiple dimensions (SQL correctness, search quality, visualization, response quality). Traditional rule-based evaluation is brittle and can't handle semantic equivalence.
 
-## Options Considered
 
-### Option A: Rule-based evaluation
+---
+
+
+## **🔄 Options Considered**
+
+
+### 🅰️ **Rule-based evaluation**
 
 ```
 1. Execute queries/searches
@@ -23,7 +32,8 @@ We need to evaluate chatbot responses across multiple dimensions (SQL correctnes
 - Brittle to minor differences
 - Hard to evaluate quality (faithfulness, relevance)
 
-### Option B: LLM-as-Judge
+
+### 🅱️ **LLM-as-Judge**
 
 ```
 1. Extract relevant data from agent steps
@@ -41,23 +51,29 @@ We need to evaluate chatbot responses across multiple dimensions (SQL correctnes
 - LLM cost
 - Non-deterministic
 
-## Decision
+
+---
+
+
+## **✅ Decision**
 
 **Option B: LLM-as-Judge**
 
-## Pattern
+
+---
+
+
+## **🎯 Pattern**
 
 All judges follow the same pattern:
 
-```mermaid
-flowchart TD
-    STEPS[Agent Steps] --> EXT[Extract Relevant Data]
-    EXT --> LLM[LLM Judge]
-    EXPECT[Expected Values] --> LLM
-    LLM --> SCORE[Sub-scores + Reasoning]
-```
+![Pattern](../assets/diagrams/decisions/decisions_why_llm_as_judge_1.png)
 
-## Judges
+
+---
+
+
+## **⚖️ Judges**
 
 | Judge | Extracts | Evaluates |
 |-------|----------|-----------|
@@ -66,31 +82,21 @@ flowchart TD
 | Visualization | Viz tool calls | Appropriateness, chart type |
 | Response Quality | Final response | Relevance, faithfulness |
 
-## SQL Judge Flow
+
+---
+
+
+## **🔷 SQL Judge Flow**
 
 SQL Judge has an additional step - executing expected SQL for ground truth:
 
-```mermaid
-flowchart TD
-    subgraph Step 1: Extract
-        STEPS[Agent Steps] --> EXT[LLM Extractor]
-        EXT --> OPS[SQL Operations + Results]
-    end
-    
-    subgraph Step 2: Execute Expected
-        EXPSQL[Expected SQL] --> EXEC[Execute]
-        EXEC --> EXPRES[Expected Results]
-    end
-    
-    subgraph Step 3: Judge
-        OPS --> JUDGE[LLM Judge]
-        EXPSQL --> JUDGE
-        EXPRES --> JUDGE
-        JUDGE --> SCORE[Score + Reasoning]
-    end
-```
+![SQL Judge Flow](../assets/diagrams/decisions/decisions_why_llm_as_judge_2.png)
 
-## Sub-scores by Judge
+
+---
+
+
+## **📊 Sub-scores by Judge**
 
 | Judge | Sub-scores | Weights |
 |-------|------------|---------|
@@ -99,7 +105,11 @@ flowchart TD
 | Visualization | appropriateness (50%), chart_type (50%) | Equal |
 | Response Quality | relevance (50%), faithfulness (50%) | Equal |
 
-## Negative Cases
+
+---
+
+
+## **❌ Negative Cases**
 
 All judges support negative test cases:
 
@@ -110,7 +120,11 @@ All judges support negative test cases:
 | `has_chart: false` | Should not create chart |
 | `response_quality: "null"` | Should not respond |
 
-## Prompts
+
+---
+
+
+## **📝 Prompts**
 
 Each judge uses Langfuse-managed prompts:
 
@@ -122,7 +136,11 @@ Each judge uses Langfuse-managed prompts:
 | Visualization | `evaluation_judges_visualization_judge` |
 | Response Quality | `evaluation_judges_response_quality_judge` |
 
-## References
+
+---
+
+
+## **🔗 References**
 
 - [`evaluation/judges/sql/main.py`](../../evaluation/judges/sql/main.py)
 - [`evaluation/judges/search/main.py`](../../evaluation/judges/search/main.py)

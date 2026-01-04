@@ -1,20 +1,34 @@
-# Base Selector
+# **🎯 Base Selector**
 
 Base classes for the provider/selector pattern.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `libs/base/selector.py`
 
-## Classes
 
-### `BaseToolSelector`
+---
+
+
+## **🔧 Classes**
+
+
+### 🎯 **BaseToolSelector**
 
 Base class for tool selectors with provider-based selection.
 
-## Usage
 
-### Creating a Selector
+---
+
+
+## **💡 Usage**
+
+
+### 🔨 **Creating a Selector**
 
 Subclass `BaseToolSelector` and define `_PROVIDERS` mapping:
 
@@ -27,7 +41,8 @@ class LLMClientSelector(BaseToolSelector):
     }
 ```
 
-### Using a Selector
+
+### 🚀 **Using a Selector**
 
 ```python
 # Create instance with provider name and kwargs
@@ -37,9 +52,14 @@ client = LLMClientSelector.create("litellm", model="gpt-4o-mini")
 providers = LLMClientSelector.list_providers()  # ["litellm"]
 ```
 
-## Methods
 
-### `create(provider: str, **kwargs) -> Any`
+---
+
+
+## **📋 Methods**
+
+
+### 🔨 **create(provider: str, **kwargs) -> Any**
 
 Select and instantiate tool based on provider.
 
@@ -60,7 +80,8 @@ client = LLMClientSelector.create(
 )
 ```
 
-### `list_providers() -> list[str]`
+
+### 📋 **list_providers() -> list[str]**
 
 List available providers for this selector.
 
@@ -72,7 +93,11 @@ providers = LLMClientSelector.list_providers()
 # ["litellm"]
 ```
 
-## Provider Path Format
+
+---
+
+
+## **📂 Provider Path Format**
 
 Providers are specified as full dotted paths: `"module.path.ClassName"`
 
@@ -82,7 +107,11 @@ _PROVIDERS = {
 }
 ```
 
-## Error Handling
+
+---
+
+
+## **⚠️ Error Handling**
 
 The selector raises `ValueError` with descriptive messages for:
 - No providers defined in subclass

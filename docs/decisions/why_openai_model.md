@@ -1,10 +1,18 @@
-# Why OpenAI Model
+# **📝 Why OpenAI Model**
 
-## Context
+
+---
+
+
+## **📋 Context**
 
 Need to choose an LLM model for structured data extraction from product PDFs.
 
-## Options Considered
+
+---
+
+
+## **🔄 Options Considered**
 
 | Model | Pros | Cons |
 |-------|------|------|
@@ -12,11 +20,19 @@ Need to choose an LLM model for structured data extraction from product PDFs.
 | GPT-4o | Best accuracy | Higher cost |
 | Local (Llama, Mistral) | No API cost, private | Cannot run on M2 Mac |
 
-## Decision
 
-Use GPT-4o-mini.
+---
 
-## Rationale
+
+## **✅ Decision**
+
+Use **GPT-4o-mini**.
+
+
+---
+
+
+## **💡 Rationale**
 
 - Low cost (this is an assignment project)
 - Local LLMs cannot run on M2 Mac hardware

@@ -1,8 +1,12 @@
-# Judges
+# **⚖️ Judges**
 
 LLM-as-Judge implementations for evaluating chatbot responses.
 
-## Overview
+
+---
+
+
+## **📋 Overview**
 
 All judges follow the same pattern:
 1. Check if expected field exists (skip if not)
@@ -11,7 +15,11 @@ All judges follow the same pattern:
 4. Send to LLM for evaluation
 5. Return score with sub-scores and reasoning
 
-## Judges
+
+---
+
+
+## **🔍 Judges**
 
 | Judge | Expected Field | Sub-scores | Link |
 |-------|----------------|------------|------|
@@ -20,7 +28,11 @@ All judges follow the same pattern:
 | Visualization | `has_chart`, `chart_type` | appropriateness, chart_type | [visualization.md](visualization.md) |
 | Response Quality | `response_quality` | relevance, faithfulness | [response_quality.md](response_quality.md) |
 
-## Base Class
+
+---
+
+
+## **🔧 Base Class**
 
 All judges extend `BaseJudge`:
 
@@ -39,7 +51,11 @@ class BaseJudge(ABC):
         pass
 ```
 
-## JudgeResult
+
+---
+
+
+## **📊 JudgeResult**
 
 ```python
 @dataclass
@@ -50,7 +66,11 @@ class JudgeResult:
     metadata: dict      # Sub-scores, extracted values
 ```
 
-## Evaluation Strategy
+
+---
+
+
+## **🎯 Evaluation Strategy**
 
 | Strategy | Description |
 |----------|-------------|
@@ -58,7 +78,11 @@ class JudgeResult:
 | `SINGLE_STEP` | Evaluate specific tool execution |
 | `TRAJECTORY` | Evaluate entire execution path |
 
-## Negative Cases
+
+---
+
+
+## **❌ Negative Cases**
 
 For testing that the agent correctly refuses or skips actions:
 
@@ -69,7 +93,11 @@ For testing that the agent correctly refuses or skips actions:
 | `has_chart: false` | Should not create chart |
 | `response_quality: "null"` | Should not respond |
 
-## Pass Thresholds
+
+---
+
+
+## **✅ Pass Thresholds**
 
 | Judge | Threshold |
 |-------|-----------|
@@ -78,7 +106,11 @@ For testing that the agent correctly refuses or skips actions:
 | Visualization | 0.7 |
 | Response Quality | 0.7 |
 
-## References
+
+---
+
+
+## **🔗 References**
 
 - [BaseJudge](../../../evaluation/judges/base.py)
 - [JudgeSelector](../../../evaluation/judges/selector.py)

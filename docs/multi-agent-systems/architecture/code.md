@@ -13,35 +13,7 @@ Clean Architecture with Repository Pattern and Dependency Injection.
 
 ## Layer Diagram
 
-```mermaid
-flowchart TB
-    subgraph Entry
-        API[API]
-        UI[UI]
-    end
-    
-    subgraph Application
-        DEP[Dependencies]
-        UC[Usecases]
-    end
-    
-    subgraph Domain
-        REPO[Repositories]
-        MOD[Modules]
-    end
-    
-    subgraph Infrastructure
-        LIBS[libs/]
-    end
-    
-    UI --> API
-    API --> DEP
-    DEP --> UC
-    UC --> REPO
-    REPO --> MOD
-    MOD --> LIBS
-    REPO --> LIBS
-```
+![Layer Diagram](../../assets/diagrams/architecture/architecture_code_1.png)
 
 ## Layers
 
@@ -57,17 +29,7 @@ flowchart TB
 
 ## Repository Layer
 
-```mermaid
-flowchart LR
-    subgraph Repositories
-        CB[ChatbotRepository]
-        CP[CheckpointerRepository]
-        ST[StoreRepository]
-    end
-    
-    CB --> CP
-    CB --> ST
-```
+![Repository Layer](../../assets/diagrams/architecture/architecture_code_2.png)
 
 | Repository | Purpose |
 |------------|---------|
@@ -77,11 +39,7 @@ flowchart LR
 
 ## Modules Layer
 
-```mermaid
-flowchart TD
-    WF[Workflows] --> AG[Agents]
-    AG --> TL[Tools]
-```
+![Modules Layer](../../assets/diagrams/architecture/architecture_code_3.png)
 
 | Module | Purpose |
 |--------|---------|
@@ -98,11 +56,7 @@ flowchart TD
 
 ## Selector Pattern
 
-```mermaid
-flowchart LR
-    SEL[Selector] --> |provider=redis| REDIS[RedisClient]
-    SEL --> |provider=memory| MEM[MemoryClient]
-```
+![Selector Pattern](../../assets/diagrams/architecture/architecture_code_4.png)
 
 Selectors enable swapping providers without changing business logic:
 

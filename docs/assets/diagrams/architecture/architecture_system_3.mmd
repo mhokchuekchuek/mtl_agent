@@ -1,0 +1,7 @@
+flowchart LR
+    subgraph Workflow
+        T[Translation] --> A[Agent]
+        A --> |Tool calls| TL[Tools]
+        TL --> A
+        A --> END[End]
+    end

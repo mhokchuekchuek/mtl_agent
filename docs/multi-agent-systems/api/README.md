@@ -1,44 +1,39 @@
-# API
+# **🔗 API**
 
 REST API layer for multi-agent chatbots.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `src/api/`
 
-## Overview
 
-```mermaid
-flowchart TD
-    subgraph FastAPI
-        A[app.py]
-    end
-    
-    subgraph Routes
-        R1[/api/v1/chatbot/customer]
-        R2[/api/v1/chatbot/client]
-    end
-    
-    subgraph Services
-        S1[CustomerChatbotService]
-        S2[ClientChatbotService]
-    end
-    
-    A --> R1
-    A --> R2
-    R1 --> S1
-    R2 --> S2
-```
+---
 
-## Endpoints
 
-| Endpoint | Method | Documentation |
-|----------|--------|---------------|
-| /api/v1/chatbot/customer/chat | POST | [customer_chat.md](customer_chat.md) |
-| /api/v1/chatbot/client/chat | POST | [client_chat.md](client_chat.md) |
-| /health | GET | Health check |
+## **📋 Overview**
 
-## File Structure
+![Overview](../../assets/diagrams/api/api_README_1.png)
+
+
+---
+
+
+## **🔌 Endpoints**
+
+| | |
+|:---:|:---:|
+| [👤 **/api/v1/chatbot/customer/chat**](customer_chat.md)<br/>POST - Customer chatbot | [💼 **/api/v1/chatbot/client/chat**](client_chat.md)<br/>POST - Client chatbot |
+| ✅ **/health**<br/>GET - Health check | |
+
+
+---
+
+
+## **📂 File Structure**
 
 ```
 src/api/
@@ -54,17 +49,19 @@ src/api/
         └── client.py               # Client request/response models
 ```
 
-## Application Lifecycle
 
-```mermaid
-flowchart LR
-    1[1. Load settings] --> 2[2. Create FastAPI app]
-    2 --> 3[3. Lifespan: init services]
-    3 --> 4[4. Store in app.state]
-    4 --> 5[5. Ready to serve]
-```
+---
 
-## Service Injection
+
+## **🔄 Application Lifecycle**
+
+![Application Lifecycle](../../assets/diagrams/api/api_README_2.png)
+
+
+---
+
+
+## **💉 Service Injection**
 
 Services are initialized in `lifespan` and stored in `app.state`:
 
@@ -76,6 +73,10 @@ async def lifespan(app: FastAPI):
     yield
 ```
 
-## Full Code
+
+---
+
+
+## **📄 Full Code**
 
 See [`src/api/app.py`](../../../src/api/app.py)

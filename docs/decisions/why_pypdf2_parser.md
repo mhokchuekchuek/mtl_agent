@@ -1,36 +1,56 @@
-# Why PyPDF2 Parser
+# **📝 Why PyPDF2 Parser**
 
-## Context
+
+---
+
+
+## **📋 Context**
 
 Need to choose a PDF parser to extract text from product PDFs.
 
-## Options Considered
+
+---
+
+
+## **🔄 Options Considered**
 
 | Parser | Pros | Cons |
 |--------|------|------|
 | **PyPDF2** | Fast, lightweight, simple API | Limited layout handling |
 | Docling | Better structure preservation, handles complex layouts | Slower, heavier dependencies |
 
-## Decision
 
-Use PyPDF2.
+---
 
-## Rationale
+
+## **✅ Decision**
+
+Use **PyPDF2**.
+
+
+---
+
+
+## **💡 Rationale**
 
 - Product PDFs have simple layouts (no complex tables or multi-column)
 - Faster processing for batch ingestion
 - Fewer dependencies
 - Good enough text extraction for LLM to understand
 
-## Example Output
+
+---
+
+
+## **📄 Example Output**
 
 Sample text extracted from `100_smart_fan.pdf`:
 
 ```text
 Smart Fan
 Description
-The Smart Fan is a state-of-the-art cooling solution designed to enhance your comfort 
-and convenience. With its sleek design and advanced technology, this fan is perfect 
+The Smart Fan is a state-of-the-art cooling solution designed to enhance your comfort
+and convenience. With its sleek design and advanced technology, this fan is perfect
 for any room in your home or office.
 
 Specifications
@@ -48,8 +68,12 @@ Features
 - Quiet Operation: Engineered to operate quietly...
 ```
 
-The text is clean and structured enough for LLM extraction.
+> 💡 **Tip:** The text is clean and structured enough for LLM extraction.
 
-## References
+
+---
+
+
+## **🔗 References**
 
 - [Preparing PDFs for RAGs](https://towardsdatascience.com/preparing-pdfs-for-rags-b1579fc697f1/)

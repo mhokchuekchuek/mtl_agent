@@ -1,0 +1,31 @@
+flowchart TD
+    subgraph Entry
+        CLI[run_eval.py]
+    end
+    
+    subgraph Dependencies
+        DEP[build_evaluation_service]
+    end
+    
+    subgraph Usecases
+        SVC[EvaluationService]
+    end
+    
+    subgraph Repositories
+        REPO[EvaluationRepository]
+    end
+    
+    subgraph Judges
+        SQL[SQLJudge]
+        SEARCH[SearchJudge]
+        VIZ[VisualizationJudge]
+        RQ[ResponseQualityJudge]
+    end
+    
+    CLI --> DEP
+    DEP --> SVC
+    SVC --> REPO
+    REPO --> SQL
+    REPO --> SEARCH
+    REPO --> VIZ
+    REPO --> RQ

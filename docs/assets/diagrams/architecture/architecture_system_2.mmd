@@ -1,0 +1,6 @@
+flowchart LR
+    INV[invoke] --> GH[Get History]
+    GH --> BS[Build State]
+    BS --> RUN[Run Workflow]
+    RUN --> SAVE[Save to Store]
+    SAVE --> RET[Return Result]

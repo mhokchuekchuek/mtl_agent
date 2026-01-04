@@ -43,14 +43,7 @@ Look up customer chat history from PostgreSQL LangGraph store. Uses ReAct patter
 
 ### Code Flow
 
-```mermaid
-flowchart TD
-    A[1. Get Prompt from Langfuse] --> B[2. Build ReAct agent with tools]
-    B --> C[3. Build messages with history]
-    C --> D[4. LLM decides action]
-    D --> E[5. Call SQLTool to query store table]
-    E --> F[6. Format and return results]
-```
+![Code Flow](../../../../assets/diagrams/modules/client_chat_history_1.png)
 
 ### Example Flows
 

@@ -1,0 +1,8 @@
+flowchart LR
+    Q[User: I need gaming accessories] --> BOT[Customer Chatbot]
+    BOT --> SEARCH[VectorDB Search Tool]
+    SEARCH --> RESULTS[3 products found]
+    RESULTS --> RESPONSE[Formatted response]
+    
+    RESPONSE --> JUDGE[Search Judge]
+    JUDGE --> SCORE["Score: 1.0 ✓"]

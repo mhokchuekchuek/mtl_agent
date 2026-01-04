@@ -1,12 +1,20 @@
-# VectorDB Tools
+# **🔮 VectorDB Tools**
 
 Semantic search tools using vector embeddings stored in Qdrant.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `src/modules/tools/knowledge_retrieval/vectordb/`
 
-## Architecture
+
+---
+
+
+## **🏗️ Architecture**
 
 ```
 src/modules/tools/knowledge_retrieval/vectordb/
@@ -14,18 +22,22 @@ src/modules/tools/knowledge_retrieval/vectordb/
 └── similar.py     # SimilarProductsTool - product similarity
 ```
 
-## Documentation
 
 ---
 
-### search
 
-| File | Description |
-|------|-------------|
-| [search.md](search.md) | Product search by text query |
+## **📖 Documentation**
 
-### similar
 
-| File | Description |
-|------|-------------|
-| [similar.md](similar.md) | Find similar products |
+### 🔍 **search**
+
+| | |
+|:---:|:---:|
+| [🔍 **Search**](search.md)<br/>Product search by text query | |
+
+
+### 🔗 **similar**
+
+| | |
+|:---:|:---:|
+| [🔗 **Similar**](similar.md)<br/>Find similar products | |

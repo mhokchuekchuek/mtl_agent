@@ -6,11 +6,12 @@ The extractor uses LLM to convert raw PDF text into structured product data.
 
 ## Flow
 
-```text
-┌─────────────┐     ┌───────────────┐     ┌─────────────┐     ┌────────────────┐     ┌─────────────┐
-│  Raw Text   │ --> │ Build Prompt  │ --> │  Call LLM   │ --> │ Parse Response │ --> │ Structured  │
-│  (from PDF) │     │ (text+schema) │     │(GPT-4o-mini)│     │ (extract JSON) │     │    Data     │
-└─────────────┘     └───────────────┘     └─────────────┘     └────────────────┘     └─────────────┘
+```mermaid
+flowchart LR
+    A[Raw Text<br/>from PDF] --> B[Build Prompt<br/>text + schema]
+    B --> C[Call LLM<br/>gpt-4o-mini]
+    C --> D[Parse Response<br/>extract JSON]
+    D --> E[Structured<br/>Data]
 ```
 
 ## Prompt Template

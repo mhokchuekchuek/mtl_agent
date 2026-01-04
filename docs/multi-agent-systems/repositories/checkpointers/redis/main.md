@@ -12,12 +12,7 @@ Provide short-term memory for conversations using Redis with automatic expiratio
 
 ## Code Flow
 
-```mermaid
-flowchart LR
-    1[1. Init with RedisClient] --> 2[2. Create RedisSaver]
-    2 --> 3[3. Setup tables]
-    3 --> 4[4. Ready for get/save]
-```
+![Code Flow](../../../../assets/diagrams/repositories/redis_main_1.png)
 
 ## Class Definition
 
@@ -105,5 +100,5 @@ if checkpoint:
 
 | Component | Documentation |
 |-----------|---------------|
-| RedisClient | [libs/database/key_value/redis.md](../../../libs/database/key_value/redis.md) |
-| Docker Redis | [docker/redis.md](../../../docker/redis.md) |
+| RedisClient | [libs/database/key_value/redis.md](../../../../libs/database/key_value/redis.md) |
+| Docker Redis | [docker/redis.md](../../../../infrastructure/docker/redis.md) |

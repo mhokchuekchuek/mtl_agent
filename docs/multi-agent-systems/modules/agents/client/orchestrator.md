@@ -39,14 +39,7 @@ Classifies user intent and routes to either `chat_history` or `insight` agent.
 
 ### Code Flow
 
-```mermaid
-flowchart TD
-    A[1. Get Prompt from Langfuse] --> B[2. Compile with datetime context]
-    B --> C[3. LLM classifies intent]
-    C --> D{4. Parse response}
-    D -->|chat_history| E[Return CHAT_HISTORY]
-    D -->|other| F[Return INSIGHT]
-```
+![Code Flow](../../../../assets/diagrams/modules/client_orchestrator_1.png)
 
 ### Intent Types
 

@@ -43,17 +43,7 @@ Translate text between Thai and English. Detects source language and translates 
 
 ### Code Flow
 
-```mermaid
-flowchart TD
-    A[1. Receive user_input] --> B[2. Detect source language]
-    B --> C{3. Same as target?}
-    C -->|Yes| D[Return original text]
-    C -->|No| E[4. Get Prompt from Langfuse]
-    E --> F[5. Compile prompt with text + target]
-    F --> G[6. LLM generates translation]
-    G --> H[7. Parse JSON response]
-    H --> I[Return translated text]
-```
+![Code Flow](../../../../assets/diagrams/modules/translation_main_1.png)
 
 ### Tools
 

@@ -1,0 +1,19 @@
+flowchart TD
+    subgraph Input
+        query[query]
+        customer_id[customer_id]
+    end
+    
+    subgraph ProductAgent
+        response[response]
+        steps[steps]
+    end
+    
+    subgraph Output
+        messages[messages]
+    end
+    
+    query --> response
+    customer_id --> response
+    response --> messages
+    response --> steps

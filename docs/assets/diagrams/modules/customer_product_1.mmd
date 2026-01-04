@@ -1,0 +1,21 @@
+flowchart TD
+    START[Customer asks about products] --> PROMPT[1. Load prompt from Langfuse]
+    
+    PROMPT --> SCHEMA[2. Get schema for allowed tables only]
+    SCHEMA --> |Products, Inventory| COMPILE[3. Compile prompt]
+    
+    COMPILE --> LLM[4. LLM generates SQL]
+    LLM --> VALIDATE[5. Validate SQL]
+    
+    VALIDATE --> CHECK_TABLES{Tables allowed?}
+    CHECK_TABLES --> |No| REJECT[Reject: Forbidden table access]
+    
+    CHECK_TABLES --> |Yes| CHECK_SAFE{SQL is safe?}
+    CHECK_SAFE --> |No| REJECT2[Reject: Security violation]
+    
+    CHECK_SAFE --> |Yes| EXECUTE[6. Execute SQL]
+    EXECUTE --> |Query| PROD_TBL[(Products)]
+    EXECUTE --> |Query| INV_TBL[(Inventory)]
+    
+    PROD_TBL --> RESULTS[7. Return results]
+    INV_TBL --> RESULTS

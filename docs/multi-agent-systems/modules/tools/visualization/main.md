@@ -23,43 +23,13 @@ Create Plotly charts from data using natural language requests. Uses LLM to gene
 
 ## Flow Diagram
 
-```mermaid
-flowchart TD
-    START["Client Request:<br/>'Show me a bar chart of sales by category'"] --> DATA[SQL Tool returns data]
-    
-    DATA --> PROMPT[1. Get prompt from Langfuse]
-    PROMPT --> |tools_client_visualization| LANGFUSE[(Langfuse)]
-    
-    LANGFUSE --> COMPILE[2. Compile prompt]
-    COMPILE --> |columns, sample_data,<br/>row_count, request| COMPILED[Compiled Prompt]
-    
-    COMPILED --> LLM[3. LLM generates Plotly code]
-    LLM --> |"fig = px.bar(df, x='category', y='sales')"| CODE[Python Code]
-    
-    CODE --> EXTRACT[4. Extract code from response]
-    EXTRACT --> |remove markdown blocks| CLEAN[Clean Code]
-    
-    CLEAN --> SANDBOX[5. Execute in sandbox]
-    SANDBOX --> |restricted globals| EXEC{Execution}
-    
-    EXEC -->|Success| FIG[Plotly Figure]
-    EXEC -->|Error| ERR[Error Message]
-    
-    FIG --> HTML[6. Convert to HTML]
-    HTML --> RESULT["Return: {results: '<div>chart</div>'}"]
-    
-    ERR --> ERRMSG["Return: {results: '<p>Error: ...</p>'}"]
-```
+![Flow Diagram](../../../../assets/diagrams/modules/visualization_main_1.png)
 
 ## How It Works
 
 ### Step 1: Get Prompt from Langfuse
 
-```mermaid
-flowchart LR
-    TOOL[VisualizationTool] --> |prompt_name| LANGFUSE[(Langfuse)]
-    LANGFUSE --> |template| PROMPT[Prompt Template]
-```
+![Step 1: Get Prompt from Langfuse](../../../../assets/diagrams/modules/visualization_main_2.png)
 
 The tool retrieves the prompt template `tools_client_visualization` from Langfuse.
 
@@ -110,17 +80,7 @@ Output: fig = px.bar(...)
 
 ### Step 5: Execute in Sandbox
 
-```mermaid
-flowchart TB
-    subgraph Sandbox["Sandboxed Environment"]
-        direction TB
-        ALLOWED["Allowed:<br/>pd, px, go, df, data<br/>len, str, int, float, list, dict<br/>range, sum, min, max, sorted"]
-        BLOCKED["Blocked:<br/>open, eval, exec, import<br/>os, sys, subprocess<br/>file I/O, network"]
-    end
-    
-    CODE[LLM Code] --> Sandbox
-    Sandbox --> FIG[Plotly Figure]
-```
+![Step 5: Execute in Sandbox](../../../../assets/diagrams/modules/visualization_main_3.png)
 
 **Security:** The code runs in a restricted environment to prevent malicious code execution.
 
@@ -146,11 +106,7 @@ html = fig.to_html(full_html=False, include_plotlyjs="cdn")
 
 **None** - This tool does not access any database. It receives data from the SQL tool and only performs visualization.
 
-```mermaid
-flowchart LR
-    SQL[SQL Tool] --> |query results| VIZ[Visualization Tool]
-    VIZ --> |HTML chart| UI[Client UI]
-```
+![Database Access](../../../../assets/diagrams/modules/visualization_main_4.png)
 
 ## Example
 
@@ -167,15 +123,7 @@ request = "Create a bar chart showing sales by category"
 
 ### Step-by-Step
 
-```mermaid
-flowchart TD
-    A["Data: 3 rows<br/>Columns: category, sales"] --> B[Compile prompt with schema]
-    B --> C["LLM: 'Create bar chart'"]
-    C --> D["Code: fig = px.bar(df, x='category', y='sales')"]
-    D --> E[Execute in sandbox]
-    E --> F[Convert to HTML]
-    F --> G["<div id='plotly-chart'>...</div>"]
-```
+![Step-by-Step](../../../../assets/diagrams/modules/visualization_main_5.png)
 
 ### Output
 

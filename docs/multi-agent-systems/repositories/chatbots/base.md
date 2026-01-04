@@ -52,14 +52,7 @@ class BaseChatbotRepository(ABC):
 
 ## Code Flow
 
-```mermaid
-flowchart LR
-    1[1. invoke called] --> 2[2. get_history from checkpointer]
-    2 --> 3[3. Build initial state]
-    3 --> 4[4. Call compiled graph]
-    4 --> 5[5. _save_to_store]
-    5 --> 6[6. Return result]
-```
+![Code Flow](../../../assets/diagrams/repositories/chatbots_base_1.png)
 
 ## Methods
 

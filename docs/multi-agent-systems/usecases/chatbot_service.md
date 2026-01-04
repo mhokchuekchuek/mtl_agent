@@ -12,11 +12,7 @@ Thin wrapper that delegates to `BaseChatbotRepository`. Provides unified interfa
 
 ## Code Flow
 
-```mermaid
-flowchart LR
-    1[1. API calls service.chat] --> 2[2. Delegate to repo.invoke]
-    2 --> 3[3. Return response dict]
-```
+![Code Flow](../../assets/diagrams/usecases/usecases_chatbot_service_1.png)
 
 ## Class Definition
 

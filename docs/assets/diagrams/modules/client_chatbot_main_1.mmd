@@ -1,0 +1,8 @@
+flowchart LR
+    START((Start)) --> translate_input
+    translate_input --> orchestrator
+    orchestrator --> |CHAT_HISTORY| chat_history
+    orchestrator --> |INSIGHT| insight
+    chat_history --> translate_output
+    insight --> translate_output
+    translate_output --> END((End))

@@ -4,40 +4,7 @@ Request lifecycle from user to response.
 
 ## Request Flow
 
-```mermaid
-flowchart TD
-    subgraph Entry Points
-        U1[User via UI]
-        U2[User via API]
-    end
-    
-    U1 --> UI[Streamlit UI]
-    UI --> API[FastAPI /chat]
-    U2 --> API
-    
-    API --> SVC[ChatbotService]
-    SVC --> REPO[ChatbotRepository]
-    
-    REPO --> |1. Get history| CP[Checkpointer]
-    CP --> RD[(Redis)]
-    
-    REPO --> |2. Build state| ST[Initial State]
-    ST --> |3. Invoke| WF[Workflow]
-    
-    WF --> AG[Agents]
-    AG --> TL[Tools]
-    TL --> DB[(Databases)]
-    
-    WF --> |4. Return result| REPO
-    REPO --> |5. Save to store| STORE[Store]
-    STORE --> PG[(PostgreSQL)]
-    
-    REPO --> SVC
-    SVC --> API
-    API --> UI
-    API --> U2
-    UI --> U1
-```
+![Request Flow](../../assets/diagrams/architecture/architecture_system_1.png)
 
 ## Entry Points
 
@@ -72,14 +39,7 @@ User → POST /api/v1/chatbot/{type}/chat
 ChatbotService → ChatbotRepository.invoke()
 ```
 
-```mermaid
-flowchart LR
-    INV[invoke] --> GH[Get History]
-    GH --> BS[Build State]
-    BS --> RUN[Run Workflow]
-    RUN --> SAVE[Save to Store]
-    SAVE --> RET[Return Result]
-```
+![2. Repository Processing](../../assets/diagrams/architecture/architecture_system_2.png)
 
 | Step | Method | Action |
 |------|--------|--------|
@@ -90,15 +50,7 @@ flowchart LR
 
 ### 3. Workflow Execution
 
-```mermaid
-flowchart LR
-    subgraph Workflow
-        T[Translation] --> A[Agent]
-        A --> |Tool calls| TL[Tools]
-        TL --> A
-        A --> END[End]
-    end
-```
+![3. Workflow Execution](../../assets/diagrams/architecture/architecture_system_3.png)
 
 | Step | Node | Action |
 |------|------|--------|
@@ -130,29 +82,11 @@ Result → API → User
 
 ## Customer Chatbot Flow
 
-```mermaid
-flowchart TD
-    START[Start] --> TRANS[TranslationAgent]
-    TRANS --> PROD[ProductAgent]
-    PROD --> |SQL| SQL[(SQLite)]
-    PROD --> |Search| VDB[(Qdrant)]
-    PROD --> END[End]
-```
+![Customer Chatbot Flow](../../assets/diagrams/architecture/architecture_system_4.png)
 
 ## Client Chatbot Flow
 
-```mermaid
-flowchart TD
-    START[Start] --> TRANS[TranslationAgent]
-    TRANS --> ORCH[OrchestratorAgent]
-    ORCH --> |CHAT_HISTORY| CH[ChatHistoryAgent]
-    ORCH --> |INSIGHT| INS[InsightAgent]
-    CH --> |SQL| SQL[(SQLite)]
-    INS --> |SQL| SQL
-    INS --> |Chart| VIZ[Visualization]
-    CH --> END[End]
-    INS --> END
-```
+![Client Chatbot Flow](../../assets/diagrams/architecture/architecture_system_5.png)
 
 ## State Schema
 

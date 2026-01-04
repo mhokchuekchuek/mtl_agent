@@ -1,12 +1,20 @@
-# Knowledge Retrieval Tools
+# **🔍 Knowledge Retrieval Tools**
 
 Tools for searching and retrieving information from various data sources.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `src/modules/tools/knowledge_retrieval/`
 
-## Architecture
+
+---
+
+
+## **🏗️ Architecture**
 
 ```
 src/modules/tools/knowledge_retrieval/
@@ -19,18 +27,22 @@ src/modules/tools/knowledge_retrieval/
     └── similar.py      # Similar products
 ```
 
-## Documentation
 
 ---
 
-### sql
 
-| Folder | Description |
-|--------|-------------|
-| [sql/](sql/README.md) | Natural language to SQL queries |
+## **📖 Documentation**
 
-### vectordb
 
-| Folder | Description |
-|--------|-------------|
-| [vectordb/](vectordb/README.md) | Semantic search on vector embeddings |
+### 🔷 **sql**
+
+| | |
+|:---:|:---:|
+| [🔷 **SQL**](sql/README.md)<br/>Natural language to SQL queries | |
+
+
+### 🔮 **vectordb**
+
+| | |
+|:---:|:---:|
+| [🔮 **VectorDB**](vectordb/README.md)<br/>Semantic search on vector embeddings | |

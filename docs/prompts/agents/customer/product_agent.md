@@ -34,25 +34,7 @@ Guide the LLM to handle product queries, orders, and cancellations for customers
 
 ## Workflow
 
-```mermaid
-flowchart TD
-    Q[User Query] --> D{Query Type?}
-    
-    D -->|Exact category| PQ[product_query]
-    D -->|Need/Intent| PS[product_search]
-    D -->|Order history| OQ[order_query]
-    D -->|Buy product| PO[place_order_sql]
-    D -->|Cancel order| CO[cancel_order_sql]
-    
-    PS --> |Get prices| PQ
-    PQ --> R[Return Results]
-    
-    PO --> |confirmed=false| SUM[Show Summary]
-    SUM --> |User confirms| PO2[place_order_sql confirmed=true]
-    
-    CO --> |confirmed=false| SUM2[Show Order Details]
-    SUM2 --> |User confirms| CO2[cancel_order_sql confirmed=true]
-```
+![Workflow](../../../assets/diagrams/prompts/customer_product_agent_1.png)
 
 ## Key Rules
 

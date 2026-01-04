@@ -1,0 +1,5 @@
+flowchart TD
+    STEPS[Agent Steps] --> EXT[Extract Relevant Data]
+    EXT --> LLM[LLM Judge]
+    EXPECT[Expected Values] --> LLM
+    LLM --> SCORE[Sub-scores + Reasoning]

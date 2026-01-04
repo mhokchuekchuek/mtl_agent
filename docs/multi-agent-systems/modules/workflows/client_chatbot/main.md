@@ -14,31 +14,11 @@ Orchestrate agents for internal business intelligence queries:
 
 ## Graph Structure
 
-```mermaid
-flowchart LR
-    START((Start)) --> translate_input
-    translate_input --> orchestrator
-    orchestrator --> |CHAT_HISTORY| chat_history
-    orchestrator --> |INSIGHT| insight
-    chat_history --> translate_output
-    insight --> translate_output
-    translate_output --> END((End))
-```
+![Graph Structure](../../../../assets/diagrams/modules/client_chatbot_main_1.png)
 
 ## Code Flow
 
-```mermaid
-flowchart LR
-    1[1. Receive query] --> 2[2. TranslationAgent detects language]
-    2 --> 3[3. Translate to English]
-    3 --> 4[4. OrchestratorAgent classifies intent]
-    4 --> 5{5. Route by intent}
-    5 --> |CHAT_HISTORY| 6[6. ChatHistoryAgent queries store]
-    5 --> |INSIGHT| 7[7. InsightAgent runs SQL + chart]
-    6 --> 8[8. Translate response back]
-    7 --> 8
-    8 --> 9[9. Return response]
-```
+![Code Flow](../../../../assets/diagrams/modules/client_chatbot_main_2.png)
 
 ## Agents Reference
 

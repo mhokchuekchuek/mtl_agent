@@ -1,0 +1,6 @@
+flowchart LR
+    PDF[PDF File] --> PARSE[Parse to Text]
+    PARSE --> EXTRACT[LLM Extract]
+    EXTRACT --> JSON[Structured JSON]
+    JSON --> EMBED[Generate Embedding]
+    EMBED --> QDRANT[(Qdrant)]

@@ -1,40 +1,40 @@
-# Usecases
+# **💼 Usecases**
 
 Application business logic layer.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `src/usecases/`
 
-## Overview
+
+---
+
+
+## **📋 Overview**
 
 Usecases orchestrate repositories to implement business operations. They are thin wrappers that delegate to repositories.
 
-```mermaid
-flowchart TD
-    subgraph API/CLI
-        A[Endpoint]
-    end
-    
-    subgraph Usecases
-        S[ChatbotService]
-    end
-    
-    subgraph Repositories
-        R[ChatbotRepository]
-    end
-    
-    A --> S
-    S --> R
-```
+![Overview](../../assets/diagrams/usecases/usecases_README_1.png)
 
-## Available Usecases
 
-| Usecase | Purpose | Documentation |
-|---------|---------|---------------|
-| ChatbotService | Generic chatbot operations | [chatbot_service.md](chatbot_service.md) |
+---
 
-## Why Usecase Layer?
+
+## **📦 Available Usecases**
+
+| | |
+|:---:|:---:|
+| [🤖 **ChatbotService**](chatbot_service.md)<br/>Generic chatbot operations | |
+
+
+---
+
+
+## **❓ Why Usecase Layer?**
 
 | Benefit | Description |
 |---------|-------------|
@@ -42,7 +42,11 @@ flowchart TD
 | Testability | Easy to mock for unit tests |
 | Extensibility | Add business logic without changing API/repo |
 
-## File Structure
+
+---
+
+
+## **📂 File Structure**
 
 ```
 src/usecases/
@@ -52,7 +56,11 @@ src/usecases/
     └── main.py              # ChatbotService
 ```
 
-## References
+
+---
+
+
+## **🔗 References**
 
 - [Repositories](../repositories/README.md) - Data access layer
 - [Dependencies](../dependencies/README.md) - DI wiring

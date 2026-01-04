@@ -1,0 +1,14 @@
+flowchart LR
+    subgraph Workflow
+        build[build method]
+    end
+    
+    subgraph Repository
+        compile[compile with memory]
+    end
+    
+    subgraph Runtime
+        invoke[invoke graph]
+    end
+    
+    build --> compile --> invoke

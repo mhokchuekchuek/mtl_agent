@@ -1,0 +1,21 @@
+flowchart TD
+    subgraph Modules
+        W[Workflows]
+    end
+    
+    subgraph Repositories
+        C[ChatbotRepository]
+        CP[CheckpointerRepository]
+        S[StoreRepository]
+    end
+    
+    subgraph Infrastructure
+        R[Redis]
+        P[PostgreSQL]
+    end
+    
+    W --> C
+    C --> CP
+    C --> S
+    CP --> R
+    S --> P

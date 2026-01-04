@@ -1,15 +1,23 @@
-# Response Quality Judge
+# **✨ Response Quality Judge**
 
 Evaluates response relevance and faithfulness.
 
-## Expected Field
+
+---
+
+
+## **📋 Expected Field**
 
 ```yaml
 expected_output:
   response_quality: "Should provide product details including price and availability"
 ```
 
-## Scoring
+
+---
+
+
+## **📊 Scoring**
 
 | Sub-score | Weight | Description |
 |-----------|--------|-------------|
@@ -18,18 +26,19 @@ expected_output:
 
 **Pass threshold**: 0.7
 
-## Flow
 
-```mermaid
-flowchart TD
-    Q[Question] --> LLM[LLM Judge]
-    R[Response] --> LLM
-    STEPS[Steps] --> LLM
-    EXPECT[Expected Quality] --> LLM
-    LLM --> SCORE[Score]
-```
+---
 
-## Negative Case
+
+## **🔄 Flow**
+
+![Flow](../../assets/diagrams/evaluation/judges_response_quality_1.png)
+
+
+---
+
+
+## **❌ Negative Case**
 
 ```yaml
 expected_output:
@@ -39,14 +48,26 @@ expected_output:
 - Pass: No response generated
 - Fail: Response was generated
 
-## Context
+
+---
+
+
+## **📝 Context**
 
 Judge receives chatbot context (permissions, restrictions) to evaluate if response is appropriate.
 
-## Prompt
+
+---
+
+
+## **📄 Prompt**
 
 [response_quality_judge.md](../../prompts/evaluation/judges/response_quality_judge.md)
 
-## References
+
+---
+
+
+## **🔗 References**
 
 - [ResponseQualityJudge](../../../evaluation/judges/response_quality/main.py)

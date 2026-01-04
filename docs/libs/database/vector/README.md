@@ -1,20 +1,33 @@
-# Vector Store
+# **🔮 Vector Store**
 
 Vector database implementations using the provider/selector pattern.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `libs/database/vector/`
 
-## Providers
 
-| Provider | Description | Documentation |
-|----------|-------------|---------------|
-| `qdrant` | Qdrant vector database | [qdrant.md](qdrant.md) |
+---
 
-## Classes
 
-### BaseVectorStore
+## **📦 Providers**
+
+| | |
+|:---:|:---:|
+| [🔷 **Qdrant**](qdrant.md)<br/>Qdrant vector database | |
+
+
+---
+
+
+## **🔧 Classes**
+
+
+### 🎯 **BaseVectorStore**
 
 Abstract base class for vector databases.
 
@@ -29,7 +42,8 @@ Abstract base class for vector databases.
 | `delete(**kwargs)` | Delete embeddings |
 | `get(filter, with_vectors, limit)` | Retrieve points by metadata filter |
 
-### VectorStoreSelector
+
+### 🔀 **VectorStoreSelector**
 
 Selector for vector store providers.
 

@@ -39,14 +39,7 @@ Extract structured product data from raw PDF text for ingestion into vector data
 
 ## Flow
 
-```mermaid
-flowchart LR
-    PDF[PDF File] --> PARSE[Parse to Text]
-    PARSE --> EXTRACT[LLM Extract]
-    EXTRACT --> JSON[Structured JSON]
-    JSON --> EMBED[Generate Embedding]
-    EMBED --> QDRANT[(Qdrant)]
-```
+![Flow](../../assets/diagrams/prompts/ingestor_extract_product_1.png)
 
 ## Usage
 

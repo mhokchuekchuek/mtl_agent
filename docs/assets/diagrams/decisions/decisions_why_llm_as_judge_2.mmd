@@ -1,0 +1,17 @@
+flowchart TD
+    subgraph Step 1: Extract
+        STEPS[Agent Steps] --> EXT[LLM Extractor]
+        EXT --> OPS[SQL Operations + Results]
+    end
+    
+    subgraph Step 2: Execute Expected
+        EXPSQL[Expected SQL] --> EXEC[Execute]
+        EXEC --> EXPRES[Expected Results]
+    end
+    
+    subgraph Step 3: Judge
+        OPS --> JUDGE[LLM Judge]
+        EXPSQL --> JUDGE
+        EXPRES --> JUDGE
+        JUDGE --> SCORE[Score + Reasoning]
+    end

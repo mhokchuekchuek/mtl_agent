@@ -1,0 +1,20 @@
+flowchart TD
+    subgraph Dependencies
+        D[build_chatbot_service]
+    end
+    
+    subgraph Creates
+        C[Clients]
+        R[Repositories]
+        T[Tools]
+        A[Agents]
+        W[Workflow]
+        S[Service]
+    end
+    
+    D --> C
+    D --> R
+    D --> T
+    D --> A
+    D --> W
+    D --> S

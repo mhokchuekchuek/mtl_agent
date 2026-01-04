@@ -1,20 +1,33 @@
-# Text Chunking
+# **✂️ Text Chunking**
 
 Text chunking strategies using the provider/selector pattern.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `libs/llm/chunking/`
 
-## Providers
 
-| Provider | Description | Documentation |
-|----------|-------------|---------------|
-| `recursive` | Recursive character text splitter | [recursive.md](recursive.md) |
+---
 
-## Classes
 
-### BaseChunker
+## **📦 Providers**
+
+| | |
+|:---:|:---:|
+| [🔄 **Recursive**](recursive.md)<br/>Recursive character text splitter | |
+
+
+---
+
+
+## **🔧 Classes**
+
+
+### 🎯 **BaseChunker**
 
 Abstract base class for text chunking strategies.
 
@@ -26,7 +39,8 @@ Abstract base class for text chunking strategies.
 |--------|-------------|
 | `split(text, metadata)` | Split text into chunks |
 
-### TextChunkerSelector
+
+### 🔀 **TextChunkerSelector**
 
 Selector for text chunker providers.
 

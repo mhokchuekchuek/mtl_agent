@@ -1,0 +1,12 @@
+flowchart LR
+    subgraph Qdrant
+        P1["Office Chair<br/>score: 0.85"]
+        P2["Desk Chair<br/>score: 0.83"]
+        P3["Gaming Desk<br/>score: 0.79"]
+        P4["Gaming Chair<br/>score: 1.00"]
+    end
+    
+    GC["Gaming Chair<br/>Embedding"] --> |cosine similarity| P1
+    GC --> |cosine similarity| P2
+    GC --> |cosine similarity| P3
+    GC --> |cosine similarity| P4

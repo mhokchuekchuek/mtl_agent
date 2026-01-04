@@ -1,8 +1,12 @@
-# Visualization Judge
+# **📊 Visualization Judge**
 
 Evaluates chart generation quality.
 
-## Expected Fields
+
+---
+
+
+## **📋 Expected Fields**
 
 ```yaml
 expected_output:
@@ -10,7 +14,11 @@ expected_output:
   chart_type: "bar"
 ```
 
-## Scoring
+
+---
+
+
+## **📈 Scoring**
 
 | Sub-score | Weight | Description |
 |-----------|--------|-------------|
@@ -19,17 +27,19 @@ expected_output:
 
 **Pass threshold**: 0.7
 
-## Flow
 
-```mermaid
-flowchart TD
-    STEPS[Agent Steps] --> EXT[Extract viz tool calls]
-    EXT --> LLM[LLM Judge]
-    EXPECT[Expected Chart] --> LLM
-    LLM --> SCORE[Score]
-```
+---
 
-## Negative Case
+
+## **🔄 Flow**
+
+![Flow](../../assets/diagrams/evaluation/judges_visualization_1.png)
+
+
+---
+
+
+## **❌ Negative Case**
 
 ```yaml
 expected_output:
@@ -39,16 +49,28 @@ expected_output:
 - Pass: No visualization created
 - Fail: Chart was generated
 
-## Tool Names
+
+---
+
+
+## **🔧 Tool Names**
 
 Extracts from these tool calls:
 - `create_visualization`
 - `create_chart`
 
-## Prompt
+
+---
+
+
+## **📝 Prompt**
 
 [visualization_judge.md](../../prompts/evaluation/judges/visualization_judge.md)
 
-## References
+
+---
+
+
+## **🔗 References**
 
 - [VisualizationJudge](../../../evaluation/judges/visualization/main.py)

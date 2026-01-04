@@ -20,24 +20,7 @@ Search for products using semantic similarity. Useful when customer describes wh
 
 ## Flow Diagram
 
-```mermaid
-flowchart TD
-    START[Customer search query] --> EMBED[1. Generate embedding]
-    
-    EMBED --> |query text| LLM[LLM Embedding API]
-    LLM --> |vector 1536 dims| VECTOR[Query Vector]
-    
-    VECTOR --> SEARCH[2. Search Qdrant]
-    SEARCH --> |cosine similarity| QDRANT[(Qdrant Vector DB)]
-    
-    QDRANT --> |top_k results| RAW[Raw Results]
-    
-    RAW --> FILTER[3. Filter by threshold]
-    FILTER --> |score >= 0.5| FILTERED[Filtered Results]
-    
-    FILTERED --> FORMAT[4. Format response]
-    FORMAT --> RESULTS[Return product matches]
-```
+![Flow Diagram](../../../../../assets/diagrams/modules/vectordb_search_1.png)
 
 ## How It Works
 
@@ -53,20 +36,7 @@ Customer's query is converted to a vector embedding:
 
 The query vector is compared against all product vectors in Qdrant:
 
-```mermaid
-flowchart LR
-    subgraph Qdrant
-        P1[Product 1 vector]
-        P2[Product 2 vector]
-        P3[Product 3 vector]
-        PN[Product N vector]
-    end
-    
-    Q[Query vector] --> |cosine similarity| P1
-    Q --> |cosine similarity| P2
-    Q --> |cosine similarity| P3
-    Q --> |cosine similarity| PN
-```
+![Step 2: Vector Search](../../../../../assets/diagrams/modules/vectordb_search_2.png)
 
 ### Step 3: Similarity Scoring
 

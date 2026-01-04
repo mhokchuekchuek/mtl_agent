@@ -1,77 +1,48 @@
-# Modules
+# **📦 Modules**
 
 Core building blocks for multi-agent systems.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `src/modules/`
 
-## Overview
+
+---
+
+
+## **📋 Overview**
 
 Modules are the main components that power the chatbot systems. They follow a layered architecture where workflows orchestrate agents, and agents use tools.
 
-### Customer Chatbot Flow
 
-```mermaid
-flowchart TD
-    subgraph Workflow
-        W[CustomerChatbotWorkflow]
-    end
-    
-    subgraph Agents
-        A1[TranslationAgent]
-        A2[ProductAgent]
-    end
-    
-    subgraph Tools
-        T1[SQL Tools]
-        T2[VectorDB Tools]
-    end
-    
-    W --> A1
-    W --> A2
-    A2 --> T1
-    A2 --> T2
-```
+### 👤 **Customer Chatbot Flow**
 
-### Client Chatbot Flow
+![Customer Chatbot Flow](../../assets/diagrams/modules/modules_README_1.png)
 
-```mermaid
-flowchart TD
-    subgraph Workflow
-        W[ClientChatbotWorkflow]
-    end
-    
-    subgraph Agents
-        A1[TranslationAgent]
-        A2[OrchestratorAgent]
-        A3[ChatHistoryAgent]
-        A4[InsightAgent]
-    end
-    
-    subgraph Tools
-        T1[SQL Tools]
-        T2[Visualization]
-    end
-    
-    W --> A1
-    W --> A2
-    A2 --> |CHAT_HISTORY| A3
-    A2 --> |INSIGHT| A4
-    A3 --> T1
-    A4 --> T1
-    A4 --> T2
-```
 
-## Components
+### 💼 **Client Chatbot Flow**
 
-| Component | Purpose | Documentation |
-|-----------|---------|---------------|
-| **Workflows** | Graph orchestrators | [workflows/README.md](workflows/README.md) |
-| **Agents** | LLM-powered decision makers | [agents/README.md](agents/README.md) |
-| **Tools** | Domain logic executors | [tools/README.md](tools/README.md) |
+![Client Chatbot Flow](../../assets/diagrams/modules/modules_README_2.png)
 
-## Workflows
+
+---
+
+
+## **🧩 Components**
+
+| | | |
+|:---:|:---:|:---:|
+| [🔄 **Workflows**](workflows/README.md)<br/>Graph orchestrators | [🤖 **Agents**](agents/README.md)<br/>LLM-powered decision makers | [🔧 **Tools**](tools/README.md)<br/>Domain logic executors |
+
+
+---
+
+
+## **🔄 Workflows**
 
 Workflows orchestrate agents using LangGraph StateGraph.
 
@@ -80,7 +51,11 @@ Workflows orchestrate agents using LangGraph StateGraph.
 | [ClientChatbotWorkflow](workflows/client_chatbot/main.md) | Conditional | Internal BI chatbot |
 | [CustomerChatbotWorkflow](workflows/customer_chatbot/main.md) | Fixed | Shopping assistant |
 
-## Agents
+
+---
+
+
+## **🤖 Agents**
 
 Agents are LLM-powered components that make decisions and execute tasks.
 
@@ -92,7 +67,11 @@ Agents are LLM-powered components that make decisions and execute tasks.
 | [ChatHistoryAgent](agents/client/chat_history.md) | ReAct | Client | Customer chat lookup |
 | [ProductAgent](agents/products/main.md) | ReAct | Customer | Product queries + orders |
 
-## Tools
+
+---
+
+
+## **🔧 Tools**
 
 Tools are domain logic components that agents can invoke.
 
@@ -102,7 +81,11 @@ Tools are domain logic components that agents can invoke.
 | [VectorDB](tools/knowledge_retrieval/vectordb/README.md) | Search, Similar | Customer | Semantic search |
 | [Visualization](tools/visualization/README.md) | Chart generation | Client | Plotly charts |
 
-## Design Decisions
+
+---
+
+
+## **📝 Design Decisions**
 
 | Decision | Description | Link |
 |----------|-------------|------|
@@ -110,16 +93,24 @@ Tools are domain logic components that agents can invoke.
 | OpenAI Model | Model selection rationale | [why_openai_model.md](../../decisions/why_openai_model.md) |
 | Langfuse | Observability choice | [why_langfuse.md](../../decisions/why_langfuse.md) |
 
-## Future Improvements
+
+---
+
+
+## **🔮 Future Improvements**
 
 | Improvement | Description | Link |
 |-------------|-------------|------|
-| Workflow Orchestrator | Dynamic agent routing | [workflow_orchestrator.md](../../future_improvements/workflow_orchestrator.md) |
-| Embedding Models | Better semantic search | [embedding_models.md](../../future_improvements/embedding_models.md) |
-| Search Algorithms | Hybrid search strategies | [search_algorithms.md](../../future_improvements/search_algorithms.md) |
-| Structured Payload | Type-safe tool outputs | [structured_payload.md](../../future_improvements/structured_payload.md) |
+| Workflow Orchestrator | Dynamic agent routing | [workflow_orchestrator.md](../../future_improvements/ingestion/workflow_orchestrator.md) |
+| Embedding Models | Better semantic search | [embedding_models.md](../../future_improvements/ingestion/embedding_models.md) |
+| Search Algorithms | Hybrid search strategies | [search_algorithms.md](../../future_improvements/ingestion/search_algorithms.md) |
+| Structured Payload | Type-safe tool outputs | [structured_payload.md](../../future_improvements/ingestion/structured_payload.md) |
 
-## File Structure
+
+---
+
+
+## **📂 File Structure**
 
 ```
 src/modules/

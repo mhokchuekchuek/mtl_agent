@@ -1,0 +1,24 @@
+flowchart TD
+    subgraph Workflow
+        W[ClientChatbotWorkflow]
+    end
+    
+    subgraph Agents
+        A1[TranslationAgent]
+        A2[OrchestratorAgent]
+        A3[ChatHistoryAgent]
+        A4[InsightAgent]
+    end
+    
+    subgraph Tools
+        T1[SQL Tools]
+        T2[Visualization]
+    end
+    
+    W --> A1
+    W --> A2
+    A2 --> |CHAT_HISTORY| A3
+    A2 --> |INSIGHT| A4
+    A3 --> T1
+    A4 --> T1
+    A4 --> T2

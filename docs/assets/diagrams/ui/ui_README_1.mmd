@@ -1,0 +1,12 @@
+flowchart LR
+    subgraph UI Layer
+        CU[Customer UI<br>:8501]
+        CL[Client UI<br>:8502]
+    end
+    
+    subgraph API Layer
+        API[FastAPI<br>:8000]
+    end
+    
+    CU -->|POST /api/v1/chatbot/customer/chat| API
+    CL -->|POST /api/v1/chatbot/client/chat| API

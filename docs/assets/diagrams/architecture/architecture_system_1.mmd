@@ -1,0 +1,32 @@
+flowchart TD
+    subgraph Entry Points
+        U1[User via UI]
+        U2[User via API]
+    end
+    
+    U1 --> UI[Streamlit UI]
+    UI --> API[FastAPI /chat]
+    U2 --> API
+    
+    API --> SVC[ChatbotService]
+    SVC --> REPO[ChatbotRepository]
+    
+    REPO --> |1. Get history| CP[Checkpointer]
+    CP --> RD[(Redis)]
+    
+    REPO --> |2. Build state| ST[Initial State]
+    ST --> |3. Invoke| WF[Workflow]
+    
+    WF --> AG[Agents]
+    AG --> TL[Tools]
+    TL --> DB[(Databases)]
+    
+    WF --> |4. Return result| REPO
+    REPO --> |5. Save to store| STORE[Store]
+    STORE --> PG[(PostgreSQL)]
+    
+    REPO --> SVC
+    SVC --> API
+    API --> UI
+    API --> U2
+    UI --> U1

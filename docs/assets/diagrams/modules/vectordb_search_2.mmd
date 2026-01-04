@@ -1,0 +1,12 @@
+flowchart LR
+    subgraph Qdrant
+        P1[Product 1 vector]
+        P2[Product 2 vector]
+        P3[Product 3 vector]
+        PN[Product N vector]
+    end
+    
+    Q[Query vector] --> |cosine similarity| P1
+    Q --> |cosine similarity| P2
+    Q --> |cosine similarity| P3
+    Q --> |cosine similarity| PN

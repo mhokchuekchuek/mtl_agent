@@ -1,22 +1,31 @@
-# LLM Module
+# **🤖 LLM Module**
 
 LLM-related utilities and integrations.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `libs/llm/`
 
-## Submodules
 
-| Submodule | Purpose | Documentation |
-|-----------|---------|---------------|
-| Client | LLM provider clients | [client/README.md](client/README.md) |
-| Chunking | Text chunking strategies | [chunking/README.md](chunking/README.md) |
-| Observability | LLM tracing and monitoring | [observability/README.md](observability/README.md) |
-| Parser | PDF parsing providers | [parser/README.md](parser/README.md) |
-| Prompt Manager | Centralized prompt management | [prompt_manager/README.md](prompt_manager/README.md) |
+---
 
-## Architecture
+
+## **📦 Submodules**
+
+| | | |
+|:---:|:---:|:---:|
+| [🔗 **Client**](client/README.md)<br/>LLM provider clients | [✂️ **Chunking**](chunking/README.md)<br/>Text chunking strategies | [👁️ **Observability**](observability/README.md)<br/>LLM tracing and monitoring |
+| [📄 **Parser**](parser/README.md)<br/>PDF parsing providers | [📝 **Prompt Manager**](prompt_manager/README.md)<br/>Centralized prompt management | |
+
+
+---
+
+
+## **🏗️ Architecture**
 
 ```text
 libs/llm/

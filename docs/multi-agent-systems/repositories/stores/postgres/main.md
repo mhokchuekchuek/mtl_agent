@@ -12,13 +12,7 @@ Provide permanent storage for conversation data using LangGraph's PostgresStore.
 
 ## Code Flow
 
-```mermaid
-flowchart LR
-    1[1. Init with connection params] --> 2[2. Connect to Postgres]
-    2 --> 3[3. Create PostgresStore]
-    3 --> 4[4. Setup tables]
-    4 --> 5[5. Ready for CRUD]
-```
+![Code Flow](../../../../assets/diagrams/repositories/postgres_main_1.png)
 
 ## Class Definition
 
@@ -130,5 +124,5 @@ items = store_repo.search(
 
 | Component | Documentation |
 |-----------|---------------|
-| PostgresClient | [libs/database/sql/postgres.md](../../../libs/database/sql/postgres.md) |
-| Docker Postgres | [docker/postgres.md](../../../docker/postgres.md) |
+| PostgresClient | [libs/database/sql/postgres.md](../../../../libs/database/sql/postgres.md) |
+| Docker Postgres | [docker/postgres.md](../../../../infrastructure/docker/postgres.md) |

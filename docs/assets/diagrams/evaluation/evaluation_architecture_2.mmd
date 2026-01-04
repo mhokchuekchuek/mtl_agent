@@ -1,0 +1,26 @@
+flowchart TD
+    subgraph 1. Load
+        DS[Load Datasets] --> TC[Test Cases]
+    end
+    
+    subgraph 2. For Each Test Case
+        TC --> INV[Invoke Chatbot API]
+        INV --> OUT[Get Response + Steps]
+    end
+    
+    subgraph 3. Judge
+        OUT --> J1[SQL Judge]
+        OUT --> J2[Search Judge]
+        OUT --> J3[Viz Judge]
+        OUT --> J4[RQ Judge]
+        J1 --> |Skip if no expected.sql| AGG
+        J2 --> |Skip if no expected.search_results| AGG
+        J3 --> |Skip if no expected.chart| AGG
+        J4 --> |Skip if no expected.response_quality| AGG
+        AGG[Aggregate Scores]
+    end
+    
+    subgraph 4. Save
+        AGG --> YAML[results.yaml]
+        AGG --> DET[detail.yaml]
+    end

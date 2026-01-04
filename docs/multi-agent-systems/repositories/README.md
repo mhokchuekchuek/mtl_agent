@@ -1,91 +1,84 @@
-# Repositories
+# **🗂️ Repositories**
 
 Domain-specific data access layer that abstracts infrastructure from business logic.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `src/repositories/`
 
-## Overview
+
+---
+
+
+## **📋 Overview**
 
 Repositories bridge the gap between modules (workflows/agents) and infrastructure (databases/caches).
 
-```mermaid
-flowchart TD
-    subgraph Modules
-        W[Workflows]
-    end
-    
-    subgraph Repositories
-        C[ChatbotRepository]
-        CP[CheckpointerRepository]
-        S[StoreRepository]
-    end
-    
-    subgraph Infrastructure
-        R[Redis]
-        P[PostgreSQL]
-    end
-    
-    W --> C
-    C --> CP
-    C --> S
-    CP --> R
-    S --> P
-```
+![Overview](../../assets/diagrams/repositories/repositories_README_1.png)
 
-## Components
 
-| Repository | Purpose | Documentation |
-|------------|---------|---------------|
-| **Chatbots** | Compile workflow + memory management | [chatbots/README.md](chatbots/README.md) |
-| **Checkpointers** | Short-term memory (per-thread, TTL) | [checkpointers/README.md](checkpointers/README.md) |
-| **Stores** | Long-term memory (cross-thread, permanent) | [stores/README.md](stores/README.md) |
+---
 
-## Repository vs libs/
+
+## **🧩 Components**
+
+| | | |
+|:---:|:---:|:---:|
+| [🤖 **Chatbots**](chatbots/README.md)<br/>Compile workflow + memory management | [⏱️ **Checkpointers**](checkpointers/README.md)<br/>Short-term memory (per-thread, TTL) | [💾 **Stores**](stores/README.md)<br/>Long-term memory (cross-thread, permanent) |
+
+
+---
+
+
+## **📊 Repository vs libs/**
 
 | Layer | Scope | Example |
 |-------|-------|---------|
 | `libs/` | Generic infrastructure (cross-project) | `RedisClient`, `PostgresClient` |
 | `repositories/` | Domain-specific (project-specific) | `CustomerChatbotRepository`, `RedisCheckpointerRepository` |
 
-## Memory Architecture
 
-```mermaid
-flowchart LR
-    subgraph Short-term
-        CP[Checkpointer]
-        R[(Redis)]
-        CP --> R
-    end
-    
-    subgraph Long-term
-        S[Store]
-        P[(PostgreSQL)]
-        S --> P
-    end
-    
-    CP --> |TTL expires| S
-```
+---
+
+
+## **🧠 Memory Architecture**
+
+![Memory Architecture](../../assets/diagrams/repositories/repositories_README_2.png)
 
 | Type | Storage | TTL | Purpose |
 |------|---------|-----|---------|
 | Short-term | Redis Checkpointer | 60 min | Per-thread conversation state |
 | Long-term | Postgres Store | Permanent | Backup, audit, cross-thread |
 
-## Design Decisions
+
+---
+
+
+## **📝 Design Decisions**
 
 | Decision | Description | Link |
 |----------|-------------|------|
 | Checkpointer + Store | Why we use both memory types | [why_checkpointer_and_store.md](../../decisions/why_checkpointer_and_store.md) |
 
-## Future Improvements
+
+---
+
+
+## **🔮 Future Improvements**
 
 | Improvement | Description | Link |
 |-------------|-------------|------|
-| Async Store Writes | Queue or scheduled job for async Postgres writes | [async_store_writes.md](../../future_improvements/async_store_writes.md) |
+| Async Store Writes | Queue or scheduled job for async Postgres writes | [async_store_writes.md](../../future_improvements/chat_history/async_store_writes.md) |
 
-## File Structure
+
+---
+
+
+## **📂 File Structure**
 
 ```
 src/repositories/

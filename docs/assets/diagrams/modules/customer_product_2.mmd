@@ -1,0 +1,6 @@
+flowchart LR
+    SQL[Generated SQL] --> V1{Contains forbidden table?}
+    V1 --> |Yes| FAIL[Reject]
+    V1 --> |No| V2{Has dangerous keywords?}
+    V2 --> |Yes| FAIL
+    V2 --> |No| PASS[Execute]

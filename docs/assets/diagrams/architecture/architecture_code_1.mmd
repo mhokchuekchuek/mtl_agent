@@ -1,0 +1,27 @@
+flowchart TB
+    subgraph Entry
+        API[API]
+        UI[UI]
+    end
+    
+    subgraph Application
+        DEP[Dependencies]
+        UC[Usecases]
+    end
+    
+    subgraph Domain
+        REPO[Repositories]
+        MOD[Modules]
+    end
+    
+    subgraph Infrastructure
+        LIBS[libs/]
+    end
+    
+    UI --> API
+    API --> DEP
+    DEP --> UC
+    UC --> REPO
+    REPO --> MOD
+    MOD --> LIBS
+    REPO --> LIBS

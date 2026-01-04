@@ -1,0 +1,13 @@
+flowchart TB
+    subgraph TextSearch["Text Search"]
+        Q1["User Query<br/>'comfortable chair'"] --> EMB1[Generate Embedding]
+        EMB1 --> SEARCH1[Vector Search]
+        SEARCH1 --> RES1[Results]
+    end
+    
+    subgraph SimilarProducts["Similar Products"]
+        Q2["Product ID: 10"] --> FETCH[Fetch Stored Embedding]
+        FETCH --> SEARCH2[Vector Search]
+        SEARCH2 --> EXCLUDE[Exclude Original]
+        EXCLUDE --> RES2[Results]
+    end

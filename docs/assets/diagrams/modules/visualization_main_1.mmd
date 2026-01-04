@@ -1,0 +1,25 @@
+flowchart TD
+    START["Client Request:<br/>'Show me a bar chart of sales by category'"] --> DATA[SQL Tool returns data]
+    
+    DATA --> PROMPT[1. Get prompt from Langfuse]
+    PROMPT --> |tools_client_visualization| LANGFUSE[(Langfuse)]
+    
+    LANGFUSE --> COMPILE[2. Compile prompt]
+    COMPILE --> |columns, sample_data,<br/>row_count, request| COMPILED[Compiled Prompt]
+    
+    COMPILED --> LLM[3. LLM generates Plotly code]
+    LLM --> |"fig = px.bar(df, x='category', y='sales')"| CODE[Python Code]
+    
+    CODE --> EXTRACT[4. Extract code from response]
+    EXTRACT --> |remove markdown blocks| CLEAN[Clean Code]
+    
+    CLEAN --> SANDBOX[5. Execute in sandbox]
+    SANDBOX --> |restricted globals| EXEC{Execution}
+    
+    EXEC -->|Success| FIG[Plotly Figure]
+    EXEC -->|Error| ERR[Error Message]
+    
+    FIG --> HTML[6. Convert to HTML]
+    HTML --> RESULT["Return: {results: '<div>chart</div>'}"]
+    
+    ERR --> ERRMSG["Return: {results: '<p>Error: ...</p>'}"]

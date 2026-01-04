@@ -23,12 +23,7 @@ Provides common interface and utilities for all agents. All agents inherit from 
 
 ### Code Flow
 
-```mermaid
-flowchart TD
-    A[Agent receives state] --> B[execute method called]
-    B --> C[Process state]
-    C --> D[Return updated state]
-```
+![Code Flow](../../../assets/diagrams/modules/agents_base_1.png)
 
 ### Usage
 

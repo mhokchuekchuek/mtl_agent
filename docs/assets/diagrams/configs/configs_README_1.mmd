@@ -1,0 +1,9 @@
+flowchart TD
+    subgraph Config Files
+        S[shared.yaml]
+        C[client_chatbot.yaml]
+        CU[customer_chatbot.yaml]
+    end
+    
+    S --> C
+    S --> CU

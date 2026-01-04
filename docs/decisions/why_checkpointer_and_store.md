@@ -1,10 +1,18 @@
-# Why Checkpointer + Store for Memory
+# **📝 Why Checkpointer + Store for Memory**
 
-## Decision
+
+---
+
+
+## **🎯 Decision**
 
 Use both **Redis Checkpointer** (short-term) and **Postgres Store** (long-term) for conversation memory.
 
-## Context
+
+---
+
+
+## **📋 Context**
 
 LangGraph provides two memory mechanisms:
 
@@ -15,9 +23,14 @@ LangGraph provides two memory mechanisms:
 
 We needed to decide how to manage conversation memory for the customer chatbot.
 
-## Options Considered
 
-### Option 1: Checkpointer Only (Redis)
+---
+
+
+## **🔄 Options Considered**
+
+
+### 1️⃣ **Checkpointer Only (Redis)**
 
 ```
 User → Workflow → Redis (TTL: 60 min)
@@ -29,7 +42,8 @@ User → Workflow → Redis (TTL: 60 min)
 - Memory lost after TTL expires
 - No cross-thread memory
 
-### Option 2: Store Only (Postgres)
+
+### 2️⃣ **Store Only (Postgres)**
 
 ```
 User → Workflow → Postgres
@@ -39,7 +53,8 @@ User → Workflow → Postgres
 - Slower than Redis
 - No automatic state management
 
-### Option 3: Checkpointer + Store (Chosen)
+
+### 3️⃣ **Checkpointer + Store (Chosen)**
 
 ```
 User → Workflow → Redis (short-term, auto-managed)
@@ -51,11 +66,19 @@ User → Workflow → Redis (short-term, auto-managed)
 - Permanent backup (Postgres)
 - Best of both worlds
 
-## Decision
+
+---
+
+
+## **✅ Decision**
 
 Chose **Option 3: Checkpointer + Store**.
 
-## Rationale
+
+---
+
+
+## **💡 Rationale**
 
 1. **Different TTL requirements**
    - Active conversation: needs fast access (Redis, TTL 60 min)
@@ -73,16 +96,24 @@ Chose **Option 3: Checkpointer + Store**.
    - Resume old conversations after TTL expired
    - Audit/Compliance reporting
 
-## Architecture
+
+---
+
+
+## **🏗️ Architecture**
 
 <details>
 <summary>View Memory Architecture</summary>
 
-![Memory Architecture](../images/decisions/memory_architecture.png)
+![Memory Architecture](../assets/diagrams/decisions/memory_architecture.png)
 
 </details>
 
-## Data Flow
+
+---
+
+
+## **🔄 Data Flow**
 
 ```
 1. User sends message
@@ -93,9 +124,14 @@ Chose **Option 3: Checkpointer + Store**.
 6. Response returned to user
 ```
 
-## Storage Format
 
-### Redis Checkpointer (managed by LangGraph)
+---
+
+
+## **💾 Storage Format**
+
+
+### 🔴 **Redis Checkpointer (managed by LangGraph)**
 
 ```
 Key: langgraph:checkpoint:{thread_id}
@@ -109,7 +145,8 @@ Value: {
 TTL: 60 minutes
 ```
 
-### Postgres Store (managed by us)
+
+### 🐘 **Postgres Store (managed by us)**
 
 ```
 Namespace: ("users", user_id, "conversations")
@@ -122,9 +159,13 @@ Value: {
 }
 ```
 
-**Namespace** = folder hierarchy เพื่อจัดกลุ่มข้อมูล เช่น `("users", "user-123", "conversations")` เหมือน path `users/user-123/conversations/`
+> 📝 **Note:** Namespace = folder hierarchy เพื่อจัดกลุ่มข้อมูล เช่น `("users", "user-123", "conversations")` เหมือน path `users/user-123/conversations/`
 
-## Trade-offs
+
+---
+
+
+## **⚖️ Trade-offs**
 
 | Aspect | Checkpointer Only | Store Only | Both |
 |--------|-------------------|------------|------|
@@ -134,14 +175,22 @@ Value: {
 | Storage cost | Low | Higher | Highest |
 | Cross-thread | No | Yes | Yes |
 
-## When to Use Store Data
+
+---
+
+
+## **🎯 When to Use Store Data**
 
 | Use Case | Example | When |
 |----------|---------|------|
 | Resume old conversation | "เมื่อวานถามเรื่องลำโพง" | TTL expired |
 | Audit/Compliance | Admin review | Reporting |
 
-## References
+
+---
+
+
+## **🔗 References**
 
 - [LangGraph Memory Concepts](https://docs.langchain.com/oss/python/langgraph/memory)
 - [LangGraph Checkpointers](https://langchain-ai.github.io/langgraph/concepts/persistence/)

@@ -1,0 +1,38 @@
+flowchart TD
+    subgraph Entry
+        UI[Streamlit UI]
+        API[FastAPI API]
+    end
+    
+    subgraph Application
+        DEP[Dependencies]
+        SVC[ChatbotService]
+        REPO[ChatbotRepository]
+    end
+    
+    subgraph Modules
+        WF[Workflows]
+        AG[Agents]
+        TL[Tools]
+    end
+    
+    subgraph Infrastructure
+        RD[(Redis)]
+        PG[(PostgreSQL)]
+        QD[(Qdrant)]
+        SQL[(SQLite)]
+        LLM[LLM API]
+    end
+    
+    UI --> API
+    API --> DEP
+    DEP --> SVC
+    SVC --> REPO
+    REPO --> WF
+    WF --> AG
+    AG --> TL
+    REPO --> RD
+    REPO --> PG
+    TL --> SQL
+    TL --> QD
+    AG --> LLM

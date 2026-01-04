@@ -54,22 +54,7 @@ Handle product queries using ReAct pattern. Dynamically decides which tools to u
 
 ### Code Flow
 
-```mermaid
-flowchart TD
-    A[1. Get Prompt from Langfuse] --> B[2. Build ReAct agent with tools]
-    B --> C[3. Set customer_id on tools if provided]
-    C --> D[4. Build messages with history]
-    D --> E[5. LLM decides action]
-    E --> F{What does user need?}
-    F -->|Search products| G[ProductSQLTool / ProductSearchTool]
-    F -->|Check orders| H[OrderSQLTool]
-    F -->|Place order| I[PlaceOrderSQLTool]
-    F -->|Cancel order| J[CancelOrderSQLTool]
-    G --> K[Return response]
-    H --> K
-    I --> K
-    J --> K
-```
+![Code Flow](../../../../assets/diagrams/modules/products_main_1.png)
 
 ### Example Flows
 

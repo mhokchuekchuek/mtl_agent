@@ -8,7 +8,7 @@ Query customer chat conversation history from PostgreSQL store.
 
 ## Prompt
 
-[tools_client_chat_history_sql](../../../../../prompts/tools/client/chat_history_sql.md)
+[tools_client_chat_history_sql](../../../../../../prompts/tools/client/chat_history_sql.md)
 
 ## Class: ClientChatHistorySQLTool
 
@@ -35,14 +35,7 @@ Find what customers asked or said in previous conversations. Queries the LangGra
 
 ### Code Flow
 
-```mermaid
-flowchart TD
-    A[1. Get Prompt from Langfuse] --> B[2. Compile prompt with schema + question]
-    B --> C[3. LLM generates SQL]
-    C --> D[4. Validate SQL is safe]
-    D --> E[5. Execute SQL on PostgreSQL store]
-    E --> F[6. Return conversation results]
-```
+![Code Flow](../../../../../../assets/diagrams/modules/client_chat_history_1.png)
 
 ### Usage
 

@@ -1,0 +1,15 @@
+flowchart TD
+    subgraph API/CLI
+        A[Endpoint]
+    end
+    
+    subgraph Usecases
+        S[ChatbotService]
+    end
+    
+    subgraph Repositories
+        R[ChatbotRepository]
+    end
+    
+    A --> S
+    S --> R

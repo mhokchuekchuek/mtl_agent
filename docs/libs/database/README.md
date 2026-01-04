@@ -1,20 +1,30 @@
-# Database Module
+# **🗄️ Database Module**
 
 Database utilities and integrations.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `libs/database/`
 
-## Submodules
 
-| Submodule | Purpose | Documentation |
-|-----------|---------|---------------|
-| SQL | SQL database clients | [sql/](sql/README.md) |
-| Vector | Vector database clients | [vector/](vector/README.md) |
-| Key-Value | Key-value store clients | [key_value/](key_value/README.md) |
+---
 
-## Architecture
+
+## **📦 Submodules**
+
+| | | |
+|:---:|:---:|:---:|
+| [🔷 **SQL**](sql/README.md)<br/>SQL database clients | [🔮 **Vector**](vector/README.md)<br/>Vector database clients | [🔴 **Key-Value**](key_value/README.md)<br/>Key-value store clients |
+
+
+---
+
+
+## **🏗️ Architecture**
 
 ```text
 libs/database/

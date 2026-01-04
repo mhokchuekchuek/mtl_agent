@@ -1,0 +1,19 @@
+flowchart TD
+    subgraph FastAPI
+        A[app.py]
+    end
+
+    subgraph Routes
+        R1["/api/v1/chatbot/customer"]
+        R2["/api/v1/chatbot/client"]
+    end
+
+    subgraph Services
+        S1[CustomerChatbotService]
+        S2[ClientChatbotService]
+    end
+
+    A --> R1
+    A --> R2
+    R1 --> S1
+    R2 --> S2

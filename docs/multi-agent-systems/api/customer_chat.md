@@ -8,12 +8,7 @@ Customer chatbot endpoint for product inquiries.
 
 ## Code Flow
 
-```mermaid
-flowchart LR
-    1[1. Receive request] --> 2[2. Get service from app.state]
-    2 --> 3[3. Call service.chat]
-    3 --> 4[4. Return response]
-```
+![Code Flow](../../assets/diagrams/api/api_customer_chat_1.png)
 
 ## Request Schema
 

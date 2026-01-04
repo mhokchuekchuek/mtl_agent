@@ -1,40 +1,28 @@
-# CLI (main.py)
+# **⌨️ CLI (main.py)**
 
 Application entry point for running API and UI services.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `main.py`
 
-## Overview
 
-```mermaid
-flowchart TD
-    subgraph CLI
-        M[main.py]
-    end
-    
-    subgraph Commands
-        API[api]
-        CUI[customer_ui]
-        CLUI[client_ui]
-    end
-    
-    subgraph Services
-        FA[FastAPI Server]
-        ST1[Streamlit Customer]
-        ST2[Streamlit Client]
-    end
-    
-    M --> API
-    M --> CUI
-    M --> CLUI
-    API --> FA
-    CUI --> ST1
-    CLUI --> ST2
-```
+---
 
-## Commands
+
+## **📋 Overview**
+
+![Overview](../../assets/diagrams/cli/cli_README_1.png)
+
+
+---
+
+
+## **📦 Commands**
 
 | Command | Default Port | Purpose | Documentation |
 |---------|--------------|---------|---------------|
@@ -42,7 +30,11 @@ flowchart TD
 | `customer_ui` | 8501 | Customer Support Streamlit UI | [customer_ui.md](customer_ui.md) |
 | `client_ui` | 8502 | Client BI Analytics Streamlit UI | [client_ui.md](client_ui.md) |
 
-## Quick Start
+
+---
+
+
+## **🚀 Quick Start**
 
 ```bash
 # Start API server
@@ -55,15 +47,13 @@ python main.py customer_ui
 python main.py client_ui
 ```
 
-## Initialization Flow
 
-```mermaid
-flowchart LR
-    1[Load .env] --> 2[Load Dynaconf settings]
-    2 --> 3[Setup logging]
-    3 --> 4[Create Typer CLI]
-    4 --> 5[Execute command]
-```
+---
+
+
+## **🔄 Initialization Flow**
+
+![Initialization Flow](../../assets/diagrams/cli/cli_README_2.png)
 
 | Step | Code | Purpose |
 |------|------|---------|
@@ -72,7 +62,11 @@ flowchart LR
 | 3 | `setup_logging()` | Configure logging level |
 | 4 | `typer.Typer()` | Create CLI application |
 
-## Docker
+
+---
+
+
+## **🐳 Docker**
 
 When using Docker, services are started via `docker-compose`:
 
@@ -86,7 +80,11 @@ docker-compose up -d customer-ui
 docker-compose up -d client-ui
 ```
 
-## Local Development
+
+---
+
+
+## **💻 Local Development**
 
 For local development without Docker:
 
@@ -101,6 +99,10 @@ python main.py customer_ui
 python main.py client_ui
 ```
 
-## Full Code
+
+---
+
+
+## **📄 Full Code**
 
 See [`main.py`](../../../main.py)

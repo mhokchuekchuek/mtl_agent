@@ -1,0 +1,6 @@
+flowchart TD
+    Q1{Can you draw fixed flowchart?}
+    Q1 --> |Yes| W[Use LangGraph Workflow]
+    Q1 --> |No| Q2{Need multi-step reasoning?}
+    Q2 --> |Yes| R[Use ReAct Agent]
+    Q2 --> |No| D[Use Direct Tool Call]

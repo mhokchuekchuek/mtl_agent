@@ -1,20 +1,33 @@
-# Extractor
+# **🔄 Extractor**
 
 LLM-based structured data extraction using provider/selector pattern.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `ingestor/extractor/`
 
-## Providers
 
-| Provider | Description | Documentation |
-|----------|-------------|---------------|
-| `litellm` | LiteLLM-based extraction | [litellm.md](litellm.md) |
+---
 
-## Classes
 
-### BaseExtractor
+## **📦 Providers**
+
+| | |
+|:---:|:---:|
+| [🤖 **LiteLLM**](litellm.md)<br/>LiteLLM-based extraction | |
+
+
+---
+
+
+## **🔧 Classes**
+
+
+### 🎯 **BaseExtractor**
 
 Abstract base class for extractors.
 
@@ -26,7 +39,8 @@ Abstract base class for extractors.
 |--------|-------------|
 | `extract(text, **kwargs)` | Extract structured data from text |
 
-### ExtractorSelector
+
+### 🔀 **ExtractorSelector**
 
 Selector for extractor providers.
 

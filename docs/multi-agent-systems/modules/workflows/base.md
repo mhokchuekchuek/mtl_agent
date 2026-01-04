@@ -32,14 +32,7 @@ class BaseWorkflow(ABC):
 
 ## Code Flow
 
-```mermaid
-flowchart LR
-    1[1. Inherit BaseWorkflow] --> 2[2. Implement build method]
-    2 --> 3[3. Create StateGraph]
-    3 --> 4[4. Add nodes]
-    4 --> 5[5. Add edges]
-    5 --> 6[6. Return uncompiled graph]
-```
+![Code Flow](../../../assets/diagrams/modules/workflows_base_1.png)
 
 ## Key Methods
 
@@ -103,4 +96,4 @@ Compilation happens in Repository layer because:
 2. **Store** - Needs database connection for long-term memory
 3. **Flexibility** - Same workflow, different storage backends
 
-See [Repositories](../../repositories/chatbots.md) for compilation details.
+See [Repositories](../../repositories/chatbots/README.md) for compilation details.

@@ -1,0 +1,9 @@
+flowchart TB
+    subgraph Sandbox["Sandboxed Environment"]
+        direction TB
+        ALLOWED["Allowed:<br/>pd, px, go, df, data<br/>len, str, int, float, list, dict<br/>range, sum, min, max, sorted"]
+        BLOCKED["Blocked:<br/>open, eval, exec, import<br/>os, sys, subprocess<br/>file I/O, network"]
+    end
+    
+    CODE[LLM Code] --> Sandbox
+    Sandbox --> FIG[Plotly Figure]

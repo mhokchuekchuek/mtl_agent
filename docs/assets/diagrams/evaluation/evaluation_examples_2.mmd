@@ -1,0 +1,16 @@
+flowchart TD
+    subgraph Turn0["Turn 0"]
+        Q0[User: I need headphones] --> BOT0[Customer Chatbot]
+        BOT0 --> SEARCH0[VectorDB Search]
+        SEARCH0 --> R0[3 headphones found]
+        R0 --> J0[Search Judge: 1.0 ✓]
+    end
+    
+    subgraph Turn1["Turn 1"]
+        Q1[User: Which one has noise cancelling?] --> BOT1[Customer Chatbot]
+        BOT1 --> |uses context from Turn 0| FILTER[Filter by feature]
+        FILTER --> R1[Noise Cancelling Headphones]
+        R1 --> J1[Response Quality Judge: 1.0 ✓]
+    end
+    
+    Turn0 --> |conversation context| Turn1

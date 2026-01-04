@@ -1,0 +1,5 @@
+flowchart LR
+    1[Load .env] --> 2[Load Dynaconf settings]
+    2 --> 3[Setup logging]
+    3 --> 4[Create Typer CLI]
+    4 --> 5[Execute command]

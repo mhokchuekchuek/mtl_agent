@@ -1,0 +1,15 @@
+flowchart TD
+    subgraph LangGraph Workflow
+        W[ClientChatbotWorkflow]
+        W --> A1[TranslationAgent]
+        W --> A2[OrchestratorAgent]
+        A2 --> A3[InsightAgent]
+        A2 --> A4[ChatHistoryAgent]
+    end
+    
+    subgraph ReAct Agent
+        R[ProductAgent]
+        R --> T1[ProductSearch]
+        R --> T2[SQLTool]
+        R --> T3[PlaceOrder]
+    end

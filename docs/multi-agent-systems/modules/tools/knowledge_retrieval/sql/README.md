@@ -1,12 +1,20 @@
-# SQL Tools
+# **🔷 SQL Tools**
 
 Natural language to SQL query tools for the multi-agent system.
 
-## Overview
+
+---
+
+
+## **📋 Overview**
 
 SQL tools generate and execute SQL queries from natural language questions. They use LLM to convert questions to SQL, validate for security, and execute against the database.
 
-## Architecture
+
+---
+
+
+## **🏗️ Architecture**
 
 ```
 src/modules/tools/knowledge_retrieval/sql/
@@ -23,7 +31,11 @@ src/modules/tools/knowledge_retrieval/sql/
     └── cancel_order.py     # Cancel orders (write enabled)
 ```
 
-## Tool Hierarchy
+
+---
+
+
+## **📊 Tool Hierarchy**
 
 | Tool | Inherits | Tables | Write | Filter |
 |------|----------|--------|-------|--------|
@@ -35,7 +47,13 @@ src/modules/tools/knowledge_retrieval/sql/
 | PlaceOrderSQLTool | SQLTool | Orders, OrderDetails, Inventory | Yes | customer_id |
 | CancelOrderSQLTool | SQLTool | Orders | Yes | customer_id |
 
-## Security
+
+---
+
+
+## **🔒 Security**
+
+> 🚨 **Warning:** All tools use `SQLValidator` for security.
 
 All tools use `SQLValidator` which:
 - **Always blocks**: DDL (DROP, ALTER, CREATE), permissions (GRANT, REVOKE), execution (EXEC)
@@ -46,29 +64,30 @@ Customer tools add additional restrictions:
 - **Table filtering**: Only allowed tables visible in schema
 - **Customer isolation**: Queries must include customer_id filter
 
-## Documentation
 
 ---
 
-### base
 
-| File | Description |
-|------|-------------|
-| [main.md](base/main.md) | SQLTool base class |
-| [validator.md](base/validator.md) | SQL security validator |
+## **📖 Documentation**
 
-### client
 
-| File | Description |
-|------|-------------|
-| [analytics.md](client/analytics.md) | BI analytics tool (all tables, read-only) |
-| [chat_history.md](client/chat_history.md) | Chat history queries |
+### 🎯 **base**
 
-### customer
+| | |
+|:---:|:---:|
+| [🎯 **Main**](base/main.md)<br/>SQLTool base class | [🔒 **Validator**](base/validator.md)<br/>SQL security validator |
 
-| File | Description |
-|------|-------------|
-| [product.md](customer/product.md) | Product queries (restricted tables) |
-| [order.md](customer/order.md) | Order history (customer_id filtered) |
-| [place_order.md](customer/place_order.md) | Place orders (write enabled) |
-| [cancel_order.md](customer/cancel_order.md) | Cancel orders (write enabled) |
+
+### 💼 **client**
+
+| | |
+|:---:|:---:|
+| [📊 **Analytics**](client/analytics.md)<br/>BI analytics tool (all tables, read-only) | [💬 **Chat History**](client/chat_history.md)<br/>Chat history queries |
+
+
+### 👤 **customer**
+
+| | | |
+|:---:|:---:|:---:|
+| [🛍️ **Product**](customer/product.md)<br/>Product queries (restricted tables) | [📦 **Order**](customer/order.md)<br/>Order history (customer_id filtered) | [🛒 **Place Order**](customer/place_order.md)<br/>Place orders (write enabled) |
+| [❌ **Cancel Order**](customer/cancel_order.md)<br/>Cancel orders (write enabled) | | |

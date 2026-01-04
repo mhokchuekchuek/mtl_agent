@@ -1,42 +1,46 @@
-# Workflows
+# **🔄 Workflows**
 
 LangGraph workflows that orchestrate agents.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `src/modules/workflows/`
 
-## Overview
 
-Workflows define graph structure (nodes, edges) but do NOT compile. Compilation with checkpointer + store is handled by [ChatbotRepository](../../repositories/chatbots.md).
+---
 
-## Architecture
 
-```mermaid
-flowchart LR
-    subgraph Workflow
-        build[build method]
-    end
-    
-    subgraph Repository
-        compile[compile with memory]
-    end
-    
-    subgraph Runtime
-        invoke[invoke graph]
-    end
-    
-    build --> compile --> invoke
-```
+## **📋 Overview**
 
-## Available Workflows
+Workflows define graph structure (nodes, edges) but do NOT compile. Compilation with checkpointer + store is handled by [ChatbotRepository](../../repositories/chatbots/README.md).
 
-| Workflow | Purpose | Documentation |
-|----------|---------|---------------|
-| ClientChatbotWorkflow | Internal BI chatbot | [client_chatbot/main.md](client_chatbot/main.md) |
-| CustomerChatbotWorkflow | Customer shopping assistant | [customer_chatbot/main.md](customer_chatbot/main.md) |
 
-## Base Class
+---
+
+
+## **🏗️ Architecture**
+
+![Architecture](../../../assets/diagrams/modules/workflows_README_1.png)
+
+
+---
+
+
+## **📦 Available Workflows**
+
+| | |
+|:---:|:---:|
+| [💼 **ClientChatbotWorkflow**](client_chatbot/main.md)<br/>Internal BI chatbot | [👤 **CustomerChatbotWorkflow**](customer_chatbot/main.md)<br/>Customer shopping assistant |
+
+
+---
+
+
+## **🎯 Base Class**
 
 See [base.md](base.md) for full documentation.
 
@@ -50,31 +54,31 @@ class MyWorkflow(BaseWorkflow):
         return graph  # NOT compiled
 ```
 
-## Workflow Patterns
 
-### Fixed Flow (CustomerChatbot)
+---
 
-```mermaid
-flowchart LR
-    A[translate] --> B[agent] --> C[translate]
-```
+
+## **🔀 Workflow Patterns**
+
+
+### 📊 **Fixed Flow (CustomerChatbot)**
+
+![Fixed Flow (CustomerChatbot)](../../../assets/diagrams/modules/workflows_README_2.png)
 
 Simple linear flow where every query follows same path.
 
-### Conditional Flow (ClientChatbot)
 
-```mermaid
-flowchart LR
-    A[translate] --> B[orchestrator]
-    B --> |intent A| C[agent_a]
-    B --> |intent B| D[agent_b]
-    C --> E[translate]
-    D --> E
-```
+### 🔀 **Conditional Flow (ClientChatbot)**
+
+![Conditional Flow (ClientChatbot)](../../../assets/diagrams/modules/workflows_README_3.png)
 
 Uses conditional edges to route based on classified intent.
 
-## Files
+
+---
+
+
+## **📂 Files**
 
 ```
 src/modules/workflows/
@@ -89,12 +93,13 @@ src/modules/workflows/
     └── main.py                # CustomerChatbotWorkflow
 ```
 
-## Documentation
 
-| Document | Description |
-|----------|-------------|
-| [base.md](base.md) | BaseWorkflow abstract class |
-| [client_chatbot/main.md](client_chatbot/main.md) | Client workflow implementation |
-| [client_chatbot/state.md](client_chatbot/state.md) | Client state definition |
-| [customer_chatbot/main.md](customer_chatbot/main.md) | Customer workflow implementation |
-| [customer_chatbot/state.md](customer_chatbot/state.md) | Customer state definition |
+---
+
+
+## **📖 Documentation**
+
+| | | |
+|:---:|:---:|:---:|
+| [🎯 **Base**](base.md)<br/>BaseWorkflow abstract class | [💼 **Client Main**](client_chatbot/main.md)<br/>Client workflow implementation | [💼 **Client State**](client_chatbot/state.md)<br/>Client state definition |
+| [👤 **Customer Main**](customer_chatbot/main.md)<br/>Customer workflow implementation | [👤 **Customer State**](customer_chatbot/state.md)<br/>Customer state definition | |

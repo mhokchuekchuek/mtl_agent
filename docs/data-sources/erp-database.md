@@ -1,12 +1,20 @@
-# ERP Database
+# **🗄️ ERP Database**
 
 SQLite database containing ERP (Enterprise Resource Planning) data.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `data/erp_database.db`
 
-## Tables
+
+---
+
+
+## **📊 Tables**
 
 | Table | Description |
 |-------|-------------|
@@ -18,9 +26,14 @@ SQLite database containing ERP (Enterprise Resource Planning) data.
 | Orders | Order headers |
 | OrderDetails | Order line items |
 
-## Schema
 
-### Products
+---
+
+
+## **📋 Schema**
+
+
+### 🛍️ **Products**
 
 | Column | Type | Description |
 |--------|------|-------------|
@@ -30,7 +43,8 @@ SQLite database containing ERP (Enterprise Resource Planning) data.
 | category | TEXT | Category of the product |
 | price | INTEGER | Price in USD |
 
-### Warehouses
+
+### 🏭 **Warehouses**
 
 | Column | Type | Description |
 |--------|------|-------------|
@@ -38,7 +52,8 @@ SQLite database containing ERP (Enterprise Resource Planning) data.
 | warehouse_name | TEXT | Name of the warehouse |
 | location | TEXT | Location of the warehouse |
 
-### Inventory
+
+### 📦 **Inventory**
 
 | Column | Type | Description |
 |--------|------|-------------|
@@ -47,7 +62,8 @@ SQLite database containing ERP (Enterprise Resource Planning) data.
 | quantity | INTEGER | Quantity in stock |
 | warehouse_id | INTEGER | Reference to Warehouses |
 
-### Customers
+
+### 👤 **Customers**
 
 | Column | Type | Description |
 |--------|------|-------------|
@@ -57,7 +73,8 @@ SQLite database containing ERP (Enterprise Resource Planning) data.
 | phone_number | TEXT | Phone number |
 | address | TEXT | Address |
 
-### Suppliers
+
+### 🚚 **Suppliers**
 
 | Column | Type | Description |
 |--------|------|-------------|
@@ -66,16 +83,19 @@ SQLite database containing ERP (Enterprise Resource Planning) data.
 | contact | TEXT | Contact information |
 | address | TEXT | Address |
 
-### Orders
+
+### 📝 **Orders**
 
 | Column | Type | Description |
 |--------|------|-------------|
-| order_id | INTEGER | Primary key |
+| order_id | INTEGER | Primary key (auto-increment) |
 | order_date | TIMESTAMP | Date and time of order |
 | customer_id | INTEGER | Reference to Customers |
 | total_amount | INTEGER | Total order amount |
+| status | TEXT | Order status (default: 'completed') |
 
-### OrderDetails
+
+### 📋 **OrderDetails**
 
 | Column | Type | Description |
 |--------|------|-------------|
@@ -87,7 +107,11 @@ SQLite database containing ERP (Enterprise Resource Planning) data.
 | price | INTEGER | Price per unit |
 | total_price | INTEGER | Total price (quantity * price) |
 
-## Usage
+
+---
+
+
+## **💡 Usage**
 
 ```python
 from libs.database.sql.selector import SQLSelector

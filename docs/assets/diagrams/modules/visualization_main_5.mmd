@@ -1,0 +1,7 @@
+flowchart TD
+    A["Data: 3 rows<br/>Columns: category, sales"] --> B[Compile prompt with schema]
+    B --> C["LLM: 'Create bar chart'"]
+    C --> D["Code: fig = px.bar(df, x='category', y='sales')"]
+    D --> E[Execute in sandbox]
+    E --> F[Convert to HTML]
+    F --> G["<div id='plotly-chart'>...</div>"]

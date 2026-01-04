@@ -1,0 +1,27 @@
+flowchart TD
+    START[Customer requests cancellation] --> GEN[LLM generates SQL statements]
+    
+    GEN --> CHECK_ORDER[1. Check order ownership]
+    CHECK_ORDER --> |Query| ORDERS_TBL[(Orders)]
+    ORDERS_TBL --> |order belongs to customer?| CHECK_ORDER
+    
+    CHECK_ORDER --> CHECK_STATUS[2. Check order status]
+    CHECK_STATUS --> |Query| ORDERS_TBL
+    ORDERS_TBL --> |current status| CHECK_STATUS
+    
+    CHECK_STATUS --> GET_DETAILS[3. Get order details]
+    GET_DETAILS --> |Query| DETAILS_TBL[(OrderDetails)]
+    DETAILS_TBL --> |product_id, quantity| GET_DETAILS
+    
+    GET_DETAILS --> CONFIRM{4. Customer confirmed?}
+    
+    CONFIRM --> |Not yet| SUMMARY[Return order summary]
+    SUMMARY --> WAIT[Wait for confirmation]
+    
+    CONFIRM --> |Yes| UPDATE_STATUS[5. Update status to 'cancelled']
+    UPDATE_STATUS --> |UPDATE| ORDERS_TBL
+    
+    UPDATE_STATUS --> RESTORE_INV[6. Restore inventory]
+    RESTORE_INV --> |UPDATE quantity + N| INV_TBL[(Inventory)]
+    
+    RESTORE_INV --> SUCCESS[Success!]

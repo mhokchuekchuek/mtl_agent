@@ -1,10 +1,18 @@
-# Why Langfuse
+# **📝 Why Langfuse**
 
-## Decision
+
+---
+
+
+## **🎯 Decision**
 
 Use **Langfuse** as the LLM observability and prompt management platform.
 
-## Context
+
+---
+
+
+## **📋 Context**
 
 Building LLM-powered applications requires:
 - **Observability**: Trace LLM calls, monitor latency, debug issues
@@ -12,7 +20,11 @@ Building LLM-powered applications requires:
 - **Prompt Management**: Version, test, and deploy prompts safely
 - **Evaluation**: Score and evaluate LLM outputs for quality
 
-## Options Considered
+
+---
+
+
+## **🔄 Options Considered**
 
 | Feature | Langfuse | LangSmith | Phoenix (Arize) |
 |---------|----------|-----------|-----------------|
@@ -25,33 +37,41 @@ Building LLM-powered applications requires:
 | Pricing | Free tier + usage | Per trace pricing | Free (OSS) |
 | LiteLLM Integration | Native | Via callbacks | Via callbacks |
 
-## Decision Rationale
 
-### 1. Integrated Prompt Management
+---
+
+
+## **💡 Decision Rationale**
+
+
+### 1️⃣ **Integrated Prompt Management**
 
 Langfuse provides built-in prompt versioning with labels (`latest`, `production`), allowing safe prompt iteration without code changes.
 
-![Prompts Management](../assets/langfuse_prompts.png)
+![Prompts Management](../assets/screenshots/langfuse_prompts.png)
 
 *Prompt list showing versions, labels (latest/production), and last used timestamps*
 
-### 2. Comprehensive Tracing
+
+### 2️⃣ **Comprehensive Tracing**
 
 Full visibility into LLM call hierarchy with input/output inspection, token counts, latency, and cost per trace.
 
-![Trace Detail](../assets/langfuse_trace.png)
+![Trace Detail](../assets/screenshots/langfuse_trace.png)
 
 *Trace detail view showing session hierarchy, model calls, and metadata*
 
-### 3. Cost and Usage Analytics
+
+### 3️⃣ **Cost and Usage Analytics**
 
 Built-in dashboard for monitoring costs, model usage distribution, and trace volumes.
 
-![Dashboard](../assets/langfuse_dashboard.png)
+![Dashboard](../assets/screenshots/langfuse_dashboard.png)
 
 *Dashboard showing trace counts, total cost, model usage breakdown, and trends*
 
-### 4. Evaluation & Scoring
+
+### 4️⃣ **Evaluation & Scoring**
 
 Langfuse provides evaluation capabilities:
 - **Scores**: Attach scores to traces (manual or automated)
@@ -59,13 +79,18 @@ Langfuse provides evaluation capabilities:
 - **Experiments**: Run prompt experiments and compare results
 - **LLM-as-Judge**: Use LLM evaluators for automated scoring
 
-This enables continuous improvement of prompts based on real production data.
+> 💡 **Tip:** This enables continuous improvement of prompts based on real production data.
 
-### 5. Self-Hosting Option
+
+### 5️⃣ **Self-Hosting Option**
 
 Can be self-hosted for data privacy requirements, or use cloud version for quick setup.
 
-## Trade-offs
+
+---
+
+
+## **⚖️ Trade-offs**
 
 | Pros | Cons |
 |------|------|
@@ -75,7 +100,11 @@ Can be self-hosted for data privacy requirements, or use cloud version for quick
 | Evaluation & datasets included | Smaller community than alternatives |
 | Open source option | |
 
-## References
+
+---
+
+
+## **🔗 References**
 
 - [Langfuse Documentation](https://langfuse.com/docs)
 - [Langfuse Prompt Management](https://langfuse.com/docs/prompts)

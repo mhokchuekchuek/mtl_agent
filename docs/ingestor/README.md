@@ -1,25 +1,53 @@
-# Ingestor
+# **⚙️ Ingestor**
 
 Data ingestion pipeline for processing product PDFs into vector embeddings.
 
-## Location
+
+---
+
+
+## **📑 Table of Contents**
+
+- [Location](#-location)
+- [Submodules](#-submodules)
+- [Architecture](#-architecture)
+- [Pipeline Flow](#-pipeline-flow)
+- [Configuration](#-configuration)
+- [Script](#-script)
+
+
+---
+
+
+## **📍 Location**
 
 `ingestor/`
 
-## Submodules
 
-| Submodule | Purpose | Documentation |
-|-----------|---------|---------------|
-| Extractor | LLM-based structured data extraction | [extractor/README.md](extractor/README.md) |
-| Pipeline | Orchestration of parse → extract → embed → store | [pipeline.md](pipeline.md) |
+---
 
-## Related
 
-- [Decisions](../decisions/#ingestor) - Architecture and technology decisions
-- [Future Improvements](../future_improvements/#ingestor) - Production enhancements
+## **📦 Submodules**
+
+| | |
+|:---:|:---:|
+| [🔍 **Extractor**](extractor/README.md)<br/>LLM-based structured data extraction | [🔄 **Pipeline**](pipeline.md)<br/>Orchestration of parse → extract → embed → store |
+
+
+---
+
+
+## **🔗 Related**
+
+- [Decisions](../decisions/README.md) - Architecture and technology decisions
+- [Future Improvements](../future_improvements/ingestion/workflow_orchestrator.md) - Production enhancements
 - [Why Langfuse](../decisions/why_langfuse.md) - Observability and prompt management
 
-## Architecture
+
+---
+
+
+## **🏗️ Architecture**
 
 ```text
 ingestor/
@@ -31,33 +59,72 @@ ingestor/
         └── main.py
 ```
 
-## Pipeline Flow
+
+---
+
+
+## **🔄 Pipeline Flow**
+
+```mermaid
+flowchart LR
+    subgraph Input
+        PDF[PDF Files]
+    end
+
+    subgraph Parse
+        Parser[PDF Parser<br/>PyPDF2/Docling]
+    end
+
+    subgraph Extract
+        LLM[LLM Extractor<br/>gpt-4o-mini]
+        Prompt[Langfuse Prompt<br/>ingestor_extract_product]
+    end
+
+    subgraph Embed
+        Embedder[Embedding Model<br/>text-embedding-3-small]
+    end
+
+    subgraph Store
+        Qdrant[(Qdrant<br/>Vector DB)]
+    end
+
+    PDF --> Parser
+    Parser -->|markdown/text| LLM
+    Prompt -.->|inject| LLM
+    LLM -->|structured JSON| Embedder
+    Embedder -->|vectors| Qdrant
+```
 
 | Stage | Description | Details |
 |-------|-------------|---------|
-| Parse | Turn PDF to markdown/text format | |
+| Parse | Turn PDF to markdown/text format | PyPDF2 or Docling |
 | Extract | Extract structured product data via LLM | [how_it_works.md](extractor/how_it_works.md) |
-| Embed | Generate vector embeddings from content | |
-| Store | Save embeddings and metadata to Qdrant | |
+| Embed | Generate vector embeddings from content | text-embedding-3-small |
+| Store | Save embeddings and metadata to Qdrant | With product metadata |
 
-<details>
-<summary>View Pipeline Diagram</summary>
 
-![Ingestor Pipeline](../images/ingestor/pipeline.png)
+---
 
-</details>
 
-## Output
+## **📤 Output**
 
 Data stored in Qdrant with payload containing `product_id`, `product_name`, `source_file`, and `text` (combined description + attributes for semantic search).
 
-![Ingestor Output](../assets/ingestor_output.png)
 
-## Dependencies
+---
 
-- **Langfuse**: Prompts are retrieved from Langfuse at runtime. Ensure the `ingestor_extract_product` prompt is uploaded before running ingestion. See [Prompts Documentation](../prompts/README.md).
 
-## Configuration
+## **🔌 Dependencies**
+
+> ⚠️ **Important:** Langfuse prompts must be uploaded before running ingestion.
+
+Prompts are retrieved from Langfuse at runtime. Ensure the `ingestor_extract_product` prompt is uploaded. See [Prompts Documentation](../prompts/README.md).
+
+
+---
+
+
+## **⚙️ Configuration**
 
 **Location**: `configs/ingestor/settings.yaml`
 
@@ -85,7 +152,8 @@ ingestor:
       label: latest
 ```
 
-### Options
+
+### 🔧 **Options**
 
 | Key | Description | Default |
 |-----|-------------|---------|
@@ -103,13 +171,18 @@ ingestor:
 | `ingestor.prompts.extractor.name` | Langfuse prompt name | `ingestor_extract_product` |
 | `ingestor.prompts.extractor.label` | Prompt label | `latest` |
 
-### Environment Overrides
+
+### 🌍 **Environment Overrides**
 
 ```bash
 INGESTOR__PARSER=pypdf2 python scripts/ingest_pdfs.py
 ```
 
-## Script
+
+---
+
+
+## **▶️ Script**
 
 **Location**: `scripts/ingest_pdfs.py`
 

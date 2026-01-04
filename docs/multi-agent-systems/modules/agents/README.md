@@ -1,12 +1,20 @@
-# Agents
+# **🤖 Agents**
 
 LLM-powered agents for complex reasoning and orchestration.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `src/modules/agents/`
 
-## Architecture
+
+---
+
+
+## **🏗️ Architecture**
 
 ```
 src/modules/agents/
@@ -21,32 +29,36 @@ src/modules/agents/
     └── main.py          # Thai ↔ English
 ```
 
-## Documentation
 
 ---
 
-### base
 
-| File | Description |
-|------|-------------|
-| [base.md](base.md) | BaseAgent abstract class |
+## **📖 Documentation**
 
-### client
 
-| File | Description |
-|------|-------------|
-| [orchestrator.md](client/orchestrator.md) | Intent classification and routing |
-| [insight.md](client/insight.md) | BI analytics and visualization |
-| [chat_history.md](client/chat_history.md) | Customer chat history lookup |
+### 🎯 **base**
 
-### products
+| | |
+|:---:|:---:|
+| [🎯 **Base**](base.md)<br/>BaseAgent abstract class | |
 
-| File | Description |
-|------|-------------|
-| [main.md](products/main.md) | Product queries, orders, recommendations |
 
-### translation
+### 💼 **client**
 
-| File | Description |
-|------|-------------|
-| [main.md](translation/main.md) | Thai ↔ English translation |
+| | | |
+|:---:|:---:|:---:|
+| [🔀 **Orchestrator**](client/orchestrator.md)<br/>Intent classification and routing | [📊 **Insight**](client/insight.md)<br/>BI analytics and visualization | [💬 **Chat History**](client/chat_history.md)<br/>Customer chat history lookup |
+
+
+### 🛒 **products**
+
+| | |
+|:---:|:---:|
+| [🛍️ **Main**](products/main.md)<br/>Product queries, orders, recommendations | |
+
+
+### 🌐 **translation**
+
+| | |
+|:---:|:---:|
+| [🌐 **Main**](translation/main.md)<br/>Thai ↔ English translation | |

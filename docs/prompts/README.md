@@ -1,8 +1,26 @@
-# Prompt Management
+# **💬 Prompt Management**
 
 Centralized prompt management using [Langfuse](../decisions/why_langfuse.md).
 
-## Overview
+
+---
+
+
+## **📑 Table of Contents**
+
+- [Overview](#-overview)
+- [Architecture](#-architecture)
+- [Prompt File Format](#-prompt-file-format)
+- [Configuration](#-configuration)
+- [Upload Prompts](#-upload-prompts)
+- [Usage in Code](#-usage-in-code)
+- [Prompt Catalog](#-prompt-catalog)
+
+
+---
+
+
+## **📋 Overview**
 
 Prompts are stored as `.prompt` files with YAML frontmatter and uploaded to Langfuse for:
 - Version control
@@ -10,7 +28,11 @@ Prompts are stored as `.prompt` files with YAML frontmatter and uploaded to Lang
 - Centralized management
 - Runtime retrieval
 
-## Architecture
+
+---
+
+
+## **🏗️ Architecture**
 
 ```
 prompts/                          # Local .prompt files
@@ -24,7 +46,11 @@ libs/llm/prompt_manager/          # Prompt manager abstraction
 Langfuse Cloud                    # Centralized storage
 ```
 
-## Prompt File Format
+
+---
+
+
+## **📄 Prompt File Format**
 
 `.prompt` files use YAML frontmatter with template content:
 
@@ -56,7 +82,8 @@ You are a product data extractor...
 Return JSON with product_name, description, etc.
 ```
 
-### Frontmatter Fields
+
+### 📝 **Frontmatter Fields**
 
 | Field | Description |
 |-------|-------------|
@@ -66,11 +93,16 @@ Return JSON with product_name, description, etc.
 | `input_schema` | JSON Schema for input variables |
 | `output_schema` | JSON Schema for expected output |
 
-### Template Variables
+
+### 🔤 **Template Variables**
 
 Use `{{variable_name}}` for variable substitution.
 
-## Configuration
+
+---
+
+
+## **⚙️ Configuration**
 
 **File:** `configs/prompts/settings.yaml`
 
@@ -88,7 +120,8 @@ prompt_manager:
     secret_key: "@format {env[LANGFUSE_SECRET_KEY]}"
 ```
 
-### Options
+
+### 🔧 **Options**
 
 | Key | Description | Default |
 |-----|-------------|---------|
@@ -99,18 +132,26 @@ prompt_manager:
 | `prompt_manager.langfuse.public_key` | Langfuse public key | From `LANGFUSE_PUBLIC_KEY` |
 | `prompt_manager.langfuse.secret_key` | Langfuse secret key | From `LANGFUSE_SECRET_KEY` |
 
-See [Dynaconf docs](../libs/configs/dynaconf.md) for `@format` environment variable syntax.
+> 📝 **Note:** See [Dynaconf docs](../libs/configs/dynaconf.md) for `@format` environment variable syntax.
 
-## Upload Prompts to Langfuse
+
+---
+
+
+## **📤 Upload Prompts**
 
 ```bash
 # Ensure .env has Langfuse keys, then run:
 python scripts/upload_prompts.py
 ```
 
-## Usage in Code
 
-### Retrieve Prompt
+---
+
+
+## **💻 Usage in Code**
+
+### 📥 **Retrieve Prompt**
 
 ```python
 from libs.llm.prompt_manager.selector import PromptManagerSelector
@@ -125,7 +166,8 @@ prompt = pm.get_prompt("ingestor_extract_product")
 compiled = prompt.compile(text="Product description...")
 ```
 
-### Upload Prompt Programmatically
+
+### 📤 **Upload Prompt Programmatically**
 
 ```python
 from prompts.uploader import PromptUploader
@@ -134,7 +176,11 @@ uploader = PromptUploader()
 count = uploader.process()  # Uploads all .prompt files
 ```
 
-## Prompt Naming Convention
+
+---
+
+
+## **📛 Prompt Naming Convention**
 
 Prompts are named based on directory structure:
 
@@ -144,7 +190,11 @@ Prompts are named based on directory structure:
 | `prompts/supervisor/classify_query.prompt` | `supervisor_classify_query` |
 | `prompts/sql_agent/generate_sql.prompt` | `sql_agent_generate_sql` |
 
-## Environment Variables
+
+---
+
+
+## **🔐 Environment Variables**
 
 | Variable | Description |
 |----------|-------------|
@@ -152,20 +202,25 @@ Prompts are named based on directory structure:
 | `LANGFUSE_SECRET_KEY` | Langfuse secret API key |
 | `LANGFUSE_HOST` | Langfuse host (default: cloud) |
 
-## Prompt Catalog
 
-### Agents
+---
+
+
+## **📚 Prompt Catalog**
+
+### 🤖 **Agents**
 
 | Prompt | Description | Used By |
 |--------|-------------|---------|
 | [orchestrator](agents/client/orchestrator.md) | Route queries to appropriate agents | Client Chatbot |
 | [insight](agents/client/insight.md) | Generate insights from data | Client Chatbot |
 | [chat_history](agents/client/chat_history.md) | Search and summarize chat history | Client Chatbot |
-| [translation](agents/client/translation.md) | Detect language and translate | Client Chatbot |
+| [translation](agents/translation.md) | Detect language and translate | Client Chatbot |
 | [product_agent](agents/customer/product_agent.md) | Handle product queries | Customer Chatbot |
-| [translation](agents/customer/translation.md) | Detect language and translate | Customer Chatbot |
+| [translation](agents/translation.md) | Detect language and translate | Customer Chatbot |
 
-### Tools
+
+### 🔧 **Tools**
 
 | Prompt | Description | Used By |
 |--------|-------------|---------|
@@ -177,7 +232,8 @@ Prompts are named based on directory structure:
 | [place_order_sql](tools/customer/place_order_sql.md) | Generate SQL for placing orders | Place Order Tool |
 | [cancel_order_sql](tools/customer/cancel_order_sql.md) | Generate SQL for cancelling orders | Cancel Order Tool |
 
-### Evaluation
+
+### 🧪 **Evaluation**
 
 | Prompt | Description | Used By |
 |--------|-------------|---------|
@@ -187,7 +243,8 @@ Prompts are named based on directory structure:
 | [response_quality_judge](evaluation/judges/response_quality_judge.md) | Judge response quality | Response Quality Judge |
 | [sql_extractor](evaluation/extractors/sql_extractor.md) | Extract SQL from responses | SQL Extractor |
 
-### Ingestor
+
+### ⚙️ **Ingestor**
 
 | Prompt | Description | Used By |
 |--------|-------------|---------|

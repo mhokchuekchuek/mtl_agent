@@ -1,0 +1,14 @@
+flowchart LR
+    subgraph Sync Path
+        1[1. User message] --> 2[2. Process LLM]
+        2 --> 3[3. Response]
+        3 --> 4[4. Publish to queue]
+        4 --> 5[5. Return to user]
+    end
+    
+    subgraph Async Consumer
+        Q[(Message Queue)] --> W[Consumer]
+        W --> P[(Postgres)]
+    end
+    
+    4 --> Q

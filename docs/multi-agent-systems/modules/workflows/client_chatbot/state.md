@@ -69,39 +69,7 @@ steps: Annotated[list[dict], add_steps]
 
 ## State Flow
 
-```mermaid
-flowchart TD
-    subgraph Input
-        query[query]
-    end
-    
-    subgraph TranslateInput
-        user_language[user_language]
-        translated_query[translated_query]
-    end
-    
-    subgraph Orchestrator
-        intent[intent]
-    end
-    
-    subgraph Agent
-        response[response]
-        chart_html[chart_html]
-        steps[steps]
-    end
-    
-    subgraph Output
-        messages[messages]
-    end
-    
-    query --> user_language
-    query --> translated_query
-    translated_query --> intent
-    intent --> response
-    intent --> chart_html
-    intent --> steps
-    response --> messages
-```
+![State Flow](../../../../assets/diagrams/modules/client_chatbot_state_1.png)
 
 ## Example State
 

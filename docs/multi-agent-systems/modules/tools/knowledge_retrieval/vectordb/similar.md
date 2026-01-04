@@ -19,39 +19,13 @@ Find similar products based on vector similarity. Gets the embedding of a produc
 
 ## Flow Diagram
 
-```mermaid
-flowchart TD
-    START[Product ID: 10] --> GET[1. Get product from Qdrant]
-    
-    GET --> |filter: product_id=10| QDRANT[(Qdrant Vector DB)]
-    QDRANT --> |with_vectors=true| RECORD[Product Record]
-    
-    RECORD --> CHECK{Product found?}
-    CHECK -->|No| EMPTY[Return empty results]
-    
-    CHECK -->|Yes| EXTRACT[2. Extract embedding vector]
-    EXTRACT --> VECTOR[Gaming Chair Vector<br/>float 1536 dims]
-    
-    VECTOR --> SEARCH[3. Search similar vectors]
-    SEARCH --> |cosine similarity| QDRANT2[(Qdrant Vector DB)]
-    
-    QDRANT2 --> |top_k + 1 results| RAW[Raw Results]
-    
-    RAW --> FILTER[4. Exclude original product]
-    FILTER --> |remove product_id=10| FILTERED[Filtered Results]
-    
-    FILTERED --> RESULTS[5. Return similar products]
-```
+![Flow Diagram](../../../../../assets/diagrams/modules/vectordb_similar_1.png)
 
 ## How It Works
 
 ### Step 1: Retrieve Product's Embedding
 
-```mermaid
-flowchart LR
-    ID[product_id: 10] --> QDRANT[(Qdrant)]
-    QDRANT --> RECORD["{ vector: [...], metadata: {...} }"]
-```
+![Step 1: Retrieve Product's Embedding](../../../../../assets/diagrams/modules/vectordb_similar_2.png)
 
 The tool fetches the stored embedding vector for this product:
 
@@ -66,20 +40,7 @@ product_embedding = records[0]["vector"]
 
 ### Step 2: Vector Similarity Search
 
-```mermaid
-flowchart LR
-    subgraph Qdrant
-        P1["Office Chair<br/>score: 0.85"]
-        P2["Desk Chair<br/>score: 0.83"]
-        P3["Gaming Desk<br/>score: 0.79"]
-        P4["Gaming Chair<br/>score: 1.00"]
-    end
-    
-    GC["Gaming Chair<br/>Embedding"] --> |cosine similarity| P1
-    GC --> |cosine similarity| P2
-    GC --> |cosine similarity| P3
-    GC --> |cosine similarity| P4
-```
+![Step 2: Vector Similarity Search](../../../../../assets/diagrams/modules/vectordb_similar_3.png)
 
 ### Step 3: Exclude Original Product
 
@@ -132,21 +93,7 @@ Each product has:
 
 ## Comparison: Text Search vs Similar Products
 
-```mermaid
-flowchart TB
-    subgraph TextSearch["Text Search"]
-        Q1["User Query<br/>'comfortable chair'"] --> EMB1[Generate Embedding]
-        EMB1 --> SEARCH1[Vector Search]
-        SEARCH1 --> RES1[Results]
-    end
-    
-    subgraph SimilarProducts["Similar Products"]
-        Q2["Product ID: 10"] --> FETCH[Fetch Stored Embedding]
-        FETCH --> SEARCH2[Vector Search]
-        SEARCH2 --> EXCLUDE[Exclude Original]
-        EXCLUDE --> RES2[Results]
-    end
-```
+![Comparison: Text Search vs Similar Products](../../../../../assets/diagrams/modules/vectordb_similar_4.png)
 
 | Aspect | Text Search | Similar Products |
 |--------|-------------|------------------|

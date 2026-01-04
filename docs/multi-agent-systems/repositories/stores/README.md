@@ -1,12 +1,20 @@
-# Store Repositories
+# **💾 Store Repositories**
 
 Long-term conversation memory with permanent storage.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `src/repositories/stores/`
 
-## Overview
+
+---
+
+
+## **📋 Overview**
 
 Stores persist conversation data permanently. Used for:
 - Backup when checkpointer TTL expires
@@ -14,17 +22,19 @@ Stores persist conversation data permanently. Used for:
 - Audit and compliance
 - Analytics
 
-## Code Flow
 
-```mermaid
-flowchart LR
-    1[1. ChatbotRepo._save_to_store] --> 2[2. Build namespace tuple]
-    2 --> 3[3. Generate unique key]
-    3 --> 4[4. StoreRepo.put]
-    4 --> 5[5. Postgres INSERT]
-```
+---
 
-## Base Interface
+
+## **🔄 Code Flow**
+
+![Code Flow](../../../assets/diagrams/repositories/stores_README_1.png)
+
+
+---
+
+
+## **🎯 Base Interface**
 
 ```python
 class BaseStoreRepository(ABC):
@@ -51,13 +61,21 @@ class BaseStoreRepository(ABC):
         pass
 ```
 
-## Implementations
 
-| Repository | Storage | Documentation |
-|------------|---------|---------------|
-| PostgresStoreRepository | PostgreSQL | [postgres/main.md](postgres/main.md) |
+---
 
-## Namespace Structure
+
+## **📦 Implementations**
+
+| | |
+|:---:|:---:|
+| [🐘 **PostgresStoreRepository**](postgres/main.md)<br/>PostgreSQL storage | |
+
+
+---
+
+
+## **📂 Namespace Structure**
 
 Namespaces are hierarchical tuples (like folders):
 
@@ -69,7 +87,11 @@ Namespaces are hierarchical tuples (like folders):
    └── Top-level category
 ```
 
-## Key Structure
+
+---
+
+
+## **🔑 Key Structure**
 
 ```
 thread-123_20241227_143000_abc12345
@@ -80,7 +102,11 @@ thread-123_20241227_143000_abc12345
    └── Thread ID
 ```
 
-## When to Use
+
+---
+
+
+## **🎯 When to Use**
 
 | Use Case | How |
 |----------|-----|

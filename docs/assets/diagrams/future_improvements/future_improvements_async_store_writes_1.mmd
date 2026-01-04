@@ -1,0 +1,5 @@
+flowchart LR
+    1[1. User sends message] --> 2[2. Process with LLM]
+    2 --> 3[3. Generate response]
+    3 --> 4[4. SYNC write to Postgres]
+    4 --> 5[5. Return response to user]

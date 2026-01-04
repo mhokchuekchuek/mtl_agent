@@ -1,0 +1,5 @@
+flowchart LR
+    1[1. ChatbotRepo requests checkpoint] --> 2[2. CheckpointerRepo.get_checkpoint]
+    2 --> 3[3. Redis lookup by thread_id]
+    3 --> 4[4. Return messages + state]
+    4 --> 5[5. TTL refreshed on read]

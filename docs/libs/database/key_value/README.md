@@ -1,30 +1,42 @@
-# Key-Value Database
+# **🔴 Key-Value Database**
 
 Key-value store clients for caching and session management.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `libs/database/key_value/`
 
-## Providers
 
-| Provider | Description | Documentation |
-|----------|-------------|---------------|
-| Redis | Redis client wrapper | [redis.md](redis.md) |
+---
 
-## Interface
+
+## **📦 Providers**
+
+| | |
+|:---:|:---:|
+| [🔴 **Redis**](redis.md)<br/>Redis client wrapper | |
+
+
+---
+
+
+## **🔧 Interface**
 
 ```python
-from libs.database.key_value.base import BaseKeyValue
+from libs.database.key_value.base import BaseKeyValueClient
 
-class BaseKeyValue(ABC):
+class BaseKeyValueClient(ABC):
     @abstractmethod
-    def get(self, key: str) -> Optional[bytes]:
+    def get(self, key: str) -> Optional[Any]:
         """Get value by key."""
         pass
 
     @abstractmethod
-    def set(self, key: str, value: bytes, ttl: Optional[int] = None) -> None:
+    def set(self, key: str, value: Any, ttl: Optional[int] = None) -> None:
         """Set value with optional TTL."""
         pass
 
@@ -37,9 +49,18 @@ class BaseKeyValue(ABC):
     def exists(self, key: str) -> bool:
         """Check if key exists."""
         pass
+
+    @abstractmethod
+    def get_client(self) -> Any:
+        """Get underlying client instance."""
+        pass
 ```
 
-## Usage
+
+---
+
+
+## **💡 Usage**
 
 ```python
 from libs.database.key_value.selector import KeyValueSelector
@@ -56,7 +77,11 @@ client.set("key", b"value", ttl=3600)
 value = client.get("key")
 ```
 
-## Use Cases
+
+---
+
+
+## **🎯 Use Cases**
 
 | Use Case | Description |
 |----------|-------------|

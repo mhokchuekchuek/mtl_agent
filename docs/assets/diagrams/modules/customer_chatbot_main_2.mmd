@@ -1,0 +1,7 @@
+flowchart LR
+    1[1. Receive query] --> 2[2. TranslationAgent detects language]
+    2 --> 3[3. Translate to English]
+    3 --> 4[4. ProductAgent processes with ReAct]
+    4 --> 5[5. Execute tools as needed]
+    5 --> 6[6. Translate response back]
+    6 --> 7[7. Return response]

@@ -55,7 +55,7 @@ checkpoint_repo = RedisCheckpointerRepository(
 
 ## Docker
 
-See [Docker Redis](../../../docker/redis.md) for container setup.
+See [Docker Redis](../../../infrastructure/docker/redis.md) for container setup.
 
 ## Config Example
 

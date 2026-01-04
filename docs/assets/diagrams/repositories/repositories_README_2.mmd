@@ -1,0 +1,14 @@
+flowchart LR
+    subgraph Short-term
+        CP[Checkpointer]
+        R[(Redis)]
+        CP --> R
+    end
+    
+    subgraph Long-term
+        S[Store]
+        P[(PostgreSQL)]
+        S --> P
+    end
+    
+    CP --> |TTL expires| S

@@ -1,20 +1,33 @@
-# Configs Module
+# **⚙️ Configs Module**
 
 Configuration management using the provider/selector pattern.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `libs/configs/`
 
-## Providers
 
-| Provider | Description | Documentation |
-|----------|-------------|---------------|
-| `dynaconf` | Dynaconf-based config with YAML files and env var support | [dynaconf.md](dynaconf.md) |
+---
 
-## Classes
 
-### BaseConfigManager
+## **📦 Providers**
+
+| | |
+|:---:|:---:|
+| [📝 **Dynaconf**](dynaconf.md)<br/>YAML files and env var support | |
+
+
+---
+
+
+## **🔧 Classes**
+
+
+### 🎯 **BaseConfigManager**
 
 Abstract base class for configuration managers.
 
@@ -28,7 +41,8 @@ Abstract base class for configuration managers.
 | `as_dict()` | Get all config as dictionary |
 | `__getattr__(name)` | Access config as attributes |
 
-### ConfigSelector
+
+### 🔀 **ConfigSelector**
 
 Selector for configuration manager providers.
 
@@ -41,7 +55,11 @@ Selector for configuration manager providers.
 | `create(provider, **kwargs)` | Create config manager instance |
 | `list_providers()` | List available providers |
 
-## Usage
+
+---
+
+
+## **💡 Usage**
 
 ```python
 from libs.configs.selector import ConfigSelector

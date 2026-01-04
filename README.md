@@ -1,35 +1,109 @@
-# ERP Multi-Agent System
+# **🤖 ERP Multi-Agent System**
 
 AI-powered ERP assistant using LiteLLM, LangGraph, and Qdrant for product/order queries.
 
-## Features
 
-- **Natural Language Queries**: Ask questions about products, orders, inventory
-- **SQL Generation**: Convert natural language to SQL for ERP database
-- **Knowledge Base Search**: Hybrid search (semantic + BM25) on product PDFs
-- **Multi-Agent Architecture**: Specialized agents for different query types
+---
 
-## Tech Stack
+
+## **📑 Table of Contents**
+
+- [Use Cases](#-use-cases)
+- [Architecture](#-architecture)
+- [Tech Stack](#-tech-stack)
+- [Quick Start](#-quick-start)
+- [Services](#-services)
+- [API Endpoints](#-api-endpoints)
+- [Project Structure](#-project-structure)
+- [Documentation](#-documentation)
+
+
+---
+
+
+## **💼 Use Cases**
+
+> 💡 **Tip:** For detailed usage instructions, see [User Guides](docs/guides/README.md).
+
+
+### 👤 **Customer Chatbot**
+
+End customers can interact with the system to search products, place orders, view order history, and cancel orders.
+
+**Product Search** - Search products using natural language with semantic search
+
+![Product Search](docs/assets/screenshots/customer_ask_for_product.png)
+
+**Place Order** - Order products through conversational interface
+
+![Place Order](docs/assets/screenshots/customer_order.png)
+
+**View Orders** - Check order status and history
+
+![View Orders](docs/assets/screenshots/customer_view_their_order.png)
+
+**Cancel Order** - Cancel pending orders
+
+![Cancel Order](docs/assets/screenshots/customer_cancel_order.png)
+
+
+### 📊 **Client Chatbot (Internal BI)**
+
+Business analysts can query analytics data, generate charts, and search customer conversations.
+
+**Analytics with Charts** - Generate SQL queries and Plotly visualizations
+
+![Analytics](docs/assets/screenshots/client_graph.png)
+
+**Analytics without Charts** - Get data insights in table format
+
+![Analytics Table](docs/assets/screenshots/client_without_graph.png)
+
+**Customer Chat Lookup** - Search and analyze customer conversations
+
+![Chat Lookup](docs/assets/screenshots/client_lookup_customer_chat.png)
+
+
+---
+
+
+## **🏗️ Architecture**
+
+![Full Architecture](docs/assets/diagrams/misc/README_1.png)
+
+
+---
+
+
+## **🛠️ Tech Stack**
 
 | Category | Technology |
 |----------|------------|
-| LLM Router | LiteLLM (OpenAI-compatible) |
-| Agent Orchestration | LangGraph |
+| LLM Gateway | LiteLLM (OpenAI-compatible) |
+| Agent Framework | LangGraph |
 | Vector Database | Qdrant (hybrid search) |
 | API Framework | FastAPI |
+| UI Framework | Streamlit |
 | Configuration | Dynaconf |
 | Observability | Langfuse |
-| Databases | SQLite (ERP), PostgreSQL (memory store) |
+| Databases | SQLite (ERP), PostgreSQL (memory), Redis (checkpointer) |
 
-## Quick Start
 
-### Prerequisites
+---
+
+
+## **🚀 Quick Start**
+
+### 📋 **Prerequisites**
+
+> ⚠️ **Important:** Ensure you have the following installed before proceeding.
 
 - Docker & Docker Compose
 - Python 3.10+
 - OpenAI API key
 
-### Setup
+
+### ⚡ **Setup**
 
 ```bash
 # 1. Setup environment
@@ -54,25 +128,44 @@ python scripts/ingest_pdfs.py
 python scripts/upload_prompts.py
 ```
 
-> For detailed setup instructions, see [docs/setup/README.md](docs/setup/README.md).
+> 📝 **Note:** For detailed setup instructions, see [Setup Guide](docs/infrastructure/setup/README.md).
 
-## API Endpoints
+
+---
+
+
+## **🐳 Services**
+
+| Service | Port | Description |
+|---------|------|-------------|
+| API | 8000 | FastAPI backend |
+| Customer UI | 8501 | Streamlit customer chatbot |
+| Client UI | 8502 | Streamlit BI analytics |
+| LiteLLM Proxy | 4000 | LLM gateway |
+| PostgreSQL | 5432 | Long-term memory store |
+| Redis | 6379 | Short-term memory (checkpointer) |
+| Qdrant | 6333 | Vector database |
+
+
+---
+
+
+## **🔗 API Endpoints**
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
 | GET | `/health` | Health check |
-| POST | [`/api/v1/chatbot/customer/chat`](docs/api/endpoints/customer-chat.md) | Customer chatbot (product inquiries) |
-| POST | [`/api/v1/chatbot/client/chat`](docs/api/endpoints/client-chat.md) | Client chatbot (internal BI) |
+| POST | `/api/v1/chatbot/customer/chat` | Customer chatbot |
+| POST | `/api/v1/chatbot/client/chat` | Client chatbot |
 
-For full API documentation, see [docs/api/README.md](docs/api/README.md).
 
-### Example
+### 💡 **Example**
 
 ```bash
 # Customer chatbot
 curl -X POST http://localhost:8000/api/v1/chatbot/customer/chat \
   -H "Content-Type: application/json" \
-  -d '{"query": "สินค้าประกันชีวิตมีอะไรบ้าง", "thread_id": "test-123"}'
+  -d '{"query": "มีสินค้าอะไรบ้าง", "customer_id": "C001", "thread_id": "test-123"}'
 
 # Client chatbot (internal BI)
 curl -X POST http://localhost:8000/api/v1/chatbot/client/chat \
@@ -80,22 +173,37 @@ curl -X POST http://localhost:8000/api/v1/chatbot/client/chat \
   -d '{"query": "แสดงยอดขายรายเดือน", "thread_id": "test-456"}'
 ```
 
-## Project Structure
+
+---
+
+
+## **📁 Project Structure**
 
 ```
 ├── src/
-│   ├── api/            # HTTP endpoints (routes, schemas)
-│   ├── dependencies/   # DI wiring (build_*_service)
-│   ├── usecases/       # Business logic (ChatbotService)
-│   ├── repositories/   # Data access (chatbots, checkpointers, stores)
+│   ├── api/                 # FastAPI routes and schemas
+│   ├── dependencies/        # Dependency injection
+│   ├── usecases/            # Business logic
+│   ├── repositories/        # Data access layer
 │   └── modules/
-│       ├── agents/     # AI agents (Translation, Product, Client)
-│       ├── tools/      # LangChain tools (SQL, VectorDB, Visualization)
-│       └── workflows/  # LangGraph workflows
-├── libs/               # Reusable infrastructure (cross-project)
-└── configs/            # Configuration files
+│       ├── agents/          # LangGraph agents
+│       ├── tools/           # LangChain tools
+│       └── workflows/       # LangGraph workflows
+├── libs/                    # Reusable libraries
+├── configs/                 # YAML configuration files
+├── prompts/                 # Langfuse prompts
+├── evaluation/              # LLM-as-Judge evaluation
+└── data/                    # SQLite database and PDFs
 ```
 
-## Documentation
 
-Full documentation available at [docs/README.md](docs/README.md).
+---
+
+
+## **📚 Documentation**
+
+| | | |
+|:---:|:---:|:---:|
+| [🤖 **Multi-Agent Systems**](docs/multi-agent-systems/README.md)<br/>Agents, tools, workflows | [🏗️ **Architecture**](docs/architecture/README.md)<br/>Code architecture and layers | [📝 **Decisions**](docs/decisions/README.md)<br/>Architecture decision records |
+| [🔧 **Infrastructure**](docs/infrastructure/README.md)<br/>Docker services, setup guides | [📦 **Libs**](docs/libs/README.md)<br/>Reusable libraries | [💬 **Prompts**](docs/prompts/README.md)<br/>Prompt management with Langfuse |
+| [🧪 **Evaluation**](docs/evaluation/README.md)<br/>Testing and LLM-as-Judge | [🔮 **Future**](docs/future_improvements/README.md)<br/>Potential enhancements | [📖 **Full Docs**](docs/README.md)<br/>Complete documentation |

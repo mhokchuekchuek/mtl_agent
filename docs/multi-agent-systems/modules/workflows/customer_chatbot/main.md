@@ -15,25 +15,11 @@ Orchestrate agents for customer shopping queries:
 
 ## Graph Structure
 
-```mermaid
-flowchart LR
-    START((Start)) --> translate_input
-    translate_input --> product_agent
-    product_agent --> translate_output
-    translate_output --> END((End))
-```
+![Graph Structure](../../../../assets/diagrams/modules/customer_chatbot_main_1.png)
 
 ## Code Flow
 
-```mermaid
-flowchart LR
-    1[1. Receive query] --> 2[2. TranslationAgent detects language]
-    2 --> 3[3. Translate to English]
-    3 --> 4[4. ProductAgent processes with ReAct]
-    4 --> 5[5. Execute tools as needed]
-    5 --> 6[6. Translate response back]
-    6 --> 7[7. Return response]
-```
+![Code Flow](../../../../assets/diagrams/modules/customer_chatbot_main_2.png)
 
 ## Agents Reference
 

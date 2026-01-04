@@ -1,0 +1,29 @@
+flowchart TD
+    subgraph Input
+        DS[Datasets]
+        CFG[Configs]
+    end
+    
+    subgraph Evaluation
+        SVC[EvaluationService]
+        REPO[EvaluationRepository]
+        JDG[Judges]
+    end
+    
+    subgraph Output
+        RES[Results]
+        CSV[Summary CSV]
+    end
+    
+    DS --> SVC
+    CFG --> SVC
+    SVC --> REPO
+    REPO --> |Invoke API| API[Chatbot API]
+    API --> REPO
+    REPO --> JDG
+    JDG --> |LLM| LLM[LLM API]
+    LLM --> JDG
+    JDG --> REPO
+    REPO --> SVC
+    SVC --> RES
+    SVC --> CSV

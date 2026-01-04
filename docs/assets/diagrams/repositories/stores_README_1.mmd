@@ -1,0 +1,5 @@
+flowchart LR
+    1[1. ChatbotRepo._save_to_store] --> 2[2. Build namespace tuple]
+    2 --> 3[3. Generate unique key]
+    3 --> 4[4. StoreRepo.put]
+    4 --> 5[5. Postgres INSERT]

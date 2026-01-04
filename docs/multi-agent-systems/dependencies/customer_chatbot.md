@@ -14,15 +14,7 @@ def build_chatbot_service() -> ChatbotService
 
 ## Code Flow
 
-```mermaid
-flowchart LR
-    1[1. Load config] --> 2[2. Create clients]
-    2 --> 3[3. Create repositories]
-    3 --> 4[4. Create tools]
-    4 --> 5[5. Create agents]
-    5 --> 6[6. Create workflow]
-    6 --> 7[7. Create service]
-```
+![Code Flow](../../assets/diagrams/dependencies/dependencies_customer_chatbot_1.png)
 
 ## Components Created
 

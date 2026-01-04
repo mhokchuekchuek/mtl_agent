@@ -1,0 +1,6 @@
+flowchart TD
+    START[Start] --> TRANS[TranslationAgent]
+    TRANS --> PROD[ProductAgent]
+    PROD --> |SQL| SQL[(SQLite)]
+    PROD --> |Search| VDB[(Qdrant)]
+    PROD --> END[End]

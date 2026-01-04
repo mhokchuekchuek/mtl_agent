@@ -8,7 +8,7 @@ BI analytics tool for internal client users.
 
 ## Prompt
 
-[tools_client_analytics_sql](../../../../../prompts/tools/client/analytics_sql.md)
+[tools_client_analytics_sql](../../../../../../prompts/tools/client/analytics_sql.md)
 
 ## Class: ClientAnalyticsSQLTool
 
@@ -35,14 +35,7 @@ Query business data for analytics - revenue, orders, customers, products, and in
 
 ### Code Flow
 
-```mermaid
-flowchart TD
-    A[1. Get Prompt from Langfuse] --> B[2. Compile prompt with schema + question]
-    B --> C[3. LLM generates SQL]
-    C --> D[4. Validate SQL is safe]
-    D --> E[5. Execute SQL on database]
-    E --> F[6. Return results]
-```
+![Code Flow](../../../../../../assets/diagrams/modules/client_analytics_1.png)
 
 ### Usage
 

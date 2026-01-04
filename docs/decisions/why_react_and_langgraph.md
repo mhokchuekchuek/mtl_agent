@@ -1,10 +1,18 @@
-# Why ReAct Agents and LangGraph Workflows
+# **📝 Why ReAct Agents and LangGraph Workflows**
 
-## Decision
+
+---
+
+
+## **🎯 Decision**
 
 Use **LangGraph Workflows** for predictable orchestration and **ReAct Agents** for open-ended tool usage.
 
-## Context
+
+---
+
+
+## **📋 Context**
 
 We need to orchestrate multiple agents and tools. Two patterns are available:
 
@@ -13,31 +21,24 @@ We need to orchestrate multiple agents and tools. Two patterns are available:
 | LangGraph Workflow | Fixed, predictable flows | translate → route → process → translate |
 | ReAct Agent | Open-ended, dynamic tool usage | ProductAgent choosing search/stock/order tools |
 
-## Architecture
 
-```mermaid
-flowchart TD
-    subgraph LangGraph Workflow
-        W[ClientChatbotWorkflow]
-        W --> A1[TranslationAgent]
-        W --> A2[OrchestratorAgent]
-        A2 --> A3[InsightAgent]
-        A2 --> A4[ChatHistoryAgent]
-    end
-    
-    subgraph ReAct Agent
-        R[ProductAgent]
-        R --> T1[ProductSearch]
-        R --> T2[SQLTool]
-        R --> T3[PlaceOrder]
-    end
-```
+---
 
-## LangGraph Workflows
+
+## **🏗️ Architecture**
+
+![Architecture](../assets/diagrams/decisions/decisions_why_react_and_langgraph_1.png)
+
+
+---
+
+
+## **🔄 LangGraph Workflows**
 
 Use for **predictable, fixed flows** where the sequence is known at design time.
 
-### When to Use
+
+### 🎯 **When to Use**
 
 | Scenario | Why Workflow |
 |----------|--------------|
@@ -46,7 +47,8 @@ Use for **predictable, fixed flows** where the sequence is known at design time.
 | Cost-sensitive (high volume) | Predictable token usage |
 | Regulated (finance/healthcare) | Explicit logging, compliance |
 
-### Example: ClientChatbotWorkflow
+
+### 💡 **Example: ClientChatbotWorkflow**
 
 ```python
 from langgraph.graph import StateGraph, START, END
@@ -63,11 +65,16 @@ workflow.add_edge("insight", "translate_output")
 workflow.add_edge("translate_output", END)
 ```
 
-## ReAct Agents
+
+---
+
+
+## **🤖 ReAct Agents**
 
 Use for **open-ended queries** where the LLM needs to discover which tools to use.
 
-### When to Use
+
+### 🎯 **When to Use**
 
 | Scenario | Why ReAct |
 |----------|-----------|
@@ -76,7 +83,8 @@ Use for **open-ended queries** where the LLM needs to discover which tools to us
 | Unpredictable intent | User might search, compare, or order |
 | Tool composition | Combine multiple tools dynamically |
 
-### Example: ProductAgent
+
+### 💡 **Example: ProductAgent**
 
 ```python
 from langchain.agents import create_react_agent
@@ -88,20 +96,21 @@ agent = create_react_agent(
 )
 ```
 
-## Decision Framework
 
-```mermaid
-flowchart TD
-    Q1{Can you draw fixed flowchart?}
-    Q1 --> |Yes| W[Use LangGraph Workflow]
-    Q1 --> |No| Q2{Need multi-step reasoning?}
-    Q2 --> |Yes| R[Use ReAct Agent]
-    Q2 --> |No| D[Use Direct Tool Call]
-```
+---
 
-**Rule of thumb**: If you can draw the flow as a flowchart with fixed steps → use workflow. If the LLM needs to discover/adapt → use ReAct.
 
-## Trade-offs
+## **🎯 Decision Framework**
+
+![Decision Framework](../assets/diagrams/decisions/decisions_why_react_and_langgraph_2.png)
+
+> 💡 **Tip:** If you can draw the flow as a flowchart with fixed steps → use workflow. If the LLM needs to discover/adapt → use ReAct.
+
+
+---
+
+
+## **⚖️ Trade-offs**
 
 | Aspect | LangGraph Workflow | ReAct Agent |
 |--------|-------------------|-------------|
@@ -112,7 +121,11 @@ flowchart TD
 | Flexibility | Low | High |
 | Auditability | High | Medium |
 
-## Our Implementation
+
+---
+
+
+## **📦 Our Implementation**
 
 | Component | Pattern | Rationale |
 |-----------|---------|-----------|
@@ -124,9 +137,14 @@ flowchart TD
 | TranslationAgent | Simple | Single LLM call, no tools |
 | OrchestratorAgent | Simple | Single LLM call, classification only |
 
-## Anti-patterns
 
-### Don't use ReAct for fixed sequences
+---
+
+
+## **⚠️ Anti-patterns**
+
+
+### ❌ **Don't use ReAct for fixed sequences**
 
 ```python
 # ❌ BAD: ReAct for fixed ETL pipeline
@@ -136,12 +154,13 @@ agent = create_react_agent(model, [fetch_data, validate, transform, store])
 workflow = StateGraph(State)
 workflow.add_edge(START, "fetch_data")
 workflow.add_edge("fetch_data", "validate")
-workflow.add_edge("validate", "transform") 
+workflow.add_edge("validate", "transform")
 workflow.add_edge("transform", "store")
 workflow.add_edge("store", END)
 ```
 
-### Don't use Workflow for open-ended queries
+
+### ❌ **Don't use Workflow for open-ended queries**
 
 ```python
 # ❌ BAD: Hardcoded routing for product queries
@@ -155,7 +174,11 @@ workflow.add_conditional_edges("router", {
 agent = create_react_agent(model, [search, stock, compare, order])
 ```
 
-## References
+
+---
+
+
+## **🔗 References**
 
 - [LangGraph Concepts](https://langchain-ai.github.io/langgraph/concepts/)
 - [ReAct Agent from Scratch](https://langchain-ai.github.io/langgraph/how-tos/react-agent-from-scratch/)

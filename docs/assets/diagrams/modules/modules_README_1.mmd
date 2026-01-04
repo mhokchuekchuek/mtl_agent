@@ -1,0 +1,19 @@
+flowchart TD
+    subgraph Workflow
+        W[CustomerChatbotWorkflow]
+    end
+    
+    subgraph Agents
+        A1[TranslationAgent]
+        A2[ProductAgent]
+    end
+    
+    subgraph Tools
+        T1[SQL Tools]
+        T2[VectorDB Tools]
+    end
+    
+    W --> A1
+    W --> A2
+    A2 --> T1
+    A2 --> T2

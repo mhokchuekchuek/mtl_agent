@@ -8,7 +8,7 @@ Product and inventory queries for customers.
 
 ## Prompt
 
-[tools_customer_product_sql](../../../../../prompts/tools/customer/product_sql.md)
+[tools_customer_product_sql](../../../../../../prompts/tools/customer/product_sql.md)
 
 ## Overview
 
@@ -22,29 +22,7 @@ Query product information - details, prices, stock levels. **Read-only** tool re
 
 ## Flow Diagram
 
-```mermaid
-flowchart TD
-    START[Customer asks about products] --> PROMPT[1. Load prompt from Langfuse]
-    
-    PROMPT --> SCHEMA[2. Get schema for allowed tables only]
-    SCHEMA --> |Products, Inventory| COMPILE[3. Compile prompt]
-    
-    COMPILE --> LLM[4. LLM generates SQL]
-    LLM --> VALIDATE[5. Validate SQL]
-    
-    VALIDATE --> CHECK_TABLES{Tables allowed?}
-    CHECK_TABLES --> |No| REJECT[Reject: Forbidden table access]
-    
-    CHECK_TABLES --> |Yes| CHECK_SAFE{SQL is safe?}
-    CHECK_SAFE --> |No| REJECT2[Reject: Security violation]
-    
-    CHECK_SAFE --> |Yes| EXECUTE[6. Execute SQL]
-    EXECUTE --> |Query| PROD_TBL[(Products)]
-    EXECUTE --> |Query| INV_TBL[(Inventory)]
-    
-    PROD_TBL --> RESULTS[7. Return results]
-    INV_TBL --> RESULTS
-```
+![Flow Diagram](../../../../../../assets/diagrams/modules/customer_product_1.png)
 
 ## Database Access
 
@@ -65,14 +43,7 @@ flowchart TD
 
 ### Security Validation
 
-```mermaid
-flowchart LR
-    SQL[Generated SQL] --> V1{Contains forbidden table?}
-    V1 --> |Yes| FAIL[Reject]
-    V1 --> |No| V2{Has dangerous keywords?}
-    V2 --> |Yes| FAIL
-    V2 --> |No| PASS[Execute]
-```
+![Security Validation](../../../../../../assets/diagrams/modules/customer_product_2.png)
 
 Blocked patterns:
 - `DROP`, `DELETE`, `UPDATE`, `INSERT` (write operations)

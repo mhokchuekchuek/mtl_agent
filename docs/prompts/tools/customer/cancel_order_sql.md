@@ -42,18 +42,7 @@ Generate SQL statements to:
 
 ## Flow
 
-```mermaid
-flowchart TD
-    A[1. check_order] --> B{Belongs to customer?}
-    B -->|No| ERR1[Return error]
-    B -->|Yes| C[2. check_status]
-    C --> D{Already cancelled?}
-    D -->|Yes| ERR2[Return error]
-    D -->|No| E[3. get_order_details]
-    E --> F[4. update_status]
-    F --> G[5. restore_inventory]
-    G --> OK[Cancellation complete]
-```
+![Flow](../../../assets/diagrams/prompts/customer_cancel_order_sql_1.png)
 
 ## Key Rules
 

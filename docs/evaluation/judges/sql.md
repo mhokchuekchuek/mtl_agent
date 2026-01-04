@@ -1,15 +1,23 @@
-# SQL Judge
+# **🗄️ SQL Judge**
 
 Evaluates SQL query correctness.
 
-## Expected Field
+
+---
+
+
+## **📋 Expected Field**
 
 ```yaml
 expected_output:
   sql: "SELECT * FROM products WHERE category = 'Electronics'"
 ```
 
-## Scoring
+
+---
+
+
+## **📊 Scoring**
 
 | Sub-score | Weight | Description |
 |-----------|--------|-------------|
@@ -18,29 +26,19 @@ expected_output:
 
 **Pass threshold**: 0.7
 
-## Flow
 
-```mermaid
-flowchart TD
-    subgraph Extract
-        STEPS[Agent Steps] --> EXT[LLM Extractor]
-        EXT --> OPS[SQL Operations + Results]
-    end
-    
-    subgraph Execute
-        EXPSQL[Expected SQL] --> EXEC[Execute]
-        EXEC --> EXPRES[Expected Results]
-    end
-    
-    subgraph Judge
-        OPS --> LLM[LLM Judge]
-        EXPSQL --> LLM
-        EXPRES --> LLM
-        LLM --> SCORE[Score]
-    end
-```
+---
 
-## Negative Case
+
+## **🔄 Flow**
+
+![Flow](../../assets/diagrams/evaluation/judges_sql_1.png)
+
+
+---
+
+
+## **❌ Negative Case**
 
 ```yaml
 expected_output:
@@ -50,12 +48,20 @@ expected_output:
 - Pass: No SQL operations found
 - Fail: SQL was generated
 
-## Prompt
+
+---
+
+
+## **📝 Prompt**
 
 - [sql_judge.md](../../prompts/evaluation/judges/sql_judge.md) - Judge SQL correctness
 - [sql_extractor.md](../../prompts/evaluation/extractors/sql_extractor.md) - Extract SQL from steps
 
-## References
+
+---
+
+
+## **🔗 References**
 
 - [SQLJudge](../../../evaluation/judges/sql/main.py)
 - [Decision: LLM-as-Judge](../../decisions/why_llm_as_judge.md)

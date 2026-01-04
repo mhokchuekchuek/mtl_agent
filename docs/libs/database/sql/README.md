@@ -1,20 +1,34 @@
-# SQL Database
+# **🔷 SQL Database**
 
 SQL database implementations using the provider/selector pattern.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `libs/database/sql/`
 
-## Providers
 
-| Provider | Description | Documentation |
-|----------|-------------|---------------|
-| `sqlite` | SQLite database | [sqlite.md](sqlite.md) |
+---
 
-## Classes
 
-### BaseSQLDatabase
+## **📦 Providers**
+
+| Provider | Description | Documentation | Registered |
+|----------|-------------|---------------|------------|
+| `sqlite` | SQLite database | [sqlite.md](sqlite.md) | Yes |
+| `postgres` | PostgreSQL database | [postgres.md](postgres.md) | No (use directly) |
+
+
+---
+
+
+## **🔧 Classes**
+
+
+### 🎯 **BaseSQLDatabase**
 
 Abstract base class for SQL databases.
 
@@ -28,8 +42,10 @@ Abstract base class for SQL databases.
 | `query(query, params)` | Execute read queries (SELECT) |
 | `get_tables()` | List all table names |
 | `get_schema(table_name)` | Get column info for a table |
+| `get_db_type()` | Get database type identifier (e.g., "sqlite", "postgresql") |
 
-### SQLSelector
+
+### 🔀 **SQLSelector**
 
 Selector for SQL database providers.
 
@@ -42,7 +58,11 @@ Selector for SQL database providers.
 | `create(provider, **kwargs)` | Create SQL database instance |
 | `list_providers()` | List available providers |
 
-## Usage
+
+---
+
+
+## **💡 Usage**
 
 ```python
 from libs.database.sql.selector import SQLSelector

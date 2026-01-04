@@ -1,0 +1,53 @@
+flowchart TB
+    subgraph Input["Context Input"]
+        Q[User Query]
+        H[Message History]
+        T[Tool Results]
+    end
+
+    subgraph Strategies["4 Context Engineering Strategies"]
+        subgraph Write["1. WRITE"]
+            W1[Scratchpad]
+            W2[Long-term Memory]
+        end
+
+        subgraph Select["2. SELECT"]
+            S1[Semantic Search]
+            S2[Tool RAG]
+            S3[Relevant History]
+        end
+
+        subgraph Compress["3. COMPRESS"]
+            C1[Summarization]
+            C2[Output Truncation]
+            C3[Token Pruning]
+        end
+
+        subgraph Isolate["4. ISOLATE"]
+            I1[Subagent Context]
+            I2[State Schema]
+            I3[Parallel Execution]
+        end
+    end
+
+    subgraph LLM["LLM Context Window"]
+        CW[Optimized Context]
+    end
+
+    subgraph Output["Agent Output"]
+        R[Response]
+    end
+
+    Q --> Select
+    H --> Select
+    H --> Compress
+    T --> Write
+    T --> Compress
+
+    Select --> CW
+    Compress --> CW
+    Write -.->|retrieve| CW
+    Isolate --> CW
+
+    CW --> R
+    R -.->|save| Write

@@ -1,9 +1,0 @@
-flowchart TB
-    A["User Query"] --> B["translate_input"]
-    B --> C["product_agent"]
-    C --> D["translate_output"]
-    D --> E["Response"]
-
-    B -.- B1["TranslationAgent<br/>detect + translate to English"]
-    C -.- C1["ProductAgent<br/>ReAct with tools"]
-    D -.- D1["TranslationAgent<br/>translate to user language"]

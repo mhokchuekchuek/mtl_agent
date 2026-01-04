@@ -1,0 +1,23 @@
+flowchart TD
+    subgraph CLI
+        M[main.py]
+    end
+    
+    subgraph Commands
+        API[api]
+        CUI[customer_ui]
+        CLUI[client_ui]
+    end
+    
+    subgraph Services
+        FA[FastAPI Server]
+        ST1[Streamlit Customer]
+        ST2[Streamlit Client]
+    end
+    
+    M --> API
+    M --> CUI
+    M --> CLUI
+    API --> FA
+    CUI --> ST1
+    CLUI --> ST2

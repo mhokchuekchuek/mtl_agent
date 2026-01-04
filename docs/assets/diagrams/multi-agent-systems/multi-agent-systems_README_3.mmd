@@ -1,0 +1,7 @@
+flowchart LR
+    Input --> Translation
+    Translation --> Orchestrator
+    Orchestrator --> |CHAT_HISTORY| ChatHistoryAgent
+    Orchestrator --> |INSIGHT| InsightAgent
+    ChatHistoryAgent --> Output
+    InsightAgent --> Output

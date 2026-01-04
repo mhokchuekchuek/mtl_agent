@@ -1,24 +1,32 @@
-# Visualization Tools
+# **📊 Visualization Tools**
 
 Plotly chart generation tools using LLM-generated code.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `src/modules/tools/visualization/`
 
-## Architecture
+
+---
+
+
+## **🏗️ Architecture**
 
 ```
 src/modules/tools/visualization/
 └── main.py      # VisualizationTool - create Plotly charts
 ```
 
-## Documentation
 
 ---
 
-### main
 
-| File | Description |
-|------|-------------|
-| [main.md](main.md) | Create Plotly visualizations from data |
+## **📖 Documentation**
+
+| | |
+|:---:|:---:|
+| [📊 **Main**](main.md)<br/>Create Plotly visualizations from data | |

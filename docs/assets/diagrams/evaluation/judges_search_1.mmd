@@ -1,0 +1,5 @@
+flowchart TD
+    STEPS[Agent Steps] --> EXT[Extract search tool calls]
+    EXT --> LLM[LLM Judge]
+    EXPECT[Expected Results] --> LLM
+    LLM --> SCORE[Score]

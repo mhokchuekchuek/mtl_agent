@@ -8,12 +8,7 @@ Client chatbot endpoint for internal BI queries.
 
 ## Code Flow
 
-```mermaid
-flowchart LR
-    1[1. Receive request] --> 2[2. Get service from app.state]
-    2 --> 3[3. Call service.chat]
-    3 --> 4[4. Return response + intent + chart]
-```
+![Code Flow](../../assets/diagrams/api/api_client_chat_1.png)
 
 ## Request Schema
 

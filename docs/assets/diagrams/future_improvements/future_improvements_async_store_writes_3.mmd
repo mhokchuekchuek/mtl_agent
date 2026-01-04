@@ -1,0 +1,14 @@
+flowchart LR
+    subgraph Sync Path
+        1[1. User message] --> 2[2. Process LLM]
+        2 --> 3[3. Response]
+        3 --> 4[4. Redis checkpoint only]
+        4 --> 5[5. Return to user]
+    end
+    
+    subgraph Scheduled Job - Every 5 mins
+        R[(Redis)] --> J[Orchestrator]
+        J --> |Check TTL| D{TTL < 10 min?}
+        D --> |Yes| P[(Postgres)]
+        D --> |No| Skip[Skip]
+    end

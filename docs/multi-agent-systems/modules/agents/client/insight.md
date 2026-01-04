@@ -44,19 +44,7 @@ Analyze business data using SQL queries and create visualizations. Uses ReAct pa
 
 ### Code Flow
 
-```mermaid
-flowchart TD
-    A[1. Get Prompt from Langfuse] --> B[2. Build ReAct agent with tools]
-    B --> C[3. Build messages with history]
-    C --> D[4. LLM decides action]
-    D --> E{Need SQL data?}
-    E -->|Yes| F[Call SQLTool]
-    F --> G{Need visualization?}
-    E -->|No| G
-    G -->|Yes| H[Call VisualizationTool]
-    H --> I[Return response + chart]
-    G -->|No| J[Return response only]
-```
+![Code Flow](../../../../assets/diagrams/modules/client_insight_1.png)
 
 ### Example Flows
 

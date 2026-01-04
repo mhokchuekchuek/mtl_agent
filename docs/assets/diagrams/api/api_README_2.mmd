@@ -1,0 +1,5 @@
+flowchart LR
+    1[1. Load settings] --> 2[2. Create FastAPI app]
+    2 --> 3[3. Lifespan: init services]
+    3 --> 4[4. Store in app.state]
+    4 --> 5[5. Ready to serve]

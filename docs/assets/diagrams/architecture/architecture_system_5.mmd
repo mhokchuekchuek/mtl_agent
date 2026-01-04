@@ -1,0 +1,10 @@
+flowchart TD
+    START[Start] --> TRANS[TranslationAgent]
+    TRANS --> ORCH[OrchestratorAgent]
+    ORCH --> |CHAT_HISTORY| CH[ChatHistoryAgent]
+    ORCH --> |INSIGHT| INS[InsightAgent]
+    CH --> |SQL| SQL[(SQLite)]
+    INS --> |SQL| SQL
+    INS --> |Chart| VIZ[Visualization]
+    CH --> END[End]
+    INS --> END

@@ -1,15 +1,23 @@
-# Search Judge
+# **🔍 Search Judge**
 
 Evaluates vector search quality.
 
-## Expected Field
+
+---
+
+
+## **📋 Expected Field**
 
 ```yaml
 expected_output:
   search_results: ["Wireless Bluetooth Headphones", "Noise Cancelling Headphones"]
 ```
 
-## Scoring
+
+---
+
+
+## **📊 Scoring**
 
 | Sub-score | Weight | Description |
 |-----------|--------|-------------|
@@ -18,17 +26,19 @@ expected_output:
 
 **Pass threshold**: 0.6
 
-## Flow
 
-```mermaid
-flowchart TD
-    STEPS[Agent Steps] --> EXT[Extract search tool calls]
-    EXT --> LLM[LLM Judge]
-    EXPECT[Expected Results] --> LLM
-    LLM --> SCORE[Score]
-```
+---
 
-## Negative Cases
+
+## **🔄 Flow**
+
+![Flow](../../assets/diagrams/evaluation/judges_search_1.png)
+
+
+---
+
+
+## **❌ Negative Cases**
 
 ```yaml
 # Should not search
@@ -40,16 +50,28 @@ expected_output:
   search_results: []
 ```
 
-## Tool Names
+
+---
+
+
+## **🔧 Tool Names**
 
 Extracts from these tool calls:
 - `product_search`
 - `similar_products`
 
-## Prompt
+
+---
+
+
+## **📝 Prompt**
 
 [search_judge.md](../../prompts/evaluation/judges/search_judge.md)
 
-## References
+
+---
+
+
+## **🔗 References**
 
 - [SearchJudge](../../../evaluation/judges/search/main.py)

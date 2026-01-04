@@ -1,0 +1,6 @@
+flowchart TD
+    A[1. Get Prompt from Langfuse] --> B[2. Compile prompt with schema + question]
+    B --> C[3. LLM generates SQL]
+    C --> D[4. Validate SQL is safe]
+    D --> E[5. Execute SQL on database]
+    E --> F[6. Return results]

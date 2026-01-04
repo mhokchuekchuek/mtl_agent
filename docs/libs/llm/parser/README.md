@@ -1,21 +1,33 @@
-# Parser
+# **📄 Parser**
 
 PDF parsing providers using the provider/selector pattern.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `libs/llm/parser/`
 
-## Providers
 
-| Provider | Description | Documentation |
-|----------|-------------|---------------|
-| `pypdf2` | Plain text extraction, fast and lightweight | [pypdf2.md](pypdf2.md) |
-| `docling` | Markdown output with layout analysis | [docling.md](docling.md) |
+---
 
-## Classes
 
-### BasePDFParser
+## **📦 Providers**
+
+| | |
+|:---:|:---:|
+| [📝 **PyPDF2**](pypdf2.md)<br/>Plain text extraction, fast and lightweight | [📋 **Docling**](docling.md)<br/>Markdown output with layout analysis |
+
+
+---
+
+
+## **🔧 Classes**
+
+
+### 🎯 **BasePDFParser**
 
 Abstract base class for PDF parsers.
 
@@ -28,7 +40,8 @@ Abstract base class for PDF parsers.
 | `parse(pdf_path, **kwargs)` | Parse PDF and return text, metadata, and pages |
 | `parse_pages(pdf_path, **kwargs)` | Parse PDF and return content organized by page |
 
-### ParserSelector
+
+### 🔀 **ParserSelector**
 
 Selector for PDF parser providers.
 

@@ -1,14 +1,19 @@
-# Evaluation Examples
+# **💡 Evaluation Examples**
 
 Real examples from evaluation runs showing input, output, and judge results.
 
-## Single-Turn Example
+
+---
+
+
+## **🔹 Single-Turn Example**
 
 **Test ID:** `search_gaming`
 
 A simple one-question test for product search.
 
-### Test Case
+
+### 📄 **Test Case**
 
 ```yaml
 test_id: search_gaming
@@ -21,7 +26,8 @@ expected:
     - Wireless Gaming Mouse
 ```
 
-### Chatbot Response
+
+### 🤖 **Chatbot Response**
 
 ```
 Here are some gaming accessories you might be interested in:
@@ -39,7 +45,8 @@ Here are some gaming accessories you might be interested in:
    - **Description:** High-precision wireless mouse for gaming.
 ```
 
-### Judge Results
+
+### ⚖️ **Judge Results**
 
 ```yaml
 judge_results:
@@ -58,30 +65,23 @@ judge_results:
     sub_scores:
       relevance:
         score: 1.0
-        reasoning: The search results are highly relevant to the user's query 
-                   for 'gaming accessories'. All the products listed are 
+        reasoning: The search results are highly relevant to the user's query
+                   for 'gaming accessories'. All the products listed are
                    accessories commonly associated with gaming.
       coverage:
         score: 1.0
-        reasoning: Both of the expected products, 'Gaming Headset' and 
-                   'Wireless Gaming Mouse', are found in the search results. 
+        reasoning: Both of the expected products, 'Gaming Headset' and
+                   'Wireless Gaming Mouse', are found in the search results.
                    Therefore, the coverage is complete.
 ```
 
-### Flow Diagram
 
-```mermaid
-flowchart LR
-    Q[User: I need gaming accessories] --> BOT[Customer Chatbot]
-    BOT --> SEARCH[VectorDB Search Tool]
-    SEARCH --> RESULTS[3 products found]
-    RESULTS --> RESPONSE[Formatted response]
-    
-    RESPONSE --> JUDGE[Search Judge]
-    JUDGE --> SCORE["Score: 1.0 ✓"]
-```
+### 🔄 **Flow Diagram**
 
-### Summary
+![Flow Diagram](../assets/diagrams/evaluation/evaluation_examples_1.png)
+
+
+### 📊 **Summary**
 
 | Metric | Value |
 |--------|-------|
@@ -92,15 +92,18 @@ flowchart LR
 | Relevance Score | 1.0 |
 | Coverage Score | 1.0 |
 
+
 ---
 
-## Multi-Turn Example
+
+## **🔸 Multi-Turn Example**
 
 **Test ID:** `refine_search`
 
 A conversation with follow-up questions testing context retention.
 
-### Test Case
+
+### 📄 **Test Case**
 
 ```yaml
 test_id: refine_search
@@ -120,7 +123,8 @@ turns:
       response_quality: Noise Cancelling Headphones
 ```
 
-### Turn 0: Initial Search
+
+### 0️⃣ **Turn 0: Initial Search**
 
 **User:** `I need headphones`
 
@@ -131,7 +135,7 @@ Here are some headphone options for you:
 1. **Noise Cancelling Headphones**
    - **Price**: $985
    - **Stock Availability**: 49 units available
-   - **Features**: 
+   - **Features**:
      - Active noise cancellation
      - 30-hour battery life
 
@@ -152,23 +156,24 @@ search:
   sub_scores:
     relevance:
       score: 1.0
-      reasoning: The search results are highly relevant to the user's query 
-                 for headphones. All the products listed are types of 
+      reasoning: The search results are highly relevant to the user's query
+                 for headphones. All the products listed are types of
                  headphones, which directly match the user's request.
     coverage:
       score: 1.0
-      reasoning: All the expected products ('Wireless Bluetooth Headphones', 
-                 'Noise Cancelling Headphones', 'Gaming Headset') are found 
+      reasoning: All the expected products ('Wireless Bluetooth Headphones',
+                 'Noise Cancelling Headphones', 'Gaming Headset') are found
                  in the search results.
 ```
 
-### Turn 1: Follow-up Question
+
+### 1️⃣ **Turn 1: Follow-up Question**
 
 **User:** `Which one has noise cancelling?`
 
 **Chatbot Response:**
 ```
-The **Noise Cancelling Headphones** have active noise cancellation technology. 
+The **Noise Cancelling Headphones** have active noise cancellation technology.
 Here are the details:
 
 - **Price**: $985
@@ -187,38 +192,23 @@ response_quality:
   sub_scores:
     relevance:
       score: 1.0
-      reasoning: The response directly addresses the user's question by 
-                 identifying the 'Noise Cancelling Headphones' as the 
+      reasoning: The response directly addresses the user's question by
+                 identifying the 'Noise Cancelling Headphones' as the
                  product with noise cancelling technology.
     faithfulness:
       score: 1.0
-      reasoning: The response is faithful to the information provided in 
-                 the execution steps. It accurately presents the details 
+      reasoning: The response is faithful to the information provided in
+                 the execution steps. It accurately presents the details
                  of the 'Noise Cancelling Headphones.'
 ```
 
-### Flow Diagram
 
-```mermaid
-flowchart TD
-    subgraph Turn0["Turn 0"]
-        Q0[User: I need headphones] --> BOT0[Customer Chatbot]
-        BOT0 --> SEARCH0[VectorDB Search]
-        SEARCH0 --> R0[3 headphones found]
-        R0 --> J0[Search Judge: 1.0 ✓]
-    end
-    
-    subgraph Turn1["Turn 1"]
-        Q1[User: Which one has noise cancelling?] --> BOT1[Customer Chatbot]
-        BOT1 --> |uses context from Turn 0| FILTER[Filter by feature]
-        FILTER --> R1[Noise Cancelling Headphones]
-        R1 --> J1[Response Quality Judge: 1.0 ✓]
-    end
-    
-    Turn0 --> |conversation context| Turn1
-```
+### 🔄 **Flow Diagram**
 
-### Summary
+![Flow Diagram](../assets/diagrams/evaluation/evaluation_examples_2.png)
+
+
+### 📊 **Summary**
 
 | Turn | Question | Judge | Score | Latency |
 |------|----------|-------|-------|---------|
@@ -232,9 +222,11 @@ flowchart TD
 | Total Latency | 22,569 ms |
 | Turns | 2 |
 
+
 ---
 
-## Key Differences: Single vs Multi-Turn
+
+## **📊 Key Differences: Single vs Multi-Turn**
 
 | Aspect | Single-Turn | Multi-Turn |
 |--------|-------------|------------|
@@ -244,7 +236,11 @@ flowchart TD
 | Judges | Applied once | Different judges per turn |
 | Use Case | Simple queries | Conversations with follow-ups |
 
-## Running These Tests
+
+---
+
+
+## **🚀 Running These Tests**
 
 ```bash
 # Run specific test

@@ -1,0 +1,6 @@
+flowchart LR
+    A[translate] --> B[orchestrator]
+    B --> |intent A| C[agent_a]
+    B --> |intent B| D[agent_b]
+    C --> E[translate]
+    D --> E

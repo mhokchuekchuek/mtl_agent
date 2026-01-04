@@ -8,7 +8,7 @@ Order history queries for customers.
 
 ## Prompt
 
-[tools_customer_order_sql](../../../../../prompts/tools/customer/order_sql.md)
+[tools_customer_order_sql](../../../../../../prompts/tools/customer/order_sql.md)
 
 ## Overview
 
@@ -22,34 +22,7 @@ Query customer's own order history - order status, purchase history. **Read-only
 
 ## Flow Diagram
 
-```mermaid
-flowchart TD
-    START[Customer asks about orders] --> CHECK_ID{customer_id set?}
-    CHECK_ID --> |No| ERROR[Error: Customer ID not set]
-    
-    CHECK_ID --> |Yes| PROMPT[1. Load prompt from Langfuse]
-    PROMPT --> SCHEMA[2. Get schema for allowed tables]
-    SCHEMA --> |Orders, OrderDetails, Products| COMPILE[3. Compile prompt with customer_id]
-    
-    COMPILE --> LLM[4. LLM generates SQL with customer_id filter]
-    LLM --> VALIDATE[5. Validate SQL]
-    
-    VALIDATE --> CHECK_TABLES{Tables allowed?}
-    CHECK_TABLES --> |No| REJECT[Reject: Forbidden table]
-    
-    CHECK_TABLES --> |Yes| CHECK_FILTER{Has customer_id filter?}
-    CHECK_FILTER --> |No| REJECT2[Reject: Missing customer filter]
-    
-    CHECK_FILTER --> |Yes| CHECK_SAFE{SQL is safe?}
-    CHECK_SAFE --> |No| REJECT3[Reject: Security violation]
-    
-    CHECK_SAFE --> |Yes| EXECUTE[6. Execute SQL]
-    EXECUTE --> |Query| ORDERS_TBL[(Orders)]
-    EXECUTE --> |Query| DETAILS_TBL[(OrderDetails)]
-    
-    ORDERS_TBL --> RESULTS[7. Return results]
-    DETAILS_TBL --> RESULTS
-```
+![Flow Diagram](../../../../../../assets/diagrams/modules/customer_order_1.png)
 
 ## Database Access
 
@@ -74,16 +47,7 @@ This prevents customers from seeing other customers' orders.
 
 ### Security Validation
 
-```mermaid
-flowchart LR
-    SQL[Generated SQL] --> V1{Has customer_id filter?}
-    V1 --> |No| FAIL[Reject: Missing filter]
-    V1 --> |Yes| V2{Allowed tables only?}
-    V2 --> |No| FAIL
-    V2 --> |Yes| V3{Read-only?}
-    V3 --> |No| FAIL
-    V3 --> |Yes| PASS[Execute]
-```
+![Security Validation](../../../../../../assets/diagrams/modules/customer_order_2.png)
 
 ## Example
 

@@ -1,21 +1,33 @@
-# LLM Client
+# **🔗 LLM Client**
 
 LLM client implementations using the provider/selector pattern.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `libs/llm/client/`
 
-## Providers
 
-| Provider | Description | Documentation |
-|----------|-------------|---------------|
-| `litellm` | HTTP-based LiteLLM proxy client | [litellm.md](litellm.md) |
-| `langchain` | LangChain ChatOpenAI wrapper | [langchain.md](langchain.md) |
+---
 
-## Classes
 
-### BaseLLM
+## **📦 Providers**
+
+| | |
+|:---:|:---:|
+| [🤖 **LiteLLM**](litellm.md)<br/>HTTP-based LiteLLM proxy client | [🔗 **LangChain**](langchain.md)<br/>LangChain ChatOpenAI wrapper |
+
+
+---
+
+
+## **🔧 Classes**
+
+
+### 🎯 **BaseLLM**
 
 Abstract base class for LLM clients.
 
@@ -28,7 +40,8 @@ Abstract base class for LLM clients.
 | `generate(prompt, system_prompt, **kwargs)` | Generate text completion |
 | `embed(texts, **kwargs)` | Generate embeddings |
 
-### LLMClientSelector
+
+### 🔀 **LLMClientSelector**
 
 Selector for LLM client providers.
 

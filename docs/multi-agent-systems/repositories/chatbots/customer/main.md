@@ -12,15 +12,7 @@ Compile CustomerChatbotWorkflow with memory and provide invoke interface.
 
 ## Code Flow
 
-```mermaid
-flowchart LR
-    1[1. Receive query] --> 2[2. Get history from Redis]
-    2 --> 3[3. Build initial state]
-    3 --> 4[4. Invoke compiled graph]
-    4 --> 5[5. Save to Postgres store]
-    5 --> 6[6. Flush observability]
-    6 --> 7[7. Return result]
-```
+![Code Flow](../../../../assets/diagrams/repositories/customer_main_1.png)
 
 ## Class Definition
 
@@ -67,8 +59,8 @@ class CustomerChatbotRepository(BaseChatbotRepository):
 
 | Component | Documentation |
 |-----------|---------------|
-| CustomerChatbotWorkflow | [workflows/customer_chatbot/main.md](../../modules/workflows/customer_chatbot/main.md) |
-| ShoppingState | [workflows/customer_chatbot/state.md](../../modules/workflows/customer_chatbot/state.md) |
+| CustomerChatbotWorkflow | [workflows/customer_chatbot/main.md](../../../modules/workflows/customer_chatbot/main.md) |
+| ShoppingState | [workflows/customer_chatbot/state.md](../../../modules/workflows/customer_chatbot/state.md) |
 
 ## Usage
 

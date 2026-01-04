@@ -1,18 +1,30 @@
-# Tools
+# **🔧 Tools**
 
 LangChain tools for agent workflows.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `src/modules/tools/`
 
-## Categories
 
-| Category | Description | Documentation |
-|----------|-------------|---------------|
-| `knowledge_retrieval` | Tools for searching and retrieving information | [knowledge_retrieval/](knowledge_retrieval/) |
+---
 
-## Tool Pattern
+
+## **📦 Categories**
+
+| | |
+|:---:|:---:|
+| [🔍 **Knowledge Retrieval**](knowledge_retrieval/)<br/>Tools for searching and retrieving information | |
+
+
+---
+
+
+## **🎯 Tool Pattern**
 
 All tools inherit from LangChain's `BaseTool` class:
 
@@ -28,11 +40,11 @@ class MyTool(BaseTool):
     name: str = "my_tool"
     description: str = "Tool description for LLM"
     args_schema: Type[BaseModel] = MyToolInput
-    
+
     def __init__(self, dependency: SomeDependency, **kwargs):
         super().__init__(**kwargs)
         self.dependency = dependency
-    
+
     def _run(self, param: str) -> Any:
         """Execute the tool."""
         return self.dependency.do_something(param)

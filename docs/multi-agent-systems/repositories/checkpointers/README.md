@@ -1,29 +1,39 @@
-# Checkpointer Repositories
+# **⏱️ Checkpointer Repositories**
 
 Short-term conversation memory with TTL-based expiration.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `src/repositories/checkpointers/`
 
-## Overview
+
+---
+
+
+## **📋 Overview**
 
 Checkpointers store LangGraph state per thread. Used for:
 - Conversation continuity within a session
 - Message history for context
 - State persistence between turns
 
-## Code Flow
 
-```mermaid
-flowchart LR
-    1[1. ChatbotRepo requests checkpoint] --> 2[2. CheckpointerRepo.get_checkpoint]
-    2 --> 3[3. Redis lookup by thread_id]
-    3 --> 4[4. Return messages + state]
-    4 --> 5[5. TTL refreshed on read]
-```
+---
 
-## Base Interface
+
+## **🔄 Code Flow**
+
+![Code Flow](../../../assets/diagrams/repositories/checkpointers_README_1.png)
+
+
+---
+
+
+## **🎯 Base Interface**
 
 ```python
 class BaseCheckpointerRepository(ABC):
@@ -42,25 +52,23 @@ class BaseCheckpointerRepository(ABC):
         pass
 ```
 
-## Implementations
 
-| Repository | Storage | Documentation |
-|------------|---------|---------------|
-| RedisCheckpointerRepository | Redis | [redis/main.md](redis/main.md) |
-| MemoryCheckpointerRepository | In-memory | For testing |
+---
 
-## TTL Behavior
 
-```mermaid
-flowchart LR
-    A[User sends message] --> B{Checkpoint exists?}
-    B --> |Yes| C[Load + refresh TTL]
-    B --> |No| D[Create new]
-    C --> E[Process message]
-    D --> E
-    E --> F[Save checkpoint]
-    F --> G[TTL: 60 min]
-```
+## **📦 Implementations**
+
+| | |
+|:---:|:---:|
+| [🔴 **RedisCheckpointerRepository**](redis/main.md)<br/>Redis storage | 🧪 **MemoryCheckpointerRepository**<br/>In-memory (for testing) |
+
+
+---
+
+
+## **⏱️ TTL Behavior**
+
+![TTL Behavior](../../../assets/diagrams/repositories/checkpointers_README_2.png)
 
 | Scenario | Behavior |
 |----------|----------|

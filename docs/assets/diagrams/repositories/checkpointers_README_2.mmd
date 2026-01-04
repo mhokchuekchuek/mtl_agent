@@ -1,0 +1,8 @@
+flowchart LR
+    A[User sends message] --> B{Checkpoint exists?}
+    B --> |Yes| C[Load + refresh TTL]
+    B --> |No| D[Create new]
+    C --> E[Process message]
+    D --> E
+    E --> F[Save checkpoint]
+    F --> G[TTL: 60 min]

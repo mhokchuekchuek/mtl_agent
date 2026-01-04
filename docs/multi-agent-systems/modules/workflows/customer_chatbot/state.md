@@ -50,27 +50,7 @@ steps: Annotated[list[dict], add_steps]
 
 ## State Flow
 
-```mermaid
-flowchart TD
-    subgraph Input
-        query[query]
-        customer_id[customer_id]
-    end
-    
-    subgraph ProductAgent
-        response[response]
-        steps[steps]
-    end
-    
-    subgraph Output
-        messages[messages]
-    end
-    
-    query --> response
-    customer_id --> response
-    response --> messages
-    response --> steps
-```
+![State Flow](../../../../assets/diagrams/modules/customer_chatbot_state_1.png)
 
 ## Example State
 

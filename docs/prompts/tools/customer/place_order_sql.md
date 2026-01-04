@@ -45,17 +45,7 @@ JSON object with 6 SQL statements:
 
 ## Flow
 
-```mermaid
-flowchart TD
-    A[1. check_product] --> B[2. check_stock]
-    B --> C{Stock available?}
-    C -->|No| ERR[Return error]
-    C -->|Yes| D[3. insert_order]
-    D --> E[4. get_order_id]
-    E --> F[5. insert_details]
-    F --> G[6. update_inventory]
-    G --> OK[Order complete]
-```
+![Flow](../../../assets/diagrams/prompts/customer_place_order_sql_1.png)
 
 ## Key Rules
 

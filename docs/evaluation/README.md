@@ -1,44 +1,35 @@
-# Evaluation Framework
+# **🧪 Evaluation Framework**
 
 LLM-as-Judge evaluation framework for multi-agent chatbots.
 
-## Overview
+
+---
+
+
+## **📑 Table of Contents**
+
+- [Overview](#-overview)
+- [Quick Start](#-quick-start)
+- [Documentation](#-documentation)
+- [Judges](#-judges)
+- [Directory Structure](#-directory-structure)
+- [Design Decisions](#-design-decisions)
+
+
+---
+
+
+## **📋 Overview**
 
 Evaluates chatbot responses using multiple judges that assess different aspects of the response.
 
-```mermaid
-flowchart TD
-    subgraph Input
-        DS[Datasets]
-        CFG[Configs]
-    end
-    
-    subgraph Evaluation
-        SVC[EvaluationService]
-        REPO[EvaluationRepository]
-        JDG[Judges]
-    end
-    
-    subgraph Output
-        RES[Results]
-        CSV[Summary CSV]
-    end
-    
-    DS --> SVC
-    CFG --> SVC
-    SVC --> REPO
-    REPO --> |Invoke API| API[Chatbot API]
-    API --> REPO
-    REPO --> JDG
-    JDG --> |LLM| LLM[LLM API]
-    LLM --> JDG
-    JDG --> REPO
-    REPO --> SVC
-    SVC --> RES
-    SVC --> CSV
-```
+![Overview](../assets/diagrams/evaluation/evaluation_README_1.png)
 
-## Quick Start
+
+---
+
+
+## **🚀 Quick Start**
 
 ```bash
 # Run customer chatbot evaluation
@@ -48,18 +39,22 @@ python scripts/run_eval.py customer
 python scripts/run_eval.py client
 ```
 
-## Documentation
 
-| Topic | Description | Link |
-|-------|-------------|------|
-| Architecture | System design and flow | [architecture.md](architecture.md) |
-| Judges | Judge types and scoring | [judges/README.md](judges/README.md) |
-| Datasets | Test case format and structure | [datasets.md](datasets.md) |
-| Configs | Evaluation configuration | [configs.md](configs.md) |
-| Results | Output format and interpretation | [results.md](results.md) |
-| Examples | Real single/multi-turn examples | [examples.md](examples.md) |
+---
 
-## Judges
+
+## **📖 Documentation**
+
+| | | |
+|:---:|:---:|:---:|
+| [🏗️ **Architecture**](architecture.md)<br/>System design and flow | [⚖️ **Judges**](judges/README.md)<br/>Judge types and scoring | [📊 **Datasets**](datasets.md)<br/>Test case format |
+| [⚙️ **Configs**](configs.md)<br/>Evaluation configuration | [📈 **Results**](results.md)<br/>Output format | [💡 **Examples**](examples.md)<br/>Real test examples |
+
+
+---
+
+
+## **⚖️ Judges**
 
 | Judge | Purpose | Used By |
 |-------|---------|---------|
@@ -68,7 +63,11 @@ python scripts/run_eval.py client
 | Visualization | Chart generation quality | Client |
 | Response Quality | Response relevance and faithfulness | Both |
 
-## Directory Structure
+
+---
+
+
+## **📁 Directory Structure**
 
 ```
 evaluation/
@@ -91,7 +90,11 @@ evaluation/
     └── client.py            # Client eval factory
 ```
 
-## Design Decisions
+
+---
+
+
+## **📝 Design Decisions**
 
 | Decision | Link |
 |----------|------|

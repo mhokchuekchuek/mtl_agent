@@ -1,20 +1,33 @@
-# Prompt Manager
+# **📝 Prompt Manager**
 
 Centralized prompt management using the provider/selector pattern.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `libs/llm/prompt_manager/`
 
-## Providers
 
-| Provider | Description | Documentation |
-|----------|-------------|---------------|
-| `langfuse` | Langfuse Cloud prompts | [langfuse.md](langfuse.md) |
+---
 
-## Classes
 
-### BasePromptManager
+## **📦 Providers**
+
+| | |
+|:---:|:---:|
+| [📊 **Langfuse**](langfuse.md)<br/>Langfuse Cloud prompts | |
+
+
+---
+
+
+## **🔧 Classes**
+
+
+### 🎯 **BasePromptManager**
 
 Abstract base class for prompt managers.
 
@@ -28,7 +41,8 @@ Abstract base class for prompt managers.
 | `upload_prompt(name, prompt, config, labels)` | Upload prompt to backend |
 | `is_available()` | Check if backend is available |
 
-### PromptManagerSelector
+
+### 🔀 **PromptManagerSelector**
 
 Selector for prompt manager providers.
 

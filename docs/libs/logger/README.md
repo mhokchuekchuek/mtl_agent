@@ -1,14 +1,23 @@
-# Logger
+# **📋 Logger**
 
 Logging utilities for consistent logging across the project.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `libs/logger/logger.py`
 
-## Functions
 
-### `get_logger(name: str) -> logging.Logger`
+---
+
+
+## **🔧 Functions**
+
+
+### 📋 **get_logger(name: str) -> logging.Logger**
 
 Get a configured logger instance.
 
@@ -30,7 +39,8 @@ logger.info("Application started")
 2025-12-12 10:30:45 - module_name - INFO - Application started
 ```
 
-### `setup_logging(level: str = "INFO", format_type: Literal["json", "text"] = "text") -> None`
+
+### ⚙️ **setup_logging(level: str = "INFO", format_type: Literal["json", "text"] = "text") -> None**
 
 Configure logging for the application.
 
@@ -47,7 +57,11 @@ from libs.logger.logger import setup_logging
 setup_logging(level="DEBUG", format_type="text")
 ```
 
-## Usage
+
+---
+
+
+## **💡 Usage**
 
 ```python
 from libs.logger.logger import get_logger, setup_logging
@@ -65,7 +79,11 @@ logger.warning("Unexpected but recoverable")
 logger.error("Operation failed", exc_info=True)
 ```
 
-## Log Format
+
+---
+
+
+## **📝 Log Format**
 
 **Text format** (default):
 ```
@@ -79,7 +97,11 @@ logger.error("Operation failed", exc_info=True)
 2025-12-12 10:30:47 - src.agents.orchestrator - ERROR - Connection failed
 ```
 
-## Log Levels
+
+---
+
+
+## **📊 Log Levels**
 
 | Level | When to Use |
 |-------|-------------|

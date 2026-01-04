@@ -1,0 +1,53 @@
+flowchart TB
+    subgraph User["User Request"]
+        Q[Complex Query]
+    end
+
+    subgraph DeepAgent["Deep Client Agent"]
+        subgraph Planning["Planning Layer"]
+            WP[write_plan]
+            RP[read_plan]
+        end
+
+        subgraph Execution["Execution Layer"]
+            TASK[task tool]
+        end
+
+        subgraph Subagents["Subagents"]
+            SQL[SQL Analyst]
+            VIZ[Visualizer]
+            RES[Researcher]
+        end
+
+        subgraph Context["Context Management"]
+            SS[Scratch Space]
+            RS[Read Scratch]
+        end
+    end
+
+    subgraph Tools["Existing Tools"]
+        ASQL[AnalyticsSQLTool]
+        CSQL[ChatHistorySQLTool]
+        VTOOL[VisualizationTool]
+    end
+
+    subgraph Storage["Storage Layer"]
+        PG[(PostgreSQL Store)]
+    end
+
+    Q --> WP
+    WP --> TASK
+    TASK --> SQL
+    TASK --> VIZ
+    TASK --> RES
+
+    SQL --> ASQL
+    SQL --> CSQL
+    RES --> CSQL
+    VIZ --> VTOOL
+
+    SQL --> SS
+    RES --> SS
+    SS --> PG
+    RS --> PG
+    VIZ --> RS

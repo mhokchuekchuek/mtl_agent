@@ -1,0 +1,21 @@
+flowchart TD
+    START[Product ID: 10] --> GET[1. Get product from Qdrant]
+    
+    GET --> |filter: product_id=10| QDRANT[(Qdrant Vector DB)]
+    QDRANT --> |with_vectors=true| RECORD[Product Record]
+    
+    RECORD --> CHECK{Product found?}
+    CHECK -->|No| EMPTY[Return empty results]
+    
+    CHECK -->|Yes| EXTRACT[2. Extract embedding vector]
+    EXTRACT --> VECTOR[Gaming Chair Vector<br/>float 1536 dims]
+    
+    VECTOR --> SEARCH[3. Search similar vectors]
+    SEARCH --> |cosine similarity| QDRANT2[(Qdrant Vector DB)]
+    
+    QDRANT2 --> |top_k + 1 results| RAW[Raw Results]
+    
+    RAW --> FILTER[4. Exclude original product]
+    FILTER --> |remove product_id=10| FILTERED[Filtered Results]
+    
+    FILTERED --> RESULTS[5. Return similar products]

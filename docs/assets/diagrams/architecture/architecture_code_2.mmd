@@ -1,0 +1,9 @@
+flowchart LR
+    subgraph Repositories
+        CB[ChatbotRepository]
+        CP[CheckpointerRepository]
+        ST[StoreRepository]
+    end
+    
+    CB --> CP
+    CB --> ST
