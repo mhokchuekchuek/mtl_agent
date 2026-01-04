@@ -1,12 +1,19 @@
-# Datasets
+# **📊 Datasets**
 
 Test case format and structure.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `data/eval_datasets/`
 
-## Structure
+---
+
+
+## **📁 Structure**
 
 ```
 data/eval_datasets/
@@ -26,9 +33,13 @@ data/eval_datasets/
     └── negative/
 ```
 
-## Test Case Format
+---
 
-### Single-Turn
+
+## **📋 Test Case Format**
+
+
+### 1️⃣ **Single-Turn**
 
 ```yaml
 name: product_search
@@ -42,7 +53,7 @@ test_cases:
       search_results: ["Wireless Bluetooth Headphones", "Noise Cancelling Headphones"]
 ```
 
-### Multi-Turn
+### 🔄 **Multi-Turn**
 
 ```yaml
 name: refine_search
@@ -61,7 +72,10 @@ test_cases:
           sql: "SELECT * FROM products WHERE category = 'Electronics' AND price < 100"
 ```
 
-## Expected Fields
+---
+
+
+## **📤 Expected Fields**
 
 | Field | Judge | Example |
 |-------|-------|---------|
@@ -71,7 +85,10 @@ test_cases:
 | `chart_type` | VisualizationJudge | `"bar"` |
 | `response_quality` | ResponseQualityJudge | `"Should explain product features"` |
 
-## Negative Cases
+---
+
+
+## **❌ Negative Cases**
 
 Use to test that agent correctly refuses or skips actions:
 
@@ -93,9 +110,13 @@ expected_output:
   has_chart: false
 ```
 
-## Test Categories
+---
 
-### Customer Chatbot
+
+## **📂 Test Categories**
+
+
+### 👤 **Customer Chatbot**
 
 | Category | Description |
 |----------|-------------|
@@ -105,7 +126,7 @@ expected_output:
 | `order_history` | View past orders |
 | `negative` | Unauthorized actions |
 
-### Client Chatbot
+### 💼 **Client Chatbot**
 
 | Category | Description |
 |----------|-------------|
@@ -115,7 +136,10 @@ expected_output:
 | `customer_insights` | Customer data analysis |
 | `negative` | Write operations, unauthorized |
 
-## DatasetLoader
+---
+
+
+## **🔧 DatasetLoader**
 
 ```python
 loader = DatasetLoader()
@@ -124,7 +148,10 @@ test_cases = loader.load_dataset("data/eval_datasets/customer")
 
 Recursively loads all `.yaml` files and returns `TestCase` objects.
 
-## References
+---
+
+
+## **🔗 References**
 
 - [DatasetLoader](../../evaluation/loader.py)
 - [TestCase entity](../../evaluation/entities.py)

@@ -1,19 +1,29 @@
-# Configs
+# **⚙️ Configs**
 
 Evaluation configuration files.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `configs/evaluation/`
 
-## Files
+---
+
+
+## **📋 Files**
 
 | File | Chatbot | Documentation |
 |------|---------|---------------|
 | `customer.yaml` | Customer chatbot | [customer.md](#customer-config) |
 | `client.yaml` | Client chatbot | [client.md](#client-config) |
 
-## Config Structure
+---
+
+
+## **📋 Config Structure**
 
 ```yaml
 {chatbot}_eval:
@@ -40,29 +50,33 @@ Evaluation configuration files.
   # ... other judges
 ```
 
-## Settings
+---
 
-### API
+
+## **⚙️ Settings**
+
+
+### 🔗 **API**
 
 | Setting | Description | Default |
 |---------|-------------|---------|
 | `endpoint` | Chatbot API URL | Required |
 | `timeout` | Request timeout (seconds) | 180 |
 
-### Paths
+### 📁 **Paths**
 
 | Setting | Description |
 |---------|-------------|
 | `dataset_path` | Test cases location |
 | `results_path` | Results output location |
 
-### Thresholds
+### 📊 **Thresholds**
 
 | Setting | Description | Default |
 |---------|-------------|---------|
 | `pass_threshold` | Minimum score to pass | 0.7 |
 
-### Context
+### 📝 **Context**
 
 Chatbot-specific context passed to judges for evaluation:
 
@@ -73,7 +87,10 @@ context: |
   - Cannot access other customers' data
 ```
 
-## Judge Config
+---
+
+
+## **⚖️ Judge Config**
 
 Each judge has:
 
@@ -86,7 +103,10 @@ Each judge has:
 | `prompt.name` | Langfuse prompt name |
 | `prompt.label` | Langfuse prompt label |
 
-## Customer Config
+---
+
+
+## **👤 Customer Config**
 
 | Judge | Enabled |
 |-------|---------|
@@ -95,7 +115,7 @@ Each judge has:
 | Response Quality | Yes |
 | Visualization | No |
 
-## Client Config
+### 💼 **Client Config**
 
 | Judge | Enabled |
 |-------|---------|
@@ -104,7 +124,10 @@ Each judge has:
 | Response Quality | Yes |
 | Visualization | Yes |
 
-## Full Configs
+---
+
+
+## **📄 Full Configs**
 
 - [`configs/evaluation/customer.yaml`](../../configs/evaluation/customer.yaml)
 - [`configs/evaluation/client.yaml`](../../configs/evaluation/client.yaml)

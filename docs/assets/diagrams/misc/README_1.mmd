@@ -1,74 +1,58 @@
-flowchart TB
-    subgraph UI["User Interface"]
+flowchart LR
+    subgraph UI["UI Layer"]
         CustomerUI["Customer UI<br/>(8501)"]
         ClientUI["Client UI<br/>(8502)"]
     end
 
-    subgraph API["API Layer"]
+    subgraph API["API"]
         FastAPI["FastAPI<br/>(8000)"]
     end
 
-    subgraph MAS["Multi-Agent System"]
-        subgraph Workflows["LangGraph Workflows"]
-            CustomerWorkflow["CustomerChatbotWorkflow"]
-            ClientWorkflow["ClientChatbotWorkflow"]
-        end
-        subgraph Agents["Agents"]
-            Translation["TranslationAgent"]
-            Product["ProductAgent"]
-            Orchestrator["OrchestratorAgent"]
-            Insight["InsightAgent"]
-            ChatHistoryAgent["ChatHistoryAgent"]
-        end
-        subgraph Tools["Tools"]
-            subgraph VectorDB["VectorDB Tools"]
-                Search["ProductSearchTool"]
-                Similar["SimilarProductsTool"]
-            end
-            subgraph SQLCustomer["SQL Tools (Customer)"]
-                ProductSQL["ProductSQL"]
-                OrderSQL["OrderSQL"]
-                PlaceOrder["PlaceOrderSQL"]
-                CancelOrder["CancelOrderSQL"]
-            end
-            subgraph SQLClient["SQL Tools (Client)"]
-                Analytics["AnalyticsSQL"]
-                ChatHistory["ChatHistorySQL"]
-            end
-            Viz["VisualizationTool"]
-        end
+    subgraph Workflows["Workflows"]
+        CustomerWF["Customer<br/>Workflow"]
+        ClientWF["Client<br/>Workflow"]
     end
 
-    subgraph LLM["LLM Layer"]
-        LiteLLM["LiteLLM Proxy<br/>(4000)"]
+    subgraph Agents["Agents"]
+        Translation["Translation"]
+        Product["Product"]
+        Orchestrator["Orchestrator"]
+        Insight["Insight"]
+        ChatHistoryAgent["ChatHistory"]
+    end
+
+    subgraph Tools["Tools"]
+        VectorTools["VectorDB<br/>(Search, Similar)"]
+        CustomerSQL["Customer SQL<br/>(Product, Order,<br/>Place, Cancel)"]
+        ClientSQL["Client SQL<br/>(Analytics)"]
+        ChatHistorySQL["ChatHistorySQL"]
+        Viz["Visualization"]
+    end
+
+    subgraph LLM["LLM"]
+        LiteLLM["LiteLLM<br/>(4000)"]
         OpenAI["OpenAI"]
     end
 
-    subgraph Observability["Observability & Tracing"]
-        Langfuse["Langfuse<br/>(Prompts & Traces)"]
-    end
-
-    subgraph Memory["Memory Layer"]
-        Redis["Redis<br/>(6379)<br/>Checkpointer"]
-        Postgres["PostgreSQL<br/>(5432)<br/>Store"]
-    end
-
     subgraph Data["Data Layer"]
-        Qdrant["Qdrant<br/>(6333)<br/>Vector DB"]
+        Qdrant["Qdrant<br/>Vector DB"]
         SQLite["SQLite<br/>ERP Data"]
     end
 
-    CustomerUI --> FastAPI
-    ClientUI --> FastAPI
-    FastAPI --> Workflows
-    Workflows --> Agents
-    Agents --> Tools
-    Agents --> LiteLLM
-    Agents --> Langfuse
-    Tools --> LiteLLM
-    Tools --> Langfuse
-    LiteLLM --> OpenAI
-    Tools --> Qdrant
-    Tools --> SQLite
+    subgraph Memory["Memory Layer"]
+        Redis["Redis<br/>Short-term Memory<br/>(Checkpointer)"]
+        Postgres["PostgreSQL<br/>Long-term Memory<br/>(Store)"]
+    end
+
+    subgraph Obs["Observability"]
+        Langfuse["Langfuse"]
+    end
+
+    UI --> API --> Workflows --> Agents --> Tools
+    Agents --> LiteLLM --> OpenAI
+    VectorTools --> Qdrant
+    CustomerSQL --> SQLite
+    ClientSQL --> SQLite
     Workflows --> Redis
     Workflows --> Postgres
+    ChatHistorySQL --> Postgres

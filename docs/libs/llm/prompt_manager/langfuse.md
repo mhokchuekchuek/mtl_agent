@@ -1,18 +1,29 @@
-# Langfuse Prompt Manager
+# **📝 Langfuse Prompt Manager**
 
 Langfuse client for centralized prompt management.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `libs/llm/prompt_manager/langfuse/main.py`
 
-## Class
+---
+
+
+## **📦 Class**
 
 ### `LangfusePromptManager`
 
 Langfuse client for prompt storage and retrieval.
 
-## Parameters
+
+---
+
+
+## **📋 Parameters**
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
@@ -20,7 +31,11 @@ Langfuse client for prompt storage and retrieval.
 | `secret_key` | str | `LANGFUSE_SECRET_KEY` env | Langfuse secret key |
 | `host` | str | `https://cloud.langfuse.com` | Langfuse host URL |
 
-## Methods
+---
+
+
+## **📋 Methods**
+
 
 ### `get_prompt(name, version, label) -> Any`
 
@@ -51,7 +66,10 @@ Upload prompt to Langfuse.
 
 Check if Langfuse is available.
 
-## Usage
+---
+
+
+## **🚀 Usage**
 
 ```python
 from libs.llm.prompt_manager.selector import PromptManagerSelector
@@ -76,7 +94,10 @@ pm.upload_prompt(
 )
 ```
 
-## Environment Variables
+---
+
+
+## **🔑 Environment Variables**
 
 ```bash
 LANGFUSE_PUBLIC_KEY=pk-lf-...

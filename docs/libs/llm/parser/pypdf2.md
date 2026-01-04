@@ -1,24 +1,39 @@
-# PyPDF2 Parser
+# **📄 PyPDF2 Parser**
 
 Plain text extraction using PyPDF2 library.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `libs/llm/parser/pypdf2/main.py`
 
-## Class
+---
+
+
+## **📦 Class**
 
 ### `PDFParser`
 
 PDF parser using PyPDF2 for simple text extraction.
 
-## Parameters
+
+---
+
+
+## **📋 Parameters**
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
 | `**kwargs` | dict | - | Additional configuration (currently unused) |
 
-## Methods
+---
+
+
+## **📋 Methods**
+
 
 ### `parse(pdf_path, **kwargs) -> dict`
 
@@ -42,7 +57,10 @@ Parse PDF and return content organized by page.
 | `text` | str | Page text content |
 | `metadata` | dict | Page metadata |
 
-## Usage
+---
+
+
+## **🚀 Usage**
 
 ```python
 from libs.llm.parser.selector import ParserSelector
@@ -60,7 +78,10 @@ for page in pages:
     print(f"Page {page['page_number']}: {page['text'][:100]}...")
 ```
 
-## Notes
+---
+
+
+## **📝 Notes**
 
 - Fast and lightweight
 - Loses document structure (headings, tables, lists)

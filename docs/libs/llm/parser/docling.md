@@ -1,24 +1,39 @@
-# Docling Parser
+# **📄 Docling Parser**
 
 PDF parsing with layout analysis and markdown output.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `libs/llm/parser/docling/main.py`
 
-## Class
+---
+
+
+## **📦 Class**
 
 ### `PDFParser`
 
 PDF parser using Docling for structure-preserving extraction.
 
-## Parameters
+
+---
+
+
+## **📋 Parameters**
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
 | `**kwargs` | dict | - | Additional configuration for DocumentConverter |
 
-## Methods
+---
+
+
+## **📋 Methods**
+
 
 ### `parse(pdf_path, **kwargs) -> dict`
 
@@ -42,7 +57,10 @@ Parse PDF and return content organized by page.
 | `text` | str | Page text content (markdown format) |
 | `metadata` | dict | Page metadata |
 
-## Usage
+---
+
+
+## **🚀 Usage**
 
 ```python
 from libs.llm.parser.selector import ParserSelector
@@ -59,7 +77,10 @@ for page in pages:
     print(f"Page {page['page_number']}: {page['text'][:100]}...")
 ```
 
-## Notes
+---
+
+
+## **📝 Notes**
 
 - Preserves document structure (headings, tables, lists)
 - Outputs markdown format

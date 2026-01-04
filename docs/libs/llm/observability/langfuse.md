@@ -1,20 +1,31 @@
-# Langfuse Observability
+# **📊 Langfuse Observability**
 
 Langfuse client for LLM tracing and monitoring.
 
 **SDK Version**: Langfuse Python SDK v3 (OpenTelemetry-based)
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `libs/llm/observability/langfuse/main.py`
 
-## Class
+---
+
+
+## **📦 Class**
 
 ### `LangfuseObservability`
 
 Langfuse client for LLM observability and tracing.
 
-## Parameters
+
+---
+
+
+## **📋 Parameters**
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
@@ -23,7 +34,11 @@ Langfuse client for LLM observability and tracing.
 | `host` | str | `https://cloud.langfuse.com` | Langfuse host URL |
 | `enabled` | bool | `True` | Enable/disable observability |
 
-## Methods
+---
+
+
+## **📋 Methods**
+
 
 ### `is_available() -> bool`
 
@@ -49,7 +64,10 @@ Manually trace an LLM generation.
 
 Flush pending traces to Langfuse.
 
-## Usage
+---
+
+
+## **🚀 Usage**
 
 ```python
 from libs.llm.observability.selector import ObservabilitySelector
@@ -82,7 +100,10 @@ obs.trace_generation(
 obs.flush()
 ```
 
-## Environment Variables
+---
+
+
+## **🔑 Environment Variables**
 
 ```bash
 LANGFUSE_PUBLIC_KEY=pk-lf-...

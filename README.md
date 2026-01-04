@@ -1,6 +1,6 @@
 # **🤖 ERP Multi-Agent System**
 
-AI-powered ERP assistant using LiteLLM, LangGraph, and Qdrant for product/order queries.
+<mark>AI-powered ERP assistant</mark> using LiteLLM, LangGraph, and Qdrant for <mark>product/order queries</mark>.
 
 
 ---

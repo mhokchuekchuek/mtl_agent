@@ -1,8 +1,12 @@
-# Results Format
+# **📊 Results Format**
 
 Evaluation results are saved to `results/{chatbot}/{category}/{test_id}/`.
 
-## Directory Structure
+
+---
+
+
+## **📁 Directory Structure**
 
 ```
 results/
@@ -26,11 +30,15 @@ results/
     └── ...
 ```
 
-## results.yaml
+---
+
+
+## **📄 results.yaml**
 
 Summary file with scores and truncated output.
 
-### Single-Turn
+
+### 1️⃣ **Single-Turn**
 
 ```yaml
 test_id: search_wireless_headphones
@@ -66,7 +74,7 @@ judge_results:
         reasoning: "All expected products found"
 ```
 
-### Multi-Turn
+### 🔄 **Multi-Turn**
 
 ```yaml
 test_id: place_order_flow
@@ -104,11 +112,15 @@ turns:
         passed: true
 ```
 
-## detail.yaml
+---
+
+
+## **📋 detail.yaml**
 
 Full execution data for debugging.
 
-### Single-Turn
+
+### 1️⃣ **Single-Turn**
 
 ```yaml
 output:
@@ -133,7 +145,7 @@ output:
             results: [...]
 ```
 
-### Multi-Turn
+### 🔄 **Multi-Turn**
 
 ```yaml
 turns:
@@ -148,7 +160,10 @@ turns:
       steps: [...]
 ```
 
-## Summary CSV
+---
+
+
+## **📈 Summary CSV**
 
 `summary.csv` is generated with aggregated scores:
 
@@ -161,7 +176,10 @@ turns:
 | latency_ms | Total latency |
 | {judge}_score | Score per judge |
 
-## Score Interpretation
+---
+
+
+## **📊 Score Interpretation**
 
 | Score | Meaning |
 |-------|---------|

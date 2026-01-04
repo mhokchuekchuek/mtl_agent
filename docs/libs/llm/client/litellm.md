@@ -1,18 +1,29 @@
-# LiteLLM Client
+# **🌐 LiteLLM Client**
 
 HTTP-based client for LiteLLM proxy.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `libs/llm/client/litellm/main.py`
 
-## Class
+---
+
+
+## **📦 Class**
 
 ### `LLMClient`
 
 LiteLLM proxy client using HTTP requests.
 
-## Parameters
+
+---
+
+
+## **📋 Parameters**
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
@@ -24,7 +35,11 @@ LiteLLM proxy client using HTTP requests.
 | `api_key` | str | `dummy` | API key for proxy |
 | `timeout` | float | 120.0 | Request timeout |
 
-## Methods
+---
+
+
+## **📋 Methods**
+
 
 ### `generate(prompt, system_prompt, prompt_variables, **kwargs) -> str`
 
@@ -60,7 +75,10 @@ Generate embeddings via proxy.
 embeddings = client.embed(["text1", "text2"])
 ```
 
-## Usage
+---
+
+
+## **🚀 Usage**
 
 ```python
 from libs.llm.client.selector import LLMClientSelector

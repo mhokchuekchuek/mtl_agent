@@ -1,18 +1,29 @@
-# LangChain Client
+# **🔗 LangChain Client**
 
 LangChain ChatOpenAI wrapper for LiteLLM proxy.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `libs/llm/client/langchain/main.py`
 
-## Class
+---
+
+
+## **📦 Class**
 
 ### `LLMClient`
 
 LangChain ChatOpenAI wrapper for LiteLLM proxy.
 
-## Parameters
+
+---
+
+
+## **📋 Parameters**
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
@@ -22,7 +33,11 @@ LangChain ChatOpenAI wrapper for LiteLLM proxy.
 | `default_temperature` | float | 0.7 | Default temperature |
 | `default_max_tokens` | int | 2000 | Default max tokens |
 
-## Methods
+---
+
+
+## **📋 Methods**
+
 
 ### `get_client(model, temperature, max_tokens, extra_body, **kwargs) -> ChatOpenAI`
 
@@ -38,9 +53,13 @@ Get ChatOpenAI instance configured for LiteLLM proxy.
 
 **Returns**: Configured `ChatOpenAI` instance
 
-## Usage
+---
 
-### Standard Mode (Agents)
+
+## **🚀 Usage**
+
+
+### 🤖 **Standard Mode (Agents)**
 
 ```python
 from libs.llm.client.selector import LLMClientSelector
@@ -63,7 +82,7 @@ from langgraph.prebuilt import create_react_agent
 agent = create_react_agent(model=chat, tools=[...])
 ```
 
-### Dotprompt Mode (Templates)
+### 📝 **Dotprompt Mode (Templates)**
 
 ```python
 chat = client.get_client(
