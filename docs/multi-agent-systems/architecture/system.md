@@ -8,6 +8,8 @@ Request lifecycle from user to response.
 
 ## **🔄 Request Flow**
 
+High-level overview of how a request travels through the system.
+
 ![Request Flow](../../assets/diagrams/architecture/architecture_system_1.png)
 
 
@@ -15,6 +17,8 @@ Request lifecycle from user to response.
 
 
 ## **🚪 Entry Points**
+
+Two ways users can interact with the system.
 
 | Entry | Path | Use Case |
 |-------|------|----------|
@@ -27,6 +31,7 @@ Request lifecycle from user to response.
 
 ## **📋 Step-by-Step Flow**
 
+Detailed breakdown of each stage in the request lifecycle.
 
 ### 1️⃣ **User Request**
 
@@ -103,6 +108,8 @@ Result → API → User
 
 ## **👤 Customer Chatbot Flow**
 
+End-to-end flow for customer-facing chatbot (product search, orders).
+
 ![Customer Chatbot Flow](../../assets/diagrams/architecture/architecture_system_4.png)
 
 
@@ -110,6 +117,8 @@ Result → API → User
 
 
 ## **💼 Client Chatbot Flow**
+
+End-to-end flow for internal BI chatbot (analytics, visualizations, chat history lookup).
 
 ![Client Chatbot Flow](../../assets/diagrams/architecture/architecture_system_5.png)
 
@@ -119,6 +128,7 @@ Result → API → User
 
 ## **📊 State Schema**
 
+Data structure passed through the workflow at each stage.
 
 ### 📥 **Initial State (Input)**
 

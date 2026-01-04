@@ -21,6 +21,8 @@ Clean Architecture with Repository Pattern and Dependency Injection.
 
 ## **📊 Layer Diagram**
 
+Overview of how layers interact from UI to infrastructure.
+
 ![Layer Diagram](../../assets/diagrams/architecture/architecture_code_1.png)
 
 
@@ -28,6 +30,8 @@ Clean Architecture with Repository Pattern and Dependency Injection.
 
 
 ## **📁 Layers**
+
+Each layer has a specific responsibility following Clean Architecture principles.
 
 | Layer | Location | Responsibility |
 |-------|----------|----------------|
@@ -45,6 +49,8 @@ Clean Architecture with Repository Pattern and Dependency Injection.
 
 ## **🗃️ Repository Layer**
 
+Data access layer that abstracts storage and memory management from business logic.
+
 ![Repository Layer](../../assets/diagrams/architecture/architecture_code_2.png)
 
 | Repository | Purpose |
@@ -58,6 +64,8 @@ Clean Architecture with Repository Pattern and Dependency Injection.
 
 
 ## **🔧 Modules Layer**
+
+Core domain logic layer containing LangGraph workflows, LLM agents, and tools.
 
 ![Modules Layer](../../assets/diagrams/architecture/architecture_code_3.png)
 
@@ -73,6 +81,8 @@ Clean Architecture with Repository Pattern and Dependency Injection.
 
 ## **📚 libs/ vs repositories/**
 
+Comparison between generic infrastructure clients and domain-specific repositories.
+
 | Layer | Scope | Reusability | Example |
 |-------|-------|-------------|---------|
 | `libs/` | Generic infrastructure | Cross-project | `RedisClient`, `PostgresClient` |
@@ -84,9 +94,9 @@ Clean Architecture with Repository Pattern and Dependency Injection.
 
 ## **🔀 Selector Pattern**
 
-![Selector Pattern](../../assets/diagrams/architecture/architecture_code_4.png)
+Factory pattern that enables swapping providers (e.g., Redis vs Memory) without changing business logic.
 
-Selectors enable swapping providers without changing business logic:
+![Selector Pattern](../../assets/diagrams/architecture/architecture_code_4.png)
 
 ```python
 # libs/database/key_value/selector.py
@@ -106,6 +116,8 @@ class KeyValueSelector:
 
 
 ## **📂 File Structure**
+
+Directory layout showing the organization of source code.
 
 ```
 src/
