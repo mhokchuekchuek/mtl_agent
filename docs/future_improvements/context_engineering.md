@@ -1,17 +1,25 @@
-# Context Engineering
+# **🧠 Context Engineering**
 
 Techniques for managing LLM context windows effectively in the MTL Agent system.
 
 ![Context Engineering Strategies](../assets/diagrams/future_improvements/context_engineering.png)
 
-## What is Context Engineering?
+
+---
+
+
+## **📋 What is Context Engineering?**
 
 Context engineering is the art of filling the context window with **just the right information** at each step of an agent's trajectory. Think of it like RAM management for LLMs.
 
 > "Context engineering is becoming the most important skill an AI engineer can develop."
 > — [LangChain Blog](https://blog.langchain.com/context-engineering-for-agents/)
 
-## The 4 Strategies
+
+---
+
+
+## **🎯 The 4 Strategies**
 
 | Strategy | Action | Goal |
 |----------|--------|------|
@@ -22,11 +30,13 @@ Context engineering is the art of filling the context window with **just the rig
 
 ---
 
-## 1. Write Context
+
+## **1️⃣ Write Context**
 
 **Purpose**: Save information outside the context window for later retrieval.
 
-### Current Problem
+
+### ❌ **Current Problem**
 
 ```python
 # InsightAgent accumulates everything in messages
@@ -37,7 +47,7 @@ Results: {large_result}  # Could be 1000+ rows!
 # Context grows with each tool call
 ```
 
-### Solution: Scratchpad
+### ✅ **Solution: Scratchpad**
 
 ```python
 # src/modules/tools/context/scratchpad.py
@@ -85,7 +95,7 @@ class ReadFromScratchpad(BaseTool):
         return f"No data found for key: {key}"
 ```
 
-### Usage Pattern
+### 💡 **Usage Pattern**
 
 ```python
 # Before: Everything in messages (bad)
@@ -101,7 +111,7 @@ Agent: write_scratch(
 # Only summary in context, full data retrievable
 ```
 
-### Long-term Memory
+### 🗄️ **Long-term Memory**
 
 For cross-session persistence:
 
@@ -135,11 +145,13 @@ class LongTermMemory:
 
 ---
 
-## 2. Select Context
+
+## **2️⃣ Select Context**
 
 **Purpose**: Pull only relevant information into the context window.
 
-### Current Problem
+
+### ❌ **Current Problem**
 
 ```python
 # All history loaded, even irrelevant turns
@@ -148,7 +160,7 @@ state = {"messages": history, "query": query}
 # Agent sees everything, gets distracted
 ```
 
-### Solution: Semantic Selection
+### ✅ **Solution: Semantic Selection**
 
 ```python
 # src/modules/context/selector.py
@@ -211,7 +223,7 @@ class ContextSelector:
         return dot / (norm_a * norm_b)
 ```
 
-### Tool Selection with RAG
+### 🔧 **Tool Selection with RAG**
 
 When you have many tools, use RAG to select relevant ones:
 
@@ -246,7 +258,7 @@ class ToolSelector:
         return [self.tools[i] for i, _ in top_indices]
 ```
 
-### Usage in Repository
+### 💡 **Usage in Repository**
 
 ```python
 # src/repositories/chatbots/client/main.py
@@ -276,11 +288,13 @@ class ClientChatbotRepository:
 
 ---
 
-## 3. Compress Context
+
+## **3️⃣ Compress Context**
 
 **Purpose**: Retain only essential tokens to reduce cost and latency.
 
-### Current Problem
+
+### ❌ **Current Problem**
 
 ```python
 # Messages grow unbounded
@@ -288,7 +302,7 @@ state["messages"]  # 100+ turns = 50K+ tokens
 # Eventually exceeds context window or degrades performance
 ```
 
-### Solution: Auto-Summarization
+### ✅ **Solution: Auto-Summarization**
 
 ```python
 # src/modules/context/compressor.py
@@ -370,7 +384,7 @@ Summary:"""
         return total_chars // 4
 ```
 
-### Tool Output Compression
+### 📦 **Tool Output Compression**
 
 ```python
 # src/modules/context/output_compressor.py
@@ -440,7 +454,7 @@ Summary:
         return "\n".join(summaries) if summaries else "No numeric columns"
 ```
 
-### Integration in Workflow
+### 🔄 **Integration in Workflow**
 
 ```python
 # src/modules/workflows/client_chatbot/main.py
@@ -461,11 +475,13 @@ class ClientChatbotWorkflow(BaseWorkflow):
 
 ---
 
-## 4. Isolate Context
+
+## **4️⃣ Isolate Context**
 
 **Purpose**: Split context across agents to maintain focus.
 
-### Current Implementation (Good!)
+
+### ✅ **Current Implementation (Good!)**
 
 Your system already uses isolation via the Orchestrator:
 
@@ -476,7 +492,7 @@ OrchestratorAgent
     └── InsightAgent      # Only sees analytics tools
 ```
 
-### Enhancement: State Schema Isolation
+### 🔧 **Enhancement: State Schema Isolation**
 
 Control what each agent sees:
 
@@ -523,7 +539,7 @@ class InsightAgent(BaseAgent):
         }
 ```
 
-### Multi-Agent Parallel Execution
+### 🔀 **Multi-Agent Parallel Execution**
 
 ```python
 # src/modules/workflows/parallel_agents.py
@@ -573,7 +589,8 @@ class ParallelAgentWorkflow:
 
 ---
 
-## Context Pathologies to Avoid
+
+## **⚠️ Context Pathologies to Avoid**
 
 | Pathology | Description | Prevention |
 |-----------|-------------|------------|
@@ -582,7 +599,7 @@ class ParallelAgentWorkflow:
 | **Confusion** | Conflicting information | Timestamp and version context |
 | **Clash** | Context contradicts system prompt | Review prompts for conflicts |
 
-### Detection and Prevention
+### 🔍 **Detection and Prevention**
 
 ```python
 # src/modules/context/validator.py
@@ -620,9 +637,11 @@ class ContextValidator:
 
 ---
 
-## Implementation Phases
 
-### Phase 1: Compression (1 week)
+## **📅 Implementation Phases**
+
+
+### 1️⃣ **Phase 1: Compression (1 week)**
 **Files to create/modify:**
 - `src/modules/context/compressor.py` - ContextCompressor class
 - `src/modules/context/output_compressor.py` - ToolOutputCompressor
@@ -630,7 +649,7 @@ class ContextValidator:
 
 **Impact**: Immediate reduction in token usage
 
-### Phase 2: Scratchpad (1 week)
+### 2️⃣ **Phase 2: Scratchpad (1 week)**
 **Files to create/modify:**
 - `src/modules/tools/context/scratchpad.py` - Write/Read tools
 - `src/modules/agents/*/main.py` - Add scratchpad tools
@@ -638,7 +657,7 @@ class ContextValidator:
 
 **Impact**: Large results no longer bloat context
 
-### Phase 3: Selection (2 weeks)
+### 3️⃣ **Phase 3: Selection (2 weeks)**
 **Files to create/modify:**
 - `src/modules/context/selector.py` - ContextSelector class
 - `src/repositories/chatbots/*/main.py` - Integrate selector
@@ -646,7 +665,7 @@ class ContextValidator:
 
 **Impact**: Only relevant history in context
 
-### Phase 4: Enhanced Isolation (1 week)
+### 4️⃣ **Phase 4: Enhanced Isolation (1 week)**
 **Files to create/modify:**
 - `src/modules/workflows/*/state.py` - Isolated state fields
 - `src/modules/agents/*/main.py` - Use isolated context
@@ -656,7 +675,8 @@ class ContextValidator:
 
 ---
 
-## Metrics to Track
+
+## **📊 Metrics to Track**
 
 | Metric | How to Measure | Goal |
 |--------|----------------|------|
@@ -667,7 +687,8 @@ class ContextValidator:
 
 ---
 
-## References
+
+## **🔗 References**
 
 - [Context Engineering Blog](https://blog.langchain.com/context-engineering-for-agents/)
 - [The Rise of Context Engineering](https://blog.langchain.com/the-rise-of-context-engineering/)

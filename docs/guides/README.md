@@ -1,4 +1,4 @@
-# **📖 User Guides**
+# **📖 Guides**
 
 Quick navigation for different user types.
 

@@ -1,10 +1,14 @@
-# Deep Agents Integration Plan
+# **🤖 Deep Agents Integration Plan**
 
 Integrating [LangChain Deep Agents](https://github.com/langchain-ai/deepagents) patterns into the MTL Agent system.
 
 ![Deep Agents Architecture](../assets/diagrams/future_improvements/deep_agents_architecture.png)
 
-## Why Deep Agents?
+
+---
+
+
+## **❓ Why Deep Agents?**
 
 Current system uses simple ReAct agents that struggle with:
 - Multi-step analytics queries
@@ -13,7 +17,11 @@ Current system uses simple ReAct agents that struggle with:
 
 Deep Agents solve these with: **Planning**, **Subagents**, and **Scratch Space**.
 
-## Current vs. Deep Agents Architecture
+
+---
+
+
+## **🏗️ Current vs. Deep Agents Architecture**
 
 ```
 Current Architecture:
@@ -84,7 +92,7 @@ class PlanningTool(BaseTool):
 - Query requires aggregation + visualization
 - Query spans multiple time periods
 
-### 2. Subagent Spawning
+### 2️⃣ **Subagent Spawning**
 
 Replace fixed orchestrator routing with dynamic subagent delegation.
 
@@ -129,7 +137,7 @@ class DeepClientAgent:
 
 **Benefit**: Agent decides which subagent to spawn based on task, not fixed routing.
 
-### 3. Scratch Space (Context Management)
+### 3️⃣ **Scratch Space (Context Management)**
 
 Store intermediate results instead of accumulating in message history.
 
@@ -173,7 +181,7 @@ Agent Plan:
 4. Generate comparison chart
 ```
 
-### 4. Enhanced System Prompts
+### 4️⃣ **Enhanced System Prompts**
 
 Deep Agents use detailed prompts with explicit instructions.
 
@@ -220,30 +228,39 @@ Timezone: {timezone}
 """
 ```
 
-## Implementation Phases
 
-### Phase 1: Add Planning Tool (1 week)
+---
+
+
+## **📅 Implementation Phases**
+
+
+### 1️⃣ **Phase 1: Add Planning Tool (1 week)**
 - Create `PlanningTool` with todo list functionality
 - Integrate into existing InsightAgent
 - Test with multi-step queries
 
-### Phase 2: Add Scratch Space (1 week)
+### 2️⃣ **Phase 2: Add Scratch Space (1 week)**
 - Create `ScratchSpaceTool` using existing Store
 - Modify agents to save/read intermediate results
 - Reduce message history accumulation
 
-### Phase 3: Migrate to Deep Agents (2 weeks)
+### 3️⃣ **Phase 3: Migrate to Deep Agents (2 weeks)**
 - Install `deepagents` library
 - Create `DeepClientAgent` with subagents
 - Migrate InsightAgent logic to subagent
 - Update workflow to use deep agent
 
-### Phase 4: Enhanced Prompts (1 week)
+### 4️⃣ **Phase 4: Enhanced Prompts (1 week)**
 - Rewrite system prompts with detailed instructions
 - Add few-shot examples
 - Test and iterate
 
-## File Structure After Integration
+
+---
+
+
+## **📁 File Structure After Integration**
 
 ```
 src/modules/
@@ -266,11 +283,15 @@ src/modules/
         └── main.py              # Updated to use DeepClientAgent
 ```
 
-## Example: Before vs After
+
+---
+
+
+## **💡 Example: Before vs After**
 
 **Query**: "Show me top 5 customers by revenue in Q4, their order history, and a trend chart"
 
-### Before (Current System)
+### ❌ **Before (Current System)**
 
 ```
 1. Orchestrator → routes to InsightAgent
@@ -283,7 +304,7 @@ src/modules/
 
 **Issues**: No planning visible, context bloat, no intermediate saves
 
-### After (Deep Agents)
+### ✅ **After (Deep Agents)**
 
 ```
 1. DeepClientAgent receives query
@@ -305,7 +326,11 @@ src/modules/
 
 **Benefits**: Visible planning, context managed, parallel subagents possible
 
-## Dependencies
+
+---
+
+
+## **📦 Dependencies**
 
 ```toml
 # pyproject.toml
@@ -314,7 +339,11 @@ deepagents = "^0.1.0"
 langgraph = "^0.2.0"  # Already using
 ```
 
-## References
+
+---
+
+
+## **🔗 References**
 
 - [Deep Agents GitHub](https://github.com/langchain-ai/deepagents)
 - [LangChain Blog: Deep Agents](https://blog.langchain.com/deep-agents/)

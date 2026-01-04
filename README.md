@@ -22,7 +22,7 @@ AI-powered ERP assistant using LiteLLM, LangGraph, and Qdrant for product/order 
 
 ## **💼 Use Cases**
 
-> 💡 **Tip:** For detailed usage instructions, see [User Guides](docs/guides/README.md).
+> 💡 **Tip:** For detailed usage instructions, see [Guides](docs/guides/README.md).
 
 
 ### 👤 **Customer Chatbot**
