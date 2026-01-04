@@ -1,16 +1,28 @@
-# Product Search Tool
+# **🔍 Product Search Tool**
 
 Semantic search for products using natural language.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `src/modules/tools/knowledge_retrieval/vectordb/search.py`
 
-## Overview
+
+---
+
+
+## **📋 Overview**
 
 Search for products using semantic similarity. Useful when customer describes what they want in natural language instead of exact product names.
 
-## Input
+
+---
+
+
+## **📥 Input**
 
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
@@ -18,13 +30,22 @@ Search for products using semantic similarity. Useful when customer describes wh
 | `top_k` | int | 10 | Maximum number of results |
 | `similarity_threshold` | float | 0.5 | Minimum similarity score (0-1) |
 
-## Flow Diagram
+
+---
+
+
+## **🔄 Flow Diagram**
 
 ![Flow Diagram](../../../../../assets/diagrams/modules/vectordb_search_1.png)
 
-## How It Works
 
-### Step 1: Text to Vector
+---
+
+
+## **🔧 How It Works**
+
+
+### 1️⃣ **Text to Vector**
 
 Customer's query is converted to a vector embedding:
 
@@ -32,13 +53,15 @@ Customer's query is converted to a vector embedding:
 "wireless headphones" → [0.023, -0.156, 0.089, ...] (1536 dimensions)
 ```
 
-### Step 2: Vector Search
+
+### 2️⃣ **Vector Search**
 
 The query vector is compared against all product vectors in Qdrant:
 
 ![Step 2: Vector Search](../../../../../assets/diagrams/modules/vectordb_search_2.png)
 
-### Step 3: Similarity Scoring
+
+### 3️⃣ **Similarity Scoring**
 
 | Score | Meaning |
 |-------|---------|
@@ -47,19 +70,26 @@ The query vector is compared against all product vectors in Qdrant:
 | 0.5+ | Somewhat relevant |
 | < 0.5 | Filtered out |
 
-### Step 4: Return Results
+
+### 4️⃣ **Return Results**
 
 Results sorted by similarity score (highest first).
 
-## Database Access
 
-### Qdrant Vector Database
+---
+
+
+## **🗄️ Database Access**
+
+
+### 🔍 **Qdrant Vector Database**
 
 | Collection | Content | Purpose |
 |------------|---------|---------|
 | products | Product embeddings | Semantic search |
 
-### What's Stored in Qdrant
+
+### 📋 **What's Stored in Qdrant**
 
 Each product has:
 
@@ -71,25 +101,32 @@ Each product has:
 | source_file | string | "10_gaming_chair.pdf" |
 | text | string | Combined text (name + description + specs + features) |
 
-> **Note:** Fields like `category`, `price`, and full `description` are stored in the SQL database, not in Qdrant.
+> 📝 **Note:** Fields like `category`, `price`, and full `description` are stored in the SQL database, not in Qdrant.
 
 **Database Changes**: None (read-only search)
 
-## Example
 
-### Input
+---
+
+
+## **💡 Example**
+
+
+### 📥 **Input**
 ```
 Customer: I'm looking for wireless headphones
 ```
 
-### Step-by-Step
+
+### 🔢 **Step-by-Step**
 
 1. **Generate embedding** for "wireless headphones"
 2. **Search Qdrant** for similar product vectors
 3. **Filter** results with score >= 0.5
 4. **Return** matching products
 
-### Response
+
+### 📤 **Response**
 ```python
 {
     "query": "wireless headphones",
@@ -116,7 +153,11 @@ Customer: I'm looking for wireless headphones
 }
 ```
 
-## When to Use
+
+---
+
+
+## **💡 When to Use**
 
 | Use Case | Tool |
 |----------|------|
@@ -124,7 +165,11 @@ Customer: I'm looking for wireless headphones
 | "Show me product ID 10" | ❌ Use SQL tool (exact) |
 | "wireless speaker under $100" | ✅ Search + SQL filter |
 
-## Comparison with SQL
+
+---
+
+
+## **📊 Comparison with SQL**
 
 | Aspect | VectorDB Search | SQL Query |
 |--------|-----------------|-----------|
@@ -133,13 +178,21 @@ Customer: I'm looking for wireless headphones
 | "something for work from home" | ✅ Understands intent | ❌ Cannot interpret |
 | Speed | Fast (pre-indexed) | Fast |
 
-## Error Cases
+
+---
+
+
+## **❌ Error Cases**
 
 | Error | Cause | Response |
 |-------|-------|----------|
 | Empty results | No products match query | `{"results": []}` |
 | Embedding failed | LLM API error | `{"error": "..."}` |
 
-## References
+
+---
+
+
+## **🔗 References**
 
 - [ProductSearchTool](../../../../../../src/modules/tools/knowledge_retrieval/vectordb/search.py)

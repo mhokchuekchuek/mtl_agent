@@ -1,33 +1,60 @@
-# Cancel Order SQL Tool
+# **❌ Cancel Order SQL Tool**
 
 Cancel customer orders and restore inventory.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `src/modules/tools/knowledge_retrieval/sql/customer/cancel_order.py`
 
-## Prompt
+
+---
+
+
+## **📜 Prompt**
 
 [tools_customer_cancel_order_sql](../../../../../../prompts/tools/customer/cancel_order_sql.md)
 
-## Overview
+
+---
+
+
+## **📋 Overview**
 
 This tool handles order cancellation. Requires explicit customer confirmation before updating database. Automatically restores inventory when order is cancelled.
 
-## Input
+> ⚠️ **Important:** Requires explicit customer confirmation before updating database.
+
+
+---
+
+
+## **📥 Input**
 
 | Field | Type | Description |
 |-------|------|-------------|
 | `order_id` | int | Order ID to cancel |
 | `confirmed` | bool | `true` after customer confirms |
 
-## Flow Diagram
+
+---
+
+
+## **🔄 Flow Diagram**
 
 ![Flow Diagram](../../../../../../assets/diagrams/modules/customer_cancel_order_1.png)
 
-## Database Changes
 
-### Tables Involved
+---
+
+
+## **🗄️ Database Changes**
+
+
+### 📋 **Tables Involved**
 
 | Table | Operation | Description |
 |-------|-----------|-------------|
@@ -37,9 +64,11 @@ This tool handles order cancellation. Requires explicit customer confirmation be
 | Orders | UPDATE | Set status to 'cancelled' |
 | Inventory | UPDATE | Add back the cancelled quantities |
 
-### Step-by-Step Database Operations
 
-#### Step 1: Check Order Ownership (SELECT)
+### 🔢 **Step-by-Step Database Operations**
+
+
+#### 1️⃣ **Check Order Ownership (SELECT)**
 ```sql
 SELECT order_id, customer_id, order_date, total_amount 
 FROM Orders 
@@ -48,7 +77,8 @@ WHERE order_id = {order_id} AND customer_id = {customer_id}
 - **Purpose**: Verify order exists AND belongs to this customer
 - **Fail**: Returns error if order not found or belongs to different customer
 
-#### Step 2: Check Order Status (SELECT)
+
+#### 2️⃣ **Check Order Status (SELECT)**
 ```sql
 SELECT status 
 FROM Orders 
@@ -57,7 +87,8 @@ WHERE order_id = {order_id}
 - **Purpose**: Verify order is not already cancelled
 - **Fail**: Returns error if status = 'cancelled'
 
-#### Step 3: Get Order Details (SELECT)
+
+#### 3️⃣ **Get Order Details (SELECT)**
 ```sql
 SELECT od.product_id, od.quantity, p.product_name
 FROM OrderDetails od
@@ -66,11 +97,13 @@ WHERE od.order_id = {order_id}
 ```
 - **Purpose**: Get items for inventory restoration and confirmation display
 
-#### Step 4: Wait for Confirmation (No DB change)
+
+#### 4️⃣ **Wait for Confirmation (No DB change)**
 - If `confirmed=false`, returns order summary for customer review
 - **No database writes at this step**
 
-#### Step 5: Update Order Status (UPDATE)
+
+#### 5️⃣ **Update Order Status (UPDATE)**
 ```sql
 UPDATE Orders 
 SET status = 'cancelled'
@@ -79,7 +112,8 @@ WHERE order_id = {order_id}
 - **Table**: Orders
 - **Change**: status changes from 'pending' to 'cancelled'
 
-#### Step 6: Restore Inventory (UPDATE)
+
+#### 6️⃣ **Restore Inventory (UPDATE)**
 ```sql
 UPDATE Inventory 
 SET quantity = quantity + {quantity}
@@ -88,7 +122,11 @@ WHERE product_id = {product_id}
 - **Table**: Inventory
 - **Change**: Adds back the cancelled quantity to stock
 
-## Two-Step Confirmation
+
+---
+
+
+## **✅ Two-Step Confirmation**
 
 Prevents accidental cancellations:
 
@@ -97,14 +135,20 @@ Prevents accidental cancellations:
 | First | `false` | ❌ No write | Order summary + await confirmation |
 | Second | `true` | ✅ Write | Order cancelled + inventory restored |
 
-## Example
 
-### Input
+---
+
+
+## **💡 Example**
+
+
+### 📥 **Input**
 ```
 Customer: Cancel my order #1001
 ```
 
-### Step 1: First Call (confirmed=false)
+
+### 1️⃣ **First Call (confirmed=false)**
 ```python
 tool._run(order_id=1001, confirmed=False)
 ```
@@ -125,7 +169,8 @@ tool._run(order_id=1001, confirmed=False)
 
 **Database**: No changes
 
-### Step 2: Second Call (confirmed=true)
+
+### 2️⃣ **Second Call (confirmed=true)**
 ```python
 tool._run(order_id=1001, confirmed=True)
 ```
@@ -147,7 +192,11 @@ tool._run(order_id=1001, confirmed=True)
 | Orders (order_id=1001) | status='pending' | status='cancelled' |
 | Inventory (Gaming Chair) | quantity=22 | quantity=24 (restored) |
 
-## Error Cases
+
+---
+
+
+## **❌ Error Cases**
 
 | Error | Cause | Database |
 |-------|-------|----------|
@@ -156,12 +205,20 @@ tool._run(order_id=1001, confirmed=True)
 | Already cancelled | status is already 'cancelled' | No changes |
 | Customer ID not set | customer_id is null | No changes |
 
-## Security
+
+---
+
+
+## **🔒 Security**
 
 - Orders can only be cancelled by the customer who placed them
 - SQL includes `customer_id` filter to prevent unauthorized cancellation
 - Already cancelled orders cannot be cancelled again
 
-## References
+
+---
+
+
+## **🔗 References**
 
 - [CancelOrderSQLTool](../../../../../../src/modules/tools/knowledge_retrieval/sql/customer/cancel_order.py)

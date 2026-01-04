@@ -1,20 +1,38 @@
-# Place Order SQL Tool
+# **🛒 Place Order SQL Tool**
 
 Create orders for customers.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `src/modules/tools/knowledge_retrieval/sql/customer/place_order.py`
 
-## Prompt
+
+---
+
+
+## **📜 Prompt**
 
 [tools_customer_place_order_sql](../../../../../../prompts/tools/customer/place_order_sql.md)
 
-## Overview
+
+---
+
+
+## **📋 Overview**
 
 This tool handles order placement. Requires explicit customer confirmation before writing to database.
 
-## Input
+> ⚠️ **Important:** Requires explicit customer confirmation before writing to database.
+
+
+---
+
+
+## **📥 Input**
 
 | Field | Type | Description |
 |-------|------|-------------|
@@ -22,13 +40,22 @@ This tool handles order placement. Requires explicit customer confirmation befor
 | `quantity` | int | Quantity to order (>= 1) |
 | `confirmed` | bool | `true` after customer confirms |
 
-## Flow Diagram
+
+---
+
+
+## **🔄 Flow Diagram**
 
 ![Flow Diagram](../../../../../../assets/diagrams/modules/customer_place_order_1.png)
 
-## Database Changes
 
-### Tables Involved
+---
+
+
+## **🗄️ Database Changes**
+
+
+### 📋 **Tables Involved**
 
 | Table | Operation | Description |
 |-------|-----------|-------------|
@@ -38,9 +65,11 @@ This tool handles order placement. Requires explicit customer confirmation befor
 | OrderDetails | INSERT | Create order line items |
 | Inventory | UPDATE | Deduct stock by ordered quantity |
 
-### Step-by-Step Database Operations
 
-#### Step 1: Check Product (SELECT)
+### 🔢 **Step-by-Step Database Operations**
+
+
+#### 1️⃣ **Check Product (SELECT)**
 ```sql
 SELECT product_id, product_name, price 
 FROM Products 
@@ -49,7 +78,8 @@ WHERE product_id = {product_id}
 - **Purpose**: Verify product exists and get price
 - **Fail**: Returns error if product_id not found
 
-#### Step 2: Check Stock (SELECT)
+
+#### 2️⃣ **Check Stock (SELECT)**
 ```sql
 SELECT quantity 
 FROM Inventory 
@@ -58,11 +88,13 @@ WHERE product_id = {product_id}
 - **Purpose**: Verify sufficient stock available
 - **Fail**: Returns error if stock < requested quantity
 
-#### Step 3: Wait for Confirmation (No DB change)
+
+#### 3️⃣ **Wait for Confirmation (No DB change)**
 - If `confirmed=false`, returns order summary for customer review
 - **No database writes at this step**
 
-#### Step 4: Create Order (INSERT)
+
+#### 4️⃣ **Create Order (INSERT)**
 ```sql
 INSERT INTO Orders (customer_id, order_date, status, total_amount)
 VALUES ({customer_id}, date('now'), 'pending', {total_price})
@@ -70,13 +102,15 @@ VALUES ({customer_id}, date('now'), 'pending', {total_price})
 - **Table**: Orders
 - **New Record**: Order with status = 'pending'
 
-#### Step 5: Get Order ID (SELECT)
+
+#### 5️⃣ **Get Order ID (SELECT)**
 ```sql
 SELECT last_insert_rowid() as order_id
 ```
 - **Purpose**: Get newly created order_id for OrderDetails
 
-#### Step 6: Create Order Details (INSERT)
+
+#### 6️⃣ **Create Order Details (INSERT)**
 ```sql
 INSERT INTO OrderDetails (order_id, product_id, quantity, unit_price)
 VALUES ({order_id}, {product_id}, {quantity}, {price})
@@ -84,7 +118,8 @@ VALUES ({order_id}, {product_id}, {quantity}, {price})
 - **Table**: OrderDetails
 - **New Record**: Line item for the order
 
-#### Step 7: Deduct Stock (UPDATE)
+
+#### 7️⃣ **Deduct Stock (UPDATE)**
 ```sql
 UPDATE Inventory 
 SET quantity = quantity - {quantity}
@@ -93,7 +128,11 @@ WHERE product_id = {product_id}
 - **Table**: Inventory
 - **Change**: Reduces quantity by ordered amount
 
-## Two-Step Confirmation
+
+---
+
+
+## **✅ Two-Step Confirmation**
 
 Prevents accidental orders:
 
@@ -102,14 +141,20 @@ Prevents accidental orders:
 | First | `false` | ❌ No write | Order summary + await confirmation |
 | Second | `true` | ✅ Write | Order completed |
 
-## Example
 
-### Input
+---
+
+
+## **💡 Example**
+
+
+### 📥 **Input**
 ```
 Customer: Order 2 gaming chairs
 ```
 
-### Step 1: First Call (confirmed=false)
+
+### 1️⃣ **First Call (confirmed=false)**
 ```python
 tool._run(product_id=10, quantity=2, confirmed=False)
 ```
@@ -130,7 +175,8 @@ tool._run(product_id=10, quantity=2, confirmed=False)
 
 **Database**: No changes
 
-### Step 2: Second Call (confirmed=true)
+
+### 2️⃣ **Second Call (confirmed=true)**
 ```python
 tool._run(product_id=10, quantity=2, confirmed=True)
 ```
@@ -153,7 +199,11 @@ tool._run(product_id=10, quantity=2, confirmed=True)
 | OrderDetails | - | New row: order_id=1001, product_id=10, qty=2, price=279 |
 | Inventory (Gaming Chair) | quantity=24 | quantity=22 |
 
-## Error Cases
+
+---
+
+
+## **❌ Error Cases**
 
 | Error | Cause | Database |
 |-------|-------|----------|
@@ -161,6 +211,10 @@ tool._run(product_id=10, quantity=2, confirmed=True)
 | Insufficient stock | Requested > available | No changes |
 | Customer ID not set | customer_id is null | No changes |
 
-## References
+
+---
+
+
+## **🔗 References**
 
 - [PlaceOrderSQLTool](../../../../../../src/modules/tools/knowledge_retrieval/sql/customer/place_order.py)

@@ -105,26 +105,42 @@ Business analysts can query analytics data, generate charts, and search customer
 
 ### ⚡ **Setup**
 
+**1️⃣ Setup environment**
+
 ```bash
-# 1. Setup environment
 cp .env.template .env
 # Edit .env with your OPENAI_API_KEY
+```
 
-# 2. Install dependencies
+**2️⃣ Install dependencies**
+
+```bash
 python -m venv .venv  # first time only
 source .venv/bin/activate
 pip install -r requirements.txt
+```
 
-# 3. Start services (includes API and UI)
+**3️⃣ Start services** (includes API and UI)
+
+```bash
 docker-compose up -d
+```
 
-# 4. Run database migrations
+**4️⃣ Run database migrations**
+
+```bash
 ./scripts/run_migrations.sh
+```
 
-# 5. Ingest knowledge base
+**5️⃣ Ingest knowledge base**
+
+```bash
 python scripts/ingest_pdfs.py
+```
 
-# 6. Upload prompts (optional)
+**6️⃣ Upload prompts** (optional)
+
+```bash
 python scripts/upload_prompts.py
 ```
 

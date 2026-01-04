@@ -1,32 +1,57 @@
-# Customer Order SQL Tool
+# **📦 Customer Order SQL Tool**
 
 Order history queries for customers.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `src/modules/tools/knowledge_retrieval/sql/customer/order.py`
 
-## Prompt
+
+---
+
+
+## **📜 Prompt**
 
 [tools_customer_order_sql](../../../../../../prompts/tools/customer/order_sql.md)
 
-## Overview
+
+---
+
+
+## **📋 Overview**
 
 Query customer's own order history - order status, purchase history. **Read-only** tool that automatically filters by customer_id.
 
-## Input
+
+---
+
+
+## **📥 Input**
 
 | Field | Type | Description |
 |-------|------|-------------|
 | `question` | str | Question about your orders |
 
-## Flow Diagram
+
+---
+
+
+## **🔄 Flow Diagram**
 
 ![Flow Diagram](../../../../../../assets/diagrams/modules/customer_order_1.png)
 
-## Database Access
 
-### Allowed Tables (Read-Only)
+---
+
+
+## **🗄️ Database Access**
+
+
+### ✅ **Allowed Tables (Read-Only)**
 
 | Table | Columns | Description |
 |-------|---------|-------------|
@@ -34,7 +59,8 @@ Query customer's own order history - order status, purchase history. **Read-only
 | OrderDetails | order_detail_id, order_id, product_id, quantity, unit_price | Order line items |
 | Products | product_id, product_name, price | Product names for display |
 
-### Automatic Filtering
+
+### 🔒 **Automatic Filtering**
 
 All queries are automatically filtered by `customer_id`:
 
@@ -45,18 +71,25 @@ WHERE customer_id = {customer_id}
 
 This prevents customers from seeing other customers' orders.
 
-### Security Validation
+
+### 🔒 **Security Validation**
 
 ![Security Validation](../../../../../../assets/diagrams/modules/customer_order_2.png)
 
-## Example
 
-### Input
+---
+
+
+## **💡 Example**
+
+
+### 📥 **Input**
 ```
 Customer: Show me my recent orders
 ```
 
-### Generated SQL
+
+### 🔧 **Generated SQL**
 ```sql
 SELECT o.order_id, o.order_date, o.status, o.total_amount
 FROM Orders o
@@ -65,13 +98,15 @@ ORDER BY o.order_date DESC
 LIMIT 10
 ```
 
-### Database Query
+
+### 🗄️ **Database Query**
 
 | Table | Operation | Purpose |
 |-------|-----------|---------|
 | Orders | SELECT | Get order list for this customer only |
 
-### Response
+
+### 📤 **Response**
 ```python
 {
     "sql": "SELECT ... WHERE customer_id = '1' ...",
@@ -84,7 +119,11 @@ LIMIT 10
 
 **Database Changes**: None (read-only)
 
-## Example Questions
+
+---
+
+
+## **💡 Example Questions**
 
 | Question | Tables Accessed |
 |----------|-----------------|
@@ -93,7 +132,11 @@ LIMIT 10
 | "Show me what I ordered last month" | Orders, OrderDetails, Products |
 | "How much did I spend this year?" | Orders |
 
-## Privacy Protection
+
+---
+
+
+## **🔒 Privacy Protection**
 
 | Protection | How |
 |------------|-----|
@@ -101,7 +144,11 @@ LIMIT 10
 | No other customers | Cannot query without customer_id filter |
 | Read-only | Cannot modify orders (use cancel_order tool instead) |
 
-## Error Cases
+
+---
+
+
+## **❌ Error Cases**
 
 | Error | Cause | Response |
 |-------|-------|----------|
@@ -109,6 +156,10 @@ LIMIT 10
 | Missing customer filter | SQL doesn't filter by customer_id | Reject query |
 | Forbidden table access | Query tries to access Customers table | Reject query |
 
-## References
+
+---
+
+
+## **🔗 References**
 
 - [CustomerOrderSQLTool](../../../../../../src/modules/tools/knowledge_retrieval/sql/customer/order.py)

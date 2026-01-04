@@ -31,7 +31,8 @@ Inherits from `SQLTool`.
 
 Find what customers asked or said in previous conversations. Queries the LangGraph store table.
 
-### Configuration
+
+### ⚙️ **Configuration**
 
 | Property | Value |
 |----------|-------|
@@ -40,17 +41,23 @@ Find what customers asked or said in previous conversations. Queries the LangGra
 | Filter | None |
 | Prompt | `tools_client_chat_history_sql` |
 
-### Input Schema
+
+### 📥 **Input Schema**
 
 | Field | Type | Description |
 |-------|------|-------------|
 | `question` | str | Question about chat conversation history |
 
-### Code Flow
+
+### 🔄 **Code Flow**
 
 ![Code Flow](../../../../../../assets/diagrams/modules/client_chat_history_1.png)
 
-### Usage
+
+---
+
+
+### 💡 **Usage**
 
 ```python
 from src.modules.tools.knowledge_retrieval.sql.client.chat_history import ClientChatHistorySQLTool
@@ -66,7 +73,11 @@ tool._run("What did customer 123 ask last week?")
 tool._run("Find conversations about refunds")
 ```
 
-### Example Questions
+
+---
+
+
+### 💡 **Example Questions**
 
 - "What did customer 123 ask last week?"
 - "Find conversations about product returns"
