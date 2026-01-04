@@ -8,9 +8,15 @@ flowchart LR
         FastAPI["FastAPI<br/>(8000)"]
     end
 
-    subgraph Workflows["Workflows"]
-        CustomerWF["Customer<br/>Workflow"]
-        ClientWF["Client<br/>Workflow"]
+    subgraph WF_Memory["Workflows + Memory"]
+        subgraph Workflows["Workflows"]
+            CustomerWF["Customer<br/>Workflow"]
+            ClientWF["Client<br/>Workflow"]
+        end
+        subgraph Memory["Memory Layer"]
+            Redis["Redis<br/>Short-term Memory<br/>(Checkpointer)"]
+            Postgres["PostgreSQL<br/>Long-term Memory<br/>(Store)"]
+        end
     end
 
     subgraph Agents["Agents"]
@@ -37,11 +43,6 @@ flowchart LR
     subgraph Data["Data Layer"]
         Qdrant["Qdrant<br/>Vector DB"]
         SQLite["SQLite<br/>ERP Data"]
-    end
-
-    subgraph Memory["Memory Layer"]
-        Redis["Redis<br/>Short-term Memory<br/>(Checkpointer)"]
-        Postgres["PostgreSQL<br/>Long-term Memory<br/>(Store)"]
     end
 
     subgraph Obs["Observability"]
