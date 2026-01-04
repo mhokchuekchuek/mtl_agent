@@ -85,22 +85,6 @@ python prompts/uploader.py
 ```
 
 
-### 7️⃣ **Run Application**
-
-**API Server:**
-
-```bash
-uvicorn src.api.main:app --reload --port 8000
-```
-
-**Streamlit UI:**
-
-```bash
-streamlit run ui/customer_app.py --server.port 8501
-streamlit run ui/client_app.py --server.port 8502
-```
-
-
 ---
 
 

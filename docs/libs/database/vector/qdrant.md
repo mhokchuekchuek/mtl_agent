@@ -1,18 +1,29 @@
-# Qdrant Vector Store
+# **🔍 Qdrant Vector Store**
 
 Qdrant vector database client with metadata filtering support.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `libs/database/vector/qdrant/main.py`
 
-## Class
+---
+
+
+## **📦 Class**
 
 ### `VectorStoreClient`
 
 Qdrant vector database client with metadata support.
 
-## Parameters
+
+---
+
+
+## **📋 Parameters**
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
@@ -23,7 +34,11 @@ Qdrant vector database client with metadata support.
 | `distance` | str | `Cosine` | Distance metric (Cosine, Euclid, Dot) |
 | `create_collection` | bool | True | Create collection if not exists |
 
-## Methods
+---
+
+
+## **📋 Methods**
+
 
 ### `add(embeddings, metadata, ids) -> None`
 
@@ -80,7 +95,10 @@ Retrieve points by metadata filter.
 
 Count points in collection (Qdrant-specific).
 
-## Usage
+---
+
+
+## **🚀 Usage**
 
 ```python
 from libs.database.vector.selector import VectorStoreSelector

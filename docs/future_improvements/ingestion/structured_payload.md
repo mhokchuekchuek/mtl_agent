@@ -1,6 +1,10 @@
-# Structured Payload
+# **📦 Structured Payload**
 
-## Current State
+
+---
+
+
+## **📋 Current State**
 
 All extracted data stored as flat `text` field for simplicity. See [Decision: Why Flat Text Payload](../../decisions/why_flat_text_payload.md).
 
@@ -13,7 +17,11 @@ All extracted data stored as flat `text` field for simplicity. See [Decision: Wh
 }
 ```
 
-## Improvement
+
+---
+
+
+## **🔧 Improvement**
 
 Store extracted fields separately for filtering:
 
@@ -30,7 +38,11 @@ Store extracted fields separately for filtering:
 }
 ```
 
-## Challenge
+
+---
+
+
+## **⚠️ Challenge**
 
 Requires extra LLM call to extract filters from user query:
 
@@ -42,7 +54,11 @@ LLM: { "category": "Mobile Accessories", "weight_max": 1.0 }
 Qdrant: filter + vector search
 ```
 
-## Benefits
+
+---
+
+
+## **✅ Benefits**
 
 | Benefit | Description |
 |---------|-------------|
@@ -50,7 +66,11 @@ Qdrant: filter + vector search
 | Faceted search | Show counts per category |
 | Hybrid search | Filter first, then semantic search |
 
-## Implementation Steps
+
+---
+
+
+## **📅 Implementation Steps**
 
 1. Add filter extraction prompt (query → JSON filters)
 2. Update extractor to return structured dict
@@ -58,7 +78,11 @@ Qdrant: filter + vector search
 4. Add filter builder in retrieval layer
 5. Keep `text` field for semantic search
 
-## When to Implement
+
+---
+
+
+## **❓ When to Implement**
 
 Consider if:
 - Users need exact numeric filtering (price, weight)

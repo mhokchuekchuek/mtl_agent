@@ -1,19 +1,30 @@
-# Dynaconf Provider
+# **⚙️ Dynaconf Provider**
 
 Dynaconf-based configuration manager with YAML files and environment variable support.
 
-## References
+
+---
+
+
+## **🔗 References**
 
 - [Dynaconf Documentation](https://www.dynaconf.com/)
 - [Dynamic Variables (@format, @jinja)](https://www.dynaconf.com/dynamic/)
 - [Environment Variables](https://www.dynaconf.com/envvars/)
 - [Configuration Options](https://www.dynaconf.com/configuration/)
 
-## Location
+---
+
+
+## **📍 Location**
 
 `libs/configs/dynaconf/main.py`
 
-## Usage
+
+---
+
+
+## **🚀 Usage**
 
 ```python
 from libs.configs.selector import ConfigSelector
@@ -30,7 +41,10 @@ settings = ConfigSelector.create(
 )
 ```
 
-## Parameters
+---
+
+
+## **📋 Parameters**
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
@@ -43,7 +57,10 @@ settings = ConfigSelector.create(
 | `nested_separator` | `str` | `"__"` | Separator for nested env vars |
 | `merge_enabled` | `bool` | `True` | Merge nested config dicts |
 
-## Auto-detection
+---
+
+
+## **🔍 Auto-detection**
 
 When `project_root` is not specified, auto-detects by looking for:
 - `.git`
@@ -52,11 +69,15 @@ When `project_root` is not specified, auto-detects by looking for:
 - `setup.cfg`
 - `requirements.txt`
 
-## Environment Variable Interpolation
+---
+
+
+## **🔄 Environment Variable Interpolation**
 
 Reference env vars directly in YAML config files.
 
-### Without Default Value
+
+### 📌 **Without Default Value**
 
 Use `@format` syntax:
 
@@ -65,7 +86,7 @@ api_key: "@format {env[OPENAI_API_KEY]}"
 secret: "@format {env[LANGFUSE_SECRET_KEY]}"
 ```
 
-### With Default Value
+### 📌 **With Default Value**
 
 Use `@jinja` syntax:
 
@@ -74,7 +95,7 @@ host: "@jinja {{ env.get('DB_HOST', 'localhost') }}"
 port: "@jinja {{ env.get('DB_PORT', '5432') }}"
 ```
 
-### Example
+### 💡 **Example**
 
 ```yaml
 # configs/agents/shared.yaml
@@ -87,7 +108,10 @@ agent_shared:
       secret_key: "@format {env[LANGFUSE_SECRET_KEY]}"
 ```
 
-## Environment Variable Overrides
+---
+
+
+## **🔧 Environment Variable Overrides**
 
 Override any config value via environment variables using `__` separator:
 

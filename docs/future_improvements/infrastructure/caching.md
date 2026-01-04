@@ -1,10 +1,13 @@
-# Caching Strategy
+# **⚡ Caching Strategy**
 
 Multi-layer caching architecture for LLM applications.
 
 ![Caching Layers](../../assets/diagrams/future_improvements/caching_layers.png)
 
-## Caching vs Memory
+---
+
+
+## **🆚 Caching vs Memory**
 
 | Concept | Purpose | Example |
 |---------|---------|---------|
@@ -15,7 +18,7 @@ This document covers **caching only**. For memory, see [Why Checkpointer and Sto
 
 ---
 
-## Caching Layers Overview
+## **📊 Caching Layers Overview**
 
 | Layer | Technology | What's Cached | Benefit |
 |-------|------------|---------------|---------|
@@ -27,7 +30,7 @@ This document covers **caching only**. For memory, see [Why Checkpointer and Sto
 
 ---
 
-## 1. LiteLLM Response Caching
+## **1️⃣ LiteLLM Response Caching**
 
 Cache exact LLM responses to avoid duplicate API calls.
 
@@ -46,7 +49,7 @@ litellm_settings:
     namespace: "litellm.cache"
 ```
 
-### Cache Types
+### 📋 **Cache Types**
 
 | Type | Config | Use Case |
 |------|--------|----------|
@@ -58,11 +61,11 @@ litellm_settings:
 
 ---
 
-## 2. Semantic Caching
+## **2️⃣ Semantic Caching**
 
 Cache responses for semantically similar queries using embeddings.
 
-### How It Works
+### 🔄 **How It Works**
 
 ```
 1. User query → Generate embedding
@@ -71,7 +74,7 @@ Cache responses for semantically similar queries using embeddings.
 4. Else → Call LLM → Cache response with embedding
 ```
 
-### Configuration
+### ⚙️ **Configuration**
 
 ```yaml
 # configs/litellm/proxy_config.yaml
@@ -87,7 +90,7 @@ litellm_settings:
     embedding_model: "text-embedding-3-small"
 ```
 
-### Similarity Threshold Guide
+### 📊 **Similarity Threshold Guide**
 
 | Threshold | Behavior | Use Case |
 |-----------|----------|----------|
@@ -96,7 +99,7 @@ litellm_settings:
 | 0.75-0.85 | Somewhat similar | Conversational |
 | < 0.75 | Not recommended | Too many false positives |
 
-### When to Use
+### ✅ **When to Use**
 
 ✅ **Good for**: FAQ, product lookups, repeated questions
 
@@ -104,11 +107,11 @@ litellm_settings:
 
 ---
 
-## 3. LMCache (KV Cache for vLLM)
+## **3️⃣ LMCache (KV Cache for vLLM)**
 
 For self-hosted LLM with vLLM, LMCache caches model computation (KV cache).
 
-### LMCache vs LiteLLM Caching
+### 🆚 **LMCache vs LiteLLM Caching**
 
 | Feature | LMCache | LiteLLM Caching |
 |---------|---------|-----------------|
@@ -119,19 +122,19 @@ For self-hosted LLM with vLLM, LMCache caches model computation (KV cache).
 | **Performance** | 3-15x throughput improvement | Reduced API costs |
 | **Use case** | Self-hosted inference optimization | API gateway for external providers |
 
-### When to Use Each
+### ✅ **When to Use Each**
 
 - **LMCache**: Self-hosted vLLM deployment - caches at inference engine level
 - **LiteLLM Cache**: API proxy - caches responses from external LLM providers
 
-### LMCache Benefits
+### ✨ **LMCache Benefits**
 
 - Reuses KV caches across GPU, CPU DRAM, and disk
 - 3-10x latency reduction for multi-round QA and RAG
 - Up to 15x throughput improvement
 - CacheBlend: compose multiple KV caches together
 
-### Configuration
+### ⚙️ **Configuration**
 
 ```yaml
 # vLLM with LMCache
@@ -150,11 +153,11 @@ remote_serde: "cachegen"
 
 ---
 
-## 4. Embedding Cache
+## **4️⃣ Embedding Cache**
 
 Cache embeddings to avoid re-embedding the same text.
 
-### Implementation
+### 💻 **Implementation**
 
 ```python
 # src/libs/cache/embedding_cache.py
@@ -195,11 +198,11 @@ class CachedEmbeddings(Embeddings):
 
 ---
 
-## 5. Tool Result Caching
+## **5️⃣ Tool Result Caching**
 
 Cache expensive tool results (SQL queries, vector searches).
 
-### Implementation
+### 💻 **Implementation**
 
 ```python
 # src/libs/cache/tool_cache.py
@@ -226,7 +229,7 @@ def cache_tool_result(redis, ttl: int = 300):
     return decorator
 ```
 
-### When to Cache Tool Results
+### ✅ **When to Cache Tool Results**
 
 | Tool | Cache? | TTL | Reason |
 |------|--------|-----|--------|
@@ -237,7 +240,7 @@ def cache_tool_result(redis, ttl: int = 300):
 
 ---
 
-## TTL Guidelines
+## **⏱️ TTL Guidelines**
 
 | Cache Type | Recommended TTL | Reason |
 |------------|-----------------|--------|
@@ -248,7 +251,7 @@ def cache_tool_result(redis, ttl: int = 300):
 
 ---
 
-## Implementation Phases
+## **📅 Implementation Phases**
 
 | Phase | What | Effort | Impact |
 |-------|------|--------|--------|
@@ -260,7 +263,7 @@ def cache_tool_result(redis, ttl: int = 300):
 
 ---
 
-## References
+## **🔗 References**
 
 - [LiteLLM Caching](https://docs.litellm.ai/docs/caching/all_caches)
 - [Redis Semantic Caching](https://redis.io/blog/what-is-semantic-caching/)

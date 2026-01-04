@@ -1,24 +1,39 @@
-# SQLite Database
+# **🗃️ SQLite Database**
 
 SQLite database client for file-based SQL operations.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `libs/database/sql/sqlite/main.py`
 
-## Class
+---
+
+
+## **📦 Class**
 
 ### `SQLiteClient`
 
 SQLite database client with dictionary-style row access.
 
-## Parameters
+
+---
+
+
+## **📋 Parameters**
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
 | `db_path` | str | - | Path to SQLite database file |
 
-## Methods
+---
+
+
+## **📋 Methods**
+
 
 ### `execute(query, params) -> int`
 
@@ -74,7 +89,10 @@ Get schema for all tables (convenience method).
 
 Close the database connection.
 
-## Usage
+---
+
+
+## **🚀 Usage**
 
 ```python
 from libs.database.sql.selector import SQLSelector

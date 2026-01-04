@@ -1,10 +1,14 @@
-# Search Algorithms
+# **🔍 Search Algorithms**
 
 **Current**: Default HNSW dense vector search
 
 **Improvement**: Hybrid search combining dense and sparse vectors
 
-## Options
+
+---
+
+
+## **📊 Options**
 
 | Algorithm | Description | Use Case |
 |-----------|-------------|----------|

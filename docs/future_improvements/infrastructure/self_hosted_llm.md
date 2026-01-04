@@ -1,18 +1,26 @@
-# Self-Hosted LLM with vLLM
+# **🖥️ Self-Hosted LLM with vLLM**
 
-## Overview
+
+---
+
+
+## **📋 Overview**
 
 Deploy private LLM infrastructure using vLLM for inference on Kubernetes.
 
-## Why Consider This
+---
 
-### LLMs Are Getting Smarter
+
+## **❓ Why Consider This**
+
+
+### 🧠 **LLMs Are Getting Smarter**
 
 - Future models require fewer tokens to produce better results
 - Cost per query decreases as model efficiency improves
 - Self-hosting becomes more economical at scale
 
-### Benefits
+### ✅ **Benefits**
 
 | Benefit | Description |
 |---------|-------------|
@@ -22,9 +30,13 @@ Deploy private LLM infrastructure using vLLM for inference on Kubernetes.
 | Latency | Lower latency without network hops |
 | No Rate Limits | Scale based on your infrastructure |
 
-## Kubernetes Deployment Options
+---
 
-### Single-Node: Deployment
+
+## **☸️ Kubernetes Deployment Options**
+
+
+### 1️⃣ **Single-Node: Deployment**
 
 Standard Kubernetes Deployment for single GPU node:
 
@@ -51,7 +63,7 @@ spec:
             port: 8000
 ```
 
-### Multi-Node: LeaderWorkerSet (LWS)
+### 2️⃣ **Multi-Node: LeaderWorkerSet (LWS)**
 
 For large models sharded across multiple nodes, use LeaderWorkerSet instead of Deployment or StatefulSet:
 
@@ -74,7 +86,7 @@ spec:
               nvidia.com/gpu: 8
 ```
 
-### Production: Helm Charts
+### 3️⃣ **Production: Helm Charts**
 
 vLLM Production Stack provides ready-to-use Helm charts:
 
@@ -83,7 +95,10 @@ helm repo add vllm https://vllm-project.github.io/production-stack
 helm install vllm vllm/vllm-stack -f values.yaml
 ```
 
-## LiteLLM Integration
+---
+
+
+## **🔗 LiteLLM Integration**
 
 Connect to vLLM via LiteLLM proxy:
 
@@ -95,7 +110,10 @@ model_list:
       api_base: http://vllm-service:8000
 ```
 
-## Trade-offs
+---
+
+
+## **⚖️ Trade-offs**
 
 | Pros | Cons |
 |------|------|
@@ -104,7 +122,10 @@ model_list:
 | No vendor lock-in | Maintenance overhead |
 | Customizable | Need enough traffic to justify cost |
 
-## When to Self-Host vs API
+---
+
+
+## **🤔 When to Self-Host vs API**
 
 | Scenario | Recommendation |
 |----------|----------------|
@@ -114,11 +135,17 @@ model_list:
 | Predictable steady traffic | ✅ Self-host - optimize utilization |
 | Strict data privacy | ✅ Self-host - data on-premises |
 
-## See Also
+---
+
+
+## **📚 See Also**
 
 - [Caching Strategy](caching.md) - LMCache, LiteLLM caching, semantic cache
 
-## References
+---
+
+
+## **🔗 References**
 
 - [vLLM Kubernetes Docs](https://docs.vllm.ai/en/stable/deployment/k8s/)
 - [vLLM Production Stack](https://github.com/vllm-project/production-stack)

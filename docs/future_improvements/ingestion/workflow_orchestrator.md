@@ -1,10 +1,14 @@
-# Workflow Orchestrator
+# **🔄 Workflow Orchestrator**
 
 **Current**: Sequential Python script
 
 **Improvement**: Use workflow orchestrator for scalability and monitoring
 
-## Options
+
+---
+
+
+## **📊 Options**
 
 | Tool | Pros | Cons |
 |------|------|------|

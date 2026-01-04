@@ -1,6 +1,10 @@
-# Async Store Writes
+# **⚡ Async Store Writes**
 
-## Problem
+
+---
+
+
+## **❌ Problem**
 
 Current implementation writes to PostgreSQL store **synchronously on every turn**, causing:
 
@@ -9,15 +13,24 @@ Current implementation writes to PostgreSQL store **synchronously on every turn*
 3. **Connection pressure** - Concurrent users = concurrent connections
 4. **Failure risk** - DB failure blocks chat response
 
-## Current Flow
+
+---
+
+
+## **🔄 Current Flow**
 
 ![Current Flow](../assets/diagrams/future_improvements/future_improvements_async_store_writes_1.png)
 
 **Problem**: Step 4 blocks step 5. User waits for DB write.
 
-## Proposed Solutions
 
-### Option 1: Message Queue (Real-time)
+---
+
+
+## **💡 Proposed Solutions**
+
+
+### 1️⃣ **Option 1: Message Queue (Real-time)**
 
 Use message queue for immediate async writes on every turn.
 
@@ -37,7 +50,7 @@ Use message queue for immediate async writes on every turn.
 - Still writes every turn (high I/O)
 - Additional infrastructure
 
-### Option 2: Workflow Orchestrator (Scheduled TTL-based)
+### 2️⃣ **Option 2: Workflow Orchestrator (Scheduled TTL-based)**
 
 Use workflow orchestrator to trigger every 5 mins, check Redis TTL, save only when conversation is ending.
 
@@ -64,7 +77,11 @@ Use workflow orchestrator to trigger every 5 mins, check Redis TTL, save only wh
 - Up to 5 min delay for persistence
 - Slightly more complex logic
 
-## Comparison
+
+---
+
+
+## **⚖️ Comparison**
 
 | Aspect | Queue (Real-time) | Orchestrator (Scheduled) |
 |--------|-------------------|--------------------------|
@@ -73,7 +90,11 @@ Use workflow orchestrator to trigger every 5 mins, check Redis TTL, save only wh
 | Data freshness | Immediate | Up to 5 min delay |
 | Complexity | Low | Medium |
 
-## Recommendation
+
+---
+
+
+## **✅ Recommendation**
 
 **Option 2: Workflow Orchestrator** is recommended because:
 
@@ -81,7 +102,11 @@ Use workflow orchestrator to trigger every 5 mins, check Redis TTL, save only wh
 2. **Smarter persistence** - Active conversations don't need immediate backup
 3. **Batch-friendly** - Can bulk insert multiple conversations per run
 
-## References
+
+---
+
+
+## **🔗 References**
 
 - [Apache Kafka](https://kafka.apache.org/)
 - [RabbitMQ](https://www.rabbitmq.com/)

@@ -1,10 +1,14 @@
-# Embedding Models
+# **🔢 Embedding Models**
 
 **Current**: OpenAI text-embedding-3-small
 
 **Improvement**: Consider alternatives for better retrieval accuracy
 
-## Options
+
+---
+
+
+## **📊 Options**
 
 | Model | MTEB Retrieval | Self-hosted | Cost |
 |-------|----------------|-------------|------|

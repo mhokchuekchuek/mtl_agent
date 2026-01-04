@@ -1,20 +1,31 @@
-# Recursive Text Chunker
+# **✂️ Recursive Text Chunker**
 
 Text chunker using LangChain's RecursiveCharacterTextSplitter.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `libs/llm/chunking/recursive/main.py`
 
-## Class
+---
+
+
+## **📦 Class**
 
 ### `TextChunker`
 
 Recursively splits text using a hierarchy of separators to preserve semantic boundaries.
 
-**Split order**: paragraphs -> lines -> sentences -> words -> characters
+**Split order**: paragraphs → lines → sentences → words → characters
 
-## Parameters
+
+---
+
+
+## **📋 Parameters**
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
@@ -22,7 +33,11 @@ Recursively splits text using a hierarchy of separators to preserve semantic bou
 | `chunk_overlap` | int | 50 | Characters to overlap between chunks |
 | `separators` | list[str] | None | Custom list of separators |
 
-## Methods
+---
+
+
+## **📋 Methods**
+
 
 ### `split(text, metadata) -> list[dict]`
 
@@ -48,7 +63,10 @@ Split text into chunks.
 }
 ```
 
-## Usage
+---
+
+
+## **🚀 Usage**
 
 ```python
 from libs.llm.chunking.selector import TextChunkerSelector

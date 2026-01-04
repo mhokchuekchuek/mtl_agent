@@ -1,11 +1,18 @@
-# PostgreSQLClient
+# **🐘 PostgreSQLClient**
 
 PostgreSQL database client implementing `BaseSQLDatabase` interface.
 
-## Location
+
+---
+
+
+## **📍 Location**
 `libs/database/sql/postgres/main.py`
 
-## Usage
+---
+
+
+## **🚀 Usage**
 
 ```python
 from libs.database.sql.postgres.main import PostgreSQLClient
@@ -28,7 +35,10 @@ tables = client.get_tables()
 schema = client.get_schema("users")
 ```
 
-## Methods
+---
+
+
+## **📋 Methods**
 
 ### `query(query: str, params: tuple = ()) -> list[dict]`
 Execute SELECT query and return results as list of dictionaries.
@@ -43,5 +53,9 @@ Get column information for a table including:
 - is_nullable
 - is_primary_key
 
-## Dependencies
+---
+
+
+## **📦 Dependencies**
+
 - `psycopg[binary]` - PostgreSQL adapter
