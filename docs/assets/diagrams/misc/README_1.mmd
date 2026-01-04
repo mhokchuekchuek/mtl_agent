@@ -9,6 +9,7 @@ flowchart LR
     end
 
     subgraph WF_Memory["Workflows + Memory"]
+        direction TB
         subgraph Workflows["Workflows"]
             CustomerWF["Customer<br/>Workflow"]
             ClientWF["Client<br/>Workflow"]
@@ -17,6 +18,7 @@ flowchart LR
             Redis["Redis<br/>Short-term Memory<br/>(Checkpointer)"]
             Postgres["PostgreSQL<br/>Long-term Memory<br/>(Store)"]
         end
+        Workflows ~~~ Memory
     end
 
     subgraph Agents["Agents"]
