@@ -1,16 +1,28 @@
-# POST /api/v1/chatbot/client/chat
+# **📊 POST /api/v1/chatbot/client/chat**
 
 Client chatbot endpoint for internal BI queries.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `src/api/routes/chatbots/client.py`
 
-## Code Flow
+
+---
+
+
+## **🔄 Code Flow**
 
 ![Code Flow](../../assets/diagrams/api/api_client_chat_1.png)
 
-## Request Schema
+
+---
+
+
+## **📥 Request Schema**
 
 `src/api/schemas/chatbots/client.py`
 
@@ -21,7 +33,11 @@ Client chatbot endpoint for internal BI queries.
 | user_id | string | No | None | User identifier |
 | include_steps | bool | No | false | Include tool execution steps |
 
-## Response Schema
+
+---
+
+
+## **📤 Response Schema**
 
 | Field | Type | Description |
 |-------|------|-------------|
@@ -31,9 +47,14 @@ Client chatbot endpoint for internal BI queries.
 | chart_html | string | Plotly chart HTML (if visualization) |
 | steps | list[dict] | Tool execution steps (if requested) |
 
-## Example
 
-### Request
+---
+
+
+## **💡 Example**
+
+
+### 📤 **Request**
 
 ```bash
 curl -X POST http://localhost:8000/api/v1/chatbot/client/chat \
@@ -45,7 +66,8 @@ curl -X POST http://localhost:8000/api/v1/chatbot/client/chat \
   }'
 ```
 
-### Response
+
+### 📥 **Response**
 
 ```json
 {
@@ -57,12 +79,20 @@ curl -X POST http://localhost:8000/api/v1/chatbot/client/chat \
 }
 ```
 
-## Errors
+
+---
+
+
+## **❌ Errors**
 
 | Status | Description |
 |--------|-------------|
 | 500 | Internal server error |
 
-## Full Code
+
+---
+
+
+## **🔗 Full Code**
 
 See [`src/api/routes/chatbots/client.py`](../../../src/api/routes/chatbots/client.py)

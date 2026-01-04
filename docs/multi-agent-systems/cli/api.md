@@ -1,14 +1,22 @@
-# api
+# **🔗 api**
 
 Start FastAPI REST API server.
 
-## Usage
+
+---
+
+
+## **🚀 Usage**
 
 ```bash
 python main.py api [OPTIONS]
 ```
 
-## Options
+
+---
+
+
+## **⚙️ Options**
 
 | Option | Short | Default | Description |
 |--------|-------|---------|-------------|
@@ -16,7 +24,11 @@ python main.py api [OPTIONS]
 | `--port` | `-p` | `8000` | Port to bind |
 | `--reload` | `-r` | `false` | Enable auto-reload |
 
-## Examples
+
+---
+
+
+## **💡 Examples**
 
 ```bash
 # Default (0.0.0.0:8000)
@@ -32,7 +44,11 @@ python main.py api --host 127.0.0.1
 python main.py api --reload
 ```
 
-## Docker
+
+---
+
+
+## **🐳 Docker**
 
 ```bash
 docker-compose up -d api
@@ -40,7 +56,11 @@ docker-compose up -d api
 
 Access at: http://localhost:8000
 
-## Server Startup
+
+---
+
+
+## **⚡ Server Startup**
 
 The API command creates a FastAPI app and runs it with uvicorn:
 
@@ -54,7 +74,11 @@ uvicorn.run(
 )
 ```
 
-## Endpoints
+
+---
+
+
+## **📋 Endpoints**
 
 | Endpoint | Method | Purpose |
 |----------|--------|---------|
@@ -62,6 +86,10 @@ uvicorn.run(
 | `/api/v1/chatbot/client/chat` | POST | Client chatbot |
 | `/health` | GET | Health check |
 
-## Full Code
+
+---
+
+
+## **🔗 Full Code**
 
 See [`main.py`](../../../main.py) - `api` command

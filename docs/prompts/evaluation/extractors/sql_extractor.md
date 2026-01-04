@@ -1,38 +1,66 @@
-# SQL Extractor Prompt
+# **🔧 SQL Extractor Prompt**
 
 Extraction prompt for pulling SQL operations from agent steps.
 
-## Langfuse Name
+
+---
+
+
+## **🏷️ Langfuse Name**
 
 `evaluation_extractors_sql_extractor`
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `prompts/evaluation/extractors/sql_extractor.prompt`
 
-## Used By
+
+---
+
+
+## **🔗 Used By**
 
 - [SQLJudge](../../../evaluation/judges/sql.md)
 
-## Model
+
+---
+
+
+## **🤖 Model**
 
 `gpt-4o-mini`
 
-## Variables
+
+---
+
+
+## **📥 Variables**
 
 | Variable | Type | Description |
 |----------|------|-------------|
 | `question` | string | User's original question |
 | `steps` | list | Agent execution steps |
 
-## Purpose
+
+---
+
+
+## **💡 Purpose**
 
 Extract all SQL queries and results from execution steps:
 1. Find SQL-related tool calls in steps
 2. Extract the SQL query executed
 3. Extract the query result or outcome
 
-## Output Schema
+
+---
+
+
+## **📤 Output Schema**
 
 ```json
 {
@@ -46,4 +74,4 @@ Extract all SQL queries and results from execution steps:
 }
 ```
 
-Returns empty array if no SQL operations found.
+> 📝 **Note:** Returns empty array if no SQL operations found.

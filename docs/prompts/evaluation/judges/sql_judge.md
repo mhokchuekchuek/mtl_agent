@@ -1,20 +1,36 @@
-# SQL Judge Prompt
+# **🗄️ SQL Judge Prompt**
 
 Evaluate SQL query correctness.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `prompts/evaluation/judges/sql_judge.prompt`
 
-## Prompt Name
+
+---
+
+
+## **🏷️ Prompt Name**
 
 `evaluation_sql_judge`
 
-## Purpose
+
+---
+
+
+## **💡 Purpose**
 
 Judge whether the chatbot's SQL operations correctly answer the user's question.
 
-## Input Variables
+
+---
+
+
+## **📥 Input Variables**
 
 | Variable | Description |
 |----------|-------------|
@@ -26,7 +42,11 @@ Judge whether the chatbot's SQL operations correctly answer the user's question.
 | `expected_result` | Expected query result |
 | `sql_operations` | Actual SQL operations executed |
 
-## Output Format
+
+---
+
+
+## **📤 Output Format**
 
 ```json
 {
@@ -41,9 +61,14 @@ Judge whether the chatbot's SQL operations correctly answer the user's question.
 }
 ```
 
-## Scoring Criteria
 
-### result_match
+---
+
+
+## **📊 Scoring Criteria**
+
+
+### ✅ **result_match**
 
 | Score | Meaning |
 |-------|---------|
@@ -52,7 +77,8 @@ Judge whether the chatbot's SQL operations correctly answer the user's question.
 | 0.5 | Partial match |
 | 0.0 | Wrong results |
 
-### efficiency
+
+### ⚡ **efficiency**
 
 | Score | Meaning |
 |-------|---------|
@@ -61,7 +87,11 @@ Judge whether the chatbot's SQL operations correctly answer the user's question.
 | 0.5 | Unnecessary JOINs or subqueries |
 | 0.0 | Very inefficient |
 
-## Key Rules
+
+---
+
+
+## **📝 Key Rules**
 
 - Focus on **results**, not exact SQL syntax
 - Hardcoded dates that produce correct results are acceptable

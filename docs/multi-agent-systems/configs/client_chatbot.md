@@ -1,14 +1,23 @@
-# client_chatbot.yaml
+# **💼 client_chatbot.yaml**
 
 Configuration for internal BI chatbot.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `configs/agents/client_chatbot.yaml`
 
-## Agents
 
-### translation
+---
+
+
+## **🤖 Agents**
+
+
+### 🌐 **translation**
 
 | Key | Value | Description |
 |-----|-------|-------------|
@@ -17,7 +26,8 @@ Configuration for internal BI chatbot.
 | temperature | `0.3` | Low for consistent translation |
 | max_tokens | `8192` | Max output tokens |
 
-### orchestrator
+
+### 🔀 **orchestrator**
 
 | Key | Value | Description |
 |-----|-------|-------------|
@@ -25,7 +35,8 @@ Configuration for internal BI chatbot.
 | prompt_name | `agents_client_orchestrator` | Langfuse prompt name |
 | temperature | `0.3` | Low for consistent routing |
 
-### chat_history
+
+### 💬 **chat_history**
 
 | Key | Value | Description |
 |-----|-------|-------------|
@@ -35,7 +46,8 @@ Configuration for internal BI chatbot.
 | max_iterations | `5` | ReAct max iterations |
 | recursion_limit | `25` | Graph recursion limit |
 
-#### Tools: chat_history_sql
+
+#### 🔧 **Tools: chat_history_sql**
 
 | Key | Value | Description |
 |-----|-------|-------------|
@@ -43,7 +55,8 @@ Configuration for internal BI chatbot.
 | prompt_name | `tools_client_chat_history_sql` | Langfuse prompt name |
 | temperature | `0` | Zero for deterministic SQL |
 
-### insight
+
+### 📊 **insight**
 
 | Key | Value | Description |
 |-----|-------|-------------|
@@ -53,7 +66,8 @@ Configuration for internal BI chatbot.
 | max_iterations | `5` | ReAct max iterations |
 | recursion_limit | `25` | Graph recursion limit |
 
-#### Tools: analytics_sql
+
+#### 🔧 **Tools: analytics_sql**
 
 | Key | Value | Description |
 |-----|-------|-------------|
@@ -62,7 +76,8 @@ Configuration for internal BI chatbot.
 | temperature | `0` | Zero for deterministic SQL |
 | max_tokens | `16384` | Large for complex queries |
 
-#### Tools: visualization
+
+#### 🔧 **Tools: visualization**
 
 | Key | Value | Description |
 |-----|-------|-------------|
@@ -71,6 +86,10 @@ Configuration for internal BI chatbot.
 | temperature | `0` | Zero for deterministic chart code |
 | max_tokens | `16384` | Large for Plotly code |
 
-## Full Config
+
+---
+
+
+## **🔗 Full Config**
 
 See [`configs/agents/client_chatbot.yaml`](../../../configs/agents/client_chatbot.yaml) for complete configuration.

@@ -1,14 +1,23 @@
-# shared.yaml
+# **⚙️ shared.yaml**
 
 Common infrastructure settings inherited by all chatbots.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `configs/agents/shared.yaml`
 
-## Sections
 
-### llm
+---
+
+
+## **📋 Sections**
+
+
+### 🤖 **llm**
 
 LLM provider configuration via LiteLLM proxy.
 
@@ -20,7 +29,8 @@ LLM provider configuration via LiteLLM proxy.
 | temperature | float | `0.7` | Default temperature |
 | max_tokens | int | `2000` | Default max tokens |
 
-### observability
+
+### 📊 **observability**
 
 Langfuse observability configuration.
 
@@ -31,7 +41,8 @@ Langfuse observability configuration.
 | public_key | string | `@format {env[LANGFUSE_PUBLIC_KEY]}` | Langfuse public key |
 | secret_key | string | `@format {env[LANGFUSE_SECRET_KEY]}` | Langfuse secret key |
 
-### checkpointer
+
+### 🔴 **checkpointer**
 
 Redis checkpointer for short-term memory.
 
@@ -43,7 +54,8 @@ Redis checkpointer for short-term memory.
 | ttl | int | `60` | TTL in minutes |
 | refresh_on_read | bool | `true` | Refresh TTL on read |
 
-### vectordb
+
+### 🔍 **vectordb**
 
 Qdrant vector database configuration.
 
@@ -53,7 +65,8 @@ Qdrant vector database configuration.
 | host | string | `@format {env[QDRANT_HOST]}` | Qdrant host |
 | port | int | `@format {env[QDRANT_PORT]}` | Qdrant port |
 
-### database
+
+### 🗄️ **database**
 
 SQLite ERP database configuration.
 
@@ -62,7 +75,8 @@ SQLite ERP database configuration.
 | provider | string | `sqlite` | Provider name |
 | path | string | `@format {env[ERP_DATABASE_PATH]}` | Database file path |
 
-### store
+
+### 🐘 **store**
 
 Postgres store for long-term memory.
 
@@ -75,6 +89,10 @@ Postgres store for long-term memory.
 | user | string | `@format {env[POSTGRES_USER]}` | Database user |
 | password | string | `@format {env[POSTGRES_PASSWORD]}` | Database password |
 
-## Full Config
+
+---
+
+
+## **🔗 Full Config**
 
 See [`configs/agents/shared.yaml`](../../../configs/agents/shared.yaml) for complete configuration.

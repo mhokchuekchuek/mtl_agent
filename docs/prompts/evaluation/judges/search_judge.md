@@ -1,24 +1,44 @@
-# Search Judge Prompt
+# **🔍 Search Judge Prompt**
 
 LLM-as-Judge prompt for evaluating vector search quality.
 
-## Langfuse Name
+
+---
+
+
+## **🏷️ Langfuse Name**
 
 `evaluation_judges_search_judge`
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `prompts/evaluation/judges/search_judge.prompt`
 
-## Used By
+
+---
+
+
+## **🔗 Used By**
 
 - [SearchJudge](../../../evaluation/judges/search.md)
 
-## Model
+
+---
+
+
+## **🤖 Model**
 
 `gpt-4o`
 
-## Variables
+
+---
+
+
+## **📥 Variables**
 
 | Variable | Type | Description |
 |----------|------|-------------|
@@ -26,14 +46,22 @@ LLM-as-Judge prompt for evaluating vector search quality.
 | `expected_results` | list | Products that should be found |
 | `steps` | list | Agent execution steps |
 
-## Purpose
+
+---
+
+
+## **💡 Purpose**
 
 Extract and evaluate search results:
 1. Find `product_search` or `similar_products` tool calls in steps
 2. Score relevance (are results relevant to query?)
 3. Score coverage (are expected products found?)
 
-## Output Schema
+
+---
+
+
+## **📤 Output Schema**
 
 ```json
 {

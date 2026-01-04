@@ -1,12 +1,20 @@
-# BaseWorkflow
+# **🔄 BaseWorkflow**
 
 Abstract base class for all LangGraph workflows.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `src/modules/workflows/base.py`
 
-## Class Definition
+
+---
+
+
+## **📋 Class Definition**
 
 ```python
 class BaseWorkflow(ABC):
@@ -24,19 +32,32 @@ class BaseWorkflow(ABC):
         """Build messages list with ToolMessages for checkpoint."""
 ```
 
-## Purpose
+
+---
+
+
+## **💡 Purpose**
 
 1. **Define contract** - All workflows must implement `build()` returning uncompiled StateGraph
 2. **Separation of concerns** - Workflow builds graph, Repository compiles with checkpointer/store
 3. **Message building** - Helper to construct conversation messages with tool steps
 
-## Code Flow
+
+---
+
+
+## **🔄 Code Flow**
 
 ![Code Flow](../../../assets/diagrams/modules/workflows_base_1.png)
 
-## Key Methods
 
-### `build() -> StateGraph`
+---
+
+
+## **🔧 Key Methods**
+
+
+### 🔨 **`build() -> StateGraph`**
 
 Abstract method that subclasses must implement.
 
@@ -48,7 +69,8 @@ Abstract method that subclasses must implement.
 | 4 | Set entry point |
 | 5 | Return **uncompiled** graph |
 
-### `_build_conversation_messages()`
+
+### 🔨 **`_build_conversation_messages()`**
 
 Helper method to build message list for checkpointing.
 
@@ -62,7 +84,11 @@ Helper method to build message list for checkpointing.
 |--------|------|-------------|
 | messages | list | HumanMessage + AIMessage + ToolMessages |
 
-## Usage Pattern
+
+---
+
+
+## **💡 Usage Pattern**
 
 ```python
 from src.modules.workflows.base import BaseWorkflow
@@ -88,7 +114,11 @@ class MyWorkflow(BaseWorkflow):
         return graph  # NOT compiled!
 ```
 
-## Why Not Compile Here?
+
+---
+
+
+## **❓ Why Not Compile Here?**
 
 Compilation happens in Repository layer because:
 
@@ -96,4 +126,4 @@ Compilation happens in Repository layer because:
 2. **Store** - Needs database connection for long-term memory
 3. **Flexibility** - Same workflow, different storage backends
 
-See [Repositories](../../repositories/chatbots/README.md) for compilation details.
+> 📝 **Note:** See [Repositories](../../repositories/chatbots/README.md) for compilation details.

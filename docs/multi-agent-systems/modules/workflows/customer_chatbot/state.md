@@ -1,12 +1,20 @@
-# ShoppingState
+# **📋 ShoppingState**
 
 State definition for CustomerChatbotWorkflow.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `src/modules/workflows/customer_chatbot/state.py`
 
-## State Definition
+
+---
+
+
+## **📋 State Definition**
 
 ```python
 class ShoppingState(TypedDict):
@@ -17,7 +25,11 @@ class ShoppingState(TypedDict):
     steps: Annotated[list[dict], add_steps]
 ```
 
-## Fields
+
+---
+
+
+## **📊 Fields**
 
 | Field | Type | Reducer | Description |
 |-------|------|---------|-------------|
@@ -27,9 +39,14 @@ class ShoppingState(TypedDict):
 | response | str | - | Final response text |
 | steps | list[dict] | add_steps | Tool execution trace (auto-appends) |
 
-## Reducers
 
-### add_messages
+---
+
+
+## **🔧 Reducers**
+
+
+### 📝 **add_messages**
 
 LangGraph built-in reducer that appends new messages to the list.
 
@@ -37,7 +54,8 @@ LangGraph built-in reducer that appends new messages to the list.
 messages: Annotated[list[BaseMessage], add_messages]
 ```
 
-### add_steps
+
+### 📝 **add_steps**
 
 Custom reducer that appends tool execution steps.
 
@@ -48,11 +66,19 @@ def add_steps(left: list[dict], right: list[dict]) -> list[dict]:
 steps: Annotated[list[dict], add_steps]
 ```
 
-## State Flow
+
+---
+
+
+## **🔄 State Flow**
 
 ![State Flow](../../../../assets/diagrams/modules/customer_chatbot_state_1.png)
 
-## Example State
+
+---
+
+
+## **💡 Example State**
 
 ```python
 {
@@ -73,7 +99,11 @@ steps: Annotated[list[dict], add_steps]
 }
 ```
 
-## Comparison with ClientChatbotState
+
+---
+
+
+## **📊 Comparison with ClientChatbotState**
 
 | Feature | ShoppingState | ClientChatbotState |
 |---------|---------------|-------------------|

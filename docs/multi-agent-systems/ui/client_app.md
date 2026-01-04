@@ -1,16 +1,28 @@
-# Client App
+# **💼 Client App**
 
 Streamlit UI for BI analytics chatbot.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `ui/client_app.py`
 
-## Port
+
+---
+
+
+## **🌐 Port**
 
 `8502`
 
-## Features
+
+---
+
+
+## **✨ Features**
 
 - Sales analytics
 - Customer insights
@@ -19,24 +31,37 @@ Streamlit UI for BI analytics chatbot.
 - Customer chat history lookup
 - Thai/English support
 
-## Screenshots
 
-### Analytics with Chart
+---
+
+
+## **📸 Screenshots**
+
+
+### 📊 **Analytics with Chart**
 ![Client analytics with graph](../../assets/screenshots/client_graph.png)
 
-### Analytics without Chart
+### 📋 **Analytics without Chart**
+
 ![Client analytics without graph](../../assets/screenshots/client_without_graph.png)
 
-### Customer Chat Lookup
+
+### 💬 **Customer Chat Lookup**
+
 ![Client looking up customer chat](../../assets/screenshots/client_lookup_customer_chat.png)
 
-## API Endpoint
+
+---
+
+
+## **🔗 API Endpoint**
 
 ```
 POST /api/v1/chatbot/client/chat
 ```
 
-### Request
+
+### 📤 **Request**
 
 ```json
 {
@@ -46,7 +71,8 @@ POST /api/v1/chatbot/client/chat
 }
 ```
 
-### Response
+
+### 📥 **Response**
 
 ```json
 {
@@ -57,7 +83,11 @@ POST /api/v1/chatbot/client/chat
 }
 ```
 
-## Session State
+
+---
+
+
+## **📊 Session State**
 
 | Key | Type | Default | Purpose |
 |-----|------|---------|---------|
@@ -66,7 +96,11 @@ POST /api/v1/chatbot/client/chat
 | `thread_id` | str | `""` | Conversation ID |
 | `user_id` | str | `""` | Analyst ID |
 
-## Chart Rendering
+
+---
+
+
+## **📈 Chart Rendering**
 
 Charts are rendered using `streamlit.components.v1.html()`:
 
@@ -75,7 +109,11 @@ if result.get("chart_html"):
     components.html(result["chart_html"], height=500, scrolling=True)
 ```
 
-## Intent Display
+
+---
+
+
+## **🎯 Intent Display**
 
 The UI shows intent classification from orchestrator:
 
@@ -84,7 +122,11 @@ The UI shows intent classification from orchestrator:
 | `INSIGHT` | BI analytics query |
 | `CHAT_HISTORY` | Customer chat lookup |
 
-## Error Handling
+
+---
+
+
+## **❌ Error Handling**
 
 | Error | Message |
 |-------|---------|
@@ -92,7 +134,11 @@ The UI shows intent classification from orchestrator:
 | Timeout | Connection timed out |
 | Other | Error: {error} |
 
-## Configuration
+
+---
+
+
+## **⚙️ Configuration**
 
 | Variable | Source | Default |
 |----------|--------|---------|

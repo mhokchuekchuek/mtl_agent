@@ -1,24 +1,38 @@
-# Product Agent
+# **🛒 Product Agent**
 
 ReAct agent for handling product-related queries.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `src/modules/agents/products/main.py`
 
-## Prompt
+
+---
+
+
+## **📜 Prompt**
 
 [product_agent.md](../../../../prompts/agents/customer/product_agent.md)
 
-## Class: ProductAgent
+
+---
+
+
+## **📋 Class: ProductAgent**
 
 Inherits from `BaseAgent`.
 
-### Purpose
+
+### 💡 **Purpose**
 
 Handle product queries using ReAct pattern. Dynamically decides which tools to use for product search, recommendations, comparisons, stock queries, and order placement.
 
-### Configuration
+
+### ⚙️ **Configuration**
 
 | Property | Value |
 |----------|-------|
@@ -26,7 +40,8 @@ Handle product queries using ReAct pattern. Dynamically decides which tools to u
 | Pattern | ReAct (LangGraph) |
 | Prompt | `product_agent` |
 
-### Input State
+
+### 📥 **Input State**
 
 | Field | Type | Description |
 |-------|------|-------------|
@@ -34,14 +49,16 @@ Handle product queries using ReAct pattern. Dynamically decides which tools to u
 | `messages` | list | Conversation history (optional) |
 | `customer_id` | str | Customer ID for orders (optional) |
 
-### Output State
+
+### 📤 **Output State**
 
 | Field | Type | Description |
 |-------|------|-------------|
 | `response` | str | Agent's response |
 | `steps` | list | Tool calls made |
 
-### Tools
+
+### 🔧 **Tools**
 
 | Tool | Location | Purpose |
 |------|----------|---------|
@@ -52,11 +69,13 @@ Handle product queries using ReAct pattern. Dynamically decides which tools to u
 | ProductSearchTool | [vectordb/search.md](../../tools/knowledge_retrieval/vectordb/search.md) | Semantic product search |
 | SimilarProductsTool | [vectordb/similar.md](../../tools/knowledge_retrieval/vectordb/similar.md) | Find similar products |
 
-### Code Flow
+
+### 🔄 **Code Flow**
 
 ![Code Flow](../../../../assets/diagrams/modules/products_main_1.png)
 
-### Example Flows
+
+### 💡 **Example Flows**
 
 **Query: "Show me laptops under $1000"**
 ```
@@ -73,7 +92,11 @@ LLM → PlaceOrderSQLTool (confirm) → PlaceOrderSQLTool (execute) → Response
 LLM → OrderSQLTool → Response
 ```
 
-### Usage
+
+---
+
+
+### 💡 **Usage**
 
 ```python
 from src.modules.agents.products.main import ProductAgent

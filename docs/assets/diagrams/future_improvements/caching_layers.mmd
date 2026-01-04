@@ -1,0 +1,37 @@
+flowchart TB
+    subgraph Request["User Request"]
+        Q[Query]
+    end
+
+    subgraph AppCache["Application Layer Cache"]
+        TC[Tool Cache<br/>Redis 5min TTL]
+        EC[Embedding Cache<br/>Redis 24hr TTL]
+    end
+
+    subgraph LiteLLM["LiteLLM Proxy"]
+        RC[Response Cache<br/>Exact Match]
+        SC[Semantic Cache<br/>Similarity 0.8]
+    end
+
+    subgraph Provider["LLM Provider"]
+        subgraph API["External API"]
+            OAI[OpenAI]
+            ANT[Anthropic]
+        end
+        subgraph SelfHosted["Self-Hosted"]
+            VLLM[vLLM]
+            LMC[LMCache<br/>KV Cache]
+        end
+    end
+
+    Q --> TC
+    Q --> EC
+    TC -->|miss| LiteLLM
+    EC -->|miss| LiteLLM
+
+    RC -->|miss| SC
+    SC -->|miss| Provider
+
+    LiteLLM --> API
+    LiteLLM --> SelfHosted
+    VLLM --> LMC

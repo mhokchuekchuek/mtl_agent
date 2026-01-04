@@ -1,26 +1,46 @@
-# ClientChatbotWorkflow
+# **💼 ClientChatbotWorkflow**
 
 Internal BI chatbot workflow for business users.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `src/modules/workflows/client_chatbot/main.py`
 
-## Purpose
+
+---
+
+
+## **💡 Purpose**
 
 Orchestrate agents for internal business intelligence queries:
 - Customer chat history lookup
 - Sales analytics and insights with visualization
 
-## Graph Structure
+
+---
+
+
+## **📊 Graph Structure**
 
 ![Graph Structure](../../../../assets/diagrams/modules/client_chatbot_main_1.png)
 
-## Code Flow
+
+---
+
+
+## **🔄 Code Flow**
 
 ![Code Flow](../../../../assets/diagrams/modules/client_chatbot_main_2.png)
 
-## Agents Reference
+
+---
+
+
+## **🤖 Agents Reference**
 
 | Agent | Location | Purpose | Documentation |
 |-------|----------|---------|---------------|
@@ -29,7 +49,11 @@ Orchestrate agents for internal business intelligence queries:
 | CustomerChatHistoryAgent | `src/modules/agents/client/chat_history.py` | Query customer chat history | [client/chat_history.md](../../agents/client/chat_history.md) |
 | CustomerInsightAgent | `src/modules/agents/client/insight.py` | SQL analytics + visualization | [client/insight.md](../../agents/client/insight.md) |
 
-## State
+
+---
+
+
+## **📋 State**
 
 See [state.md](state.md) for full state definition.
 
@@ -44,9 +68,14 @@ See [state.md](state.md) for full state definition.
 | chart_html | str | Plotly chart HTML (if visualization) |
 | steps | list[dict] | Tool execution steps |
 
-## Node Implementation
 
-### translate_input
+---
+
+
+## **🔧 Node Implementation**
+
+
+### 🌐 **translate_input**
 
 ```python
 def _translate_input(self, state: ClientChatbotState) -> dict:
@@ -55,7 +84,8 @@ def _translate_input(self, state: ClientChatbotState) -> dict:
     # 3. Return user_language + translated_query
 ```
 
-### orchestrator
+
+### 🎯 **orchestrator**
 
 ```python
 def _orchestrator(self, state: ClientChatbotState) -> dict:
@@ -64,7 +94,8 @@ def _orchestrator(self, state: ClientChatbotState) -> dict:
     # 3. Return intent (CHAT_HISTORY or INSIGHT)
 ```
 
-### chat_history / insight
+
+### 💬 **chat_history / insight**
 
 ```python
 def _chat_history(self, state: ClientChatbotState) -> dict:
@@ -78,7 +109,8 @@ def _insight(self, state: ClientChatbotState) -> dict:
     # 3. Return response + chart_html + steps
 ```
 
-### translate_output
+
+### 🌐 **translate_output**
 
 ```python
 def _translate_output(self, state: ClientChatbotState) -> dict:
@@ -87,7 +119,11 @@ def _translate_output(self, state: ClientChatbotState) -> dict:
     # 3. Return final response
 ```
 
-## Routing Logic
+
+---
+
+
+## **🔀 Routing Logic**
 
 ```python
 def _route_by_intent(self, state: ClientChatbotState) -> str:
@@ -96,9 +132,14 @@ def _route_by_intent(self, state: ClientChatbotState) -> str:
     return "insight"
 ```
 
-## Example Flows
 
-### Chat History Query
+---
+
+
+## **💡 Example Flows**
+
+
+### 💬 **Chat History Query**
 
 ```
 Query: "ดูประวัติแชทของลูกค้า ID 123"
@@ -109,7 +150,8 @@ Query: "ดูประวัติแชทของลูกค้า ID 123"
 4. translate_output → translates response to Thai
 ```
 
-### Insight Query
+
+### 📊 **Insight Query**
 
 ```
 Query: "ยอดขายเดือนนี้แยกตาม category"
@@ -120,7 +162,11 @@ Query: "ยอดขายเดือนนี้แยกตาม category"
 4. translate_output → translates response to Thai
 ```
 
-## Related Files
+
+---
+
+
+## **🔗 Related Files**
 
 | File | Purpose |
 |------|---------|

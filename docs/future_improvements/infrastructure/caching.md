@@ -2,6 +2,8 @@
 
 Multi-layer caching architecture for LLM applications.
 
+![Caching Layers](../../assets/diagrams/future_improvements/caching_layers.png)
+
 ## Caching vs Memory
 
 | Concept | Purpose | Example |

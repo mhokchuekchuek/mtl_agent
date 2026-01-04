@@ -1,24 +1,41 @@
-# build_chatbot_service
+# **👤 build_chatbot_service**
 
 Dependency injection for customer (shopping assistant) chatbot.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `src/dependencies/customer_chatbot.py`
 
-## Function
+
+---
+
+
+## **🔧 Function**
 
 ```python
 def build_chatbot_service() -> ChatbotService
 ```
 
-## Code Flow
+
+---
+
+
+## **🔄 Code Flow**
 
 ![Code Flow](../../assets/diagrams/dependencies/dependencies_customer_chatbot_1.png)
 
-## Components Created
 
-### Clients
+---
+
+
+## **📋 Components Created**
+
+
+### 🔌 **Clients**
 
 | Client | Provider | Purpose |
 |--------|----------|---------|
@@ -33,14 +50,16 @@ def build_chatbot_service() -> ChatbotService
 | observability | langfuse | Tracing |
 | prompt_manager | langfuse | Prompt management |
 
-### Repositories
+
+### 🗃️ **Repositories**
 
 | Repository | Type | Purpose |
 |------------|------|---------|
 | checkpoint_repo | RedisCheckpointerRepository | Short-term memory |
 | store_repo | PostgresStoreRepository | Long-term memory |
 
-### Tools
+
+### 🔧 **Tools**
 
 | Tool | Class | Purpose |
 |------|-------|---------|
@@ -51,14 +70,16 @@ def build_chatbot_service() -> ChatbotService
 | product_search_tool | ProductSearchTool | Semantic product search |
 | similar_products_tool | SimilarProductsTool | Find similar products |
 
-### Agents
+
+### 🤖 **Agents**
 
 | Agent | Class | Tools |
 |-------|-------|-------|
 | translation_agent | TranslationAgent | - |
 | product_agent | ProductAgent | All 6 tools above |
 
-### Workflow & Service
+
+### 🔄 **Workflow & Service**
 
 | Component | Class |
 |-----------|-------|
@@ -66,7 +87,11 @@ def build_chatbot_service() -> ChatbotService
 | chatbot_repo | CustomerChatbotRepository |
 | service | ChatbotService |
 
-## Usage
+
+---
+
+
+## **💡 Usage**
 
 ```python
 from src.dependencies.customer_chatbot import build_chatbot_service
@@ -79,6 +104,10 @@ result = service.chat(
 )
 ```
 
-## Full Code
+
+---
+
+
+## **🔗 Full Code**
 
 See [`src/dependencies/customer_chatbot.py`](../../../src/dependencies/customer_chatbot.py)

@@ -1,31 +1,55 @@
-# Orchestrator Prompt
+# **🔀 Orchestrator Prompt**
 
 Route client queries to appropriate agents.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `prompts/agents/client/orchestrator.prompt`
 
-## Prompt Name
+
+---
+
+
+## **🏷️ Prompt Name**
 
 `client_chatbot_orchestrator`
 
-## Purpose
+
+---
+
+
+## **💡 Purpose**
 
 Classify user intent to route to either `chat_history` or `insight` agent.
 
-## Input Variables
+
+---
+
+
+## **📥 Input Variables**
 
 | Variable | Description |
 |----------|-------------|
 | `current_datetime` | Current date/time |
 | `timezone` | Current timezone |
 
-## Output
+
+---
+
+
+## **📤 Output**
 
 Single word: `chat_history` or `insight`
 
-## Categories
+
+---
+
+
+## **📊 Categories**
 
 ![Categories](../../../assets/diagrams/prompts/client_orchestrator_1.png)
 
@@ -34,7 +58,11 @@ Single word: `chat_history` or `insight`
 | `chat_history` | Search conversation logs | "Find conversations with customer ID 12345" |
 | `insight` | Query business data, analytics, reports | "Show sales by region", "Customer profile" |
 
-## Key Rules
+
+---
+
+
+## **📝 Key Rules**
 
 - Queries about customer **profiles, orders, business data** → `insight`
 - Queries about **chat conversation history** → `chat_history`

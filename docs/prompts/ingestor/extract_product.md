@@ -1,27 +1,47 @@
-# Extract Product Prompt
+# **📄 Extract Product Prompt**
 
 Extract structured product information from PDF text.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `prompts/ingestor/extract_product.prompt`
 
-## Prompt Name
+
+---
+
+
+## **🏷️ Prompt Name**
 
 `ingestor_extract_product`
 
-## Purpose
+
+---
+
+
+## **💡 Purpose**
 
 Extract structured product data from raw PDF text for ingestion into vector database.
 
-## Input Variables
+
+---
+
+
+## **📥 Input Variables**
 
 | Variable | Description |
 |----------|-------------|
 | `text` | Raw text from PDF |
 | `product_id` | Product ID from filename |
 
-## Output Format
+
+---
+
+
+## **📤 Output Format**
 
 ```json
 {
@@ -37,10 +57,18 @@ Extract structured product data from raw PDF text for ingestion into vector data
 }
 ```
 
-## Flow
+
+---
+
+
+## **🔄 Flow**
 
 ![Flow](../../assets/diagrams/prompts/ingestor_extract_product_1.png)
 
-## Usage
+
+---
+
+
+## **💡 Usage**
 
 Used by `ingestor/pipeline.py` to process product PDFs into Qdrant.

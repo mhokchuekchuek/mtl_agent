@@ -6,17 +6,16 @@ import sys
 from pathlib import Path
 
 # Get the project root directory
-PROJECT_ROOT = Path(__file__).parent.parent
-DIAGRAMS_DIR = PROJECT_ROOT / "docs" / "diagrams"
-IMAGES_DIR = PROJECT_ROOT / "docs" / "images"
-MERMAID_CONFIG = PROJECT_ROOT / "scripts" / "mermaid-config.json"
+PROJECT_ROOT = Path(__file__).parent.parent.parent
+DIAGRAMS_DIR = PROJECT_ROOT / "docs" / "assets" / "diagrams"
+IMAGES_DIR = PROJECT_ROOT / "docs" / "assets" / "diagrams"  # Same location as source
+MERMAID_CONFIG = Path(__file__).parent / "mermaid-config.json"
 
 
 def generate_diagram(mmd_file: Path) -> Path | None:
     """Generate PNG from .mmd file."""
-    # Calculate output path preserving directory structure
-    relative = mmd_file.relative_to(DIAGRAMS_DIR)
-    output_path = IMAGES_DIR / relative.with_suffix(".png")
+    # Output PNG alongside the source .mmd file
+    output_path = mmd_file.with_suffix(".png")
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
     cmd = [

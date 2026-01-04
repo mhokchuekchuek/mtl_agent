@@ -1,20 +1,36 @@
-# Product SQL Prompt
+# **🛍️ Product SQL Prompt**
 
 Generate SQL for product queries.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `prompts/tools/customer/product_sql.prompt`
 
-## Prompt Name
+
+---
+
+
+## **🏷️ Prompt Name**
 
 `customer_chatbot_product_sql`
 
-## Purpose
+
+---
+
+
+## **💡 Purpose**
 
 Generate SELECT queries for product information (prices, stock, categories).
 
-## Input Variables
+
+---
+
+
+## **📥 Input Variables**
 
 | Variable | Description |
 |----------|-------------|
@@ -22,7 +38,11 @@ Generate SELECT queries for product information (prices, stock, categories).
 | `schema` | Database schema |
 | `db_type` | sqlite or postgresql |
 
-## Output Format
+
+---
+
+
+## **📤 Output Format**
 
 ```json
 {
@@ -31,19 +51,31 @@ Generate SELECT queries for product information (prices, stock, categories).
 }
 ```
 
-## Allowed Tables
+
+---
+
+
+## **✅ Allowed Tables**
 
 - Products
 - Inventory
 - Warehouses
 
-## Forbidden Tables
+
+---
+
+
+## **🚫 Forbidden Tables**
 
 - Customers
 - Orders
 - OrderDetails
 
-## Key Rules
+
+---
+
+
+## **📝 Key Rules**
 
 | Rule | Description |
 |------|-------------|

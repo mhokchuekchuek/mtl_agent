@@ -1,20 +1,33 @@
-# Client Chat History SQL Tool
+# **💬 Client Chat History SQL Tool**
 
 Query customer chat conversation history from PostgreSQL store.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `src/modules/tools/knowledge_retrieval/sql/client/chat_history.py`
 
-## Prompt
+
+---
+
+
+## **📜 Prompt**
 
 [tools_client_chat_history_sql](../../../../../../prompts/tools/client/chat_history_sql.md)
 
-## Class: ClientChatHistorySQLTool
+
+---
+
+
+## **📋 Class: ClientChatHistorySQLTool**
 
 Inherits from `SQLTool`.
 
-### Purpose
+
+### 💡 **Purpose**
 
 Find what customers asked or said in previous conversations. Queries the LangGraph store table.
 

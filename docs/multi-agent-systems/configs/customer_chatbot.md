@@ -1,14 +1,23 @@
-# customer_chatbot.yaml
+# **👤 customer_chatbot.yaml**
 
 Configuration for customer shopping assistant.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `configs/agents/customer_chatbot.yaml`
 
-## Agents
 
-### translation
+---
+
+
+## **🤖 Agents**
+
+
+### 🌐 **translation**
 
 | Key | Value | Description |
 |-----|-------|-------------|
@@ -17,7 +26,8 @@ Configuration for customer shopping assistant.
 | temperature | `0.3` | Low for consistent translation |
 | max_tokens | `8192` | Max output tokens |
 
-### products
+
+### 🛒 **products**
 
 | Key | Value | Description |
 |-----|-------|-------------|
@@ -26,7 +36,8 @@ Configuration for customer shopping assistant.
 | temperature | `0.7` | Moderate for natural responses |
 | max_iterations | `5` | ReAct max iterations |
 
-#### Tools: product_sql
+
+#### 🔧 **Tools: product_sql**
 
 | Key | Value | Description |
 |-----|-------|-------------|
@@ -36,7 +47,8 @@ Configuration for customer shopping assistant.
 | allow_write | `false` | Read-only |
 | allowed_tables | `Products, Inventory, Warehouses` | Accessible tables |
 
-#### Tools: order_sql
+
+#### 🔧 **Tools: order_sql**
 
 | Key | Value | Description |
 |-----|-------|-------------|
@@ -46,7 +58,8 @@ Configuration for customer shopping assistant.
 | allow_write | `false` | Read-only |
 | allowed_tables | `Orders, OrderDetails, Products` | Accessible tables |
 
-#### Tools: place_order_sql
+
+#### 🔧 **Tools: place_order_sql**
 
 | Key | Value | Description |
 |-----|-------|-------------|
@@ -56,7 +69,8 @@ Configuration for customer shopping assistant.
 | allow_write | `true` | Write enabled |
 | allowed_tables | `Orders, OrderDetails, Inventory, Products` | Accessible tables |
 
-#### Tools: cancel_order_sql
+
+#### 🔧 **Tools: cancel_order_sql**
 
 | Key | Value | Description |
 |-----|-------|-------------|
@@ -66,7 +80,8 @@ Configuration for customer shopping assistant.
 | allow_write | `true` | Write enabled |
 | allowed_tables | `Orders, OrderDetails, Inventory` | Accessible tables |
 
-#### Tools: product_search
+
+#### 🔧 **Tools: product_search**
 
 | Key | Value | Description |
 |-----|-------|-------------|
@@ -74,19 +89,28 @@ Configuration for customer shopping assistant.
 | top_k | `10` | Max results returned |
 | similarity_threshold | `0.5` | Min similarity score |
 
-#### Tools: similar_products
+
+#### 🔧 **Tools: similar_products**
 
 | Key | Value | Description |
 |-----|-------|-------------|
 | embedding_model | `text-embedding-3-small` | OpenAI embedding model |
 | top_k | `5` | Max similar products |
 
-## VectorDB
+
+---
+
+
+## **🔍 VectorDB**
 
 | Key | Value | Description |
 |-----|-------|-------------|
 | collection_name | `products` | Qdrant collection name |
 
-## Full Config
+
+---
+
+
+## **🔗 Full Config**
 
 See [`configs/agents/customer_chatbot.yaml`](../../../configs/agents/customer_chatbot.yaml) for complete configuration.

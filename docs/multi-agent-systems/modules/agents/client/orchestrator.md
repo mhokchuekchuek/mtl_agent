@@ -1,54 +1,76 @@
-# Orchestrator Agent
+# **🎯 Orchestrator Agent**
 
 Router agent that classifies intent and routes to appropriate agent.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `src/modules/agents/client/orchestrator.py`
 
-## Prompt
+
+---
+
+
+## **📜 Prompt**
 
 [orchestrator.md](../../../../prompts/agents/client/orchestrator.md)
 
-## Class: OrchestratorAgent
+
+---
+
+
+## **📋 Class: OrchestratorAgent**
 
 Inherits from `BaseAgent`.
 
-### Purpose
+
+### 💡 **Purpose**
 
 Classifies user intent and routes to either `chat_history` or `insight` agent.
 
-### Configuration
+
+### ⚙️ **Configuration**
 
 | Property | Value |
 |----------|-------|
 | LLM | ChatOpenAI |
 | Prompt | `client_chatbot_orchestrator` |
 
-### Input State
+
+### 📥 **Input State**
 
 | Field | Type | Description |
 |-------|------|-------------|
 | `translated_query` | str | Query in English |
 
-### Output State
+
+### 📤 **Output State**
 
 | Field | Type | Description |
 |-------|------|-------------|
 | `intent` | Intent | `CHAT_HISTORY` or `INSIGHT` |
 
-### Code Flow
+
+### 🔄 **Code Flow**
 
 ![Code Flow](../../../../assets/diagrams/modules/client_orchestrator_1.png)
 
-### Intent Types
+
+### 🎯 **Intent Types**
 
 | Intent | Description | Routes to |
 |--------|-------------|-----------|
 | `CHAT_HISTORY` | Looking up customer conversations | ChatHistoryAgent |
 | `INSIGHT` | BI analytics / reporting / visualization | InsightAgent |
 
-### Usage
+
+---
+
+
+### 💡 **Usage**
 
 ```python
 from src.modules.agents.client.orchestrator import OrchestratorAgent

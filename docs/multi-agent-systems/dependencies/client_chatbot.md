@@ -1,24 +1,41 @@
-# build_client_chatbot_service
+# **💼 build_client_chatbot_service**
 
 Dependency injection for client (internal BI) chatbot.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `src/dependencies/client_chatbot.py`
 
-## Function
+
+---
+
+
+## **🔧 Function**
 
 ```python
 def build_client_chatbot_service() -> ChatbotService
 ```
 
-## Code Flow
+
+---
+
+
+## **🔄 Code Flow**
 
 ![Code Flow](../../assets/diagrams/dependencies/dependencies_client_chatbot_1.png)
 
-## Components Created
 
-### Clients
+---
+
+
+## **📋 Components Created**
+
+
+### 🔌 **Clients**
 
 | Client | Provider | Purpose |
 |--------|----------|---------|
@@ -31,14 +48,16 @@ def build_client_chatbot_service() -> ChatbotService
 | observability | langfuse | Tracing |
 | prompt_manager | langfuse | Prompt management |
 
-### Repositories
+
+### 🗃️ **Repositories**
 
 | Repository | Type | Purpose |
 |------------|------|---------|
 | checkpoint_repo | RedisCheckpointerRepository | Short-term memory |
 | store_repo | None | No long-term memory (internal tool) |
 
-### Tools
+
+### 🔧 **Tools**
 
 | Tool | Class | Purpose |
 |------|-------|---------|
@@ -46,7 +65,8 @@ def build_client_chatbot_service() -> ChatbotService
 | analytics_sql_tool | ClientAnalyticsSQLTool | Query ERP data from SQLite |
 | visualization_tool | VisualizationTool | Generate Plotly charts |
 
-### Agents
+
+### 🤖 **Agents**
 
 | Agent | Class | Tools |
 |-------|-------|-------|
@@ -55,7 +75,8 @@ def build_client_chatbot_service() -> ChatbotService
 | chat_history_agent | CustomerChatHistoryAgent | chat_history_sql_tool |
 | insight_agent | CustomerInsightAgent | analytics_sql_tool, visualization_tool |
 
-### Workflow & Service
+
+### 🔄 **Workflow & Service**
 
 | Component | Class |
 |-----------|-------|
@@ -63,7 +84,11 @@ def build_client_chatbot_service() -> ChatbotService
 | chatbot_repo | ClientChatbotRepository |
 | service | ChatbotService |
 
-## Usage
+
+---
+
+
+## **💡 Usage**
 
 ```python
 from src.dependencies.client_chatbot import build_client_chatbot_service
@@ -76,6 +101,10 @@ result = service.chat(
 )
 ```
 
-## Full Code
+
+---
+
+
+## **🔗 Full Code**
 
 See [`src/dependencies/client_chatbot.py`](../../../src/dependencies/client_chatbot.py)

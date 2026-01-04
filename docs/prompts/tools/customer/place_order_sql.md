@@ -1,16 +1,28 @@
-# Place Order SQL Prompt
+# **📦 Place Order SQL Prompt**
 
 Generate SQL statements for placing customer orders.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `prompts/tools/customer/place_order_sql.prompt`
 
-## Prompt Name
+
+---
+
+
+## **🏷️ Prompt Name**
 
 `tools_customer_place_order_sql`
 
-## Purpose
+
+---
+
+
+## **💡 Purpose**
 
 Generate a sequence of SQL statements to:
 1. Validate product and stock
@@ -18,7 +30,11 @@ Generate a sequence of SQL statements to:
 3. Add order details
 4. Update inventory
 
-## Input Variables
+
+---
+
+
+## **📥 Input Variables**
 
 | Variable | Description |
 |----------|-------------|
@@ -28,7 +44,11 @@ Generate a sequence of SQL statements to:
 | `schema` | Database schema |
 | `db_type` | sqlite or postgresql |
 
-## Output Format
+
+---
+
+
+## **📤 Output Format**
 
 JSON object with 6 SQL statements:
 
@@ -43,11 +63,19 @@ JSON object with 6 SQL statements:
 }
 ```
 
-## Flow
+
+---
+
+
+## **🔄 Flow**
 
 ![Flow](../../../assets/diagrams/prompts/customer_place_order_sql_1.png)
 
-## Key Rules
+
+---
+
+
+## **📝 Key Rules**
 
 | Rule | Description |
 |------|-------------|
@@ -56,7 +84,11 @@ JSON object with 6 SQL statements:
 | LIMIT 1 | Update only one inventory row |
 | No ? placeholders | Use hardcoded values |
 
-## Database Differences
+
+---
+
+
+## **🗄️ Database Differences**
 
 | Operation | SQLite | PostgreSQL |
 |-----------|--------|------------|

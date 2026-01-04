@@ -1,12 +1,20 @@
-# ClientChatbotState
+# **📋 ClientChatbotState**
 
 State definition for ClientChatbotWorkflow.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `src/modules/workflows/client_chatbot/state.py`
 
-## State Definition
+
+---
+
+
+## **📋 State Definition**
 
 ```python
 class ClientChatbotState(TypedDict):
@@ -20,7 +28,11 @@ class ClientChatbotState(TypedDict):
     steps: Annotated[list[dict], add_steps]
 ```
 
-## Fields
+
+---
+
+
+## **📊 Fields**
 
 | Field | Type | Reducer | Description |
 |-------|------|---------|-------------|
@@ -33,7 +45,11 @@ class ClientChatbotState(TypedDict):
 | chart_html | str | - | Plotly visualization HTML |
 | steps | list[dict] | add_steps | Tool execution trace (auto-appends) |
 
-## Intent Enum
+
+---
+
+
+## **🎯 Intent Enum**
 
 ```python
 class Intent(str, Enum):
@@ -46,9 +62,14 @@ class Intent(str, Enum):
 | CHAT_HISTORY | Customer chat lookup | CustomerChatHistoryAgent |
 | INSIGHT | Analytics/BI query | CustomerInsightAgent |
 
-## Reducers
 
-### add_messages
+---
+
+
+## **🔧 Reducers**
+
+
+### 📝 **add_messages**
 
 LangGraph built-in reducer that appends new messages to the list.
 
@@ -56,7 +77,8 @@ LangGraph built-in reducer that appends new messages to the list.
 messages: Annotated[list[BaseMessage], add_messages]
 ```
 
-### add_steps
+
+### 📝 **add_steps**
 
 Custom reducer that appends tool execution steps.
 
@@ -67,11 +89,19 @@ def add_steps(left: list[dict], right: list[dict]) -> list[dict]:
 steps: Annotated[list[dict], add_steps]
 ```
 
-## State Flow
+
+---
+
+
+## **🔄 State Flow**
 
 ![State Flow](../../../../assets/diagrams/modules/client_chatbot_state_1.png)
 
-## Example State
+
+---
+
+
+## **💡 Example State**
 
 ```python
 {

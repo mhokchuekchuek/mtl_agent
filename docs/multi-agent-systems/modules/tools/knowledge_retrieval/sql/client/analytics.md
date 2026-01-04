@@ -1,24 +1,38 @@
-# Client Analytics SQL Tool
+# **📊 Client Analytics SQL Tool**
 
 BI analytics tool for internal client users.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `src/modules/tools/knowledge_retrieval/sql/client/analytics.py`
 
-## Prompt
+
+---
+
+
+## **📜 Prompt**
 
 [tools_client_analytics_sql](../../../../../../prompts/tools/client/analytics_sql.md)
 
-## Class: ClientAnalyticsSQLTool
+
+---
+
+
+## **📋 Class: ClientAnalyticsSQLTool**
 
 Inherits from `SQLTool`.
 
-### Purpose
+
+### 💡 **Purpose**
 
 Query business data for analytics - revenue, orders, customers, products, and inventory analysis.
 
-### Configuration
+
+### ⚙️ **Configuration**
 
 | Property | Value |
 |----------|-------|
@@ -27,17 +41,23 @@ Query business data for analytics - revenue, orders, customers, products, and in
 | Filter | None |
 | Prompt | `tools_client_analytics_sql` |
 
-### Input Schema
+
+### 📥 **Input Schema**
 
 | Field | Type | Description |
 |-------|------|-------------|
 | `question` | str | Analytics question about business data |
 
-### Code Flow
+
+### 🔄 **Code Flow**
 
 ![Code Flow](../../../../../../assets/diagrams/modules/client_analytics_1.png)
 
-### Usage
+
+---
+
+
+### 💡 **Usage**
 
 ```python
 from src.modules.tools.knowledge_retrieval.sql.client.analytics import ClientAnalyticsSQLTool
@@ -54,7 +74,11 @@ tool._run("Top 10 customers by order count")
 tool._run("Products with low inventory")
 ```
 
-### Example Questions
+
+---
+
+
+### 💡 **Example Questions**
 
 - "What is total revenue this month?"
 - "Top 10 selling products"

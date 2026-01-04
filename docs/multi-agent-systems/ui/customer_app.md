@@ -1,16 +1,28 @@
-# Customer App
+# **👤 Customer App**
 
 Streamlit UI for customer support chatbot.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `ui/customer_app.py`
 
-## Port
+
+---
+
+
+## **🌐 Port**
 
 `8501`
 
-## Features
+
+---
+
+
+## **✨ Features**
 
 - Product search
 - Stock inquiries
@@ -19,27 +31,44 @@ Streamlit UI for customer support chatbot.
 - Order cancellation
 - Thai/English support
 
-## Screenshots
 
-### Product Search
+---
+
+
+## **📸 Screenshots**
+
+
+### 🔍 **Product Search**
+
 ![Customer asking for product](../../assets/screenshots/customer_ask_for_product.png)
 
-### Place Order
+
+### 📦 **Place Order**
+
 ![Customer placing order](../../assets/screenshots/customer_order.png)
 
-### Cancel Order
+
+### ❌ **Cancel Order**
+
 ![Customer canceling order](../../assets/screenshots/customer_cancel_order.png)
 
-### View Orders
+
+### 📋 **View Orders**
+
 ![Customer viewing orders](../../assets/screenshots/customer_view_their_order.png)
 
-## API Endpoint
+
+---
+
+
+## **🔗 API Endpoint**
 
 ```
 POST /api/v1/chatbot/customer/chat
 ```
 
-### Request
+
+### 📤 **Request**
 
 ```json
 {
@@ -49,7 +78,8 @@ POST /api/v1/chatbot/customer/chat
 }
 ```
 
-### Response
+
+### 📥 **Response**
 
 ```json
 {
@@ -58,7 +88,11 @@ POST /api/v1/chatbot/customer/chat
 }
 ```
 
-## Session State
+
+---
+
+
+## **📊 Session State**
 
 | Key | Type | Default | Purpose |
 |-----|------|---------|---------|
@@ -67,7 +101,11 @@ POST /api/v1/chatbot/customer/chat
 | `thread_id` | str | `""` | Conversation ID |
 | `user_id` | str | `""` | Customer ID |
 
-## Error Handling
+
+---
+
+
+## **❌ Error Handling**
 
 | Error | Message |
 |-------|---------|
@@ -75,7 +113,11 @@ POST /api/v1/chatbot/customer/chat
 | Timeout | Connection timed out |
 | Other | Error: {error} |
 
-## Configuration
+
+---
+
+
+## **⚙️ Configuration**
 
 | Variable | Source | Default |
 |----------|--------|---------|

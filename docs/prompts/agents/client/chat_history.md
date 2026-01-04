@@ -1,31 +1,55 @@
-# Chat History Agent Prompt
+# **💬 Chat History Agent Prompt**
 
 System prompt for the customer chat history lookup agent.
 
-## Langfuse Name
+
+---
+
+
+## **🏷️ Langfuse Name**
 
 `client_chatbot_chat_history`
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `prompts/agents/client/chat_history.prompt`
 
-## Used By
+
+---
+
+
+## **🔗 Used By**
 
 - [CustomerChatHistoryAgent](../../../multi-agent-systems/modules/agents/client/chat_history.md)
 
-## Model
+
+---
+
+
+## **🤖 Model**
 
 `gpt-4o-mini`
 
-## Variables
+
+---
+
+
+## **📥 Variables**
 
 | Variable | Type | Description |
 |----------|------|-------------|
 | `current_datetime` | string | Current date/time for context |
 | `timezone` | string | Timezone for date interpretation |
 
-## Purpose
+
+---
+
+
+## **💡 Purpose**
 
 Guide the agent to:
 1. Understand user's chat history search criteria
@@ -33,7 +57,11 @@ Guide the agent to:
 3. Parse and format conversation results
 4. Present findings chronologically
 
-## Key Instructions
+
+---
+
+
+## **📝 Key Instructions**
 
 - **Database**: PostgreSQL with JSONB `store` table
 - **JSONB Access**: Use `->` and `->>` operators

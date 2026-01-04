@@ -1,24 +1,38 @@
-# Customer Chat History Agent
+# **💬 Customer Chat History Agent**
 
 ReAct agent for looking up customer chat conversations.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `src/modules/agents/client/chat_history.py`
 
-## Prompt
+
+---
+
+
+## **📜 Prompt**
 
 [chat_history.md](../../../../prompts/agents/client/chat_history.md)
 
-## Class: CustomerChatHistoryAgent
+
+---
+
+
+## **📋 Class: CustomerChatHistoryAgent**
 
 Inherits from `BaseAgent`.
 
-### Purpose
+
+### 💡 **Purpose**
 
 Look up customer chat history from PostgreSQL LangGraph store. Uses ReAct pattern with SQLTool.
 
-### Configuration
+
+### ⚙️ **Configuration**
 
 | Property | Value |
 |----------|-------|
@@ -27,25 +41,29 @@ Look up customer chat history from PostgreSQL LangGraph store. Uses ReAct patter
 | Tools | SQLTool (PostgreSQL) |
 | Prompt | `client_chatbot_chat_history` |
 
-### Input State
+
+### 📥 **Input State**
 
 | Field | Type | Description |
 |-------|------|-------------|
 | `translated_query` | str | Query in English |
 | `messages` | list | Conversation history (optional) |
 
-### Output State
+
+### 📤 **Output State**
 
 | Field | Type | Description |
 |-------|------|-------------|
 | `response` | str | Chat history results |
 | `steps` | list | Tool calls made |
 
-### Code Flow
+
+### 🔄 **Code Flow**
 
 ![Code Flow](../../../../assets/diagrams/modules/client_chat_history_1.png)
 
-### Example Flows
+
+### 💡 **Example Flows**
 
 **Query: "What did customer 123 ask yesterday?"**
 ```
@@ -57,13 +75,18 @@ LLM → SQLTool (query store table) → Response
 LLM → SQLTool (search conversations) → Response
 ```
 
-### Tools
+
+### 🔧 **Tools**
 
 | Tool | Location | Purpose |
 |------|----------|---------|
 | ClientChatHistorySQLTool | [sql/client/chat_history.md](../../tools/knowledge_retrieval/sql/client/chat_history.md) | Query PostgreSQL store table |
 
-### Usage
+
+---
+
+
+### 💡 **Usage**
 
 ```python
 from src.modules.agents.client.chat_history import CustomerChatHistoryAgent

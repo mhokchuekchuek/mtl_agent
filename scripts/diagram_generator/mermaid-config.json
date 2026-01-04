@@ -1,0 +1,70 @@
+{
+  "theme": "base",
+  "themeVariables": {
+    "fontSize": "16px",
+    "fontFamily": "Segoe UI, Arial, sans-serif",
+
+    "primaryColor": "#dbeafe",
+    "primaryTextColor": "#1e3a5f",
+    "primaryBorderColor": "#3b82f6",
+
+    "secondaryColor": "#dcfce7",
+    "secondaryTextColor": "#14532d",
+    "secondaryBorderColor": "#22c55e",
+
+    "tertiaryColor": "#fef3c7",
+    "tertiaryTextColor": "#78350f",
+    "tertiaryBorderColor": "#f59e0b",
+
+    "lineColor": "#475569",
+    "textColor": "#1e293b",
+    "mainBkg": "#ffffff",
+    "nodeBorder": "#3b82f6",
+
+    "clusterBkg": "#f1f5f9",
+    "clusterBorder": "#94a3b8",
+
+    "nodeTextColor": "#1e293b",
+
+    "edgeLabelBackground": "#ffffff",
+
+    "activeTaskBkgColor": "#bfdbfe",
+    "activeTaskBorderColor": "#2563eb",
+
+    "gridColor": "#e2e8f0",
+    "doneTaskBkgColor": "#bbf7d0",
+    "doneTaskBorderColor": "#16a34a",
+
+    "critBkgColor": "#fecaca",
+    "critBorderColor": "#dc2626",
+
+    "taskTextColor": "#1e293b",
+    "taskTextOutsideColor": "#1e293b",
+    "taskTextLightColor": "#ffffff",
+
+    "sectionBkgColor": "#e0f2fe",
+    "sectionBkgColor2": "#fef3c7",
+
+    "altSectionBkgColor": "#f0fdf4",
+
+    "titleColor": "#0f172a",
+
+    "pie1": "#3b82f6",
+    "pie2": "#22c55e",
+    "pie3": "#f59e0b",
+    "pie4": "#ef4444",
+    "pie5": "#8b5cf6",
+    "pie6": "#06b6d4",
+    "pie7": "#ec4899",
+    "pie8": "#84cc16"
+  },
+  "flowchart": {
+    "curve": "basis",
+    "padding": 24,
+    "nodeSpacing": 60,
+    "rankSpacing": 70,
+    "htmlLabels": true,
+    "diagramPadding": 20,
+    "useMaxWidth": true
+  }
+}

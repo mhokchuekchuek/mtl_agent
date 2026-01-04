@@ -1,20 +1,36 @@
-# Analytics SQL Prompt
+# **📊 Analytics SQL Prompt**
 
 Generate SQL for BI analytics queries.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `prompts/tools/client/analytics_sql.prompt`
 
-## Prompt Name
+
+---
+
+
+## **🏷️ Prompt Name**
 
 `client_chatbot_analytics_sql`
 
-## Purpose
+
+---
+
+
+## **💡 Purpose**
 
 Generate SQL queries to answer business intelligence analytics questions. Supports both SQLite and PostgreSQL with database-specific syntax.
 
-## Input Variables
+
+---
+
+
+## **📥 Input Variables**
 
 | Variable | Description |
 |----------|-------------|
@@ -22,7 +38,11 @@ Generate SQL queries to answer business intelligence analytics questions. Suppor
 | `schema` | Database schema definition |
 | `db_type` | Database type (`sqlite` or `postgresql`) |
 
-## Output Format
+
+---
+
+
+## **📤 Output Format**
 
 JSON object with SQL and explanation:
 
@@ -33,7 +53,11 @@ JSON object with SQL and explanation:
 }
 ```
 
-## Database-Specific Syntax
+
+---
+
+
+## **🗄️ Database-Specific Syntax**
 
 | Operation | SQLite | PostgreSQL |
 |-----------|--------|------------|
@@ -41,7 +65,11 @@ JSON object with SQL and explanation:
 | Yearly grouping | `strftime('%Y', date)` | `DATE_TRUNC('year', date)` |
 | Year extraction | `strftime('%Y', date)` | `EXTRACT(YEAR FROM date)` |
 
-## Rules
+
+---
+
+
+## **📝 Rules**
 
 1. READ-ONLY: Only SELECT queries allowed
 2. Use exact table/column names from schema
@@ -49,7 +77,11 @@ JSON object with SQL and explanation:
 4. Use aggregations (SUM, COUNT, AVG) for analytics
 5. Use GROUP BY for breakdowns
 
-## Example Queries
+
+---
+
+
+## **💡 Example Queries**
 
 | Question | SQL Pattern |
 |----------|-------------|

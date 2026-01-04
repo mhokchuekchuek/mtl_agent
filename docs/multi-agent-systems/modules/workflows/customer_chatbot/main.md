@@ -1,34 +1,58 @@
-# CustomerChatbotWorkflow
+# **🛒 CustomerChatbotWorkflow**
 
 Customer-facing shopping assistant workflow.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `src/modules/workflows/customer_chatbot/main.py`
 
-## Purpose
+
+---
+
+
+## **💡 Purpose**
 
 Orchestrate agents for customer shopping queries:
 - Product search and recommendations
 - Order placement and cancellation
 - Stock and price inquiries
 
-## Graph Structure
+
+---
+
+
+## **📊 Graph Structure**
 
 ![Graph Structure](../../../../assets/diagrams/modules/customer_chatbot_main_1.png)
 
-## Code Flow
+
+---
+
+
+## **🔄 Code Flow**
 
 ![Code Flow](../../../../assets/diagrams/modules/customer_chatbot_main_2.png)
 
-## Agents Reference
+
+---
+
+
+## **🤖 Agents Reference**
 
 | Agent | Location | Purpose | Documentation |
 |-------|----------|---------|---------------|
 | TranslationAgent | `src/modules/agents/translation/` | Detect language, translate TH ↔ EN | [translation/main.md](../../agents/translation/main.md) |
 | ProductAgent | `src/modules/agents/products/main.py` | ReAct agent for shopping queries | [products/main.md](../../agents/products/main.md) |
 
-## Tools Reference
+
+---
+
+
+## **🔧 Tools Reference**
 
 | Tool | Purpose | Documentation |
 |------|---------|---------------|
@@ -39,7 +63,11 @@ Orchestrate agents for customer shopping queries:
 | PlaceOrderTool | Create new orders | [sql/customer/place_order.md](../../tools/knowledge_retrieval/sql/customer/place_order.md) |
 | CancelOrderTool | Cancel existing orders | [sql/customer/cancel_order.md](../../tools/knowledge_retrieval/sql/customer/cancel_order.md) |
 
-## State
+
+---
+
+
+## **📋 State**
 
 See [state.md](state.md) for full state definition.
 
@@ -51,9 +79,14 @@ See [state.md](state.md) for full state definition.
 | response | str | Final response |
 | steps | list[dict] | Tool execution steps |
 
-## Node Implementation
 
-### translate_input
+---
+
+
+## **🔧 Node Implementation**
+
+
+### 🌐 **translate_input**
 
 ```python
 def _translate_input(self, state: ShoppingState) -> dict:
@@ -62,7 +95,8 @@ def _translate_input(self, state: ShoppingState) -> dict:
     # 3. Return user_language + translated_query
 ```
 
-### product_agent
+
+### 🛒 **product_agent**
 
 ```python
 def _product_agent(self, state: ShoppingState) -> dict:
@@ -71,7 +105,8 @@ def _product_agent(self, state: ShoppingState) -> dict:
     # 3. Return response + steps
 ```
 
-### translate_output
+
+### 🌐 **translate_output**
 
 ```python
 def _translate_output(self, state: ShoppingState) -> dict:
@@ -80,16 +115,25 @@ def _translate_output(self, state: ShoppingState) -> dict:
     # 3. Return final response
 ```
 
-## Memory Architecture
+
+---
+
+
+## **🧠 Memory Architecture**
 
 | Type | Storage | Purpose | TTL |
 |------|---------|---------|-----|
 | Short-term | Redis Checkpointer | Per-thread conversation state | 60 min |
 | Long-term | Postgres Store | Cross-thread backup | Permanent |
 
-## Example Flows
 
-### Product Search
+---
+
+
+## **💡 Example Flows**
+
+
+### 🔍 **Product Search**
 
 ```
 Query: "หาลำโพง bluetooth"
@@ -99,7 +143,8 @@ Query: "หาลำโพง bluetooth"
 3. translate_output → translates product list to Thai
 ```
 
-### Place Order
+
+### 📦 **Place Order**
 
 ```
 Query: "สั่งซื้อ 2 ชิ้น"
@@ -109,7 +154,8 @@ Query: "สั่งซื้อ 2 ชิ้น"
 3. translate_output → translates confirmation to Thai
 ```
 
-### Check Stock
+
+### 📊 **Check Stock**
 
 ```
 Query: "เหลือกี่ชิ้น"
@@ -119,7 +165,11 @@ Query: "เหลือกี่ชิ้น"
 3. translate_output → translates stock info to Thai
 ```
 
-## Related Files
+
+---
+
+
+## **🔗 Related Files**
 
 | File | Purpose |
 |------|---------|

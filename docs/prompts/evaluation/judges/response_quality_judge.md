@@ -1,24 +1,44 @@
-# Response Quality Judge Prompt
+# **✨ Response Quality Judge Prompt**
 
 LLM-as-Judge prompt for evaluating response quality.
 
-## Langfuse Name
+
+---
+
+
+## **🏷️ Langfuse Name**
 
 `evaluation_judges_response_quality_judge`
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `prompts/evaluation/judges/response_quality_judge.prompt`
 
-## Used By
+
+---
+
+
+## **🔗 Used By**
 
 - [ResponseQualityJudge](../../../evaluation/judges/response_quality.md)
 
-## Model
+
+---
+
+
+## **🤖 Model**
 
 `gpt-4o`
 
-## Variables
+
+---
+
+
+## **📥 Variables**
 
 | Variable | Type | Description |
 |----------|------|-------------|
@@ -28,13 +48,21 @@ LLM-as-Judge prompt for evaluating response quality.
 | `steps` | list | Agent execution steps |
 | `expected` | string | Expected information in response |
 
-## Purpose
+
+---
+
+
+## **💡 Purpose**
 
 Evaluate response quality:
 1. Score relevance (does response address the question?)
 2. Score faithfulness (grounded in facts, no hallucination?)
 
-## Output Schema
+
+---
+
+
+## **📤 Output Schema**
 
 ```json
 {

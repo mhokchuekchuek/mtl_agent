@@ -1,16 +1,28 @@
-# POST /api/v1/chatbot/customer/chat
+# **🛒 POST /api/v1/chatbot/customer/chat**
 
 Customer chatbot endpoint for product inquiries.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `src/api/routes/chatbots/customer.py`
 
-## Code Flow
+
+---
+
+
+## **🔄 Code Flow**
 
 ![Code Flow](../../assets/diagrams/api/api_customer_chat_1.png)
 
-## Request Schema
+
+---
+
+
+## **📥 Request Schema**
 
 `src/api/schemas/chatbots/customer.py`
 
@@ -21,7 +33,11 @@ Customer chatbot endpoint for product inquiries.
 | user_id | string | No | None | User identifier |
 | include_steps | bool | No | false | Include tool execution steps |
 
-## Response Schema
+
+---
+
+
+## **📤 Response Schema**
 
 | Field | Type | Description |
 |-------|------|-------------|
@@ -29,9 +45,14 @@ Customer chatbot endpoint for product inquiries.
 | thread_id | string | Conversation thread ID |
 | steps | list[dict] | Tool execution steps (if requested) |
 
-## Example
 
-### Request
+---
+
+
+## **💡 Example**
+
+
+### 📤 **Request**
 
 ```bash
 curl -X POST http://localhost:8000/api/v1/chatbot/customer/chat \
@@ -43,7 +64,8 @@ curl -X POST http://localhost:8000/api/v1/chatbot/customer/chat \
   }'
 ```
 
-### Response
+
+### 📥 **Response**
 
 ```json
 {
@@ -53,12 +75,20 @@ curl -X POST http://localhost:8000/api/v1/chatbot/customer/chat \
 }
 ```
 
-## Errors
+
+---
+
+
+## **❌ Errors**
 
 | Status | Description |
 |--------|-------------|
 | 500 | Internal server error |
 
-## Full Code
+
+---
+
+
+## **🔗 Full Code**
 
 See [`src/api/routes/chatbots/customer.py`](../../../src/api/routes/chatbots/customer.py)

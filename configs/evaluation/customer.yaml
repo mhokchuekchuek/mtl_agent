@@ -3,8 +3,7 @@ customer_eval:
     endpoint: "http://localhost:8000/api/v1/chatbot/customer/chat"
     timeout: 180
 
-  dataset_path: failed_round2/customer
-  # dataset_path: "data/eval_datasets/customer"
+  dataset_path: "data/eval_datasets/customer"
   results_path: "results/customer"
   pass_threshold: 0.7
 

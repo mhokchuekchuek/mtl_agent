@@ -30,19 +30,19 @@ AI-powered ERP assistant using LiteLLM, LangGraph, and Qdrant for product/order 
 
 End customers can interact with the system to search products, place orders, view order history, and cancel orders.
 
-**Product Search** - Search products using natural language with semantic search
+**1️⃣ Product Search** - Search products using natural language with semantic search
 
 ![Product Search](docs/assets/screenshots/customer_ask_for_product.png)
 
-**Place Order** - Order products through conversational interface
+**2️⃣ Place Order** - Order products through conversational interface
 
 ![Place Order](docs/assets/screenshots/customer_order.png)
 
-**View Orders** - Check order status and history
+**3️⃣ View Orders** - Check order status and history
 
 ![View Orders](docs/assets/screenshots/customer_view_their_order.png)
 
-**Cancel Order** - Cancel pending orders
+**4️⃣ Cancel Order** - Cancel pending orders
 
 ![Cancel Order](docs/assets/screenshots/customer_cancel_order.png)
 
@@ -51,15 +51,15 @@ End customers can interact with the system to search products, place orders, vie
 
 Business analysts can query analytics data, generate charts, and search customer conversations.
 
-**Analytics with Charts** - Generate SQL queries and Plotly visualizations
+**1️⃣ Analytics with Charts** - Generate SQL queries and Plotly visualizations
 
 ![Analytics](docs/assets/screenshots/client_graph.png)
 
-**Analytics without Charts** - Get data insights in table format
+**2️⃣ Analytics without Charts** - Get data insights in table format
 
 ![Analytics Table](docs/assets/screenshots/client_without_graph.png)
 
-**Customer Chat Lookup** - Search and analyze customer conversations
+**3️⃣ Customer Chat Lookup** - Search and analyze customer conversations
 
 ![Chat Lookup](docs/assets/screenshots/client_lookup_customer_chat.png)
 

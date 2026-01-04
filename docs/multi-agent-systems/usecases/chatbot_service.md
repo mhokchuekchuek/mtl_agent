@@ -1,20 +1,36 @@
-# ChatbotService
+# **🤖 ChatbotService**
 
 Generic chatbot service that works with any chatbot repository.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `src/usecases/chatbot/main.py`
 
-## Purpose
+
+---
+
+
+## **💡 Purpose**
 
 Thin wrapper that delegates to `BaseChatbotRepository`. Provides unified interface for API/CLI layers.
 
-## Code Flow
+
+---
+
+
+## **🔄 Code Flow**
 
 ![Code Flow](../../assets/diagrams/usecases/usecases_chatbot_service_1.png)
 
-## Class Definition
+
+---
+
+
+## **📋 Class Definition**
 
 ```python
 class ChatbotService:
@@ -26,7 +42,11 @@ class ChatbotService:
     def clear_conversation(self, thread_id) -> None
 ```
 
-## Methods
+
+---
+
+
+## **🔧 Methods**
 
 | Method | Input | Output | Description |
 |--------|-------|--------|-------------|
@@ -34,7 +54,11 @@ class ChatbotService:
 | get_history | thread_id | list[BaseMessage] | Get conversation history |
 | clear_conversation | thread_id | None | Clear conversation memory |
 
-## Repository Reference
+
+---
+
+
+## **🔗 Repository Reference**
 
 | Repository | Documentation |
 |------------|---------------|
@@ -42,7 +66,11 @@ class ChatbotService:
 | ClientChatbotRepository | [repositories/chatbots/client/main.md](../repositories/chatbots/client/main.md) |
 | CustomerChatbotRepository | [repositories/chatbots/customer/main.md](../repositories/chatbots/customer/main.md) |
 
-## Usage
+
+---
+
+
+## **💡 Usage**
 
 ```python
 from src.dependencies.customer_chatbot import build_chatbot_service

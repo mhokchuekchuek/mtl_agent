@@ -1,38 +1,66 @@
-# Translation Agent Prompt
+# **🌐 Translation Agent Prompt**
 
 System prompt for translating text between Thai and English.
 
-## Langfuse Name
+
+---
+
+
+## **🏷️ Langfuse Name**
 
 `client_chatbot_translation`
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `prompts/agents/client/translation.prompt`
 
-## Used By
+
+---
+
+
+## **🔗 Used By**
 
 - [TranslationAgent](../../multi-agent-systems/modules/agents/translation/main.md)
 
-## Model
+
+---
+
+
+## **🤖 Model**
 
 `gpt-4o-mini`
 
-## Variables
+
+---
+
+
+## **📥 Variables**
 
 | Variable | Type | Description |
 |----------|------|-------------|
 | `text` | string | Text to translate |
 | `target_lang` | string | Target language: "th" or "en" |
 
-## Purpose
+
+---
+
+
+## **💡 Purpose**
 
 Translate text between Thai and English while:
 1. Preserving meaning and tone
 2. Using natural business language
 3. Keeping technical terms in English
 
-## Key Instructions
+
+---
+
+
+## **📝 Key Instructions**
 
 - **Preserve in English**: Technical terms, KPIs, metrics
 - **Preserve in English**: Database table/column names
@@ -40,7 +68,11 @@ Translate text between Thai and English while:
 - **Preserve in English**: Customer names, units/measurements
 - **Output**: JSON with `translated_text` and `source_lang`
 
-## Output Schema
+
+---
+
+
+## **📤 Output Schema**
 
 ```json
 {

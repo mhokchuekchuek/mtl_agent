@@ -1,8 +1,12 @@
-# Code Architecture
+# **🏗️ Code Architecture**
 
 Clean Architecture with Repository Pattern and Dependency Injection.
 
-## Patterns
+
+---
+
+
+## **📋 Patterns**
 
 | Pattern | Purpose | Implementation |
 |---------|---------|----------------|
@@ -11,11 +15,19 @@ Clean Architecture with Repository Pattern and Dependency Injection.
 | Dependency Injection | Component decoupling | `src/dependencies/` |
 | Selector Pattern | Provider swapping | `libs/*/selector.py` |
 
-## Layer Diagram
+
+---
+
+
+## **📊 Layer Diagram**
 
 ![Layer Diagram](../../assets/diagrams/architecture/architecture_code_1.png)
 
-## Layers
+
+---
+
+
+## **📁 Layers**
 
 | Layer | Location | Responsibility |
 |-------|----------|----------------|
@@ -27,7 +39,11 @@ Clean Architecture with Repository Pattern and Dependency Injection.
 | Modules | `src/modules/` | Workflows, agents, tools |
 | Infrastructure | `libs/` | Generic clients, configs |
 
-## Repository Layer
+
+---
+
+
+## **🗃️ Repository Layer**
 
 ![Repository Layer](../../assets/diagrams/architecture/architecture_code_2.png)
 
@@ -37,7 +53,11 @@ Clean Architecture with Repository Pattern and Dependency Injection.
 | `checkpointers/` | Short-term memory (Redis, TTL-based) |
 | `stores/` | Long-term memory (Postgres, permanent) |
 
-## Modules Layer
+
+---
+
+
+## **🔧 Modules Layer**
 
 ![Modules Layer](../../assets/diagrams/architecture/architecture_code_3.png)
 
@@ -47,14 +67,22 @@ Clean Architecture with Repository Pattern and Dependency Injection.
 | `agents/` | LLM-powered decision makers |
 | `tools/` | Domain logic (SQL, VectorDB, Visualization) |
 
-## libs/ vs repositories/
+
+---
+
+
+## **📚 libs/ vs repositories/**
 
 | Layer | Scope | Reusability | Example |
 |-------|-------|-------------|---------|
 | `libs/` | Generic infrastructure | Cross-project | `RedisClient`, `PostgresClient` |
 | `repositories/` | Domain-specific | Project-specific | `RedisCheckpointerRepository` |
 
-## Selector Pattern
+
+---
+
+
+## **🔀 Selector Pattern**
 
 ![Selector Pattern](../../assets/diagrams/architecture/architecture_code_4.png)
 
@@ -71,7 +99,13 @@ class KeyValueSelector:
             return MemoryClient()
 ```
 
-## File Structure
+> 💡 **Tip:** Use selectors to easily switch between local and cloud providers.
+
+
+---
+
+
+## **📂 File Structure**
 
 ```
 src/
@@ -94,7 +128,11 @@ src/
     └── tools/              # Domain tools
 ```
 
-## References
+
+---
+
+
+## **🔗 References**
 
 - [Repositories](../repositories/README.md)
 - [Modules](../modules/README.md)

@@ -1,24 +1,38 @@
-# Translation Agent
+# **🌐 Translation Agent**
 
 Agent for translating text between Thai and English.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `src/modules/agents/translation/main.py`
 
-## Prompt
+
+---
+
+
+## **📜 Prompt**
 
 [translation.md](../../../../prompts/agents/translation.md)
 
-## Class: TranslationAgent
+
+---
+
+
+## **📋 Class: TranslationAgent**
 
 Inherits from `BaseAgent`.
 
-### Purpose
+
+### 💡 **Purpose**
 
 Translate text between Thai and English. Detects source language and translates to target language.
 
-### Configuration
+
+### ⚙️ **Configuration**
 
 | Property | Value |
 |----------|-------|
@@ -26,14 +40,16 @@ Translate text between Thai and English. Detects source language and translates 
 | Pattern | Direct LLM call (no ReAct) |
 | Prompt | `translation` |
 
-### Input State
+
+### 📥 **Input State**
 
 | Field | Type | Description |
 |-------|------|-------------|
 | `user_input` | str | Text to translate |
 | `target_lang` | str | Target language: "th" or "en" (optional) |
 
-### Output State
+
+### 📤 **Output State**
 
 | Field | Type | Description |
 |-------|------|-------------|
@@ -41,15 +57,18 @@ Translate text between Thai and English. Detects source language and translates 
 | `detected_lang` | str | Detected source language |
 | `target_lang` | str | Target language used |
 
-### Code Flow
+
+### 🔄 **Code Flow**
 
 ![Code Flow](../../../../assets/diagrams/modules/translation_main_1.png)
 
-### Tools
+
+### 🔧 **Tools**
 
 *No tools - uses direct LLM call*
 
-### Methods
+
+### 🔧 **Methods**
 
 | Method | Description |
 |--------|-------------|
@@ -57,7 +76,11 @@ Translate text between Thai and English. Detects source language and translates 
 | `translate(text, target_lang)` | Translate to target language |
 | `execute(state)` | Main entry point |
 
-### Usage
+
+---
+
+
+### 💡 **Usage**
 
 ```python
 from src.modules.agents.translation.main import TranslationAgent

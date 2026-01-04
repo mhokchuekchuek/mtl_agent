@@ -1,16 +1,28 @@
-# Cancel Order SQL Prompt
+# **❌ Cancel Order SQL Prompt**
 
 Generate SQL statements for cancelling customer orders.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `prompts/tools/customer/cancel_order_sql.prompt`
 
-## Prompt Name
+
+---
+
+
+## **🏷️ Prompt Name**
 
 `tools_customer_cancel_order_sql`
 
-## Purpose
+
+---
+
+
+## **💡 Purpose**
 
 Generate SQL statements to:
 1. Verify order ownership
@@ -19,7 +31,11 @@ Generate SQL statements to:
 4. Update status to cancelled
 5. Restore inventory quantities
 
-## Input Variables
+
+---
+
+
+## **📥 Input Variables**
 
 | Variable | Description |
 |----------|-------------|
@@ -28,7 +44,11 @@ Generate SQL statements to:
 | `schema` | Database schema |
 | `db_type` | sqlite or postgresql |
 
-## Output Format
+
+---
+
+
+## **📤 Output Format**
 
 ```json
 {
@@ -40,11 +60,19 @@ Generate SQL statements to:
 }
 ```
 
-## Flow
+
+---
+
+
+## **🔄 Flow**
 
 ![Flow](../../../assets/diagrams/prompts/customer_cancel_order_sql_1.png)
 
-## Key Rules
+
+---
+
+
+## **📝 Key Rules**
 
 | Rule | Description |
 |------|-------------|
@@ -52,3 +80,5 @@ Generate SQL statements to:
 | Color matching | Restore to same color inventory row |
 | SUM quantity | Handle multiple OrderDetails rows |
 | NULL handling | Handle NULL color values |
+
+> ⚠️ **Important:** Always verify order ownership before cancellation.

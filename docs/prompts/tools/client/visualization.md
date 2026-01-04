@@ -1,20 +1,36 @@
-# Visualization Prompt
+# **📈 Visualization Prompt**
 
 Generate Plotly chart code.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `prompts/tools/client/visualization.prompt`
 
-## Prompt Name
+
+---
+
+
+## **🏷️ Prompt Name**
 
 `tools_client_visualization`
 
-## Purpose
+
+---
+
+
+## **💡 Purpose**
 
 Generate Python code that creates Plotly charts from data.
 
-## Input Variables
+
+---
+
+
+## **📥 Input Variables**
 
 | Variable | Description |
 |----------|-------------|
@@ -23,7 +39,11 @@ Generate Python code that creates Plotly charts from data.
 | `row_count` | Total rows |
 | `request` | User's chart request |
 
-## Output Format
+
+---
+
+
+## **📤 Output Format**
 
 Python code with `fig` variable:
 
@@ -33,7 +53,11 @@ import plotly.express as px
 fig = px.bar(df, x='category', y='sales', title='Sales by Category')
 ```
 
-## Available Libraries
+
+---
+
+
+## **📚 Available Libraries**
 
 - `pd` - pandas
 - `px` - plotly.express
@@ -41,7 +65,11 @@ fig = px.bar(df, x='category', y='sales', title='Sales by Category')
 - `df` - DataFrame with data
 - `data` - Raw data list
 
-## Chart Types
+
+---
+
+
+## **📊 Chart Types**
 
 | Request | Chart |
 |---------|-------|
@@ -50,9 +78,14 @@ fig = px.bar(df, x='category', y='sales', title='Sales by Category')
 | "line chart over time" | `px.line()` |
 | "scatter plot" | `px.scatter()` |
 
-## Sandbox Restrictions
 
-Code runs in restricted environment:
+---
+
+
+## **🔒 Sandbox Restrictions**
+
+> ⚠️ **Important:** Code runs in restricted environment.
+
 - No file I/O
 - No network access
 - No imports

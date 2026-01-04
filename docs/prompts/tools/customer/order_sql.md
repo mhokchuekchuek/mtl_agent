@@ -1,20 +1,36 @@
-# Order SQL Prompt
+# **📦 Order SQL Prompt**
 
 Generate SQL for order queries.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `prompts/tools/customer/order_sql.prompt`
 
-## Prompt Name
+
+---
+
+
+## **🏷️ Prompt Name**
 
 `tools_customer_order_sql`
 
-## Purpose
+
+---
+
+
+## **💡 Purpose**
 
 Generate SELECT queries for customer order history.
 
-## Input Variables
+
+---
+
+
+## **📥 Input Variables**
 
 | Variable | Description |
 |----------|-------------|
@@ -23,7 +39,11 @@ Generate SELECT queries for customer order history.
 | `schema` | Database schema |
 | `db_type` | sqlite or postgresql |
 
-## Output Format
+
+---
+
+
+## **📤 Output Format**
 
 ```json
 {
@@ -32,7 +52,11 @@ Generate SELECT queries for customer order history.
 }
 ```
 
-## Key Rules
+
+---
+
+
+## **📝 Key Rules**
 
 | Rule | Description |
 |------|-------------|
@@ -40,3 +64,5 @@ Generate SELECT queries for customer order history.
 | Privacy | Only show current customer's orders |
 | SELECT only | No INSERT, UPDATE, DELETE |
 | Include order_id | Always return order_id for cancel operations |
+
+> ⚠️ **Important:** Never expose other customers' order data.
