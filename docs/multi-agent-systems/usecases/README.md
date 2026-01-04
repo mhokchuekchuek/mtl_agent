@@ -18,7 +18,12 @@ Application business logic layer.
 
 Usecases orchestrate repositories to implement business operations. They are thin wrappers that delegate to repositories.
 
+<details>
+<summary>📊 Overview</summary>
+
 ![Overview](../../assets/diagrams/usecases/usecases_README_1.png)
+
+</details>
 
 
 ---

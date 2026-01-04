@@ -51,7 +51,12 @@ Query business data for analytics - revenue, orders, customers, products, and in
 
 ### 🔄 **Code Flow**
 
+<details>
+<summary>📊 Code Flow</summary>
+
 ![Code Flow](../../../../../../assets/diagrams/modules/client_analytics_1.png)
+
+</details>
 
 
 ---

@@ -35,7 +35,12 @@ Create Plotly charts from data using natural language requests. Uses LLM to gene
 
 ## **🔄 Flow Diagram**
 
+<details>
+<summary>📊 Flow Diagram</summary>
+
 ![Flow Diagram](../../../../assets/diagrams/modules/visualization_main_1.png)
+
+</details>
 
 
 ---
@@ -46,7 +51,12 @@ Create Plotly charts from data using natural language requests. Uses LLM to gene
 
 ### 1️⃣ **Get Prompt from Langfuse**
 
+<details>
+<summary>📊 Step 1: Get Prompt from Langfuse</summary>
+
 ![Step 1: Get Prompt from Langfuse](../../../../assets/diagrams/modules/visualization_main_2.png)
+
+</details>
 
 The tool retrieves the prompt template `tools_client_visualization` from Langfuse.
 
@@ -97,7 +107,12 @@ Output: fig = px.bar(...)
 
 ### 5️⃣ **Execute in Sandbox**
 
+<details>
+<summary>📊 Step 5: Execute in Sandbox</summary>
+
 ![Step 5: Execute in Sandbox](../../../../assets/diagrams/modules/visualization_main_3.png)
+
+</details>
 
 > 🚨 **Security:** The code runs in a restricted environment to prevent malicious code execution.
 
@@ -126,7 +141,12 @@ html = fig.to_html(full_html=False, include_plotlyjs="cdn")
 
 **None** - This tool does not access any database. It receives data from the SQL tool and only performs visualization.
 
+<details>
+<summary>📊 Database Access</summary>
+
 ![Database Access](../../../../assets/diagrams/modules/visualization_main_4.png)
+
+</details>
 
 
 ---
@@ -148,7 +168,12 @@ request = "Create a bar chart showing sales by category"
 
 ### 🔢 **Step-by-Step**
 
+<details>
+<summary>📊 Step-by-Step</summary>
+
 ![Step-by-Step](../../../../assets/diagrams/modules/visualization_main_5.png)
+
+</details>
 
 
 ### 📤 **Output**

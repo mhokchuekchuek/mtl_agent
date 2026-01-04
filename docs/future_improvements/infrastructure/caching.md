@@ -2,7 +2,12 @@
 
 Multi-layer caching architecture for LLM applications.
 
+<details>
+<summary>📊 Caching Layers</summary>
+
 ![Caching Layers](../../assets/diagrams/future_improvements/caching_layers.png)
+
+</details>
 
 ---
 

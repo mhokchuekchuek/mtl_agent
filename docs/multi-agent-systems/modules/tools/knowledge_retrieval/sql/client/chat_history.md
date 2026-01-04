@@ -51,7 +51,12 @@ Find what customers asked or said in previous conversations. Queries the LangGra
 
 ### 🔄 **Code Flow**
 
+<details>
+<summary>📊 Code Flow</summary>
+
 ![Code Flow](../../../../../../assets/diagrams/modules/client_chat_history_1.png)
+
+</details>
 
 
 ---

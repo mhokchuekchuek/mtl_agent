@@ -16,7 +16,12 @@ Configuration files for multi-agent chatbots.
 
 ## **📋 Overview**
 
+<details>
+<summary>📊 Overview</summary>
+
 ![Overview](../../assets/diagrams/configs/configs_README_1.png)
+
+</details>
 
 
 ---

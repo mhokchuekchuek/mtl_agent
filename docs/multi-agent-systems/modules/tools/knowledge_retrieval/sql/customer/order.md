@@ -42,7 +42,12 @@ Query customer's own order history - order status, purchase history. **Read-only
 
 ## **🔄 Flow Diagram**
 
+<details>
+<summary>📊 Flow Diagram</summary>
+
 ![Flow Diagram](../../../../../../assets/diagrams/modules/customer_order_1.png)
+
+</details>
 
 
 ---
@@ -74,7 +79,12 @@ This prevents customers from seeing other customers' orders.
 
 ### 🔒 **Security Validation**
 
+<details>
+<summary>📊 Security Validation</summary>
+
 ![Security Validation](../../../../../../assets/diagrams/modules/customer_order_2.png)
+
+</details>
 
 
 ---

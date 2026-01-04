@@ -67,7 +67,12 @@ class BaseChatbotRepository(ABC):
 
 ## **🔄 Code Flow**
 
+<details>
+<summary>📊 Code Flow</summary>
+
 ![Code Flow](../../../assets/diagrams/repositories/chatbots_base_1.png)
+
+</details>
 
 
 ---

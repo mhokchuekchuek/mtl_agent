@@ -32,7 +32,12 @@ expected_output:
 
 ## **🔄 Flow**
 
+<details>
+<summary>📊 Flow</summary>
+
 ![Flow](../../assets/diagrams/evaluation/judges_search_1.png)
+
+</details>
 
 
 ---

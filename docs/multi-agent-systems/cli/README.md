@@ -16,7 +16,12 @@ Application entry point for running API and UI services.
 
 ## **📋 Overview**
 
+<details>
+<summary>📊 Overview</summary>
+
 ![Overview](../../assets/diagrams/cli/cli_README_1.png)
+
+</details>
 
 
 ---
@@ -53,7 +58,12 @@ python main.py client_ui
 
 ## **🔄 Initialization Flow**
 
+<details>
+<summary>📊 Initialization Flow</summary>
+
 ![Initialization Flow](../../assets/diagrams/cli/cli_README_2.png)
+
+</details>
 
 | Step | Code | Purpose |
 |------|------|---------|

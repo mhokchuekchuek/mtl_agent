@@ -61,7 +61,12 @@ Analyze business data using SQL queries and create visualizations. Uses ReAct pa
 
 ### 🔄 **Code Flow**
 
+<details>
+<summary>📊 Code Flow</summary>
+
 ![Code Flow](../../../../assets/diagrams/modules/client_insight_1.png)
+
+</details>
 
 
 ### 💡 **Example Flows**

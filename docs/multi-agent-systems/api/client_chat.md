@@ -16,7 +16,12 @@ Client chatbot endpoint for internal BI queries.
 
 ## **🔄 Code Flow**
 
+<details>
+<summary>📊 Code Flow</summary>
+
 ![Code Flow](../../assets/diagrams/api/api_client_chat_1.png)
+
+</details>
 
 
 ---

@@ -10,7 +10,12 @@ Request lifecycle from user to response.
 
 High-level overview of how a request travels through the system.
 
+<details>
+<summary>📊 Request Flow</summary>
+
 ![Request Flow](../../assets/diagrams/architecture/architecture_system_1.png)
+
+</details>
 
 
 ---
@@ -58,7 +63,12 @@ User → POST /api/v1/chatbot/{type}/chat
 ChatbotService → ChatbotRepository.invoke()
 ```
 
+<details>
+<summary>📊 2. Repository Processing</summary>
+
 ![2. Repository Processing](../../assets/diagrams/architecture/architecture_system_2.png)
+
+</details>
 
 | Step | Method | Action |
 |------|--------|--------|
@@ -70,7 +80,12 @@ ChatbotService → ChatbotRepository.invoke()
 
 ### 3️⃣ **Workflow Execution**
 
+<details>
+<summary>📊 3. Workflow Execution</summary>
+
 ![3. Workflow Execution](../../assets/diagrams/architecture/architecture_system_3.png)
+
+</details>
 
 | Step | Node | Action |
 |------|------|--------|
@@ -110,7 +125,12 @@ Result → API → User
 
 End-to-end flow for customer-facing chatbot (product search, orders).
 
+<details>
+<summary>📊 Customer Chatbot Flow</summary>
+
 ![Customer Chatbot Flow](../../assets/diagrams/architecture/architecture_system_4.png)
+
+</details>
 
 
 ---
@@ -120,7 +140,12 @@ End-to-end flow for customer-facing chatbot (product search, orders).
 
 End-to-end flow for internal BI chatbot (analytics, visualizations, chat history lookup).
 
+<details>
+<summary>📊 Client Chatbot Flow</summary>
+
 ![Client Chatbot Flow](../../assets/diagrams/architecture/architecture_system_5.png)
+
+</details>
 
 
 ---

@@ -69,7 +69,12 @@ JSON object with 6 SQL statements:
 
 ## **🔄 Flow**
 
+<details>
+<summary>📊 Flow</summary>
+
 ![Flow](../../../assets/diagrams/prompts/customer_place_order_sql_1.png)
+
+</details>
 
 
 ---

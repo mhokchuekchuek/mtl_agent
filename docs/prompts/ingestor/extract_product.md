@@ -63,7 +63,12 @@ Extract structured product data from raw PDF text for ingestion into vector data
 
 ## **🔄 Flow**
 
+<details>
+<summary>📊 Flow</summary>
+
 ![Flow](../../assets/diagrams/prompts/ingestor_extract_product_1.png)
+
+</details>
 
 
 ---

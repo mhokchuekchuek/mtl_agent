@@ -8,7 +8,12 @@ System design and request flow.
 
 ## **📊 Layers**
 
+<details>
+<summary>📊 Layers</summary>
+
 ![Layers](../assets/diagrams/evaluation/evaluation_architecture_1.png)
+
+</details>
 
 | Layer | Location | Responsibility |
 |-------|----------|----------------|
@@ -24,7 +29,12 @@ System design and request flow.
 
 ## **🔄 Evaluation Flow**
 
+<details>
+<summary>📊 Evaluation Flow</summary>
+
 ![Evaluation Flow](../assets/diagrams/evaluation/evaluation_architecture_2.png)
+
+</details>
 
 
 ---
@@ -40,7 +50,12 @@ System design and request flow.
 
 ### 🔄 **Multi-Turn Flow**
 
+<details>
+<summary>📊 Multi-Turn Flow</summary>
+
 ![Multi-Turn Flow](../assets/diagrams/evaluation/evaluation_architecture_3.png)
+
+</details>
 
 Each turn is evaluated separately, scores are aggregated.
 

@@ -35,7 +35,12 @@ Find similar products based on vector similarity. Gets the embedding of a produc
 
 ## **🔄 Flow Diagram**
 
+<details>
+<summary>📊 Flow Diagram</summary>
+
 ![Flow Diagram](../../../../../assets/diagrams/modules/vectordb_similar_1.png)
+
+</details>
 
 
 ---
@@ -46,7 +51,12 @@ Find similar products based on vector similarity. Gets the embedding of a produc
 
 ### 1️⃣ **Retrieve Product's Embedding**
 
+<details>
+<summary>📊 Step 1: Retrieve Product's Embedding</summary>
+
 ![Step 1: Retrieve Product's Embedding](../../../../../assets/diagrams/modules/vectordb_similar_2.png)
+
+</details>
 
 The tool fetches the stored embedding vector for this product:
 
@@ -62,7 +72,12 @@ product_embedding = records[0]["vector"]
 
 ### 2️⃣ **Vector Similarity Search**
 
+<details>
+<summary>📊 Step 2: Vector Similarity Search</summary>
+
 ![Step 2: Vector Similarity Search](../../../../../assets/diagrams/modules/vectordb_similar_3.png)
+
+</details>
 
 
 ### 3️⃣ **Exclude Original Product**
@@ -127,7 +142,12 @@ Each product has:
 
 ## **📊 Comparison: Text Search vs Similar Products**
 
+<details>
+<summary>📊 Comparison: Text Search vs Similar Products</summary>
+
 ![Comparison: Text Search vs Similar Products](../../../../../assets/diagrams/modules/vectordb_similar_4.png)
+
+</details>
 
 | Aspect | Text Search | Similar Products |
 |--------|-------------|------------------|

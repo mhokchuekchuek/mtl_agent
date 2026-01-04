@@ -67,7 +67,12 @@ We need to evaluate chatbot responses across multiple dimensions (SQL correctnes
 
 All judges follow the same pattern:
 
+<details>
+<summary>📊 Pattern</summary>
+
 ![Pattern](../assets/diagrams/decisions/decisions_why_llm_as_judge_1.png)
+
+</details>
 
 
 ---
@@ -90,7 +95,12 @@ All judges follow the same pattern:
 
 SQL Judge has an additional step - executing expected SQL for ground truth:
 
+<details>
+<summary>📊 SQL Judge Flow</summary>
+
 ![SQL Judge Flow](../assets/diagrams/decisions/decisions_why_llm_as_judge_2.png)
+
+</details>
 
 
 ---

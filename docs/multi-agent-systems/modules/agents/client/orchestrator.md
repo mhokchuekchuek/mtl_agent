@@ -56,7 +56,12 @@ Classifies user intent and routes to either `chat_history` or `insight` agent.
 
 ### 🔄 **Code Flow**
 
+<details>
+<summary>📊 Code Flow</summary>
+
 ![Code Flow](../../../../assets/diagrams/modules/client_orchestrator_1.png)
+
+</details>
 
 
 ### 🎯 **Intent Types**

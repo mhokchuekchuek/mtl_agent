@@ -58,7 +58,12 @@ Guide the LLM to handle product queries, orders, and cancellations for customers
 
 ## **🔄 Workflow**
 
+<details>
+<summary>📊 Workflow</summary>
+
 ![Workflow](../../../assets/diagrams/prompts/customer_product_agent_1.png)
+
+</details>
 
 
 ---

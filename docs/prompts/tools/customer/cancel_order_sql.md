@@ -66,7 +66,12 @@ Generate SQL statements to:
 
 ## **🔄 Flow**
 
+<details>
+<summary>📊 Flow</summary>
+
 ![Flow](../../../assets/diagrams/prompts/customer_cancel_order_sql_1.png)
+
+</details>
 
 
 ---

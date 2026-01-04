@@ -72,7 +72,12 @@ Handle product queries using ReAct pattern. Dynamically decides which tools to u
 
 ### 🔄 **Code Flow**
 
+<details>
+<summary>📊 Code Flow</summary>
+
 ![Code Flow](../../../../assets/diagrams/modules/products_main_1.png)
+
+</details>
 
 
 ### 💡 **Example Flows**

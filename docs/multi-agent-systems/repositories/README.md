@@ -18,7 +18,12 @@ Domain-specific data access layer that abstracts infrastructure from business lo
 
 Repositories bridge the gap between modules (workflows/agents) and infrastructure (databases/caches).
 
+<details>
+<summary>📊 Overview</summary>
+
 ![Overview](../../assets/diagrams/repositories/repositories_README_1.png)
+
+</details>
 
 
 ---
@@ -47,7 +52,12 @@ Repositories bridge the gap between modules (workflows/agents) and infrastructur
 
 ## **🧠 Memory Architecture**
 
+<details>
+<summary>📊 Memory Architecture</summary>
+
 ![Memory Architecture](../../assets/diagrams/repositories/repositories_README_2.png)
+
+</details>
 
 | Type | Storage | TTL | Purpose |
 |------|---------|-----|---------|

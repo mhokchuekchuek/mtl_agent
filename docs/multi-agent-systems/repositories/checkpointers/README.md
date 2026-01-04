@@ -27,7 +27,12 @@ Checkpointers store LangGraph state per thread. Used for:
 
 ## **🔄 Code Flow**
 
+<details>
+<summary>📊 Code Flow</summary>
+
 ![Code Flow](../../../assets/diagrams/repositories/checkpointers_README_1.png)
+
+</details>
 
 
 ---
@@ -68,7 +73,12 @@ class BaseCheckpointerRepository(ABC):
 
 ## **⏱️ TTL Behavior**
 
+<details>
+<summary>📊 TTL Behavior</summary>
+
 ![TTL Behavior](../../../assets/diagrams/repositories/checkpointers_README_2.png)
+
+</details>
 
 | Scenario | Behavior |
 |----------|----------|

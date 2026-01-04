@@ -10,7 +10,12 @@ Documentation for the MTL Agent ERP multi-agent system.
 
 ## **🏗️ Full Architecture**
 
+<details>
+<summary>📊 Full Architecture</summary>
+
 ![Full Architecture](assets/diagrams/misc/README_1.png)
+
+</details>
 
 
 ---

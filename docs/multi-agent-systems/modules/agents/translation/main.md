@@ -60,7 +60,12 @@ Translate text between Thai and English. Detects source language and translates 
 
 ### 🔄 **Code Flow**
 
+<details>
+<summary>📊 Code Flow</summary>
+
 ![Code Flow](../../../../assets/diagrams/modules/translation_main_1.png)
+
+</details>
 
 
 ### 🔧 **Tools**

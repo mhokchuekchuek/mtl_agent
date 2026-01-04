@@ -48,7 +48,12 @@ class BaseWorkflow(ABC):
 
 ## **🔄 Code Flow**
 
+<details>
+<summary>📊 Code Flow</summary>
+
 ![Code Flow](../../../assets/diagrams/modules/workflows_base_1.png)
+
+</details>
 
 
 ---

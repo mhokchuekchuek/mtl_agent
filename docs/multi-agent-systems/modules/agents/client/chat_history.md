@@ -60,7 +60,12 @@ Look up customer chat history from PostgreSQL LangGraph store. Uses ReAct patter
 
 ### 🔄 **Code Flow**
 
+<details>
+<summary>📊 Code Flow</summary>
+
 ![Code Flow](../../../../assets/diagrams/modules/client_chat_history_1.png)
+
+</details>
 
 
 ### 💡 **Example Flows**

@@ -23,7 +23,12 @@ Compile CustomerChatbotWorkflow with memory and provide invoke interface.
 
 ## **🔄 Code Flow**
 
+<details>
+<summary>📊 Code Flow</summary>
+
 ![Code Flow](../../../../assets/diagrams/repositories/customer_main_1.png)
+
+</details>
 
 
 ---

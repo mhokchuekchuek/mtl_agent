@@ -45,7 +45,12 @@ This tool handles order cancellation. Requires explicit customer confirmation be
 
 ## **🔄 Flow Diagram**
 
+<details>
+<summary>📊 Flow Diagram</summary>
+
 ![Flow Diagram](../../../../../../assets/diagrams/modules/customer_cancel_order_1.png)
+
+</details>
 
 
 ---

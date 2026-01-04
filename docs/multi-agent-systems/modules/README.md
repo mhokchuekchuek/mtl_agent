@@ -21,12 +21,22 @@ Modules are the main components that power the chatbot systems. They follow a la
 
 ### 👤 **Customer Chatbot Flow**
 
+<details>
+<summary>📊 Customer Chatbot Flow</summary>
+
 ![Customer Chatbot Flow](../../assets/diagrams/modules/modules_README_1.png)
+
+</details>
 
 
 ### 💼 **Client Chatbot Flow**
 
+<details>
+<summary>📊 Client Chatbot Flow</summary>
+
 ![Client Chatbot Flow](../../assets/diagrams/modules/modules_README_2.png)
+
+</details>
 
 
 ---

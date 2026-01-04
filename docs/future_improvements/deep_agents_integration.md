@@ -2,7 +2,12 @@
 
 Integrating [LangChain Deep Agents](https://github.com/langchain-ai/deepagents) patterns into the MTL Agent system.
 
+<details>
+<summary>📊 Deep Agents Architecture</summary>
+
 ![Deep Agents Architecture](../assets/diagrams/future_improvements/deep_agents_architecture.png)
+
+</details>
 
 
 ---

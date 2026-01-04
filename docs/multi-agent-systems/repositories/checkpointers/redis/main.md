@@ -23,7 +23,12 @@ Provide short-term memory for conversations using Redis with automatic expiratio
 
 ## **🔄 Code Flow**
 
+<details>
+<summary>📊 Code Flow</summary>
+
 ![Code Flow](../../../../assets/diagrams/repositories/redis_main_1.png)
+
+</details>
 
 
 ---

@@ -27,7 +27,12 @@ We need to orchestrate multiple agents and tools. Two patterns are available:
 
 ## **🏗️ Architecture**
 
+<details>
+<summary>📊 Architecture</summary>
+
 ![Architecture](../assets/diagrams/decisions/decisions_why_react_and_langgraph_1.png)
+
+</details>
 
 
 ---
@@ -102,7 +107,12 @@ agent = create_react_agent(
 
 ## **🎯 Decision Framework**
 
+<details>
+<summary>📊 Decision Framework</summary>
+
 ![Decision Framework](../assets/diagrams/decisions/decisions_why_react_and_langgraph_2.png)
+
+</details>
 
 > 💡 **Tip:** If you can draw the flow as a flowchart with fixed steps → use workflow. If the LLM needs to discover/adapt → use ReAct.
 

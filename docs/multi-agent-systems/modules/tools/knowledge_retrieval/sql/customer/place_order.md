@@ -46,7 +46,12 @@ This tool handles order placement. Requires explicit customer confirmation befor
 
 ## **🔄 Flow Diagram**
 
+<details>
+<summary>📊 Flow Diagram</summary>
+
 ![Flow Diagram](../../../../../../assets/diagrams/modules/customer_place_order_1.png)
+
+</details>
 
 
 ---

@@ -2,7 +2,12 @@
 
 Techniques for managing LLM context windows effectively in the MTL Agent system.
 
+<details>
+<summary>📊 Context Engineering Strategies</summary>
+
 ![Context Engineering Strategies](../assets/diagrams/future_improvements/context_engineering.png)
+
+</details>
 
 
 ---

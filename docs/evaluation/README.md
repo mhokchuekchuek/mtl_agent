@@ -23,7 +23,12 @@ LLM-as-Judge evaluation framework for multi-agent chatbots.
 
 Evaluates chatbot responses using multiple judges that assess different aspects of the response.
 
+<details>
+<summary>📊 Overview</summary>
+
 ![Overview](../assets/diagrams/evaluation/evaluation_README_1.png)
+
+</details>
 
 
 ---

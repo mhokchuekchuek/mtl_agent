@@ -16,7 +16,12 @@ Customer chatbot endpoint for product inquiries.
 
 ## **🔄 Code Flow**
 
+<details>
+<summary>📊 Code Flow</summary>
+
 ![Code Flow](../../assets/diagrams/api/api_customer_chat_1.png)
+
+</details>
 
 
 ---

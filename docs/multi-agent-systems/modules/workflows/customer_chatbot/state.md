@@ -72,7 +72,12 @@ steps: Annotated[list[dict], add_steps]
 
 ## **🔄 State Flow**
 
+<details>
+<summary>📊 State Flow</summary>
+
 ![State Flow](../../../../assets/diagrams/modules/customer_chatbot_state_1.png)
+
+</details>
 
 
 ---

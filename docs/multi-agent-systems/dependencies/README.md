@@ -18,7 +18,12 @@ Dependency injection wiring layer.
 
 Dependencies layer creates and wires all components together. Each file provides a `build_*_service()` function that returns a ready-to-use service.
 
+<details>
+<summary>📊 Overview</summary>
+
 ![Overview](../../assets/diagrams/dependencies/dependencies_README_1.png)
+
+</details>
 
 
 ---

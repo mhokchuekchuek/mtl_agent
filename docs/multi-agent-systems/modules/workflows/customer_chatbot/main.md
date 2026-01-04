@@ -27,7 +27,12 @@ Orchestrate agents for customer shopping queries:
 
 ## **📊 Graph Structure**
 
+<details>
+<summary>📊 Graph Structure</summary>
+
 ![Graph Structure](../../../../assets/diagrams/modules/customer_chatbot_main_1.png)
+
+</details>
 
 
 ---
@@ -35,7 +40,12 @@ Orchestrate agents for customer shopping queries:
 
 ## **🔄 Code Flow**
 
+<details>
+<summary>📊 Code Flow</summary>
+
 ![Code Flow](../../../../assets/diagrams/modules/customer_chatbot_main_2.png)
+
+</details>
 
 
 ---

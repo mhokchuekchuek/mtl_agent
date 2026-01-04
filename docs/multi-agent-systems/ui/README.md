@@ -50,7 +50,12 @@ ui/
 
 ## **🔄 Flow**
 
+<details>
+<summary>📊 Flow</summary>
+
 ![Flow](../../assets/diagrams/ui/ui_README_1.png)
+
+</details>
 
 
 ---

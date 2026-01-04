@@ -78,7 +78,12 @@ judge_results:
 
 ### 🔄 **Flow Diagram**
 
+<details>
+<summary>📊 Flow Diagram</summary>
+
 ![Flow Diagram](../assets/diagrams/evaluation/evaluation_examples_1.png)
+
+</details>
 
 
 ### 📊 **Summary**
@@ -205,7 +210,12 @@ response_quality:
 
 ### 🔄 **Flow Diagram**
 
+<details>
+<summary>📊 Flow Diagram</summary>
+
 ![Flow Diagram](../assets/diagrams/evaluation/evaluation_examples_2.png)
+
+</details>
 
 
 ### 📊 **Summary**

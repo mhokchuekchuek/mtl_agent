@@ -23,7 +23,12 @@ Clean Architecture with Repository Pattern and Dependency Injection.
 
 Overview of how layers interact from UI to infrastructure.
 
+<details>
+<summary>📊 Layer Diagram</summary>
+
 ![Layer Diagram](../../assets/diagrams/architecture/architecture_code_1.png)
+
+</details>
 
 
 ---
@@ -51,7 +56,12 @@ Each layer has a specific responsibility following Clean Architecture principles
 
 Data access layer that abstracts storage and memory management from business logic.
 
+<details>
+<summary>📊 Repository Layer</summary>
+
 ![Repository Layer](../../assets/diagrams/architecture/architecture_code_2.png)
+
+</details>
 
 | Repository | Purpose |
 |------------|---------|
@@ -67,7 +77,12 @@ Data access layer that abstracts storage and memory management from business log
 
 Core domain logic layer containing LangGraph workflows, LLM agents, and tools.
 
+<details>
+<summary>📊 Modules Layer</summary>
+
 ![Modules Layer](../../assets/diagrams/architecture/architecture_code_3.png)
+
+</details>
 
 | Module | Purpose |
 |--------|---------|
@@ -96,7 +111,12 @@ Comparison between generic infrastructure clients and domain-specific repositori
 
 Factory pattern that enables swapping providers (e.g., Redis vs Memory) without changing business logic.
 
+<details>
+<summary>📊 Selector Pattern</summary>
+
 ![Selector Pattern](../../assets/diagrams/architecture/architecture_code_4.png)
+
+</details>
 
 ```python
 # libs/database/key_value/selector.py

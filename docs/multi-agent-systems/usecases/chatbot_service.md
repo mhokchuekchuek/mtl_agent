@@ -24,7 +24,12 @@ Thin wrapper that delegates to `BaseChatbotRepository`. Provides unified interfa
 
 ## **🔄 Code Flow**
 
+<details>
+<summary>📊 Code Flow</summary>
+
 ![Code Flow](../../assets/diagrams/usecases/usecases_chatbot_service_1.png)
+
+</details>
 
 
 ---

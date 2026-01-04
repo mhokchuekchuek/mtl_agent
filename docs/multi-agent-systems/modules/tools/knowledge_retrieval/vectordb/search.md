@@ -36,7 +36,12 @@ Search for products using semantic similarity. Useful when customer describes wh
 
 ## **🔄 Flow Diagram**
 
+<details>
+<summary>📊 Flow Diagram</summary>
+
 ![Flow Diagram](../../../../../assets/diagrams/modules/vectordb_search_1.png)
+
+</details>
 
 
 ---
@@ -58,7 +63,12 @@ Customer's query is converted to a vector embedding:
 
 The query vector is compared against all product vectors in Qdrant:
 
+<details>
+<summary>📊 Step 2: Vector Search</summary>
+
 ![Step 2: Vector Search](../../../../../assets/diagrams/modules/vectordb_search_2.png)
+
+</details>
 
 
 ### 3️⃣ **Similarity Scoring**
