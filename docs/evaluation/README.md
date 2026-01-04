@@ -49,6 +49,7 @@ python scripts/run_eval.py client
 |:---:|:---:|:---:|
 | [🏗️ **Architecture**](architecture.md)<br/>System design and flow | [⚖️ **Judges**](judges/README.md)<br/>Judge types and scoring | [📊 **Datasets**](datasets.md)<br/>Test case format |
 | [⚙️ **Configs**](configs.md)<br/>Evaluation configuration | [📈 **Results**](results.md)<br/>Output format | [💡 **Examples**](examples.md)<br/>Real test examples |
+| [🔄 **Iteration**](iteration.md)<br/>Analyze & improve with AI | | |
 
 
 ---
