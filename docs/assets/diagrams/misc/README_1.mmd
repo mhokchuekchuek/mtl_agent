@@ -1,6 +1,6 @@
 flowchart LR
-    subgraph Obs["Observability"]
-        Langfuse["Langfuse"]
+    subgraph Obs["Observability + Prompts"]
+        Langfuse["Langfuse<br/>(Prompt Manager<br/>+ Tracing)"]
     end
 
     subgraph Memory["Memory Layer"]
@@ -55,6 +55,8 @@ flowchart LR
     CustomerSQL --> SQLite
     ClientSQL --> SQLite
     ChatHistorySQL --> Postgres
+    Langfuse -.->|prompts| Agents
+    Agents -.->|traces| Langfuse
 
     classDef obs fill:#fef3c7,stroke:#f59e0b,stroke-width:2px,color:#b45309
     classDef memory fill:#fce7f3,stroke:#ec4899,stroke-width:2px,color:#be185d
