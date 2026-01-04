@@ -1,0 +1,9 @@
+flowchart LR
+    RunEval["Run Eval<br/>(manual)"] --> AIAnalyze["AI Analyze<br/>& Fix"] --> Reeval["Re-evaluate<br/>(manual)"]
+    Reeval -.->|"repeat"| RunEval
+
+    classDef manual fill:#dbeafe,stroke:#3b82f6,stroke-width:2px,color:#1e40af
+    classDef ai fill:#d1fae5,stroke:#10b981,stroke-width:2px,color:#065f46
+
+    class RunEval,Reeval manual
+    class AIAnalyze ai

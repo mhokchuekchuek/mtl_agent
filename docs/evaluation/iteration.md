@@ -22,14 +22,7 @@ How to analyze evaluation results and iterate on improvements.
 
 Evaluation is an iterative process:
 
-```
-┌─────────────┐     ┌─────────────┐     ┌─────────────┐
-│  Run Eval   │────▶│  AI Analyze │────▶│ Re-evaluate │
-│  (manual)   │     │   & Fix     │     │  (manual)   │
-└─────────────┘     └─────────────┘     └─────────────┘
-       ▲                                       │
-       └───────────────────────────────────────┘
-```
+![Evaluation Cycle](../assets/diagrams/evaluation/eval_cycle_1.png)
 
 
 ---
