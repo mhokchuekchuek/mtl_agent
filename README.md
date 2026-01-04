@@ -8,13 +8,15 @@ AI-powered ERP assistant using LiteLLM, LangGraph, and Qdrant for product/order 
 
 ## **📑 Table of Contents**
 
-- [Use Cases](#-use-cases)
-- [Architecture](#-architecture)
-- [Tech Stack](#-tech-stack)
-- [Quick Start](#-quick-start)
-- [How to Use](#-how-to-use)
-- [Project Structure](#-project-structure)
-- [Documentation](#-documentation)
+| Section | Description |
+|---------|-------------|
+| [Use Cases](#-use-cases) | What our chatbots can do |
+| [Architecture](#-architecture) | System design overview |
+| [Tech Stack](#-tech-stack) | Technologies used |
+| [Quick Start](#-quick-start) | Get up and running |
+| [How to Use](#-how-to-use) | API and UI usage |
+| [Project Structure](#-project-structure) | Codebase organization |
+| [Documentation](#-documentation) | Full documentation links |
 
 
 ---
