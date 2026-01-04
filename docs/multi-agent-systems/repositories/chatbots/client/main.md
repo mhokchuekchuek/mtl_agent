@@ -1,20 +1,35 @@
-# ClientChatbotRepository
+# **💼 ClientChatbotRepository**
 
 Repository for internal BI chatbot.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `src/repositories/chatbots/client/main.py`
 
-## Purpose
+---
+
+
+## **💡 Purpose**
 
 Compile ClientChatbotWorkflow with memory and provide invoke interface.
 
-## Code Flow
+
+---
+
+
+## **🔄 Code Flow**
 
 ![Code Flow](../../../../assets/diagrams/repositories/client_main_1.png)
 
-## Class Definition
+
+---
+
+
+## **📋 Class Definition**
 
 ```python
 class ClientChatbotRepository(BaseChatbotRepository):
@@ -34,9 +49,14 @@ class ClientChatbotRepository(BaseChatbotRepository):
         self.app = workflow.build().compile(checkpointer=checkpointer, store=store)
 ```
 
-## Input/Output
 
-### Input State
+---
+
+
+## **📥 Input/Output**
+
+
+### 📥 **Input State**
 
 | Field | Type | Description |
 |-------|------|-------------|
@@ -49,7 +69,7 @@ class ClientChatbotRepository(BaseChatbotRepository):
 | chart_html | None | Will be generated if visualization |
 | steps | [] | Tool execution trace |
 
-### Output State
+### 📤 **Output State**
 
 | Field | Type | Description |
 |-------|------|-------------|
@@ -58,14 +78,22 @@ class ClientChatbotRepository(BaseChatbotRepository):
 | steps | list[dict] | Tool calls and results |
 | intent | Intent | CHAT_HISTORY or INSIGHT |
 
-## Workflow Reference
+
+---
+
+
+## **🔗 Workflow Reference**
 
 | Component | Documentation |
 |-----------|---------------|
 | ClientChatbotWorkflow | [workflows/client_chatbot/main.md](../../../modules/workflows/client_chatbot/main.md) |
 | ClientChatbotState | [workflows/client_chatbot/state.md](../../../modules/workflows/client_chatbot/state.md) |
 
-## Usage
+
+---
+
+
+## **💡 Usage**
 
 ```python
 from src.repositories.chatbots.client.main import ClientChatbotRepository

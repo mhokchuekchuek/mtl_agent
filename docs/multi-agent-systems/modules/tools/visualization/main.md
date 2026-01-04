@@ -1,39 +1,56 @@
-# Visualization Tool
+# **📊 Visualization Tool**
 
 Create Plotly visualizations using LLM-generated code.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `src/modules/tools/visualization/main.py`
 
-## Prompt
+## **📜 Prompt**
 
 [tools_client_visualization](../../../../prompts/tools/client/visualization.md)
 
-## Overview
+
+---
+
+
+## **📋 Overview**
 
 Create Plotly charts from data using natural language requests. Uses LLM to generate Plotly code, then executes in a sandboxed environment.
 
-## Input
+## **📥 Input**
 
 | Field | Type | Description |
 |-------|------|-------------|
 | `data` | list[dict] | Data to visualize (from SQL query results) |
 | `request` | str | Natural language description of the chart |
 
-## Flow Diagram
+
+---
+
+
+## **🔄 Flow Diagram**
 
 ![Flow Diagram](../../../../assets/diagrams/modules/visualization_main_1.png)
 
-## How It Works
 
-### Step 1: Get Prompt from Langfuse
+---
+
+
+## **🔧 How It Works**
+
+
+### 1️⃣ **Get Prompt from Langfuse**
 
 ![Step 1: Get Prompt from Langfuse](../../../../assets/diagrams/modules/visualization_main_2.png)
 
 The tool retrieves the prompt template `tools_client_visualization` from Langfuse.
 
-### Step 2: Compile Prompt with Data Context
+### 2️⃣ **Compile Prompt with Data Context**
 
 The prompt is compiled with information about the data:
 
@@ -53,7 +70,7 @@ compiled = prompt.compile(
 )
 ```
 
-### Step 3: LLM Generates Plotly Code
+### 3️⃣ **LLM Generates Plotly Code**
 
 The LLM generates Python code that creates a Plotly chart:
 
@@ -69,7 +86,7 @@ fig = px.bar(
 )
 ```
 
-### Step 4: Extract Code from Response
+### 4️⃣ **Extract Code from Response**
 
 Remove markdown code blocks if present:
 
@@ -78,11 +95,11 @@ Input:  ```python\nfig = px.bar(...)\n```
 Output: fig = px.bar(...)
 ```
 
-### Step 5: Execute in Sandbox
+### 5️⃣ **Execute in Sandbox**
 
 ![Step 5: Execute in Sandbox](../../../../assets/diagrams/modules/visualization_main_3.png)
 
-**Security:** The code runs in a restricted environment to prevent malicious code execution.
+> 🚨 **Security:** The code runs in a restricted environment to prevent malicious code execution.
 
 | Allowed | Blocked |
 |---------|---------|
@@ -94,7 +111,7 @@ Output: fig = px.bar(...)
 | `list`, `dict`, `range` | Network access |
 | `sum`, `min`, `max`, `sorted` | `os`, `sys`, `subprocess` |
 
-### Step 6: Convert to HTML
+### 6️⃣ **Convert to HTML**
 
 The Plotly figure is converted to HTML for display in the UI:
 
@@ -102,15 +119,23 @@ The Plotly figure is converted to HTML for display in the UI:
 html = fig.to_html(full_html=False, include_plotlyjs="cdn")
 ```
 
-## Database Access
+---
+
+
+## **🗄️ Database Access**
 
 **None** - This tool does not access any database. It receives data from the SQL tool and only performs visualization.
 
 ![Database Access](../../../../assets/diagrams/modules/visualization_main_4.png)
 
-## Example
 
-### Input
+---
+
+
+## **💡 Example**
+
+
+### 📥 **Input**
 
 ```python
 data = [
@@ -121,11 +146,12 @@ data = [
 request = "Create a bar chart showing sales by category"
 ```
 
-### Step-by-Step
+### 🔢 **Step-by-Step**
 
 ![Step-by-Step](../../../../assets/diagrams/modules/visualization_main_5.png)
 
-### Output
+
+### 📤 **Output**
 
 **Success:**
 ```python
@@ -143,7 +169,11 @@ request = "Create a bar chart showing sales by category"
 }
 ```
 
-## When to Use
+
+---
+
+
+## **💡 When to Use**
 
 | Scenario | Use Visualization? |
 |----------|-------------------|
@@ -152,7 +182,7 @@ request = "Create a bar chart showing sales by category"
 | "List all products" | No (use SQL only) |
 | "What's the total revenue?" | No (return number) |
 
-## Common Chart Types
+## **📊 Common Chart Types**
 
 | Request | Chart Type |
 |---------|------------|
@@ -162,7 +192,10 @@ request = "Create a bar chart showing sales by category"
 | "scatter plot of X vs Y" | `px.scatter()` |
 | "histogram of values" | `px.histogram()` |
 
-## Error Cases
+---
+
+
+## **❌ Error Cases**
 
 | Error | Cause | Response |
 |-------|-------|----------|
@@ -170,7 +203,11 @@ request = "Create a bar chart showing sales by category"
 | Code execution failed | Invalid Plotly code | `"<p>Error: Failed to execute visualization code: ...</p>"` |
 | No figure created | Code didn't create `fig` | `"<p>Error: No Plotly figure was created by the code</p>"` |
 
-## References
+
+---
+
+
+## **🔗 References**
 
 - [VisualizationTool](../../../../../src/modules/tools/visualization/main.py)
 - [Prompt: tools_client_visualization](https://langfuse.com)

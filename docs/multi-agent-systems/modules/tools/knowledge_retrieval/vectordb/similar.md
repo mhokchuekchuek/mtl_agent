@@ -1,29 +1,50 @@
-# Similar Products Tool
+# **🔗 Similar Products Tool**
 
 Find products similar to a given product using vector similarity.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `src/modules/tools/knowledge_retrieval/vectordb/similar.py`
 
-## Overview
+
+---
+
+
+## **📋 Overview**
 
 Find similar products based on vector similarity. Gets the embedding of a product and finds nearest neighbors in Qdrant.
 
-## Input
+
+---
+
+
+## **📥 Input**
 
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
 | `product_id` | int | required | Base product ID |
 | `top_k` | int | 5 | Number of similar products |
 
-## Flow Diagram
+
+---
+
+
+## **🔄 Flow Diagram**
 
 ![Flow Diagram](../../../../../assets/diagrams/modules/vectordb_similar_1.png)
 
-## How It Works
 
-### Step 1: Retrieve Product's Embedding
+---
+
+
+## **🔧 How It Works**
+
+
+### 1️⃣ **Retrieve Product's Embedding**
 
 ![Step 1: Retrieve Product's Embedding](../../../../../assets/diagrams/modules/vectordb_similar_2.png)
 
@@ -38,11 +59,13 @@ records = self.vector_store.get(
 product_embedding = records[0]["vector"]
 ```
 
-### Step 2: Vector Similarity Search
+
+### 2️⃣ **Vector Similarity Search**
 
 ![Step 2: Vector Similarity Search](../../../../../assets/diagrams/modules/vectordb_similar_3.png)
 
-### Step 3: Exclude Original Product
+
+### 3️⃣ **Exclude Original Product**
 
 Remove Gaming Chair from results (it's the same item we started with):
 
@@ -53,7 +76,8 @@ Remove Gaming Chair from results (it's the same item we started with):
 | Desk Chair (0.83) | Desk Chair (0.83) |
 | Gaming Desk (0.79) | Gaming Desk (0.79) |
 
-### Step 4: Return Results
+
+### 4️⃣ **Return Results**
 
 ```python
 {
@@ -66,16 +90,22 @@ Remove Gaming Chair from results (it's the same item we started with):
 }
 ```
 
-## Database Access
 
-### Qdrant Vector Database
+---
+
+
+## **🗄️ Database Access**
+
+
+### 🔍 **Qdrant Vector Database**
 
 | Operation | Description |
 |-----------|-------------|
 | `get()` | Retrieve specific product by ID with its vector |
 | `search()` | Find nearest neighbors using cosine similarity |
 
-### What's Stored in Qdrant
+
+### 📋 **What's Stored in Qdrant**
 
 Each product has:
 
@@ -87,11 +117,15 @@ Each product has:
 | source_file | string | "10_gaming_chair.pdf" |
 | text | string | Combined text (name + description + specs + features) |
 
-> **Note:** Fields like `category`, `price`, and full `description` are stored in the SQL database, not in Qdrant.
+> 📝 **Note:** Fields like `category`, `price`, and full `description` are stored in the SQL database, not in Qdrant.
 
 **Database Changes**: None (read-only search)
 
-## Comparison: Text Search vs Similar Products
+
+---
+
+
+## **📊 Comparison: Text Search vs Similar Products**
 
 ![Comparison: Text Search vs Similar Products](../../../../../assets/diagrams/modules/vectordb_similar_4.png)
 
@@ -101,7 +135,11 @@ Each product has:
 | **Embedding** | Generated at query time | Retrieved from database |
 | **Use Case** | "Find gaming chairs" | "Products like this chair" |
 
-## When to Use
+
+---
+
+
+## **💡 When to Use**
 
 | User Request | What Happens |
 |--------------|--------------|
@@ -109,13 +147,21 @@ Each product has:
 | "What are some alternatives?" | Finds semantically similar products |
 | "I like this, what else would I like?" | Recommends based on product features |
 
-## Error Cases
+
+---
+
+
+## **❌ Error Cases**
 
 | Error | Cause | Response |
 |-------|-------|----------|
 | Product not found | product_id doesn't exist in Qdrant | `{"product_id": 10, "results": []}` |
 | Search failed | Qdrant connection error | `{"error": "..."}` |
 
-## References
+
+---
+
+
+## **🔗 References**
 
 - [SimilarProductsTool](../../../../../../src/modules/tools/knowledge_retrieval/vectordb/similar.py)

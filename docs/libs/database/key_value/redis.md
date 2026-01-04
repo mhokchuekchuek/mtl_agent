@@ -1,12 +1,20 @@
-# Redis Client
+# **🗄️ Redis Client**
 
 Redis key-value store client.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `libs/database/key_value/redis/`
 
-## Configuration
+
+---
+
+
+## **⚙️ Configuration**
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
@@ -15,7 +23,11 @@ Redis key-value store client.
 | `db` | int | 0 | Redis database number |
 | `password` | str | None | Redis password |
 
-## Usage
+
+---
+
+
+## **💡 Usage**
 
 ```python
 from libs.database.key_value.selector import KeyValueSelector
@@ -32,7 +44,11 @@ data = client.get("user:123")
 client.delete("user:123")
 ```
 
-## With LangGraph Checkpointer
+
+---
+
+
+## **🔄 With LangGraph Checkpointer**
 
 Used by `RedisCheckpointerRepository` for conversation memory:
 
@@ -53,11 +69,19 @@ checkpoint_repo = RedisCheckpointerRepository(
 )
 ```
 
-## Docker
+
+---
+
+
+## **🐳 Docker**
 
 See [Docker Redis](../../../infrastructure/docker/redis.md) for container setup.
 
-## Config Example
+
+---
+
+
+## **📋 Config Example**
 
 ```yaml
 # configs/agents/shared.yaml

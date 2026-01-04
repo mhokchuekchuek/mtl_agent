@@ -1,20 +1,35 @@
-# PostgresStoreRepository
+# **🗄️ PostgresStoreRepository**
 
 PostgreSQL-based store for long-term memory.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `src/repositories/stores/postgres/main.py`
 
-## Purpose
+---
+
+
+## **💡 Purpose**
 
 Provide permanent storage for conversation data using LangGraph's PostgresStore.
 
-## Code Flow
+
+---
+
+
+## **🔄 Code Flow**
 
 ![Code Flow](../../../../assets/diagrams/repositories/postgres_main_1.png)
 
-## Class Definition
+
+---
+
+
+## **📋 Class Definition**
 
 ```python
 class PostgresStoreRepository(BaseStoreRepository):
@@ -32,9 +47,14 @@ class PostgresStoreRepository(BaseStoreRepository):
         self._store.setup()
 ```
 
-## Methods
 
-### store → BaseStore
+---
+
+
+## **🔧 Methods**
+
+
+### 🔌 **store → BaseStore**
 
 Get underlying PostgresStore for workflow compilation.
 
@@ -44,7 +64,7 @@ def store(self) -> BaseStore:
     return self._store
 ```
 
-### put() → None
+### 💾 **put() → None**
 
 Store a value.
 
@@ -53,7 +73,7 @@ def put(self, namespace: tuple, key: str, value: dict) -> None:
     self._store.put(namespace, key, value)
 ```
 
-### get() → dict
+### 📥 **get() → dict**
 
 Retrieve a value.
 
@@ -63,7 +83,7 @@ def get(self, namespace: tuple, key: str) -> Optional[dict]:
     return item.value if item else None
 ```
 
-### search() → list[dict]
+### 🔍 **search() → list[dict]**
 
 Search values in namespace.
 
@@ -73,7 +93,7 @@ def search(self, namespace: tuple, query: str = None, limit: int = 10) -> list[d
     return [item.value for item in results]
 ```
 
-### delete() → None
+### 🗑️ **delete() → None**
 
 Delete a value.
 
@@ -82,7 +102,11 @@ def delete(self, namespace: tuple, key: str) -> None:
     self._store.delete(namespace, key)
 ```
 
-## Usage
+
+---
+
+
+## **💡 Usage**
 
 ```python
 from src.repositories.stores.postgres.main import PostgresStoreRepository
@@ -120,7 +144,11 @@ items = store_repo.search(
 )
 ```
 
-## Infrastructure
+
+---
+
+
+## **🔗 Infrastructure**
 
 | Component | Documentation |
 |-----------|---------------|

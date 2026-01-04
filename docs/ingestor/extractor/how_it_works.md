@@ -1,10 +1,18 @@
-# How It Works
+# **🔧 How It Works**
 
-## Overview
+
+---
+
+
+## **📋 Overview**
 
 The extractor uses LLM to convert raw PDF text into structured product data.
 
-## Flow
+
+---
+
+
+## **🔄 Flow**
 
 ```mermaid
 flowchart LR
@@ -14,7 +22,11 @@ flowchart LR
     D --> E[Structured<br/>Data]
 ```
 
-## Prompt Template
+
+---
+
+
+## **📜 Prompt Template**
 
 **Location**: [prompts/ingestor/extract_product.prompt](../../../prompts/ingestor/extract_product.prompt)
 

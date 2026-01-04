@@ -1,20 +1,35 @@
-# CustomerChatbotRepository
+# **🛒 CustomerChatbotRepository**
 
 Repository for customer shopping assistant chatbot.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `src/repositories/chatbots/customer/main.py`
 
-## Purpose
+---
+
+
+## **💡 Purpose**
 
 Compile CustomerChatbotWorkflow with memory and provide invoke interface.
 
-## Code Flow
+
+---
+
+
+## **🔄 Code Flow**
 
 ![Code Flow](../../../../assets/diagrams/repositories/customer_main_1.png)
 
-## Class Definition
+
+---
+
+
+## **📋 Class Definition**
 
 ```python
 class CustomerChatbotRepository(BaseChatbotRepository):
@@ -34,9 +49,14 @@ class CustomerChatbotRepository(BaseChatbotRepository):
         self.app = workflow.build().compile(checkpointer=checkpointer, store=store)
 ```
 
-## Input/Output
 
-### Input State
+---
+
+
+## **📥 Input/Output**
+
+
+### 📥 **Input State**
 
 | Field | Type | Description |
 |-------|------|-------------|
@@ -48,21 +68,29 @@ class CustomerChatbotRepository(BaseChatbotRepository):
 | response | None | Will be generated |
 | steps | [] | Tool execution trace |
 
-### Output State
+### 📤 **Output State**
 
 | Field | Type | Description |
 |-------|------|-------------|
 | response | str | Final response in user's language |
 | steps | list[dict] | Tool calls and results |
 
-## Workflow Reference
+
+---
+
+
+## **🔗 Workflow Reference**
 
 | Component | Documentation |
 |-----------|---------------|
 | CustomerChatbotWorkflow | [workflows/customer_chatbot/main.md](../../../modules/workflows/customer_chatbot/main.md) |
 | ShoppingState | [workflows/customer_chatbot/state.md](../../../modules/workflows/customer_chatbot/state.md) |
 
-## Usage
+
+---
+
+
+## **💡 Usage**
 
 ```python
 from src.repositories.chatbots.customer.main import CustomerChatbotRepository

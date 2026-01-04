@@ -1,12 +1,19 @@
-# BaseChatbotRepository
+# **🤖 BaseChatbotRepository**
 
 Abstract base class for all chatbot repositories.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `src/repositories/chatbots/base.py`
 
-## Class Definition
+---
+
+
+## **📋 Class Definition**
 
 ```python
 class BaseChatbotRepository(ABC):
@@ -43,20 +50,33 @@ class BaseChatbotRepository(ABC):
         ...
 ```
 
-## Purpose
+
+---
+
+
+## **💡 Purpose**
 
 1. **Define contract** - All chatbot repositories implement same interface
 2. **Memory management** - Handle checkpointer and store injection
 3. **History access** - Unified way to get/clear conversation history
 4. **Long-term save** - Auto-save to store for audit/backup
 
-## Code Flow
+
+---
+
+
+## **🔄 Code Flow**
 
 ![Code Flow](../../../assets/diagrams/repositories/chatbots_base_1.png)
 
-## Methods
 
-### invoke() → dict
+---
+
+
+## **🔧 Methods**
+
+
+### 📤 **invoke() → dict**
 
 Abstract method that subclasses must implement.
 
@@ -70,7 +90,7 @@ Abstract method that subclasses must implement.
 |--------|------|-------------|
 | result | dict | Final state with response, steps, etc. |
 
-### get_history() → list[BaseMessage]
+### 📜 **get_history() → list[BaseMessage]**
 
 Get conversation history from checkpointer.
 
@@ -84,7 +104,7 @@ def get_history(self, thread_id: str) -> list[BaseMessage]:
     return []
 ```
 
-### clear_conversation() → None
+### 🗑️ **clear_conversation() → None**
 
 Clear conversation from checkpointer.
 
@@ -94,7 +114,7 @@ def clear_conversation(self, thread_id: str) -> None:
         self.checkpoint_repo.delete_checkpoint(thread_id)
 ```
 
-### _save_to_store() → None
+### 💾 **_save_to_store() → None**
 
 Save conversation turn to long-term memory.
 
@@ -114,7 +134,11 @@ def _save_to_store(self, query, response, thread_id, user_id) -> None:
     })
 ```
 
-## Usage
+
+---
+
+
+## **💡 Usage**
 
 ```python
 class MyChatbotRepository(BaseChatbotRepository):

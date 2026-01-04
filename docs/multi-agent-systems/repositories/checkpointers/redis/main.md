@@ -1,20 +1,35 @@
-# RedisCheckpointerRepository
+# **🗄️ RedisCheckpointerRepository**
 
 Redis-based checkpointer with TTL support.
 
-## Location
+
+---
+
+
+## **📍 Location**
 
 `src/repositories/checkpointers/redis/main.py`
 
-## Purpose
+---
+
+
+## **💡 Purpose**
 
 Provide short-term memory for conversations using Redis with automatic expiration.
 
-## Code Flow
+
+---
+
+
+## **🔄 Code Flow**
 
 ![Code Flow](../../../../assets/diagrams/repositories/redis_main_1.png)
 
-## Class Definition
+
+---
+
+
+## **📋 Class Definition**
 
 ```python
 class RedisCheckpointerRepository(BaseCheckpointerRepository):
@@ -35,16 +50,25 @@ class RedisCheckpointerRepository(BaseCheckpointerRepository):
         self._checkpointer.setup()
 ```
 
-## Configuration
+
+---
+
+
+## **⚙️ Configuration**
 
 | Config | Default | Description |
 |--------|---------|-------------|
 | ttl | 60 | Time-to-live in minutes |
 | refresh_on_read | true | Extend TTL on each read |
 
-## Methods
 
-### checkpointer → BaseCheckpointSaver
+---
+
+
+## **🔧 Methods**
+
+
+### 🔌 **checkpointer → BaseCheckpointSaver**
 
 Get underlying RedisSaver for workflow compilation.
 
@@ -54,7 +78,7 @@ def checkpointer(self) -> BaseCheckpointSaver:
     return self._checkpointer
 ```
 
-### get_checkpoint() → CheckpointTuple
+### 📥 **get_checkpoint() → CheckpointTuple**
 
 Get checkpoint for a thread.
 
@@ -64,7 +88,7 @@ def get_checkpoint(self, thread_id: str) -> Optional[Any]:
     return self._checkpointer.get_tuple(config)
 ```
 
-### delete_checkpoint() → None
+### 🗑️ **delete_checkpoint() → None**
 
 Delete checkpoint (handled by TTL expiration).
 
@@ -74,7 +98,11 @@ def delete_checkpoint(self, thread_id: str) -> None:
     pass
 ```
 
-## Usage
+
+---
+
+
+## **💡 Usage**
 
 ```python
 from libs.database.key_value.redis.main import RedisClient
@@ -96,7 +124,11 @@ if checkpoint:
     messages = checkpoint.checkpoint["channel_values"]["messages"]
 ```
 
-## Infrastructure
+
+---
+
+
+## **🔗 Infrastructure**
 
 | Component | Documentation |
 |-----------|---------------|

@@ -12,8 +12,7 @@ AI-powered ERP assistant using LiteLLM, LangGraph, and Qdrant for product/order 
 - [Architecture](#-architecture)
 - [Tech Stack](#-tech-stack)
 - [Quick Start](#-quick-start)
-- [Services](#-services)
-- [API Endpoints](#-api-endpoints)
+- [How to Use](#-how-to-use)
 - [Project Structure](#-project-structure)
 - [Documentation](#-documentation)
 
@@ -150,23 +149,9 @@ python scripts/upload_prompts.py
 ---
 
 
-## **🐳 Services**
+## **🎯 How to Use**
 
-| Service | Port | Description |
-|---------|------|-------------|
-| API | 8000 | FastAPI backend |
-| Customer UI | 8501 | Streamlit customer chatbot |
-| Client UI | 8502 | Streamlit BI analytics |
-| LiteLLM Proxy | 4000 | LLM gateway |
-| PostgreSQL | 5432 | Long-term memory store |
-| Redis | 6379 | Short-term memory (checkpointer) |
-| Qdrant | 6333 | Vector database |
-
-
----
-
-
-## **🔗 API Endpoints**
+### 1️⃣ **API**
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
@@ -174,8 +159,7 @@ python scripts/upload_prompts.py
 | POST | `/api/v1/chatbot/customer/chat` | Customer chatbot |
 | POST | `/api/v1/chatbot/client/chat` | Client chatbot |
 
-
-### 💡 **Example**
+**Example:**
 
 ```bash
 # Customer chatbot
@@ -188,6 +172,18 @@ curl -X POST http://localhost:8000/api/v1/chatbot/client/chat \
   -H "Content-Type: application/json" \
   -d '{"query": "แสดงยอดขายรายเดือน", "thread_id": "test-456"}'
 ```
+
+> 📖 See [API Documentation](docs/multi-agent-systems/api/README.md) for more details.
+
+
+### 2️⃣ **UI**
+
+| App | URL | Description |
+|-----|-----|-------------|
+| Customer UI | http://localhost:8501 | Streamlit customer chatbot |
+| Client UI | http://localhost:8502 | Streamlit BI analytics |
+
+> 📖 See [UI Documentation](docs/multi-agent-systems/ui/README.md) for more details.
 
 
 ---
