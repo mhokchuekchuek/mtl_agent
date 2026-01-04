@@ -1,3 +1,11 @@
 flowchart LR
     TOOL[VisualizationTool] --> |prompt_name| LANGFUSE[(Langfuse)]
     LANGFUSE --> |template| PROMPT[Prompt Template]
+
+    classDef tool fill:#cffafe,stroke:#06b6d4,stroke-width:2px,color:#0e7490
+    classDef db fill:#fce7f3,stroke:#ec4899,stroke-width:2px,color:#be185d
+    classDef output fill:#d1fae5,stroke:#10b981,stroke-width:2px,color:#065f46
+
+    class TOOL tool
+    class LANGFUSE db
+    class PROMPT output

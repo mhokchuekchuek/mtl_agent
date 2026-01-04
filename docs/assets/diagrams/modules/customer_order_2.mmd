@@ -6,3 +6,13 @@ flowchart LR
     V2 --> |Yes| V3{Read-only?}
     V3 --> |No| FAIL
     V3 --> |Yes| PASS[Execute]
+
+    classDef input fill:#dbeafe,stroke:#3b82f6,stroke-width:2px,color:#1e40af
+    classDef decision fill:#fef3c7,stroke:#f59e0b,stroke-width:2px,color:#b45309
+    classDef error fill:#fee2e2,stroke:#ef4444,stroke-width:2px,color:#b91c1c
+    classDef success fill:#d1fae5,stroke:#10b981,stroke-width:2px,color:#065f46
+
+    class SQL input
+    class V1,V2,V3 decision
+    class FAIL error
+    class PASS success

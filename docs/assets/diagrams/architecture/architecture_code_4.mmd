@@ -1,3 +1,11 @@
 flowchart LR
     SEL[Selector] --> |provider=redis| REDIS[RedisClient]
     SEL --> |provider=memory| MEM[MemoryClient]
+
+    classDef selector fill:#ede9fe,stroke:#8b5cf6,stroke-width:2px,color:#5b21b6
+    classDef redis fill:#fce7f3,stroke:#ec4899,stroke-width:2px,color:#be185d
+    classDef memory fill:#d1fae5,stroke:#10b981,stroke-width:2px,color:#065f46
+
+    class SEL selector
+    class REDIS redis
+    class MEM memory

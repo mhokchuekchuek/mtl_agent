@@ -3,3 +3,15 @@ flowchart LR
     2 --> 3[3. Redis lookup by thread_id]
     3 --> 4[4. Return messages + state]
     4 --> 5[5. TTL refreshed on read]
+
+    classDef request fill:#dbeafe,stroke:#3b82f6,stroke-width:2px,color:#1e40af
+    classDef repo fill:#fed7aa,stroke:#f97316,stroke-width:2px,color:#c2410c
+    classDef redis fill:#fce7f3,stroke:#ec4899,stroke-width:2px,color:#be185d
+    classDef result fill:#d1fae5,stroke:#10b981,stroke-width:2px,color:#065f46
+    classDef ttl fill:#cffafe,stroke:#06b6d4,stroke-width:2px,color:#0e7490
+
+    class 1 request
+    class 2 repo
+    class 3 redis
+    class 4 result
+    class 5 ttl

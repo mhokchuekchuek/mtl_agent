@@ -4,3 +4,15 @@ flowchart TD
     C --> D[4. Validate SQL is safe]
     D --> E[5. Execute SQL on PostgreSQL store]
     E --> F[6. Return conversation results]
+
+    classDef prompt fill:#dbeafe,stroke:#3b82f6,stroke-width:2px,color:#1e40af
+    classDef process fill:#cffafe,stroke:#06b6d4,stroke-width:2px,color:#0e7490
+    classDef validate fill:#fef3c7,stroke:#f59e0b,stroke-width:2px,color:#b45309
+    classDef db fill:#fce7f3,stroke:#ec4899,stroke-width:2px,color:#be185d
+    classDef output fill:#d1fae5,stroke:#10b981,stroke-width:2px,color:#065f46
+
+    class A,B prompt
+    class C process
+    class D validate
+    class E db
+    class F output

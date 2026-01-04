@@ -4,3 +4,17 @@ flowchart LR
     3 --> 4[4. Call compiled graph]
     4 --> 5[5. _save_to_store]
     5 --> 6[6. Return result]
+
+    classDef invoke fill:#dbeafe,stroke:#3b82f6,stroke-width:2px,color:#1e40af
+    classDef checkpoint fill:#cffafe,stroke:#06b6d4,stroke-width:2px,color:#0e7490
+    classDef state fill:#fef3c7,stroke:#f59e0b,stroke-width:2px,color:#b45309
+    classDef graph fill:#ede9fe,stroke:#8b5cf6,stroke-width:2px,color:#5b21b6
+    classDef store fill:#fed7aa,stroke:#f97316,stroke-width:2px,color:#c2410c
+    classDef result fill:#d1fae5,stroke:#10b981,stroke-width:2px,color:#065f46
+
+    class 1 invoke
+    class 2 checkpoint
+    class 3 state
+    class 4 graph
+    class 5 store
+    class 6 result

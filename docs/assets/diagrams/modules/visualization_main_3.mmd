@@ -4,6 +4,16 @@ flowchart TB
         ALLOWED["Allowed:<br/>pd, px, go, df, data<br/>len, str, int, float, list, dict<br/>range, sum, min, max, sorted"]
         BLOCKED["Blocked:<br/>open, eval, exec, import<br/>os, sys, subprocess<br/>file I/O, network"]
     end
-    
+
     CODE[LLM Code] --> Sandbox
     Sandbox --> FIG[Plotly Figure]
+
+    classDef input fill:#ede9fe,stroke:#8b5cf6,stroke-width:2px,color:#5b21b6
+    classDef allowed fill:#d1fae5,stroke:#10b981,stroke-width:2px,color:#065f46
+    classDef blocked fill:#fee2e2,stroke:#ef4444,stroke-width:2px,color:#b91c1c
+    classDef output fill:#cffafe,stroke:#06b6d4,stroke-width:2px,color:#0e7490
+
+    class CODE input
+    class ALLOWED allowed
+    class BLOCKED blocked
+    class FIG output

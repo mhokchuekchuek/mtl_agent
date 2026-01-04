@@ -1,26 +1,40 @@
 flowchart TD
     START[Customer asks about orders] --> CHECK_ID{customer_id set?}
     CHECK_ID --> |No| ERROR[Error: Customer ID not set]
-    
+
     CHECK_ID --> |Yes| PROMPT[1. Load prompt from Langfuse]
     PROMPT --> SCHEMA[2. Get schema for allowed tables]
     SCHEMA --> |Orders, OrderDetails, Products| COMPILE[3. Compile prompt with customer_id]
-    
+
     COMPILE --> LLM[4. LLM generates SQL with customer_id filter]
     LLM --> VALIDATE[5. Validate SQL]
-    
+
     VALIDATE --> CHECK_TABLES{Tables allowed?}
     CHECK_TABLES --> |No| REJECT[Reject: Forbidden table]
-    
+
     CHECK_TABLES --> |Yes| CHECK_FILTER{Has customer_id filter?}
     CHECK_FILTER --> |No| REJECT2[Reject: Missing customer filter]
-    
+
     CHECK_FILTER --> |Yes| CHECK_SAFE{SQL is safe?}
     CHECK_SAFE --> |No| REJECT3[Reject: Security violation]
-    
+
     CHECK_SAFE --> |Yes| EXECUTE[6. Execute SQL]
     EXECUTE --> |Query| ORDERS_TBL[(Orders)]
     EXECUTE --> |Query| DETAILS_TBL[(OrderDetails)]
-    
+
     ORDERS_TBL --> RESULTS[7. Return results]
     DETAILS_TBL --> RESULTS
+
+    classDef start fill:#dbeafe,stroke:#3b82f6,stroke-width:2px,color:#1e40af
+    classDef process fill:#cffafe,stroke:#06b6d4,stroke-width:2px,color:#0e7490
+    classDef decision fill:#fef3c7,stroke:#f59e0b,stroke-width:2px,color:#b45309
+    classDef error fill:#fee2e2,stroke:#ef4444,stroke-width:2px,color:#b91c1c
+    classDef db fill:#fce7f3,stroke:#ec4899,stroke-width:2px,color:#be185d
+    classDef output fill:#d1fae5,stroke:#10b981,stroke-width:2px,color:#065f46
+
+    class START start
+    class PROMPT,SCHEMA,COMPILE,LLM,VALIDATE,EXECUTE process
+    class CHECK_ID,CHECK_TABLES,CHECK_FILTER,CHECK_SAFE decision
+    class ERROR,REJECT,REJECT2,REJECT3 error
+    class ORDERS_TBL,DETAILS_TBL db
+    class RESULTS output

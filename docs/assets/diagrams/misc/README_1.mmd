@@ -1,4 +1,13 @@
 flowchart LR
+    subgraph Obs["Observability"]
+        Langfuse["Langfuse"]
+    end
+
+    subgraph Memory["Memory Layer"]
+        Redis["Redis<br/>Short-term Memory<br/>(Checkpointer)"]
+        Postgres["PostgreSQL<br/>Long-term Memory<br/>(Store)"]
+    end
+
     subgraph UI["UI Layer"]
         CustomerUI["Customer UI<br/>(8501)"]
         ClientUI["Client UI<br/>(8502)"]
@@ -8,17 +17,9 @@ flowchart LR
         FastAPI["FastAPI<br/>(8000)"]
     end
 
-    subgraph WF_Memory["Workflows + Memory"]
-        direction TB
-        subgraph Workflows["Workflows"]
-            CustomerWF["Customer<br/>Workflow"]
-            ClientWF["Client<br/>Workflow"]
-        end
-        subgraph Memory["Memory Layer"]
-            Redis["Redis<br/>Short-term Memory<br/>(Checkpointer)"]
-            Postgres["PostgreSQL<br/>Long-term Memory<br/>(Store)"]
-        end
-        Workflows ~~~ Memory
+    subgraph Workflows["Workflows"]
+        CustomerWF["Customer<br/>Workflow"]
+        ClientWF["Client<br/>Workflow"]
     end
 
     subgraph Agents["Agents"]
@@ -47,15 +48,10 @@ flowchart LR
         SQLite["SQLite<br/>ERP Data"]
     end
 
-    subgraph Obs["Observability"]
-        Langfuse["Langfuse"]
-    end
-
+    Memory <--> Workflows
     UI --> API --> Workflows --> Agents --> Tools
     Agents --> LiteLLM --> OpenAI
     VectorTools --> Qdrant
     CustomerSQL --> SQLite
     ClientSQL --> SQLite
-    Workflows --> Redis
-    Workflows --> Postgres
     ChatHistorySQL --> Postgres

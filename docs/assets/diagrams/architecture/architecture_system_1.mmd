@@ -3,30 +3,48 @@ flowchart TD
         U1[User via UI]
         U2[User via API]
     end
-    
+
     U1 --> UI[Streamlit UI]
     UI --> API[FastAPI /chat]
     U2 --> API
-    
+
     API --> SVC[ChatbotService]
     SVC --> REPO[ChatbotRepository]
-    
+
     REPO --> |1. Get history| CP[Checkpointer]
     CP --> RD[(Redis)]
-    
+
     REPO --> |2. Build state| ST[Initial State]
     ST --> |3. Invoke| WF[Workflow]
-    
+
     WF --> AG[Agents]
     AG --> TL[Tools]
     TL --> DB[(Databases)]
-    
+
     WF --> |4. Return result| REPO
     REPO --> |5. Save to store| STORE[Store]
     STORE --> PG[(PostgreSQL)]
-    
+
     REPO --> SVC
     SVC --> API
     API --> UI
     API --> U2
     UI --> U1
+
+    classDef user fill:#dbeafe,stroke:#3b82f6,stroke-width:2px,color:#1e40af
+    classDef ui fill:#ede9fe,stroke:#8b5cf6,stroke-width:2px,color:#5b21b6
+    classDef api fill:#d1fae5,stroke:#10b981,stroke-width:2px,color:#065f46
+    classDef repo fill:#fed7aa,stroke:#f97316,stroke-width:2px,color:#c2410c
+    classDef db fill:#fce7f3,stroke:#ec4899,stroke-width:2px,color:#be185d
+    classDef agent fill:#cffafe,stroke:#06b6d4,stroke-width:2px,color:#0e7490
+    classDef tool fill:#fef3c7,stroke:#f59e0b,stroke-width:2px,color:#b45309
+    classDef state fill:#e0e7ff,stroke:#6366f1,stroke-width:2px,color:#4338ca
+
+    class U1,U2 user
+    class UI ui
+    class API,SVC api
+    class REPO,CP,STORE repo
+    class RD,DB,PG db
+    class WF,AG agent
+    class TL tool
+    class ST state

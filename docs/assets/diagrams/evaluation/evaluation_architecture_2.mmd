@@ -2,12 +2,12 @@ flowchart TD
     subgraph 1. Load
         DS[Load Datasets] --> TC[Test Cases]
     end
-    
+
     subgraph 2. For Each Test Case
         TC --> INV[Invoke Chatbot API]
         INV --> OUT[Get Response + Steps]
     end
-    
+
     subgraph 3. Judge
         OUT --> J1[SQL Judge]
         OUT --> J2[Search Judge]
@@ -19,8 +19,20 @@ flowchart TD
         J4 --> |Skip if no expected.response_quality| AGG
         AGG[Aggregate Scores]
     end
-    
+
     subgraph 4. Save
         AGG --> YAML[results.yaml]
         AGG --> DET[detail.yaml]
     end
+
+    classDef load fill:#dbeafe,stroke:#3b82f6,stroke-width:2px,color:#1e40af
+    classDef invoke fill:#cffafe,stroke:#06b6d4,stroke-width:2px,color:#0e7490
+    classDef judge fill:#ede9fe,stroke:#8b5cf6,stroke-width:2px,color:#5b21b6
+    classDef aggregate fill:#fef3c7,stroke:#f59e0b,stroke-width:2px,color:#b45309
+    classDef save fill:#d1fae5,stroke:#10b981,stroke-width:2px,color:#065f46
+
+    class DS,TC load
+    class INV,OUT invoke
+    class J1,J2,J3,J4 judge
+    class AGG aggregate
+    class YAML,DET save

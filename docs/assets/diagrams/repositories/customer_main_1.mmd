@@ -5,3 +5,19 @@ flowchart LR
     4 --> 5[5. Save to Postgres store]
     5 --> 6[6. Flush observability]
     6 --> 7[7. Return result]
+
+    classDef input fill:#dbeafe,stroke:#3b82f6,stroke-width:2px,color:#1e40af
+    classDef redis fill:#fce7f3,stroke:#ec4899,stroke-width:2px,color:#be185d
+    classDef state fill:#fef3c7,stroke:#f59e0b,stroke-width:2px,color:#b45309
+    classDef graph fill:#ede9fe,stroke:#8b5cf6,stroke-width:2px,color:#5b21b6
+    classDef postgres fill:#cffafe,stroke:#06b6d4,stroke-width:2px,color:#0e7490
+    classDef observe fill:#fed7aa,stroke:#f97316,stroke-width:2px,color:#c2410c
+    classDef result fill:#d1fae5,stroke:#10b981,stroke-width:2px,color:#065f46
+
+    class 1 input
+    class 2 redis
+    class 3 state
+    class 4 graph
+    class 5 postgres
+    class 6 observe
+    class 7 result

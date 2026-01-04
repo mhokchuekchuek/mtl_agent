@@ -1,3 +1,11 @@
 flowchart LR
     ID[product_id: 10] --> QDRANT[(Qdrant)]
     QDRANT --> RECORD["{ vector: [...], metadata: {...} }"]
+
+    classDef input fill:#dbeafe,stroke:#3b82f6,stroke-width:2px,color:#1e40af
+    classDef db fill:#fce7f3,stroke:#ec4899,stroke-width:2px,color:#be185d
+    classDef output fill:#d1fae5,stroke:#10b981,stroke-width:2px,color:#065f46
+
+    class ID input
+    class QDRANT db
+    class RECORD output

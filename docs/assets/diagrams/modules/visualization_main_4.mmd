@@ -1,3 +1,11 @@
 flowchart LR
     SQL[SQL Tool] --> |query results| VIZ[Visualization Tool]
     VIZ --> |HTML chart| UI[Client UI]
+
+    classDef tool fill:#d1fae5,stroke:#10b981,stroke-width:2px,color:#065f46
+    classDef viz fill:#ede9fe,stroke:#8b5cf6,stroke-width:2px,color:#5b21b6
+    classDef ui fill:#dbeafe,stroke:#3b82f6,stroke-width:2px,color:#1e40af
+
+    class SQL tool
+    class VIZ viz
+    class UI ui

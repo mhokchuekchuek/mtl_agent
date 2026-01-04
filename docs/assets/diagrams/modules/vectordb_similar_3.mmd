@@ -5,8 +5,18 @@ flowchart LR
         P3["Gaming Desk<br/>score: 0.79"]
         P4["Gaming Chair<br/>score: 1.00"]
     end
-    
+
     GC["Gaming Chair<br/>Embedding"] --> |cosine similarity| P1
     GC --> |cosine similarity| P2
     GC --> |cosine similarity| P3
     GC --> |cosine similarity| P4
+
+    classDef query fill:#dbeafe,stroke:#3b82f6,stroke-width:2px,color:#1e40af
+    classDef highscore fill:#d1fae5,stroke:#10b981,stroke-width:2px,color:#065f46
+    classDef medscore fill:#fef3c7,stroke:#f59e0b,stroke-width:2px,color:#b45309
+    classDef exact fill:#ede9fe,stroke:#8b5cf6,stroke-width:2px,color:#5b21b6
+
+    class GC query
+    class P1,P2 highscore
+    class P3 medscore
+    class P4 exact

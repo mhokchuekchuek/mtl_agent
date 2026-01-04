@@ -5,8 +5,14 @@ flowchart LR
         P3[Product 3 vector]
         PN[Product N vector]
     end
-    
+
     Q[Query vector] --> |cosine similarity| P1
     Q --> |cosine similarity| P2
     Q --> |cosine similarity| P3
     Q --> |cosine similarity| PN
+
+    classDef query fill:#dbeafe,stroke:#3b82f6,stroke-width:2px,color:#1e40af
+    classDef vector fill:#cffafe,stroke:#06b6d4,stroke-width:2px,color:#0e7490
+
+    class Q query
+    class P1,P2,P3,PN vector

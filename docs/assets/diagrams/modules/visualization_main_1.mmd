@@ -1,25 +1,41 @@
 flowchart TD
     START["Client Request:<br/>'Show me a bar chart of sales by category'"] --> DATA[SQL Tool returns data]
-    
+
     DATA --> PROMPT[1. Get prompt from Langfuse]
     PROMPT --> |tools_client_visualization| LANGFUSE[(Langfuse)]
-    
+
     LANGFUSE --> COMPILE[2. Compile prompt]
     COMPILE --> |columns, sample_data,<br/>row_count, request| COMPILED[Compiled Prompt]
-    
+
     COMPILED --> LLM[3. LLM generates Plotly code]
     LLM --> |"fig = px.bar(df, x='category', y='sales')"| CODE[Python Code]
-    
+
     CODE --> EXTRACT[4. Extract code from response]
     EXTRACT --> |remove markdown blocks| CLEAN[Clean Code]
-    
+
     CLEAN --> SANDBOX[5. Execute in sandbox]
     SANDBOX --> |restricted globals| EXEC{Execution}
-    
+
     EXEC -->|Success| FIG[Plotly Figure]
     EXEC -->|Error| ERR[Error Message]
-    
+
     FIG --> HTML[6. Convert to HTML]
     HTML --> RESULT["Return: {results: '<div>chart</div>'}"]
-    
+
     ERR --> ERRMSG["Return: {results: '<p>Error: ...</p>'}"]
+
+    classDef start fill:#dbeafe,stroke:#3b82f6,stroke-width:2px,color:#1e40af
+    classDef process fill:#cffafe,stroke:#06b6d4,stroke-width:2px,color:#0e7490
+    classDef llm fill:#ede9fe,stroke:#8b5cf6,stroke-width:2px,color:#5b21b6
+    classDef db fill:#fce7f3,stroke:#ec4899,stroke-width:2px,color:#be185d
+    classDef decision fill:#fef3c7,stroke:#f59e0b,stroke-width:2px,color:#b45309
+    classDef success fill:#d1fae5,stroke:#10b981,stroke-width:2px,color:#065f46
+    classDef error fill:#fee2e2,stroke:#ef4444,stroke-width:2px,color:#b91c1c
+
+    class START start
+    class DATA,PROMPT,COMPILE,COMPILED,EXTRACT,CLEAN,SANDBOX,FIG,HTML process
+    class LLM,CODE llm
+    class LANGFUSE db
+    class EXEC decision
+    class RESULT success
+    class ERR,ERRMSG error

@@ -2,20 +2,28 @@ flowchart TD
     subgraph Modules
         W[Workflows]
     end
-    
+
     subgraph Repositories
         C[ChatbotRepository]
         CP[CheckpointerRepository]
         S[StoreRepository]
     end
-    
+
     subgraph Infrastructure
         R[Redis]
         P[PostgreSQL]
     end
-    
+
     W --> C
     C --> CP
     C --> S
     CP --> R
     S --> P
+
+    classDef module fill:#ede9fe,stroke:#8b5cf6,stroke-width:2px,color:#5b21b6
+    classDef repo fill:#fed7aa,stroke:#f97316,stroke-width:2px,color:#c2410c
+    classDef db fill:#fce7f3,stroke:#ec4899,stroke-width:2px,color:#be185d
+
+    class W module
+    class C,CP,S repo
+    class R,P db

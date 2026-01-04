@@ -4,6 +4,12 @@ flowchart LR
         CP[CheckpointerRepository]
         ST[StoreRepository]
     end
-    
+
     CB --> CP
     CB --> ST
+
+    classDef main fill:#fed7aa,stroke:#f97316,stroke-width:2px,color:#c2410c
+    classDef support fill:#fef3c7,stroke:#f59e0b,stroke-width:2px,color:#b45309
+
+    class CB main
+    class CP,ST support

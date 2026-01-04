@@ -2,14 +2,22 @@ flowchart TD
     subgraph API/CLI
         A[Endpoint]
     end
-    
+
     subgraph Usecases
         S[ChatbotService]
     end
-    
+
     subgraph Repositories
         R[ChatbotRepository]
     end
-    
+
     A --> S
     S --> R
+
+    classDef endpoint fill:#dbeafe,stroke:#3b82f6,stroke-width:2px,color:#1e40af
+    classDef service fill:#d1fae5,stroke:#10b981,stroke-width:2px,color:#065f46
+    classDef repo fill:#fed7aa,stroke:#f97316,stroke-width:2px,color:#c2410c
+
+    class A endpoint
+    class S service
+    class R repo

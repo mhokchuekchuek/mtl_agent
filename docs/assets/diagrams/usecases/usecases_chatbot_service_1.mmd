@@ -1,3 +1,11 @@
 flowchart LR
     1[1. API calls service.chat] --> 2[2. Delegate to repo.invoke]
     2 --> 3[3. Return response dict]
+
+    classDef api fill:#dbeafe,stroke:#3b82f6,stroke-width:2px,color:#1e40af
+    classDef repo fill:#fed7aa,stroke:#f97316,stroke-width:2px,color:#c2410c
+    classDef response fill:#d1fae5,stroke:#10b981,stroke-width:2px,color:#065f46
+
+    class 1 api
+    class 2 repo
+    class 3 response

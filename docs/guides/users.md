@@ -6,6 +6,21 @@ Guide for end users and business users who want to use the chatbot.
 ---
 
 
+## **📋 Parameters**
+
+These parameters are used by both UI and API:
+
+| Parameter | Purpose |
+|-----------|---------|
+| `thread_id` | Conversation ID for multi-turn chat |
+| `user_id` | Customer ID (1-100) for order operations |
+
+> 💡 **Tip:** Use the same `thread_id` for follow-up questions to maintain context.
+
+
+---
+
+
 ## **🤖 Chatbots**
 
 | Chatbot | Purpose | Port |
@@ -61,13 +76,3 @@ curl -X POST http://localhost:8000/api/v1/chatbot/{customer|client}/chat \
   -H "Content-Type: application/json" \
   -d '{"query": "...", "thread_id": "session-123", "user_id": "15"}'
 ```
-
-
-### 📋 **Parameters**
-
-| Parameter | Purpose |
-|-----------|---------|
-| `thread_id` | Conversation ID for multi-turn chat |
-| `user_id` | Customer ID (1-100) for order operations |
-
-> 💡 **Tip:** Use the same `thread_id` for follow-up questions to maintain context.

@@ -4,10 +4,18 @@ flowchart TB
         EMB1 --> SEARCH1[Vector Search]
         SEARCH1 --> RES1[Results]
     end
-    
+
     subgraph SimilarProducts["Similar Products"]
         Q2["Product ID: 10"] --> FETCH[Fetch Stored Embedding]
         FETCH --> SEARCH2[Vector Search]
         SEARCH2 --> EXCLUDE[Exclude Original]
         EXCLUDE --> RES2[Results]
     end
+
+    classDef input fill:#dbeafe,stroke:#3b82f6,stroke-width:2px,color:#1e40af
+    classDef process fill:#cffafe,stroke:#06b6d4,stroke-width:2px,color:#0e7490
+    classDef output fill:#d1fae5,stroke:#10b981,stroke-width:2px,color:#065f46
+
+    class Q1,Q2 input
+    class EMB1,SEARCH1,FETCH,SEARCH2,EXCLUDE process
+    class RES1,RES2 output

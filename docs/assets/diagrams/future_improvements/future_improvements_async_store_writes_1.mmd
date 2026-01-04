@@ -3,3 +3,15 @@ flowchart LR
     2 --> 3[3. Generate response]
     3 --> 4[4. SYNC write to Postgres]
     4 --> 5[5. Return response to user]
+
+    classDef user fill:#dbeafe,stroke:#3b82f6,stroke-width:2px,color:#1e40af
+    classDef llm fill:#ede9fe,stroke:#8b5cf6,stroke-width:2px,color:#5b21b6
+    classDef response fill:#cffafe,stroke:#06b6d4,stroke-width:2px,color:#0e7490
+    classDef db fill:#fce7f3,stroke:#ec4899,stroke-width:2px,color:#be185d
+    classDef output fill:#d1fae5,stroke:#10b981,stroke-width:2px,color:#065f46
+
+    class 1 user
+    class 2 llm
+    class 3 response
+    class 4 db
+    class 5 output

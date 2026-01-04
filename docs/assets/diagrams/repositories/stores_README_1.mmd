@@ -3,3 +3,15 @@ flowchart LR
     2 --> 3[3. Generate unique key]
     3 --> 4[4. StoreRepo.put]
     4 --> 5[5. Postgres INSERT]
+
+    classDef repo fill:#fed7aa,stroke:#f97316,stroke-width:2px,color:#c2410c
+    classDef namespace fill:#cffafe,stroke:#06b6d4,stroke-width:2px,color:#0e7490
+    classDef key fill:#fef3c7,stroke:#f59e0b,stroke-width:2px,color:#b45309
+    classDef store fill:#ede9fe,stroke:#8b5cf6,stroke-width:2px,color:#5b21b6
+    classDef db fill:#d1fae5,stroke:#10b981,stroke-width:2px,color:#065f46
+
+    class 1 repo
+    class 2 namespace
+    class 3 key
+    class 4 store
+    class 5 db

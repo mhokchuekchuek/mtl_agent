@@ -8,3 +8,15 @@ flowchart TD
     INS --> |Chart| VIZ[Visualization]
     CH --> END[End]
     INS --> END
+
+    classDef endpoint fill:#f3f4f6,stroke:#6b7280,stroke-width:2px,color:#374151
+    classDef agent fill:#cffafe,stroke:#06b6d4,stroke-width:2px,color:#0e7490
+    classDef orchestrator fill:#ede9fe,stroke:#8b5cf6,stroke-width:2px,color:#5b21b6
+    classDef db fill:#fce7f3,stroke:#ec4899,stroke-width:2px,color:#be185d
+    classDef viz fill:#fef3c7,stroke:#f59e0b,stroke-width:2px,color:#b45309
+
+    class START,END endpoint
+    class TRANS,CH,INS agent
+    class ORCH orchestrator
+    class SQL db
+    class VIZ viz

@@ -4,3 +4,11 @@ flowchart TD
     PROD --> |SQL| SQL[(SQLite)]
     PROD --> |Search| VDB[(Qdrant)]
     PROD --> END[End]
+
+    classDef endpoint fill:#f3f4f6,stroke:#6b7280,stroke-width:2px,color:#374151
+    classDef agent fill:#cffafe,stroke:#06b6d4,stroke-width:2px,color:#0e7490
+    classDef db fill:#fce7f3,stroke:#ec4899,stroke-width:2px,color:#be185d
+
+    class START,END endpoint
+    class TRANS,PROD agent
+    class SQL,VDB db

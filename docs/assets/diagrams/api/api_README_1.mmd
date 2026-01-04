@@ -17,3 +17,11 @@ flowchart TD
     A --> R2
     R1 --> S1
     R2 --> S2
+
+    classDef api fill:#dbeafe,stroke:#3b82f6,stroke-width:2px,color:#1e40af
+    classDef route fill:#cffafe,stroke:#06b6d4,stroke-width:2px,color:#0e7490
+    classDef service fill:#d1fae5,stroke:#10b981,stroke-width:2px,color:#065f46
+
+    class A api
+    class R1,R2 route
+    class S1,S2 service

@@ -4,6 +4,14 @@ flowchart TD
         C[client_chatbot.yaml]
         CU[customer_chatbot.yaml]
     end
-    
+
     S --> C
     S --> CU
+
+    classDef shared fill:#dbeafe,stroke:#3b82f6,stroke-width:2px,color:#1e40af
+    classDef client fill:#cffafe,stroke:#06b6d4,stroke-width:2px,color:#0e7490
+    classDef customer fill:#d1fae5,stroke:#10b981,stroke-width:2px,color:#065f46
+
+    class S shared
+    class C client
+    class CU customer

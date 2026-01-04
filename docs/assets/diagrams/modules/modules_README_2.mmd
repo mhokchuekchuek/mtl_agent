@@ -2,19 +2,19 @@ flowchart TD
     subgraph Workflow
         W[ClientChatbotWorkflow]
     end
-    
+
     subgraph Agents
         A1[TranslationAgent]
         A2[OrchestratorAgent]
         A3[ChatHistoryAgent]
         A4[InsightAgent]
     end
-    
+
     subgraph Tools
         T1[SQL Tools]
         T2[Visualization]
     end
-    
+
     W --> A1
     W --> A2
     A2 --> |CHAT_HISTORY| A3
@@ -22,3 +22,13 @@ flowchart TD
     A3 --> T1
     A4 --> T1
     A4 --> T2
+
+    classDef workflow fill:#ede9fe,stroke:#8b5cf6,stroke-width:2px,color:#5b21b6
+    classDef agent fill:#cffafe,stroke:#06b6d4,stroke-width:2px,color:#0e7490
+    classDef orchestrator fill:#fef3c7,stroke:#f59e0b,stroke-width:2px,color:#b45309
+    classDef tool fill:#d1fae5,stroke:#10b981,stroke-width:2px,color:#065f46
+
+    class W workflow
+    class A1,A3,A4 agent
+    class A2 orchestrator
+    class T1,T2 tool

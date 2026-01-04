@@ -2,7 +2,7 @@ flowchart TD
     subgraph Dependencies
         D[build_chatbot_service]
     end
-    
+
     subgraph Creates
         C[Clients]
         R[Repositories]
@@ -11,10 +11,26 @@ flowchart TD
         W[Workflow]
         S[Service]
     end
-    
+
     D --> C
     D --> R
     D --> T
     D --> A
     D --> W
     D --> S
+
+    classDef builder fill:#ede9fe,stroke:#8b5cf6,stroke-width:2px,color:#5b21b6
+    classDef client fill:#dbeafe,stroke:#3b82f6,stroke-width:2px,color:#1e40af
+    classDef repo fill:#fed7aa,stroke:#f97316,stroke-width:2px,color:#c2410c
+    classDef tool fill:#d1fae5,stroke:#10b981,stroke-width:2px,color:#065f46
+    classDef agent fill:#cffafe,stroke:#06b6d4,stroke-width:2px,color:#0e7490
+    classDef workflow fill:#fef3c7,stroke:#f59e0b,stroke-width:2px,color:#b45309
+    classDef service fill:#fce7f3,stroke:#ec4899,stroke-width:2px,color:#be185d
+
+    class D builder
+    class C client
+    class R repo
+    class T tool
+    class A agent
+    class W workflow
+    class S service

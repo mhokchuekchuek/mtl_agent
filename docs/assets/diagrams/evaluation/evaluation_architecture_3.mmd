@@ -1,3 +1,11 @@
 flowchart LR
     T1[Turn 1] --> |Same thread_id| T2[Turn 2]
     T2 --> |Same thread_id| T3[Turn 3]
+
+    classDef turn1 fill:#dbeafe,stroke:#3b82f6,stroke-width:2px,color:#1e40af
+    classDef turn2 fill:#cffafe,stroke:#06b6d4,stroke-width:2px,color:#0e7490
+    classDef turn3 fill:#d1fae5,stroke:#10b981,stroke-width:2px,color:#065f46
+
+    class T1 turn1
+    class T2 turn2
+    class T3 turn3

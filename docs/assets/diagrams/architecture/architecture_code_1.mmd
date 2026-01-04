@@ -3,21 +3,21 @@ flowchart TB
         API[API]
         UI[UI]
     end
-    
+
     subgraph Application
         DEP[Dependencies]
         UC[Usecases]
     end
-    
+
     subgraph Domain
         REPO[Repositories]
         MOD[Modules]
     end
-    
+
     subgraph Infrastructure
         LIBS[libs/]
     end
-    
+
     UI --> API
     API --> DEP
     DEP --> UC
@@ -25,3 +25,13 @@ flowchart TB
     REPO --> MOD
     MOD --> LIBS
     REPO --> LIBS
+
+    classDef entry fill:#dbeafe,stroke:#3b82f6,stroke-width:2px,color:#1e40af
+    classDef app fill:#d1fae5,stroke:#10b981,stroke-width:2px,color:#065f46
+    classDef domain fill:#fed7aa,stroke:#f97316,stroke-width:2px,color:#c2410c
+    classDef infra fill:#e0e7ff,stroke:#6366f1,stroke-width:2px,color:#4338ca
+
+    class API,UI entry
+    class DEP,UC app
+    class REPO,MOD domain
+    class LIBS infra

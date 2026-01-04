@@ -1,29 +1,43 @@
 flowchart TD
     START[Customer requests order] --> GEN[LLM generates SQL statements]
-    
+
     GEN --> CHECK_PROD[1. Check product]
     CHECK_PROD --> |Query| PROD_TBL[(Products)]
     PROD_TBL --> |product_name, price| CHECK_PROD
-    
+
     CHECK_PROD --> CHECK_STOCK[2. Check stock]
     CHECK_STOCK --> |Query| INV_TBL[(Inventory)]
     INV_TBL --> |quantity available| CHECK_STOCK
-    
+
     CHECK_STOCK --> CONFIRM{3. Customer confirmed?}
-    
+
     CONFIRM --> |Not yet| SUMMARY[Return order summary]
     SUMMARY --> WAIT[Wait for confirmation]
-    
+
     CONFIRM --> |Yes| INSERT_ORDER[4. Create Order]
     INSERT_ORDER --> |INSERT| ORDERS_TBL[(Orders)]
-    
+
     ORDERS_TBL --> GET_ID[5. Get Order ID]
     GET_ID --> |SELECT last_insert| GET_ID
-    
+
     GET_ID --> INSERT_DETAIL[6. Create Order Details]
     INSERT_DETAIL --> |INSERT| DETAILS_TBL[(OrderDetails)]
-    
+
     INSERT_DETAIL --> UPDATE_INV[7. Deduct Stock]
     UPDATE_INV --> |UPDATE quantity - N| INV_TBL
-    
+
     UPDATE_INV --> SUCCESS[Success!]
+
+    classDef start fill:#dbeafe,stroke:#3b82f6,stroke-width:2px,color:#1e40af
+    classDef process fill:#cffafe,stroke:#06b6d4,stroke-width:2px,color:#0e7490
+    classDef db fill:#fce7f3,stroke:#ec4899,stroke-width:2px,color:#be185d
+    classDef decision fill:#fef3c7,stroke:#f59e0b,stroke-width:2px,color:#b45309
+    classDef wait fill:#fed7aa,stroke:#f97316,stroke-width:2px,color:#c2410c
+    classDef success fill:#d1fae5,stroke:#10b981,stroke-width:2px,color:#065f46
+
+    class START start
+    class GEN,CHECK_PROD,CHECK_STOCK,INSERT_ORDER,GET_ID,INSERT_DETAIL,UPDATE_INV process
+    class PROD_TBL,INV_TBL,ORDERS_TBL,DETAILS_TBL db
+    class CONFIRM decision
+    class SUMMARY,WAIT wait
+    class SUCCESS success

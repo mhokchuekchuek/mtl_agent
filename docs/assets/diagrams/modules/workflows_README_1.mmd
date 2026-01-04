@@ -2,13 +2,21 @@ flowchart LR
     subgraph Workflow
         build[build method]
     end
-    
+
     subgraph Repository
         compile[compile with memory]
     end
-    
+
     subgraph Runtime
         invoke[invoke graph]
     end
-    
+
     build --> compile --> invoke
+
+    classDef workflow fill:#ede9fe,stroke:#8b5cf6,stroke-width:2px,color:#5b21b6
+    classDef repo fill:#fed7aa,stroke:#f97316,stroke-width:2px,color:#c2410c
+    classDef runtime fill:#d1fae5,stroke:#10b981,stroke-width:2px,color:#065f46
+
+    class build workflow
+    class compile repo
+    class invoke runtime

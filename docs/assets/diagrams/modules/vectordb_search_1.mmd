@@ -1,16 +1,31 @@
 flowchart TD
     START[Customer search query] --> EMBED[1. Generate embedding]
-    
+
     EMBED --> |query text| LLM[LLM Embedding API]
     LLM --> |vector 1536 dims| VECTOR[Query Vector]
-    
+
     VECTOR --> SEARCH[2. Search Qdrant]
     SEARCH --> |cosine similarity| QDRANT[(Qdrant Vector DB)]
-    
+
     QDRANT --> |top_k results| RAW[Raw Results]
-    
+
     RAW --> FILTER[3. Filter by threshold]
     FILTER --> |score >= 0.5| FILTERED[Filtered Results]
-    
+
     FILTERED --> FORMAT[4. Format response]
     FORMAT --> RESULTS[Return product matches]
+
+    classDef start fill:#dbeafe,stroke:#3b82f6,stroke-width:2px,color:#1e40af
+    classDef process fill:#cffafe,stroke:#06b6d4,stroke-width:2px,color:#0e7490
+    classDef llm fill:#ede9fe,stroke:#8b5cf6,stroke-width:2px,color:#5b21b6
+    classDef db fill:#fce7f3,stroke:#ec4899,stroke-width:2px,color:#be185d
+    classDef filter fill:#fef3c7,stroke:#f59e0b,stroke-width:2px,color:#b45309
+    classDef output fill:#d1fae5,stroke:#10b981,stroke-width:2px,color:#065f46
+
+    class START start
+    class EMBED,SEARCH,FORMAT process
+    class LLM llm
+    class VECTOR,RAW,FILTERED process
+    class QDRANT db
+    class FILTER filter
+    class RESULTS output

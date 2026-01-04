@@ -4,11 +4,21 @@ flowchart LR
         R[(Redis)]
         CP --> R
     end
-    
+
     subgraph Long-term
         S[Store]
         P[(PostgreSQL)]
         S --> P
     end
-    
+
     CP --> |TTL expires| S
+
+    classDef short fill:#cffafe,stroke:#06b6d4,stroke-width:2px,color:#0e7490
+    classDef long fill:#d1fae5,stroke:#10b981,stroke-width:2px,color:#065f46
+    classDef redis fill:#fce7f3,stroke:#ec4899,stroke-width:2px,color:#be185d
+    classDef postgres fill:#dbeafe,stroke:#3b82f6,stroke-width:2px,color:#1e40af
+
+    class CP short
+    class S long
+    class R redis
+    class P postgres

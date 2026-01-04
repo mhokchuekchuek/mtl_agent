@@ -5,12 +5,23 @@ flowchart TD
         SEARCH0 --> R0[3 headphones found]
         R0 --> J0[Search Judge: 1.0 ✓]
     end
-    
+
     subgraph Turn1["Turn 1"]
         Q1[User: Which one has noise cancelling?] --> BOT1[Customer Chatbot]
         BOT1 --> |uses context from Turn 0| FILTER[Filter by feature]
         FILTER --> R1[Noise Cancelling Headphones]
         R1 --> J1[Response Quality Judge: 1.0 ✓]
     end
-    
+
     Turn0 --> |conversation context| Turn1
+
+    classDef user fill:#dbeafe,stroke:#3b82f6,stroke-width:2px,color:#1e40af
+    classDef bot fill:#cffafe,stroke:#06b6d4,stroke-width:2px,color:#0e7490
+    classDef tool fill:#d1fae5,stroke:#10b981,stroke-width:2px,color:#065f46
+    classDef judge fill:#ede9fe,stroke:#8b5cf6,stroke-width:2px,color:#5b21b6
+
+    class Q0,Q1 user
+    class BOT0,BOT1 bot
+    class SEARCH0,FILTER tool
+    class R0,R1 bot
+    class J0,J1 judge

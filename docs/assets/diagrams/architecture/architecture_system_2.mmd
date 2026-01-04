@@ -4,3 +4,15 @@ flowchart LR
     BS --> RUN[Run Workflow]
     RUN --> SAVE[Save to Store]
     SAVE --> RET[Return Result]
+
+    classDef start fill:#dbeafe,stroke:#3b82f6,stroke-width:2px,color:#1e40af
+    classDef process fill:#d1fae5,stroke:#10b981,stroke-width:2px,color:#065f46
+    classDef workflow fill:#cffafe,stroke:#06b6d4,stroke-width:2px,color:#0e7490
+    classDef store fill:#fed7aa,stroke:#f97316,stroke-width:2px,color:#c2410c
+    classDef result fill:#ede9fe,stroke:#8b5cf6,stroke-width:2px,color:#5b21b6
+
+    class INV start
+    class GH,BS process
+    class RUN workflow
+    class SAVE store
+    class RET result

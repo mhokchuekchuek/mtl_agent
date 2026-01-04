@@ -2,26 +2,26 @@ flowchart TD
     subgraph Input
         query[query]
     end
-    
+
     subgraph TranslateInput
         user_language[user_language]
         translated_query[translated_query]
     end
-    
+
     subgraph Orchestrator
         intent[intent]
     end
-    
+
     subgraph Agent
         response[response]
         chart_html[chart_html]
         steps[steps]
     end
-    
+
     subgraph Output
         messages[messages]
     end
-    
+
     query --> user_language
     query --> translated_query
     translated_query --> intent
@@ -29,3 +29,15 @@ flowchart TD
     intent --> chart_html
     intent --> steps
     response --> messages
+
+    classDef input fill:#dbeafe,stroke:#3b82f6,stroke-width:2px,color:#1e40af
+    classDef translate fill:#fef3c7,stroke:#f59e0b,stroke-width:2px,color:#b45309
+    classDef orchestrator fill:#ede9fe,stroke:#8b5cf6,stroke-width:2px,color:#5b21b6
+    classDef agent fill:#cffafe,stroke:#06b6d4,stroke-width:2px,color:#0e7490
+    classDef output fill:#d1fae5,stroke:#10b981,stroke-width:2px,color:#065f46
+
+    class query input
+    class user_language,translated_query translate
+    class intent orchestrator
+    class response,chart_html,steps agent
+    class messages output

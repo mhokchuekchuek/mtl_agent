@@ -3,19 +3,19 @@ flowchart TD
         UI[Streamlit UI]
         API[FastAPI API]
     end
-    
+
     subgraph Application
         DEP[Dependencies]
         SVC[ChatbotService]
         REPO[ChatbotRepository]
     end
-    
+
     subgraph Modules
         WF[Workflows]
         AG[Agents]
         TL[Tools]
     end
-    
+
     subgraph Infrastructure
         RD[(Redis)]
         PG[(PostgreSQL)]
@@ -23,7 +23,7 @@ flowchart TD
         SQL[(SQLite)]
         LLM[LLM API]
     end
-    
+
     UI --> API
     API --> DEP
     DEP --> SVC
@@ -36,3 +36,15 @@ flowchart TD
     TL --> SQL
     TL --> QD
     AG --> LLM
+
+    classDef entry fill:#dbeafe,stroke:#3b82f6,stroke-width:2px,color:#1e40af
+    classDef app fill:#d1fae5,stroke:#10b981,stroke-width:2px,color:#065f46
+    classDef module fill:#cffafe,stroke:#06b6d4,stroke-width:2px,color:#0e7490
+    classDef db fill:#fce7f3,stroke:#ec4899,stroke-width:2px,color:#be185d
+    classDef llm fill:#ede9fe,stroke:#8b5cf6,stroke-width:2px,color:#5b21b6
+
+    class UI,API entry
+    class DEP,SVC,REPO app
+    class WF,AG,TL module
+    class RD,PG,QD,SQL db
+    class LLM llm

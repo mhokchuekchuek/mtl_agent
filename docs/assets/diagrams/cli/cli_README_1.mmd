@@ -2,22 +2,30 @@ flowchart TD
     subgraph CLI
         M[main.py]
     end
-    
+
     subgraph Commands
         API[api]
         CUI[customer_ui]
         CLUI[client_ui]
     end
-    
+
     subgraph Services
         FA[FastAPI Server]
         ST1[Streamlit Customer]
         ST2[Streamlit Client]
     end
-    
+
     M --> API
     M --> CUI
     M --> CLUI
     API --> FA
     CUI --> ST1
     CLUI --> ST2
+
+    classDef cli fill:#dbeafe,stroke:#3b82f6,stroke-width:2px,color:#1e40af
+    classDef cmd fill:#cffafe,stroke:#06b6d4,stroke-width:2px,color:#0e7490
+    classDef service fill:#d1fae5,stroke:#10b981,stroke-width:2px,color:#065f46
+
+    class M cli
+    class API,CUI,CLUI cmd
+    class FA,ST1,ST2 service

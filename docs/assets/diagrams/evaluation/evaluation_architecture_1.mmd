@@ -2,26 +2,26 @@ flowchart TD
     subgraph Entry
         CLI[run_eval.py]
     end
-    
+
     subgraph Dependencies
         DEP[build_evaluation_service]
     end
-    
+
     subgraph Usecases
         SVC[EvaluationService]
     end
-    
+
     subgraph Repositories
         REPO[EvaluationRepository]
     end
-    
+
     subgraph Judges
         SQL[SQLJudge]
         SEARCH[SearchJudge]
         VIZ[VisualizationJudge]
         RQ[ResponseQualityJudge]
     end
-    
+
     CLI --> DEP
     DEP --> SVC
     SVC --> REPO
@@ -29,3 +29,15 @@ flowchart TD
     REPO --> SEARCH
     REPO --> VIZ
     REPO --> RQ
+
+    classDef entry fill:#dbeafe,stroke:#3b82f6,stroke-width:2px,color:#1e40af
+    classDef dep fill:#cffafe,stroke:#06b6d4,stroke-width:2px,color:#0e7490
+    classDef service fill:#d1fae5,stroke:#10b981,stroke-width:2px,color:#065f46
+    classDef repo fill:#fed7aa,stroke:#f97316,stroke-width:2px,color:#c2410c
+    classDef judge fill:#ede9fe,stroke:#8b5cf6,stroke-width:2px,color:#5b21b6
+
+    class CLI entry
+    class DEP dep
+    class SVC service
+    class REPO repo
+    class SQL,SEARCH,VIZ,RQ judge

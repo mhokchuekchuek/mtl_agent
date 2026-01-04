@@ -47,6 +47,12 @@ Client chatbot endpoint for internal BI queries.
 | chart_html | string | Plotly chart HTML (if visualization) |
 | steps | list[dict] | Tool execution steps (if requested) |
 
+> 💡 **Why `intent`?** The UI displays the detected intent as a badge to show users which type of query was processed:
+> ```python
+> if message.get("intent"):
+>     st.caption(f"📊 Intent: {message['intent']}")
+> ```
+
 
 ---
 

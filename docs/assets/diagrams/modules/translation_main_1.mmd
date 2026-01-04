@@ -7,3 +7,15 @@ flowchart TD
     F --> G[6. LLM generates translation]
     G --> H[7. Parse JSON response]
     H --> I[Return translated text]
+
+    classDef input fill:#dbeafe,stroke:#3b82f6,stroke-width:2px,color:#1e40af
+    classDef process fill:#cffafe,stroke:#06b6d4,stroke-width:2px,color:#0e7490
+    classDef decision fill:#fef3c7,stroke:#f59e0b,stroke-width:2px,color:#b45309
+    classDef prompt fill:#d1fae5,stroke:#10b981,stroke-width:2px,color:#065f46
+    classDef output fill:#ede9fe,stroke:#8b5cf6,stroke-width:2px,color:#5b21b6
+
+    class A input
+    class B,G,H process
+    class C decision
+    class D,I output
+    class E,F prompt

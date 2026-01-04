@@ -2,3 +2,13 @@ flowchart LR
     1[1. Init with RedisClient] --> 2[2. Create RedisSaver]
     2 --> 3[3. Setup tables]
     3 --> 4[4. Ready for get/save]
+
+    classDef init fill:#dbeafe,stroke:#3b82f6,stroke-width:2px,color:#1e40af
+    classDef create fill:#cffafe,stroke:#06b6d4,stroke-width:2px,color:#0e7490
+    classDef setup fill:#fef3c7,stroke:#f59e0b,stroke-width:2px,color:#b45309
+    classDef ready fill:#d1fae5,stroke:#10b981,stroke-width:2px,color:#065f46
+
+    class 1 init
+    class 2 create
+    class 3 setup
+    class 4 ready

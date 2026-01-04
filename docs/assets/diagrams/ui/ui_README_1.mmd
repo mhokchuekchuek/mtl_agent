@@ -3,10 +3,18 @@ flowchart LR
         CU[Customer UI<br>:8501]
         CL[Client UI<br>:8502]
     end
-    
+
     subgraph API Layer
         API[FastAPI<br>:8000]
     end
-    
+
     CU -->|POST /api/v1/chatbot/customer/chat| API
     CL -->|POST /api/v1/chatbot/client/chat| API
+
+    classDef customer fill:#cffafe,stroke:#06b6d4,stroke-width:2px,color:#0e7490
+    classDef client fill:#ede9fe,stroke:#8b5cf6,stroke-width:2px,color:#5b21b6
+    classDef api fill:#d1fae5,stroke:#10b981,stroke-width:2px,color:#065f46
+
+    class CU customer
+    class CL client
+    class API api

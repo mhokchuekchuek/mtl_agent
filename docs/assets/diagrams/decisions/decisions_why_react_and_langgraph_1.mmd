@@ -6,10 +6,18 @@ flowchart TD
         A2 --> A3[InsightAgent]
         A2 --> A4[ChatHistoryAgent]
     end
-    
+
     subgraph ReAct Agent
         R[ProductAgent]
         R --> T1[ProductSearch]
         R --> T2[SQLTool]
         R --> T3[PlaceOrder]
     end
+
+    classDef workflow fill:#ede9fe,stroke:#8b5cf6,stroke-width:2px,color:#5b21b6
+    classDef agent fill:#cffafe,stroke:#06b6d4,stroke-width:2px,color:#0e7490
+    classDef tool fill:#d1fae5,stroke:#10b981,stroke-width:2px,color:#065f46
+
+    class W workflow
+    class A1,A2,A3,A4,R agent
+    class T1,T2,T3 tool
