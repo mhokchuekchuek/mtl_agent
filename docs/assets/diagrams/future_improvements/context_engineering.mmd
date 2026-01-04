@@ -51,3 +51,19 @@ flowchart TB
 
     CW --> R
     R -.->|save| Write
+
+    classDef input fill:#dbeafe,stroke:#3b82f6,stroke-width:2px,color:#1e40af
+    classDef write fill:#d1fae5,stroke:#10b981,stroke-width:2px,color:#065f46
+    classDef select fill:#cffafe,stroke:#06b6d4,stroke-width:2px,color:#0e7490
+    classDef compress fill:#fef3c7,stroke:#f59e0b,stroke-width:2px,color:#b45309
+    classDef isolate fill:#fce7f3,stroke:#ec4899,stroke-width:2px,color:#be185d
+    classDef llm fill:#ede9fe,stroke:#8b5cf6,stroke-width:2px,color:#5b21b6
+    classDef output fill:#fed7aa,stroke:#f97316,stroke-width:2px,color:#c2410c
+
+    class Q,H,T input
+    class W1,W2 write
+    class S1,S2,S3 select
+    class C1,C2,C3 compress
+    class I1,I2,I3 isolate
+    class CW llm
+    class R output

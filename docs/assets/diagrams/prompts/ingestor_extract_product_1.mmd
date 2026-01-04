@@ -4,3 +4,15 @@ flowchart LR
     EXTRACT --> JSON[Structured JSON]
     JSON --> EMBED[Generate Embedding]
     EMBED --> QDRANT[(Qdrant)]
+
+    classDef input fill:#dbeafe,stroke:#3b82f6,stroke-width:2px,color:#1e40af
+    classDef process fill:#cffafe,stroke:#06b6d4,stroke-width:2px,color:#0e7490
+    classDef llm fill:#ede9fe,stroke:#8b5cf6,stroke-width:2px,color:#5b21b6
+    classDef data fill:#d1fae5,stroke:#10b981,stroke-width:2px,color:#065f46
+    classDef db fill:#fce7f3,stroke:#ec4899,stroke-width:2px,color:#be185d
+
+    class PDF input
+    class PARSE,EMBED process
+    class EXTRACT llm
+    class JSON data
+    class QDRANT db

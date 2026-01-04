@@ -55,3 +55,23 @@ flowchart LR
     CustomerSQL --> SQLite
     ClientSQL --> SQLite
     ChatHistorySQL --> Postgres
+
+    classDef obs fill:#fef3c7,stroke:#f59e0b,stroke-width:2px,color:#b45309
+    classDef memory fill:#fce7f3,stroke:#ec4899,stroke-width:2px,color:#be185d
+    classDef ui fill:#dbeafe,stroke:#3b82f6,stroke-width:2px,color:#1e40af
+    classDef api fill:#ede9fe,stroke:#8b5cf6,stroke-width:2px,color:#5b21b6
+    classDef workflow fill:#cffafe,stroke:#06b6d4,stroke-width:2px,color:#0e7490
+    classDef agent fill:#d1fae5,stroke:#10b981,stroke-width:2px,color:#065f46
+    classDef tool fill:#fed7aa,stroke:#f97316,stroke-width:2px,color:#c2410c
+    classDef llm fill:#e0e7ff,stroke:#6366f1,stroke-width:2px,color:#4338ca
+    classDef data fill:#f3e8ff,stroke:#a855f7,stroke-width:2px,color:#7e22ce
+
+    class Langfuse obs
+    class Redis,Postgres memory
+    class CustomerUI,ClientUI ui
+    class FastAPI api
+    class CustomerWF,ClientWF workflow
+    class Translation,Product,Orchestrator,Insight,ChatHistoryAgent agent
+    class VectorTools,CustomerSQL,ClientSQL,ChatHistorySQL,Viz tool
+    class LiteLLM,OpenAI llm
+    class Qdrant,SQLite data

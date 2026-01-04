@@ -6,3 +6,13 @@ flowchart LR
     chat_history --> translate_output
     insight --> translate_output
     translate_output --> END((End))
+
+    classDef endpoint fill:#dbeafe,stroke:#3b82f6,stroke-width:2px,color:#1e40af
+    classDef translate fill:#fef3c7,stroke:#f59e0b,stroke-width:2px,color:#b45309
+    classDef orchestrator fill:#ede9fe,stroke:#8b5cf6,stroke-width:2px,color:#5b21b6
+    classDef agent fill:#cffafe,stroke:#06b6d4,stroke-width:2px,color:#0e7490
+
+    class START,END endpoint
+    class translate_input,translate_output translate
+    class orchestrator orchestrator
+    class chat_history,insight agent

@@ -8,3 +8,13 @@ flowchart TD
     E --> F[4. update_status]
     F --> G[5. restore_inventory]
     G --> OK[Cancellation complete]
+
+    classDef step fill:#cffafe,stroke:#06b6d4,stroke-width:2px,color:#0e7490
+    classDef decision fill:#fef3c7,stroke:#f59e0b,stroke-width:2px,color:#b45309
+    classDef error fill:#fee2e2,stroke:#ef4444,stroke-width:2px,color:#b91c1c
+    classDef success fill:#d1fae5,stroke:#10b981,stroke-width:2px,color:#065f46
+
+    class A,C,E,F,G step
+    class B,D decision
+    class ERR1,ERR2 error
+    class OK success
