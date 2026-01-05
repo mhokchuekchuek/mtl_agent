@@ -18,7 +18,7 @@ LangChain tools for agent workflows.
 
 | | |
 |:---:|:---:|
-| [🔍 **Knowledge Retrieval**](knowledge_retrieval/)<br/>Tools for searching and retrieving information | |
+| [🔍 **Knowledge Retrieval**](knowledge_retrieval/README.md)<br/>Tools for searching and retrieving information | [📊 **Visualization**](visualization/README.md)<br/>Tools for generating charts |
 
 
 ---
