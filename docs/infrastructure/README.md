@@ -10,6 +10,11 @@ Infrastructure documentation for running the MTL ERP Assistant.
 
 ```
 infrastructure/
+├── databases/        # Database schemas and tables
+│   ├── README.md
+│   ├── erp-database.md   # SQLite ERP data
+│   ├── postgres.md       # LangGraph Store
+│   └── qdrant.md         # Vector embeddings
 ├── docker/           # Docker container configurations
 │   ├── README.md
 │   ├── api.md
@@ -38,6 +43,7 @@ infrastructure/
 1. [Prerequisites](setup/local/prerequisites.md) - Required software
 2. [Environment Setup](setup/local/environment.md) - Configure environment variables
 3. [Docker Services](docker/README.md) - Start containers
+4. [Databases](databases/README.md) - Database schemas
 
 
 ---
