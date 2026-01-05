@@ -28,12 +28,7 @@ Data ingestion pipeline for processing product PDFs into vector embeddings.
 
 ### **🔍 Extraction Flow**
 
-<details>
-<summary>📊 Extraction Flow</summary>
-
 ![Extraction Flow](../assets/diagrams/ingestor/extractor_how_it_works_1.png)
-
-</details>
 
 
 ### **📥 Input**
