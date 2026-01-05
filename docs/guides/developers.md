@@ -38,7 +38,7 @@ Guide for software engineers who want to extend the chatbot and manage infrastru
 |-------|---------------|
 | Docker Services | [infrastructure/docker/README.md](../infrastructure/docker/README.md) |
 | Setup Guide | [infrastructure/setup/README.md](../infrastructure/setup/README.md) |
-| Data Sources | [data-sources/README.md](../data-sources/README.md) |
+| Databases | [infrastructure/databases/README.md](../infrastructure/databases/README.md) |
 
 
 ---

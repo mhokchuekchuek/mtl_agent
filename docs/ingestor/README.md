@@ -31,7 +31,8 @@ Data ingestion pipeline for processing product PDFs into vector embeddings.
 
 | | |
 |:---:|:---:|
-| [🔍 **Extractor**](extractor/README.md)<br/>LLM-based structured data extraction | [🔄 **Pipeline**](pipeline.md)<br/>Orchestration of parse → extract → embed → store |
+| [📄 **Product PDFs**](product-pdfs.md)<br/>100 product detail PDF files | [🔍 **Extractor**](extractor/README.md)<br/>LLM-based structured data extraction |
+| [🔄 **Pipeline**](pipeline.md)<br/>Orchestration of parse → extract → embed → store | |
 
 
 ---
