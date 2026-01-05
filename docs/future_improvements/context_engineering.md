@@ -45,7 +45,9 @@ Save information outside the context window for later retrieval.
 - **Scratchpads**: Agents take notes during tasks by writing to files or state objects
 - **Memories**: Auto-generate long-term memories across sessions (like ChatGPT, Cursor)
 
-**MTL Agent**: Save large SQL results to scratchpad, keep only summary in messages
+**MTL Agent**:
+- **Client Chatbot**: Save large SQL analytics results to scratchpad
+- **Customer Chatbot**: Save order history to long-term memory (e.g., "what did I order yesterday?")
 
 
 ---
@@ -63,7 +65,9 @@ Pull only relevant information into the context window.
 - RAG for tool descriptions to fetch only appropriate tools
 - Code agents selecting instructions from `.md` rules files
 
-**MTL Agent**: Semantic selection of relevant messages, tool selection with RAG
+**MTL Agent**:
+- **Client Chatbot**: Select relevant messages for analytics context
+- **Customer Chatbot**: Select relevant past product discussions
 
 
 ---
@@ -79,7 +83,9 @@ Reduce token count while retaining essential information.
 - **Summarization**: Claude Code applies "auto-compact" when context exceeds 95% capacity
 - **Trimming**: Filter older messages or use trained pruners
 
-**MTL Agent**: Auto-summarize old messages, compress large tool outputs
+**MTL Agent**:
+- **Client Chatbot**: Summarize long analytics conversations
+- **Customer Chatbot**: Summarize long shopping conversations
 
 
 ---
@@ -96,7 +102,9 @@ Split context across agents to maintain focus.
 - **Sandboxed environments**: Token-heavy objects (images, audio) remain external to LLM
 - **State objects**: Expose only necessary information at each step
 
-**MTL Agent**: Orchestrator routes to ChatHistoryAgent or InsightAgent (each with own tools)
+**MTL Agent**:
+- **Client Chatbot**: Orchestrator routes to ChatHistoryAgent or InsightAgent (each with own tools)
+- **Customer Chatbot**: Single ProductAgent with focused product/order context
 
 
 ---
