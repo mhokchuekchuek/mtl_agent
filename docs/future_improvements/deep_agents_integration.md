@@ -2,7 +2,34 @@
 
 Integrating [LangChain Deep Agents](https://github.com/langchain-ai/deepagents) patterns into the MTL Agent system.
 
+
+---
+
+
+## **📋 What are Deep Agents?**
+
+Deep agents are AI systems designed to **plan and execute complex tasks over extended timeframes**, moving beyond "shallow" agents that struggle with multi-step operations.
+
+| Regular Agents | Deep Agents |
+|----------------|-------------|
+| Simple LLM-tool loop | Complex planning + execution |
+| Limited task complexity | Multi-step, extended operations |
+| Shallow execution | Deep contextual reasoning |
+
+
+---
+
+
+## **🧩 Key Components**
+
 ![Deep Agents Architecture](../assets/diagrams/future_improvements/deep_agents_architecture.png)
+
+| Component | Description |
+|-----------|-------------|
+| **Detailed System Prompt** | Comprehensive instructions with few-shot examples (like Claude Code) |
+| **Planning Tool** | Todo list to maintain task focus - serves as context engineering |
+| **Sub-agents** | Specialized agents for individual tasks with focused context |
+| **File System Access** | Shared workspace for notes, context, and working memory |
 
 
 ---
@@ -10,10 +37,10 @@ Integrating [LangChain Deep Agents](https://github.com/langchain-ai/deepagents) 
 
 ## **🔄 Deep Agents vs Context Engineering**
 
-| | Deep Agents | Context Engineering |
-|---|-------------|---------------------|
-| **Question** | "What should I do?" | "How do I manage memory?" |
-| **Focus** | Planning & task delegation | Context window management |
+| Aspect | Deep Agents | Context Engineering |
+|--------|-------------|---------------------|
+| Question | "What should I do?" | "How do I manage memory?" |
+| Focus | Planning & delegation | Context window management |
 
 **Example - Client Chatbot Query**: "Show top 5 customers with order trends and chart"
 
@@ -48,36 +75,31 @@ Deep Agents solve these with: **Planning**, **Subagents**, and **Scratch Space**
 
 ## **🏗️ Current vs. Deep Agents Architecture**
 
-```
-Current Architecture:
-┌─────────────────────────────────────────────┐
-│ Workflow (Fixed Graph)                      │
-│  translate → orchestrator → agent → output  │
-│                    ↓                        │
-│              [fixed routing]                │
-│            ↙            ↘                   │
-│     ChatHistory      Insight                │
-└─────────────────────────────────────────────┘
+### Current Architecture (Fixed Graph)
 
-Deep Agents Architecture:
-┌─────────────────────────────────────────────┐
-│ Deep Agent (Dynamic)                        │
-│  ┌─────────────────────────────────────┐    │
-│  │ Planning: write_todos / read_todos  │    │
-│  └─────────────────────────────────────┘    │
-│                    ↓                        │
-│  ┌─────────────────────────────────────┐    │
-│  │ Execute: spawn subagents as needed  │    │
-│  │  → SQLSubagent                      │    │
-│  │  → VectorSearchSubagent             │    │
-│  │  → VisualizationSubagent            │    │
-│  └─────────────────────────────────────┘    │
-│                    ↓                        │
-│  ┌─────────────────────────────────────┐    │
-│  │ Scratch Space: store intermediate   │    │
-│  │ results, notes, context             │    │
-│  └─────────────────────────────────────┘    │
-└─────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+    A[Translate] --> B[Orchestrator]
+    B --> C{Fixed Routing}
+    C --> D[ChatHistoryAgent]
+    C --> E[InsightAgent]
+    D --> F[Output]
+    E --> F
+```
+
+### Deep Agents Architecture (Dynamic)
+
+```mermaid
+flowchart TD
+    A[Deep Agent] --> B[Planning]
+    B --> C[Execute]
+    C --> D[SQLSubagent]
+    C --> E[VectorSearchSubagent]
+    C --> F[VisualizationSubagent]
+    D --> G[Scratch Space]
+    E --> G
+    F --> G
+    G --> H[Output]
 ```
 
 ## **🔗 References**
