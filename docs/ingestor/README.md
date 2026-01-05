@@ -16,12 +16,7 @@ Data ingestion pipeline for processing product PDFs into vector embeddings.
 
 ## **🔄 Pipeline Flow**
 
-<details>
-<summary>📊 Pipeline Flow</summary>
-
 ![Pipeline Flow](../assets/diagrams/ingestor/ingestor_README_1.png)
-
-</details>
 
 | Stage | Description | Details |
 |-------|-------------|---------|
