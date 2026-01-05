@@ -26,12 +26,7 @@ Modules are the main components that power the chatbot systems. They follow a la
 
 ### 💼 **Client Chatbot Flow**
 
-<details>
-<summary>📊 Client Chatbot Flow</summary>
-
 ![Client Chatbot Flow](../../assets/diagrams/modules/modules_README_2.png)
-
-</details>
 
 
 ---
@@ -70,6 +65,8 @@ Modules are the main components that power the chatbot systems. They follow a la
 | Structured Payload | Type-safe tool outputs | All tools | [structured_payload.md](../../future_improvements/ingestion/structured_payload.md) |
 | Context Engineering | Managing LLM context windows | All agents | [context_engineering.md](../../future_improvements/context_engineering.md) |
 | Deep Agents Integration | LangChain Deep Agents patterns | All workflows | [deep_agents_integration.md](../../future_improvements/deep_agents_integration.md) |
+| Caching Strategy | LiteLLM, semantic cache, embedding cache | All agents | [caching.md](../../future_improvements/infrastructure/caching.md) |
+| Self-Hosted LLM | vLLM, Ollama deployment | All agents | [self_hosted_llm.md](../../future_improvements/infrastructure/self_hosted_llm.md) |
 
 
 ---
