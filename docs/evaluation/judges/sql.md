@@ -6,6 +6,14 @@ Evaluates SQL query correctness.
 ---
 
 
+## **📍 Location**
+
+[`evaluation/judges/sql/main.py`](../../../evaluation/judges/sql/main.py)
+
+
+---
+
+
 ## **📋 Expected Field**
 
 ```yaml

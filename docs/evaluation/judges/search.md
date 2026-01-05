@@ -6,6 +6,14 @@ Evaluates vector search quality.
 ---
 
 
+## **📍 Location**
+
+[`evaluation/judges/search/main.py`](../../../evaluation/judges/search/main.py)
+
+
+---
+
+
 ## **📋 Expected Field**
 
 ```yaml

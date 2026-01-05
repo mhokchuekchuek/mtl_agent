@@ -6,6 +6,14 @@ LLM-as-Judge implementations for evaluating chatbot responses.
 ---
 
 
+## **📍 Location**
+
+[`evaluation/judges/`](../../../evaluation/judges/)
+
+
+---
+
+
 ## **📋 Overview**
 
 All judges follow the same pattern:

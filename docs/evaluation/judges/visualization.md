@@ -6,6 +6,14 @@ Evaluates chart generation quality.
 ---
 
 
+## **📍 Location**
+
+[`evaluation/judges/visualization/main.py`](../../../evaluation/judges/visualization/main.py)
+
+
+---
+
+
 ## **📋 Expected Fields**
 
 ```yaml

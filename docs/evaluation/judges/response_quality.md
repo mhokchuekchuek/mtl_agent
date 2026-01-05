@@ -6,6 +6,14 @@ Evaluates response relevance and faithfulness.
 ---
 
 
+## **📍 Location**
+
+[`evaluation/judges/response_quality/main.py`](../../../evaluation/judges/response_quality/main.py)
+
+
+---
+
+
 ## **📋 Expected Field**
 
 ```yaml
