@@ -8,7 +8,7 @@ LangChain tools for agent workflows.
 
 ## **📍 Location**
 
-`src/modules/tools/`
+[`src/modules/tools/`](../../../../src/modules/tools/)
 
 
 ---

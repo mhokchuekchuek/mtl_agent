@@ -8,7 +8,7 @@ Database utilities and integrations.
 
 ## **📍 Location**
 
-`libs/database/`
+[`libs/database/`](../../../libs/database/)
 
 
 ---

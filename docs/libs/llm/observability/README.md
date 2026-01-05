@@ -8,7 +8,7 @@ LLM tracing and monitoring using the provider/selector pattern.
 
 ## **📍 Location**
 
-`libs/llm/observability/`
+[`libs/llm/observability/`](../../../../libs/llm/observability/)
 
 
 ---

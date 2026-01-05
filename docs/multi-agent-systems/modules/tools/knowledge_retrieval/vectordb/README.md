@@ -8,7 +8,7 @@ Semantic search tools using vector embeddings stored in Qdrant.
 
 ## **📍 Location**
 
-`src/modules/tools/knowledge_retrieval/vectordb/`
+[`src/modules/tools/knowledge_retrieval/vectordb/`](../../../../../../src/modules/tools/knowledge_retrieval/vectordb/)
 
 
 ---

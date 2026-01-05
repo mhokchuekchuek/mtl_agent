@@ -8,7 +8,7 @@ Core building blocks for multi-agent systems.
 
 ## **📍 Location**
 
-`src/modules/`
+[`src/modules/`](../../../src/modules/)
 
 
 ---

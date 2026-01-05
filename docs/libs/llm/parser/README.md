@@ -8,7 +8,7 @@ PDF parsing providers using the provider/selector pattern.
 
 ## **📍 Location**
 
-`libs/llm/parser/`
+[`libs/llm/parser/`](../../../../libs/llm/parser/)
 
 
 ---

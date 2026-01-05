@@ -8,7 +8,7 @@ Redis key-value store client.
 
 ## **📍 Location**
 
-`libs/database/key_value/redis/`
+[`libs/database/key_value/redis/`](../../../../libs/database/key_value/redis/)
 
 
 ---

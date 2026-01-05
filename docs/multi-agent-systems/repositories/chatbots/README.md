@@ -8,7 +8,7 @@ Compile workflows with memory and provide unified interface for chatbot operatio
 
 ## **📍 Location**
 
-`src/repositories/chatbots/`
+[`src/repositories/chatbots/`](../../../../src/repositories/chatbots/)
 
 
 ---

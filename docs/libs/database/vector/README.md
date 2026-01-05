@@ -8,7 +8,7 @@ Vector database implementations using the provider/selector pattern.
 
 ## **📍 Location**
 
-`libs/database/vector/`
+[`libs/database/vector/`](../../../../libs/database/vector/)
 
 
 ---

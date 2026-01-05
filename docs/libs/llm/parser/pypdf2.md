@@ -8,7 +8,7 @@ Plain text extraction using PyPDF2 library.
 
 ## **📍 Location**
 
-`libs/llm/parser/pypdf2/main.py`
+[`libs/llm/parser/pypdf2/main.py`](../../../../libs/llm/parser/pypdf2/main.py)
 
 ---
 

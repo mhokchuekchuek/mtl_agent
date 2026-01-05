@@ -8,7 +8,7 @@ Create orders for customers.
 
 ## **📍 Location**
 
-`src/modules/tools/knowledge_retrieval/sql/customer/place_order.py`
+[`src/modules/tools/knowledge_retrieval/sql/customer/place_order.py`](../../../../../../../src/modules/tools/knowledge_retrieval/sql/customer/place_order.py)
 
 
 ---
@@ -217,9 +217,4 @@ tool._run(product_id=10, quantity=2, confirmed=True)
 | Customer ID not set | customer_id is null | No changes |
 
 
----
 
-
-## **🔗 References**
-
-- [PlaceOrderSQLTool](../../../../../../src/modules/tools/knowledge_retrieval/sql/customer/place_order.py)

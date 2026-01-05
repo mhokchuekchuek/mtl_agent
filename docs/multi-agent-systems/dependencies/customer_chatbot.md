@@ -8,7 +8,7 @@ Dependency injection for customer (shopping assistant) chatbot.
 
 ## **📍 Location**
 
-`src/dependencies/customer_chatbot.py`
+[`src/dependencies/customer_chatbot.py`](../../../src/dependencies/customer_chatbot.py)
 
 
 ---
@@ -110,9 +110,4 @@ result = service.chat(
 ```
 
 
----
 
-
-## **🔗 Full Code**
-
-See [`src/dependencies/customer_chatbot.py`](../../../src/dependencies/customer_chatbot.py)

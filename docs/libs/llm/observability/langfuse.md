@@ -10,7 +10,7 @@ Langfuse client for LLM tracing and monitoring.
 
 ## **📍 Location**
 
-`libs/llm/observability/langfuse/main.py`
+[`libs/llm/observability/langfuse/main.py`](../../../../libs/llm/observability/langfuse/main.py)
 
 ---
 

@@ -8,7 +8,7 @@ Generic chatbot service that works with any chatbot repository.
 
 ## **📍 Location**
 
-`src/usecases/chatbot/main.py`
+[`src/usecases/chatbot/main.py`](../../../src/usecases/chatbot/main.py)
 
 
 ---

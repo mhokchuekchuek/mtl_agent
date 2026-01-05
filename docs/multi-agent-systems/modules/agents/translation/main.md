@@ -8,7 +8,7 @@ Agent for translating text between Thai and English.
 
 ## **📍 Location**
 
-`src/modules/agents/translation/main.py`
+[`src/modules/agents/translation/main.py`](../../../../../src/modules/agents/translation/main.py)
 
 
 ---

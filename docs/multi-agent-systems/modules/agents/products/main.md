@@ -8,7 +8,7 @@ ReAct agent for handling product-related queries.
 
 ## **📍 Location**
 
-`src/modules/agents/products/main.py`
+[`src/modules/agents/products/main.py`](../../../../../src/modules/agents/products/main.py)
 
 
 ---

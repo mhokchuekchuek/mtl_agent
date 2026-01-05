@@ -8,7 +8,7 @@ LLM-based structured data extraction using provider/selector pattern.
 
 ## **📍 Location**
 
-`ingestor/extractor/`
+[`ingestor/extractor/`](../../../ingestor/extractor/)
 
 
 ---

@@ -8,7 +8,7 @@ BI analytics tool for internal client users.
 
 ## **📍 Location**
 
-`src/modules/tools/knowledge_retrieval/sql/client/analytics.py`
+[`src/modules/tools/knowledge_retrieval/sql/client/analytics.py`](../../../../../../../src/modules/tools/knowledge_retrieval/sql/client/analytics.py)
 
 
 ---

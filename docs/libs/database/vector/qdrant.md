@@ -8,7 +8,7 @@ Qdrant vector database client with metadata filtering support.
 
 ## **📍 Location**
 
-`libs/database/vector/qdrant/main.py`
+[`libs/database/vector/qdrant/main.py`](../../../../libs/database/vector/qdrant/main.py)
 
 ---
 

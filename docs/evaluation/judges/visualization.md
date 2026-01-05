@@ -73,9 +73,4 @@ Extracts from these tool calls:
 [visualization_judge.md](../../prompts/evaluation/judges/visualization_judge.md)
 
 
----
 
-
-## **🔗 References**
-
-- [VisualizationJudge](../../../evaluation/judges/visualization/main.py)

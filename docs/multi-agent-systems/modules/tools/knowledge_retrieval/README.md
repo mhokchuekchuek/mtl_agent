@@ -8,7 +8,7 @@ Tools for searching and retrieving information from various data sources.
 
 ## **📍 Location**
 
-`src/modules/tools/knowledge_retrieval/`
+[`src/modules/tools/knowledge_retrieval/`](../../../../../src/modules/tools/knowledge_retrieval/)
 
 
 ---

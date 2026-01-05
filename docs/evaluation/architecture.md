@@ -88,10 +88,4 @@ For negative test cases:
 - `chart: "null"` → Pass if no chart generated
 
 
----
 
-
-## **🔗 References**
-
-- [EvaluationRepository](../../evaluation/repositories/main.py)
-- [EvaluationService](../../evaluation/usecases/main.py)

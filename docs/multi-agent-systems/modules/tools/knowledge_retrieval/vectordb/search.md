@@ -8,7 +8,7 @@ Semantic search for products using natural language.
 
 ## **📍 Location**
 
-`src/modules/tools/knowledge_retrieval/vectordb/search.py`
+[`src/modules/tools/knowledge_retrieval/vectordb/search.py`](../../../../../../src/modules/tools/knowledge_retrieval/vectordb/search.py)
 
 
 ---
@@ -200,9 +200,4 @@ Customer: I'm looking for wireless headphones
 | Embedding failed | LLM API error | `{"error": "..."}` |
 
 
----
 
-
-## **🔗 References**
-
-- [ProductSearchTool](../../../../../../src/modules/tools/knowledge_retrieval/vectordb/search.py)

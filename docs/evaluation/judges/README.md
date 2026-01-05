@@ -107,10 +107,4 @@ For testing that the agent correctly refuses or skips actions:
 | Response Quality | 0.7 |
 
 
----
 
-
-## **🔗 References**
-
-- [BaseJudge](../../../evaluation/judges/base.py)
-- [JudgeSelector](../../../evaluation/judges/selector.py)

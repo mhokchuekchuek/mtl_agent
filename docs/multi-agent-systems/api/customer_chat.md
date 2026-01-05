@@ -8,7 +8,7 @@ Customer chatbot endpoint for product inquiries.
 
 ## **📍 Location**
 
-`src/api/routes/chatbots/customer.py`
+[`src/api/routes/chatbots/customer.py`](../../../src/api/routes/chatbots/customer.py)
 
 
 ---
@@ -91,9 +91,4 @@ curl -X POST http://localhost:8000/api/v1/chatbot/customer/chat \
 | 500 | Internal server error |
 
 
----
 
-
-## **🔗 Full Code**
-
-See [`src/api/routes/chatbots/customer.py`](../../../src/api/routes/chatbots/customer.py)

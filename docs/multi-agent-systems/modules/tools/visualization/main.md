@@ -8,7 +8,7 @@ Create Plotly visualizations using LLM-generated code.
 
 ## **📍 Location**
 
-`src/modules/tools/visualization/main.py`
+[`src/modules/tools/visualization/main.py`](../../../../../src/modules/tools/visualization/main.py)
 
 ## **📜 Prompt**
 
@@ -229,10 +229,4 @@ request = "Create a bar chart showing sales by category"
 | No figure created | Code didn't create `fig` | `"<p>Error: No Plotly figure was created by the code</p>"` |
 
 
----
 
-
-## **🔗 References**
-
-- [VisualizationTool](../../../../../src/modules/tools/visualization/main.py)
-- [Prompt: tools_client_visualization](https://langfuse.com)

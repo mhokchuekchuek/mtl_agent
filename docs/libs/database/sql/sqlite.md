@@ -8,7 +8,7 @@ SQLite database client for file-based SQL operations.
 
 ## **📍 Location**
 
-`libs/database/sql/sqlite/main.py`
+[`libs/database/sql/sqlite/main.py`](../../../../libs/database/sql/sqlite/main.py)
 
 ---
 

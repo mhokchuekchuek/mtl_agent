@@ -8,7 +8,7 @@ Query customer chat conversation history from PostgreSQL store.
 
 ## **📍 Location**
 
-`src/modules/tools/knowledge_retrieval/sql/client/chat_history.py`
+[`src/modules/tools/knowledge_retrieval/sql/client/chat_history.py`](../../../../../../../src/modules/tools/knowledge_retrieval/sql/client/chat_history.py)
 
 
 ---

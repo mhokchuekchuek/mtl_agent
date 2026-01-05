@@ -8,7 +8,7 @@ Abstract base class for all chatbot repositories.
 
 ## **📍 Location**
 
-`src/repositories/chatbots/base.py`
+[`src/repositories/chatbots/base.py`](../../../../src/repositories/chatbots/base.py)
 
 ---
 

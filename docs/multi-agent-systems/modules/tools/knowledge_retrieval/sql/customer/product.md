@@ -8,7 +8,7 @@ Product and inventory queries for customers.
 
 ## **📍 Location**
 
-`src/modules/tools/knowledge_retrieval/sql/customer/product.py`
+[`src/modules/tools/knowledge_retrieval/sql/customer/product.py`](../../../../../../../src/modules/tools/knowledge_retrieval/sql/customer/product.py)
 
 
 ---
@@ -153,9 +153,4 @@ WHERE p.product_name LIKE '%Gaming Chair%'
 | SQL security violation | Contains DROP/DELETE/UPDATE | Reject with error message |
 
 
----
 
-
-## **🔗 References**
-
-- [CustomerProductSQLTool](../../../../../../src/modules/tools/knowledge_retrieval/sql/customer/product.py)

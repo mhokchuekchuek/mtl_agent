@@ -8,7 +8,7 @@ Plotly chart generation tools using LLM-generated code.
 
 ## **📍 Location**
 
-`src/modules/tools/visualization/`
+[`src/modules/tools/visualization/`](../../../../../src/modules/tools/visualization/)
 
 
 ---

@@ -8,7 +8,7 @@ State definition for CustomerChatbotWorkflow.
 
 ## **📍 Location**
 
-`src/modules/workflows/customer_chatbot/state.py`
+[`src/modules/workflows/customer_chatbot/state.py`](../../../../../src/modules/workflows/customer_chatbot/state.py)
 
 
 ---

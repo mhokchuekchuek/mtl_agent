@@ -8,7 +8,7 @@ ReAct agent for looking up customer chat conversations.
 
 ## **📍 Location**
 
-`src/modules/agents/client/chat_history.py`
+[`src/modules/agents/client/chat_history.py`](../../../../../src/modules/agents/client/chat_history.py)
 
 
 ---

@@ -8,7 +8,7 @@ LLM-powered agents for complex reasoning and orchestration.
 
 ## **📍 Location**
 
-`src/modules/agents/`
+[`src/modules/agents/`](../../../../src/modules/agents/)
 
 
 ---

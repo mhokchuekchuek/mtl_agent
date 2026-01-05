@@ -8,7 +8,7 @@ Text chunking strategies using the provider/selector pattern.
 
 ## **📍 Location**
 
-`libs/llm/chunking/`
+[`libs/llm/chunking/`](../../../../libs/llm/chunking/)
 
 
 ---

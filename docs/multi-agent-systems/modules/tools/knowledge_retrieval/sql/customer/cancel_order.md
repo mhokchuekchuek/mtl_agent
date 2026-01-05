@@ -8,7 +8,7 @@ Cancel customer orders and restore inventory.
 
 ## **📍 Location**
 
-`src/modules/tools/knowledge_retrieval/sql/customer/cancel_order.py`
+[`src/modules/tools/knowledge_retrieval/sql/customer/cancel_order.py`](../../../../../../../src/modules/tools/knowledge_retrieval/sql/customer/cancel_order.py)
 
 
 ---
@@ -221,9 +221,4 @@ tool._run(order_id=1001, confirmed=True)
 - Already cancelled orders cannot be cancelled again
 
 
----
 
-
-## **🔗 References**
-
-- [CancelOrderSQLTool](../../../../../../src/modules/tools/knowledge_retrieval/sql/customer/cancel_order.py)

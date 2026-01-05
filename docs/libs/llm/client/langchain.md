@@ -8,7 +8,7 @@ LangChain ChatOpenAI wrapper for LiteLLM proxy.
 
 ## **📍 Location**
 
-`libs/llm/client/langchain/main.py`
+[`libs/llm/client/langchain/main.py`](../../../../libs/llm/client/langchain/main.py)
 
 ---
 

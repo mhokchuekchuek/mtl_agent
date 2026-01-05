@@ -8,7 +8,7 @@ Text chunker using LangChain's RecursiveCharacterTextSplitter.
 
 ## **📍 Location**
 
-`libs/llm/chunking/recursive/main.py`
+[`libs/llm/chunking/recursive/main.py`](../../../../libs/llm/chunking/recursive/main.py)
 
 ---
 

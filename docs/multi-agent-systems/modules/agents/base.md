@@ -8,7 +8,7 @@ Abstract base class for all agents.
 
 ## **📍 Location**
 
-`src/modules/agents/base.py`
+[`src/modules/agents/base.py`](../../../../src/modules/agents/base.py)
 
 
 ---

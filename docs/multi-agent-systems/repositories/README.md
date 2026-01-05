@@ -8,7 +8,7 @@ Domain-specific data access layer that abstracts infrastructure from business lo
 
 ## **📍 Location**
 
-`src/repositories/`
+[`src/repositories/`](../../../src/repositories/)
 
 
 ---

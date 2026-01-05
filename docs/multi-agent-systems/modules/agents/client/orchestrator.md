@@ -8,7 +8,7 @@ Router agent that classifies intent and routes to appropriate agent.
 
 ## **📍 Location**
 
-`src/modules/agents/client/orchestrator.py`
+[`src/modules/agents/client/orchestrator.py`](../../../../../src/modules/agents/client/orchestrator.py)
 
 
 ---

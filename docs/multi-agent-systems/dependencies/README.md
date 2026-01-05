@@ -8,7 +8,7 @@ Dependency injection wiring layer.
 
 ## **📍 Location**
 
-`src/dependencies/`
+[`src/dependencies/`](../../../src/dependencies/)
 
 
 ---

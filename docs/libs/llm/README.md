@@ -8,7 +8,7 @@ LLM-related utilities and integrations.
 
 ## **📍 Location**
 
-`libs/llm/`
+[`libs/llm/`](../../../libs/llm/)
 
 
 ---

@@ -8,7 +8,7 @@ Internal BI chatbot workflow for business users.
 
 ## **📍 Location**
 
-`src/modules/workflows/client_chatbot/main.py`
+[`src/modules/workflows/client_chatbot/main.py`](../../../../../src/modules/workflows/client_chatbot/main.py)
 
 
 ---

@@ -74,9 +74,4 @@ Extracts from these tool calls:
 [search_judge.md](../../prompts/evaluation/judges/search_judge.md)
 
 
----
 
-
-## **🔗 References**
-
-- [SearchJudge](../../../evaluation/judges/search/main.py)

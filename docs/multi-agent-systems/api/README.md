@@ -8,7 +8,7 @@ REST API layer for multi-agent chatbots.
 
 ## **📍 Location**
 
-`src/api/`
+[`src/api/`](../../../src/api/)
 
 
 ---
@@ -84,9 +84,4 @@ async def lifespan(app: FastAPI):
 ```
 
 
----
 
-
-## **📄 Full Code**
-
-See [`src/api/app.py`](../../../src/api/app.py)

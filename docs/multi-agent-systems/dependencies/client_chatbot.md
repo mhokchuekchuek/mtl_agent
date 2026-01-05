@@ -8,7 +8,7 @@ Dependency injection for client (internal BI) chatbot.
 
 ## **📍 Location**
 
-`src/dependencies/client_chatbot.py`
+[`src/dependencies/client_chatbot.py`](../../../src/dependencies/client_chatbot.py)
 
 
 ---
@@ -107,9 +107,4 @@ result = service.chat(
 ```
 
 
----
 
-
-## **🔗 Full Code**
-
-See [`src/dependencies/client_chatbot.py`](../../../src/dependencies/client_chatbot.py)

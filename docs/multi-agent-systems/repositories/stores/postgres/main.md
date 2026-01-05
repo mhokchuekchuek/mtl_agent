@@ -8,7 +8,7 @@ PostgreSQL-based store for long-term memory.
 
 ## **📍 Location**
 
-`src/repositories/stores/postgres/main.py`
+[`src/repositories/stores/postgres/main.py`](../../../../../src/repositories/stores/postgres/main.py)
 
 ---
 

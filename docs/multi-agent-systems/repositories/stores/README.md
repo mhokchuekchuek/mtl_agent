@@ -8,7 +8,7 @@ Long-term conversation memory with permanent storage.
 
 ## **📍 Location**
 
-`src/repositories/stores/`
+[`src/repositories/stores/`](../../../../src/repositories/stores/)
 
 
 ---

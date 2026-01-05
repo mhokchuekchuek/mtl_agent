@@ -70,9 +70,4 @@ Judge receives chatbot context (permissions, restrictions) to evaluate if respon
 [response_quality_judge.md](../../prompts/evaluation/judges/response_quality_judge.md)
 
 
----
 
-
-## **🔗 References**
-
-- [ResponseQualityJudge](../../../evaluation/judges/response_quality/main.py)

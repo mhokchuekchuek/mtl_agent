@@ -8,7 +8,7 @@ Langfuse client for centralized prompt management.
 
 ## **📍 Location**
 
-`libs/llm/prompt_manager/langfuse/main.py`
+[`libs/llm/prompt_manager/langfuse/main.py`](../../../../libs/llm/prompt_manager/langfuse/main.py)
 
 ---
 

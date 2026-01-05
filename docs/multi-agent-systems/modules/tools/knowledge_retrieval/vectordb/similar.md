@@ -8,7 +8,7 @@ Find products similar to a given product using vector similarity.
 
 ## **📍 Location**
 
-`src/modules/tools/knowledge_retrieval/vectordb/similar.py`
+[`src/modules/tools/knowledge_retrieval/vectordb/similar.py`](../../../../../../src/modules/tools/knowledge_retrieval/vectordb/similar.py)
 
 
 ---
@@ -179,9 +179,4 @@ Each product has:
 | Search failed | Qdrant connection error | `{"error": "..."}` |
 
 
----
 
-
-## **🔗 References**
-
-- [SimilarProductsTool](../../../../../../src/modules/tools/knowledge_retrieval/vectordb/similar.py)

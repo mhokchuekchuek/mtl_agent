@@ -8,7 +8,7 @@ Repository for internal BI chatbot.
 
 ## **📍 Location**
 
-`src/repositories/chatbots/client/main.py`
+[`src/repositories/chatbots/client/main.py`](../../../../../src/repositories/chatbots/client/main.py)
 
 ---
 

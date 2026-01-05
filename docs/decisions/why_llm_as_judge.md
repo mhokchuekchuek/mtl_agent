@@ -147,12 +147,4 @@ Each judge uses Langfuse-managed prompts:
 | Response Quality | `evaluation_judges_response_quality_judge` |
 
 
----
 
-
-## **🔗 References**
-
-- [`evaluation/judges/sql/main.py`](../../evaluation/judges/sql/main.py)
-- [`evaluation/judges/search/main.py`](../../evaluation/judges/search/main.py)
-- [`evaluation/judges/visualization/main.py`](../../evaluation/judges/visualization/main.py)
-- [`evaluation/judges/response_quality/main.py`](../../evaluation/judges/response_quality/main.py)

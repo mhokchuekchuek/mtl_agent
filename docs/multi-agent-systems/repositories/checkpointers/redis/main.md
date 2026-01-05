@@ -8,7 +8,7 @@ Redis-based checkpointer with TTL support.
 
 ## **📍 Location**
 
-`src/repositories/checkpointers/redis/main.py`
+[`src/repositories/checkpointers/redis/main.py`](../../../../../src/repositories/checkpointers/redis/main.py)
 
 ---
 

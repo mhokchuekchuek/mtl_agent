@@ -8,7 +8,7 @@ Abstract base class for all LangGraph workflows.
 
 ## **📍 Location**
 
-`src/modules/workflows/base.py`
+[`src/modules/workflows/base.py`](../../../../src/modules/workflows/base.py)
 
 
 ---

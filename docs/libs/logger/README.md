@@ -8,7 +8,7 @@ Logging utilities for consistent logging across the project.
 
 ## **📍 Location**
 
-`libs/logger/logger.py`
+[`libs/logger/logger.py`](../../../libs/logger/logger.py)
 
 
 ---

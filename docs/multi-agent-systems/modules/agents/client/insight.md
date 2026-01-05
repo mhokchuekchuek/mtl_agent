@@ -8,7 +8,7 @@ ReAct agent for BI analytics and visualizations.
 
 ## **📍 Location**
 
-`src/modules/agents/client/insight.py`
+[`src/modules/agents/client/insight.py`](../../../../../src/modules/agents/client/insight.py)
 
 
 ---

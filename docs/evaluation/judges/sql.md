@@ -68,5 +68,4 @@ expected_output:
 
 ## **🔗 References**
 
-- [SQLJudge](../../../evaluation/judges/sql/main.py)
 - [Decision: LLM-as-Judge](../../decisions/why_llm_as_judge.md)

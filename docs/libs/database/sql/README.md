@@ -8,7 +8,7 @@ SQL database implementations using the provider/selector pattern.
 
 ## **📍 Location**
 
-`libs/database/sql/`
+[`libs/database/sql/`](../../../../libs/database/sql/)
 
 
 ---

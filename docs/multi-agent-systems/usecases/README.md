@@ -8,7 +8,7 @@ Application business logic layer.
 
 ## **📍 Location**
 
-`src/usecases/`
+[`src/usecases/`](../../../src/usecases/)
 
 
 ---

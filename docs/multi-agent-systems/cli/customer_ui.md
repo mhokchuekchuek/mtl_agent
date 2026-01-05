@@ -84,9 +84,4 @@ subprocess.run([
 | Thai Support | Full Thai language support |
 
 
----
 
-
-## **🔗 Full Code**
-
-See [`main.py`](../../../main.py) - `customer_ui` command

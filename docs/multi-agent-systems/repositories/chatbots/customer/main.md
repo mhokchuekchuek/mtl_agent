@@ -8,7 +8,7 @@ Repository for customer shopping assistant chatbot.
 
 ## **📍 Location**
 
-`src/repositories/chatbots/customer/main.py`
+[`src/repositories/chatbots/customer/main.py`](../../../../../src/repositories/chatbots/customer/main.py)
 
 ---
 

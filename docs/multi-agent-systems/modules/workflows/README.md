@@ -8,7 +8,7 @@ LangGraph workflows that orchestrate agents.
 
 ## **📍 Location**
 
-`src/modules/workflows/`
+[`src/modules/workflows/`](../../../../src/modules/workflows/)
 
 
 ---

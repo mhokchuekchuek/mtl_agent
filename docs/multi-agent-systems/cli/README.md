@@ -110,9 +110,4 @@ python main.py client_ui
 ```
 
 
----
 
-
-## **📄 Full Code**
-
-See [`main.py`](../../../main.py)

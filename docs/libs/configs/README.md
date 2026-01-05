@@ -8,7 +8,7 @@ Configuration management using the provider/selector pattern.
 
 ## **📍 Location**
 
-`libs/configs/`
+[`libs/configs/`](../../../libs/configs/)
 
 
 ---

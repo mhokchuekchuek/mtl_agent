@@ -8,7 +8,7 @@ Customer-facing shopping assistant workflow.
 
 ## **📍 Location**
 
-`src/modules/workflows/customer_chatbot/main.py`
+[`src/modules/workflows/customer_chatbot/main.py`](../../../../../src/modules/workflows/customer_chatbot/main.py)
 
 
 ---

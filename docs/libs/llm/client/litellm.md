@@ -8,7 +8,7 @@ HTTP-based client for LiteLLM proxy.
 
 ## **📍 Location**
 
-`libs/llm/client/litellm/main.py`
+[`libs/llm/client/litellm/main.py`](../../../../libs/llm/client/litellm/main.py)
 
 ---
 

@@ -8,7 +8,7 @@ Order history queries for customers.
 
 ## **📍 Location**
 
-`src/modules/tools/knowledge_retrieval/sql/customer/order.py`
+[`src/modules/tools/knowledge_retrieval/sql/customer/order.py`](../../../../../../../src/modules/tools/knowledge_retrieval/sql/customer/order.py)
 
 
 ---
@@ -167,9 +167,4 @@ LIMIT 10
 | Forbidden table access | Query tries to access Customers table | Reject query |
 
 
----
 
-
-## **🔗 References**
-
-- [CustomerOrderSQLTool](../../../../../../src/modules/tools/knowledge_retrieval/sql/customer/order.py)

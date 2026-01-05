@@ -87,9 +87,4 @@ uvicorn.run(
 | `/health` | GET | Health check |
 
 
----
 
-
-## **🔗 Full Code**
-
-See [`main.py`](../../../main.py) - `api` command

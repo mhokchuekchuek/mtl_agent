@@ -18,7 +18,7 @@ Dynaconf-based configuration manager with YAML files and environment variable su
 
 ## **📍 Location**
 
-`libs/configs/dynaconf/main.py`
+[`libs/configs/dynaconf/main.py`](../../../libs/configs/dynaconf/main.py)
 
 
 ---

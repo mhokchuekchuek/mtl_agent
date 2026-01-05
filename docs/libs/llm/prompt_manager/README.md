@@ -8,7 +8,7 @@ Centralized prompt management using the provider/selector pattern.
 
 ## **📍 Location**
 
-`libs/llm/prompt_manager/`
+[`libs/llm/prompt_manager/`](../../../../libs/llm/prompt_manager/)
 
 
 ---

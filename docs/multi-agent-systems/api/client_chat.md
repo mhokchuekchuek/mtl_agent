@@ -8,7 +8,7 @@ Client chatbot endpoint for internal BI queries.
 
 ## **📍 Location**
 
-`src/api/routes/chatbots/client.py`
+[`src/api/routes/chatbots/client.py`](../../../src/api/routes/chatbots/client.py)
 
 
 ---
@@ -101,9 +101,4 @@ curl -X POST http://localhost:8000/api/v1/chatbot/client/chat \
 | 500 | Internal server error |
 
 
----
 
-
-## **🔗 Full Code**
-
-See [`src/api/routes/chatbots/client.py`](../../../src/api/routes/chatbots/client.py)

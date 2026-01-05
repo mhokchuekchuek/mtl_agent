@@ -8,7 +8,7 @@ Base classes for the provider/selector pattern.
 
 ## **📍 Location**
 
-`libs/base/selector.py`
+[`libs/base/selector.py`](../../../libs/base/selector.py)
 
 
 ---

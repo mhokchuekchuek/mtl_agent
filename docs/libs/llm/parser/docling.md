@@ -8,7 +8,7 @@ PDF parsing with layout analysis and markdown output.
 
 ## **📍 Location**
 
-`libs/llm/parser/docling/main.py`
+[`libs/llm/parser/docling/main.py`](../../../../libs/llm/parser/docling/main.py)
 
 ---
 

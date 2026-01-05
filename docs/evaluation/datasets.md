@@ -148,10 +148,4 @@ test_cases = loader.load_dataset("data/eval_datasets/customer")
 
 Recursively loads all `.yaml` files and returns `TestCase` objects.
 
----
 
-
-## **🔗 References**
-
-- [DatasetLoader](../../evaluation/loader.py)
-- [TestCase entity](../../evaluation/entities.py)

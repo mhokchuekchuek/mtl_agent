@@ -8,7 +8,7 @@ LLM client implementations using the provider/selector pattern.
 
 ## **📍 Location**
 
-`libs/llm/client/`
+[`libs/llm/client/`](../../../../libs/llm/client/)
 
 
 ---
