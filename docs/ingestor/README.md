@@ -26,7 +26,7 @@ Data ingestion pipeline for processing product PDFs into vector embeddings.
 | Stage | Description | Details |
 |-------|-------------|---------|
 | Parse | Turn PDF to markdown/text format | PyPDF2 or Docling |
-| Extract | Extract structured product data via LLM | [how_it_works.md](extractor/how_it_works.md) |
+| Extract | Extract structured product data via LLM | gpt-4o-mini |
 | Embed | Generate vector embeddings from content | text-embedding-3-small |
 | Store | Save embeddings and metadata to Qdrant | With product metadata |
 
