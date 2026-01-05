@@ -1,0 +1,19 @@
+flowchart LR
+    A[Translate] --> B[Orchestrator]
+    B --> C{Fixed Routing}
+    C --> D[ChatHistoryAgent]
+    C --> E[InsightAgent]
+    D --> F[Output]
+    E --> F
+
+    classDef translate fill:#fef3c7,stroke:#f59e0b,stroke-width:2px,color:#b45309
+    classDef orchestrator fill:#ede9fe,stroke:#8b5cf6,stroke-width:2px,color:#5b21b6
+    classDef decision fill:#fee2e2,stroke:#ef4444,stroke-width:2px,color:#b91c1c
+    classDef agent fill:#cffafe,stroke:#06b6d4,stroke-width:2px,color:#0e7490
+    classDef output fill:#d1fae5,stroke:#10b981,stroke-width:2px,color:#065f46
+
+    class A translate
+    class B orchestrator
+    class C decision
+    class D,E agent
+    class F output

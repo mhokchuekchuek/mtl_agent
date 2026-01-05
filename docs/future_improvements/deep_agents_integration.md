@@ -73,34 +73,15 @@ Deep Agents solve these with: **Planning**, **Subagents**, and **Scratch Space**
 ---
 
 
-## **🏗️ Current vs. Deep Agents Architecture**
+## **🏗️ Current vs. Deep Agents Architecture (Client Chatbot)**
 
 ### Current Architecture (Fixed Graph)
 
-```mermaid
-flowchart TD
-    A[Translate] --> B[Orchestrator]
-    B --> C{Fixed Routing}
-    C --> D[ChatHistoryAgent]
-    C --> E[InsightAgent]
-    D --> F[Output]
-    E --> F
-```
+![Current Architecture](../assets/diagrams/future_improvements/deep_agents_current_arch.png)
 
 ### Deep Agents Architecture (Dynamic)
 
-```mermaid
-flowchart TD
-    A[Deep Agent] --> B[Planning]
-    B --> C[Execute]
-    C --> D[SQLSubagent]
-    C --> E[VectorSearchSubagent]
-    C --> F[VisualizationSubagent]
-    D --> G[Scratch Space]
-    E --> G
-    F --> G
-    G --> H[Output]
-```
+![Deep Agents Architecture](../assets/diagrams/future_improvements/deep_agents_new_arch.png)
 
 ## **🔗 References**
 
