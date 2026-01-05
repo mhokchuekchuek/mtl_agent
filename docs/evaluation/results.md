@@ -80,7 +80,7 @@ judge_results:
 test_id: place_order_flow
 type: multi_turn
 passed: true
-overall_score: 0.73
+overall_score: 0.83
 total_latency_ms: 23347
 timestamp: '2025-12-29T17:35:00'
 
@@ -97,6 +97,18 @@ turns:
       search:
         score: 0.9
         passed: true
+        expected:
+          results: ["Wireless Bluetooth Headphones"]
+        actual:
+          results: ["Wireless Bluetooth Headphones", "Noise Cancelling Headphones"]
+        reasoning: "Relevance: 0.95, Coverage: 1.00"
+        sub_scores:
+          relevance:
+            score: 0.95
+            reasoning: "Results highly relevant to headphones query"
+          coverage:
+            score: 1.0
+            reasoning: "All expected products found"
 
   - turn: 1
     input:
@@ -110,6 +122,18 @@ turns:
       sql:
         score: 0.75
         passed: true
+        expected:
+          sql: "INSERT INTO orders..."
+        actual:
+          sql: "INSERT INTO orders (product_id, quantity) VALUES (1, 1)"
+        reasoning: "Result Match: 0.80, Efficiency: 0.70"
+        sub_scores:
+          result_match:
+            score: 0.8
+            reasoning: "Order correctly inserted with proper values"
+          efficiency:
+            score: 0.7
+            reasoning: "Query could use parameterized values"
 ```
 
 ---
