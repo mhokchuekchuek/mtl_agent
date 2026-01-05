@@ -52,49 +52,6 @@ Modules are the main components that power the chatbot systems. They follow a la
 ---
 
 
-## **🔄 Workflows**
-
-Workflows orchestrate agents using LangGraph StateGraph.
-
-| Workflow | Pattern | Purpose |
-|----------|---------|---------|
-| [ClientChatbotWorkflow](workflows/client_chatbot/main.md) | Conditional | Internal BI chatbot |
-| [CustomerChatbotWorkflow](workflows/customer_chatbot/main.md) | Fixed | Shopping assistant |
-
-
----
-
-
-## **🤖 Agents**
-
-Agents are LLM-powered components that make decisions and execute tasks.
-
-| Agent | Type | Used By | Purpose |
-|-------|------|---------|---------|
-| [TranslationAgent](agents/translation/main.md) | Simple | Both | Language detection and translation |
-| [OrchestratorAgent](agents/client/orchestrator.md) | Simple | Client | Intent classification |
-| [InsightAgent](agents/client/insight.md) | ReAct | Client | SQL analytics + visualization |
-| [ChatHistoryAgent](agents/client/chat_history.md) | ReAct | Client | Customer chat lookup |
-| [ProductAgent](agents/products/main.md) | ReAct | Customer | Product queries + orders |
-
-
----
-
-
-## **🔧 Tools**
-
-Tools are domain logic components that agents can invoke.
-
-| Tool Category | Tools | Used By | Purpose |
-|---------------|-------|---------|---------|
-| [SQL](tools/knowledge_retrieval/sql/README.md) | Analytics, ChatHistory, Product, Order | Both | Database queries |
-| [VectorDB](tools/knowledge_retrieval/vectordb/README.md) | Search, Similar | Customer | Semantic search |
-| [Visualization](tools/visualization/README.md) | Chart generation | Client | Plotly charts |
-
-
----
-
-
 ## **📝 Design Decisions**
 
 | Decision | Description | Applies To | Link |
