@@ -343,6 +343,9 @@ class EvaluationRepository(BaseEvaluationRepository):
             if actual_vals:
                 judge_data["actual"] = actual_vals
 
+            # Always include reasoning
+            judge_data["reasoning"] = jr.reasoning
+
             # Add sub_scores if available
             if jr.metadata:
                 sub_scores = {}
@@ -354,8 +357,6 @@ class EvaluationRepository(BaseEvaluationRepository):
                         }
                 if sub_scores:
                     judge_data["sub_scores"] = sub_scores
-            else:
-                judge_data["reasoning"] = jr.reasoning
 
             results_data["judge_results"][name] = judge_data
 
@@ -418,6 +419,9 @@ class EvaluationRepository(BaseEvaluationRepository):
                 if actual_vals:
                     judge_data["actual"] = actual_vals
 
+                # Always include reasoning
+                judge_data["reasoning"] = jr.reasoning
+
                 # Add sub_scores if available
                 if jr.metadata:
                     sub_scores = {}
@@ -429,8 +433,6 @@ class EvaluationRepository(BaseEvaluationRepository):
                             }
                     if sub_scores:
                         judge_data["sub_scores"] = sub_scores
-                else:
-                    judge_data["reasoning"] = jr.reasoning
 
                 turn_summary["judge_results"][name] = judge_data
 
