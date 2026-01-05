@@ -72,7 +72,7 @@ Raw text extracted from PDF.
 
 Abstract base class for extractors.
 
-**Location**: `ingestor/extractor/base.py`
+**Location**: [`ingestor/extractor/base.py`](../../../ingestor/extractor/base.py)
 
 **Methods**:
 
@@ -85,7 +85,7 @@ Abstract base class for extractors.
 
 Selector for extractor providers.
 
-**Location**: `ingestor/extractor/selector.py`
+**Location**: [`ingestor/extractor/selector.py`](../../../ingestor/extractor/selector.py)
 
 **Methods**:
 
