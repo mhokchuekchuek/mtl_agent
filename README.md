@@ -216,8 +216,4 @@ curl -X POST http://localhost:8000/api/v1/chatbot/client/chat \
 
 ## **📚 Documentation**
 
-| | | |
-|:---:|:---:|:---:|
-| [🤖 **Multi-Agent Systems**](docs/multi-agent-systems/README.md)<br/>Agents, tools, workflows | [📝 **Decisions**](docs/decisions/README.md)<br/>Architecture decision records | [🔧 **Infrastructure**](docs/infrastructure/README.md)<br/>Docker services, setup guides |
-| [📦 **Libs**](docs/libs/README.md)<br/>Reusable libraries | [💬 **Prompts**](docs/prompts/README.md)<br/>Prompt management with Langfuse | [🧪 **Evaluation**](docs/evaluation/README.md)<br/>Testing and LLM-as-Judge |
-| [🔮 **Future**](docs/future_improvements/README.md)<br/>Potential enhancements | [📖 **Guides**](docs/guides/README.md)<br/>Detailed usage instructions | [📚 **Full Docs**](docs/README.md)<br/>Complete documentation |
+For complete documentation, see [📚 **Full Docs**](docs/README.md).
