@@ -48,6 +48,8 @@ Raw text extracted from PDF.
 
 ### **📤 Output**
 
+Data stored in Qdrant with payload containing `product_id`, `product_name`, `source_file`, and `text` (combined description + attributes for semantic search).
+
 ```json
 {
   "product_name": "Espresso Coffee Maker",
@@ -105,14 +107,6 @@ ingestor/
     └── litellm/        # LiteLLM provider
         └── main.py
 ```
-
-
----
-
-
-## **📤 Output**
-
-Data stored in Qdrant with payload containing `product_id`, `product_name`, `source_file`, and `text` (combined description + attributes for semantic search).
 
 
 ---
