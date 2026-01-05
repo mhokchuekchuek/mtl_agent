@@ -14,6 +14,26 @@ Data ingestion pipeline for processing product PDFs into vector embeddings.
 ---
 
 
+## **🔄 Pipeline Flow**
+
+<details>
+<summary>📊 Pipeline Flow</summary>
+
+![Pipeline Flow](../assets/diagrams/ingestor/ingestor_README_1.png)
+
+</details>
+
+| Stage | Description | Details |
+|-------|-------------|---------|
+| Parse | Turn PDF to markdown/text format | PyPDF2 or Docling |
+| Extract | Extract structured product data via LLM | [how_it_works.md](extractor/how_it_works.md) |
+| Embed | Generate vector embeddings from content | text-embedding-3-small |
+| Store | Save embeddings and metadata to Qdrant | With product metadata |
+
+
+---
+
+
 ## **📦 Submodules**
 
 | | |
@@ -47,26 +67,6 @@ ingestor/
     └── litellm/        # LiteLLM provider
         └── main.py
 ```
-
-
----
-
-
-## **🔄 Pipeline Flow**
-
-<details>
-<summary>📊 Pipeline Flow</summary>
-
-![Pipeline Flow](../assets/diagrams/ingestor/ingestor_README_1.png)
-
-</details>
-
-| Stage | Description | Details |
-|-------|-------------|---------|
-| Parse | Turn PDF to markdown/text format | PyPDF2 or Docling |
-| Extract | Extract structured product data via LLM | [how_it_works.md](extractor/how_it_works.md) |
-| Embed | Generate vector embeddings from content | text-embedding-3-small |
-| Store | Save embeddings and metadata to Qdrant | With product metadata |
 
 
 ---
