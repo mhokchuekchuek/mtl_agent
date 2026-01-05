@@ -28,12 +28,7 @@ Stores persist conversation data permanently. Used for:
 
 ## **🔄 Code Flow**
 
-<details>
-<summary>📊 Code Flow</summary>
-
 ![Code Flow](../../../assets/diagrams/repositories/stores_README_1.png)
-
-</details>
 
 
 ---

@@ -24,12 +24,7 @@ Guide for data scientists and prompt engineers who want to understand and improv
 
 ### 👤 **Customer Chatbot**
 
-<details>
-<summary>📊 Customer Chatbot</summary>
-
 ![Customer Chatbot](../assets/diagrams/guides/guides_data-science_1.png)
-
-</details>
 
 Tools: SQL (product, order, place_order, cancel_order), VectorDB (search, similar)
 
@@ -38,12 +33,7 @@ Tools: SQL (product, order, place_order, cancel_order), VectorDB (search, simila
 
 ### 💼 **Client Chatbot**
 
-<details>
-<summary>📊 Client Chatbot</summary>
-
 ![Client Chatbot](../assets/diagrams/guides/guides_data-science_2.png)
-
-</details>
 
 Tools: SQL (analytics, chat_history), Visualization (charts)
 

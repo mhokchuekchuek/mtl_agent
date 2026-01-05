@@ -23,12 +23,7 @@ Provide permanent storage for conversation data using LangGraph's PostgresStore.
 
 ## **🔄 Code Flow**
 
-<details>
-<summary>📊 Code Flow</summary>
-
 ![Code Flow](../../../../assets/diagrams/repositories/postgres_main_1.png)
-
-</details>
 
 
 ---

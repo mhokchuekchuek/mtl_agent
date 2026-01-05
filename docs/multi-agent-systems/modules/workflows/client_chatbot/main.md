@@ -26,12 +26,7 @@ Orchestrate agents for internal business intelligence queries:
 
 ## **📊 Graph Structure**
 
-<details>
-<summary>📊 Graph Structure</summary>
-
 ![Graph Structure](../../../../assets/diagrams/modules/client_chatbot_main_1.png)
-
-</details>
 
 
 ---
@@ -39,12 +34,7 @@ Orchestrate agents for internal business intelligence queries:
 
 ## **🔄 Code Flow**
 
-<details>
-<summary>📊 Code Flow</summary>
-
 ![Code Flow](../../../../assets/diagrams/modules/client_chatbot_main_2.png)
-
-</details>
 
 
 ---

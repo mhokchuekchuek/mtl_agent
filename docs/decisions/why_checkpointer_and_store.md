@@ -32,12 +32,7 @@ We needed to decide how to manage conversation memory for the customer chatbot.
 
 ### 1️⃣ **Checkpointer Only (Redis)**
 
-<details>
-<summary>📊 Option 1: Checkpointer Only</summary>
-
 ![Checkpointer Only](../assets/diagrams/decisions/memory_option_1_checkpointer_only.png)
-
-</details>
 
 - Simple setup
 - Memory lost after TTL expires
@@ -46,12 +41,7 @@ We needed to decide how to manage conversation memory for the customer chatbot.
 
 ### 2️⃣ **Store Only (Postgres)**
 
-<details>
-<summary>📊 Option 2: Store Only</summary>
-
 ![Store Only](../assets/diagrams/decisions/memory_option_2_store_only.png)
-
-</details>
 
 - Permanent storage
 - Slower than Redis

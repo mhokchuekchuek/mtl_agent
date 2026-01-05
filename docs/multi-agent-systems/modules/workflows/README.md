@@ -24,12 +24,7 @@ Workflows define graph structure (nodes, edges) but do NOT compile. Compilation 
 
 ## **🏗️ Architecture**
 
-<details>
-<summary>📊 Architecture</summary>
-
 ![Architecture](../../../assets/diagrams/modules/workflows_README_1.png)
-
-</details>
 
 
 ---
@@ -68,24 +63,14 @@ class MyWorkflow(BaseWorkflow):
 
 ### 📊 **Fixed Flow (CustomerChatbot)**
 
-<details>
-<summary>📊 Fixed Flow (CustomerChatbot)</summary>
-
 ![Fixed Flow (CustomerChatbot)](../../../assets/diagrams/modules/workflows_README_2.png)
-
-</details>
 
 Simple linear flow where every query follows same path.
 
 
 ### 🔀 **Conditional Flow (ClientChatbot)**
 
-<details>
-<summary>📊 Conditional Flow (ClientChatbot)</summary>
-
 ![Conditional Flow (ClientChatbot)](../../../assets/diagrams/modules/workflows_README_3.png)
-
-</details>
 
 Uses conditional edges to route based on classified intent.
 

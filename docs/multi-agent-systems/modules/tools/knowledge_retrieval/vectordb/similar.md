@@ -51,12 +51,7 @@ Find similar products based on vector similarity. Gets the embedding of a produc
 
 ### 1️⃣ **Retrieve Product's Embedding**
 
-<details>
-<summary>📊 Step 1: Retrieve Product's Embedding</summary>
-
 ![Step 1: Retrieve Product's Embedding](../../../../../assets/diagrams/modules/vectordb_similar_2.png)
-
-</details>
 
 The tool fetches the stored embedding vector for this product:
 
@@ -142,12 +137,7 @@ Each product has:
 
 ## **📊 Comparison: Text Search vs Similar Products**
 
-<details>
-<summary>📊 Comparison: Text Search vs Similar Products</summary>
-
 ![Comparison: Text Search vs Similar Products](../../../../../assets/diagrams/modules/vectordb_similar_4.png)
-
-</details>
 
 | Aspect | Text Search | Similar Products |
 |--------|-------------|------------------|

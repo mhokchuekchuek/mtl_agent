@@ -60,12 +60,7 @@ src/api/
 
 ## **🔄 Application Lifecycle**
 
-<details>
-<summary>📊 Application Lifecycle</summary>
-
 ![Application Lifecycle](../../assets/diagrams/api/api_README_2.png)
-
-</details>
 
 
 ---

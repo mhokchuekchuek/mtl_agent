@@ -111,12 +111,7 @@ Comparison between generic infrastructure clients and domain-specific repositori
 
 Factory pattern that enables swapping providers (e.g., Redis vs Memory) without changing business logic.
 
-<details>
-<summary>📊 Selector Pattern</summary>
-
 ![Selector Pattern](../../assets/diagrams/architecture/architecture_code_4.png)
-
-</details>
 
 ```python
 # libs/database/key_value/selector.py

@@ -27,12 +27,7 @@ Chatbot repositories:
 
 ## **🔄 Code Flow**
 
-<details>
-<summary>📊 Code Flow</summary>
-
 ![Code Flow](../../../assets/diagrams/repositories/chatbots_README_1.png)
-
-</details>
 
 
 ---

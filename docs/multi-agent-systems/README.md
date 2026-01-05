@@ -49,24 +49,14 @@ Two LangGraph-based chatbot workflows:
 
 ### 👤 **Customer Chatbot**
 
-<details>
-<summary>📊 Customer Chatbot</summary>
-
 ![Customer Chatbot](../assets/diagrams/multi-agent-systems/multi-agent-systems_README_2.png)
-
-</details>
 
 **Tools**: SQL (product, order), VectorDB (search, similar)
 
 
 ### 📊 **Client Chatbot**
 
-<details>
-<summary>📊 Client Chatbot</summary>
-
 ![Client Chatbot](../assets/diagrams/multi-agent-systems/multi-agent-systems_README_3.png)
-
-</details>
 
 **Tools**: SQL (analytics, chat_history), Visualization (charts)
 

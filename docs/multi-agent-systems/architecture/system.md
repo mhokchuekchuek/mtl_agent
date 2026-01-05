@@ -63,12 +63,7 @@ User → POST /api/v1/chatbot/{type}/chat
 ChatbotService → ChatbotRepository.invoke()
 ```
 
-<details>
-<summary>📊 2. Repository Processing</summary>
-
 ![2. Repository Processing](../../assets/diagrams/architecture/architecture_system_2.png)
-
-</details>
 
 | Step | Method | Action |
 |------|--------|--------|

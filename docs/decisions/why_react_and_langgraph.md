@@ -27,12 +27,7 @@ We need to orchestrate multiple agents and tools. Two patterns are available:
 
 ## **🏗️ Architecture**
 
-<details>
-<summary>📊 Architecture</summary>
-
 ![Architecture](../assets/diagrams/decisions/decisions_why_react_and_langgraph_1.png)
-
-</details>
 
 
 ---

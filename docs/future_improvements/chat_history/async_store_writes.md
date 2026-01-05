@@ -19,12 +19,7 @@ Current implementation writes to PostgreSQL store **synchronously on every turn*
 
 ## **🔄 Current Flow**
 
-<details>
-<summary>📊 Current Flow</summary>
-
 ![Current Flow](../../assets/diagrams/future_improvements/future_improvements_async_store_writes_1.png)
-
-</details>
 
 **Problem**: Step 4 blocks step 5. User waits for DB write.
 
@@ -39,12 +34,7 @@ Current implementation writes to PostgreSQL store **synchronously on every turn*
 
 Use message queue for immediate async writes on every turn.
 
-<details>
-<summary>📊 Option 1: Message Queue (Real-time)</summary>
-
 ![Option 1: Message Queue (Real-time)](../../assets/diagrams/future_improvements/future_improvements_async_store_writes_2.png)
-
-</details>
 
 | Tool | Description |
 |------|-------------|

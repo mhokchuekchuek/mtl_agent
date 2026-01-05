@@ -51,12 +51,7 @@ Create Plotly charts from data using natural language requests. Uses LLM to gene
 
 ### 1️⃣ **Get Prompt from Langfuse**
 
-<details>
-<summary>📊 Step 1: Get Prompt from Langfuse</summary>
-
 ![Step 1: Get Prompt from Langfuse](../../../../assets/diagrams/modules/visualization_main_2.png)
-
-</details>
 
 The tool retrieves the prompt template `tools_client_visualization` from Langfuse.
 
@@ -141,12 +136,7 @@ html = fig.to_html(full_html=False, include_plotlyjs="cdn")
 
 **None** - This tool does not access any database. It receives data from the SQL tool and only performs visualization.
 
-<details>
-<summary>📊 Database Access</summary>
-
 ![Database Access](../../../../assets/diagrams/modules/visualization_main_4.png)
-
-</details>
 
 
 ---

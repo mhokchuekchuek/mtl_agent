@@ -22,12 +22,7 @@ How to analyze evaluation results and iterate on improvements.
 
 Evaluation is an iterative process:
 
-<details>
-<summary>📊 Evaluation Cycle</summary>
-
 ![Evaluation Cycle](../assets/diagrams/evaluation/eval_cycle_1.png)
-
-</details>
 
 
 ---

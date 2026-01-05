@@ -50,12 +50,7 @@ System design and request flow.
 
 ### 🔄 **Multi-Turn Flow**
 
-<details>
-<summary>📊 Multi-Turn Flow</summary>
-
 ![Multi-Turn Flow](../assets/diagrams/evaluation/evaluation_architecture_3.png)
-
-</details>
 
 Each turn is evaluated separately, scores are aggregated.
 

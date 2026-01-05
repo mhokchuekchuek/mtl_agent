@@ -26,12 +26,7 @@ def build_chatbot_service() -> ChatbotService
 
 ## **🔄 Code Flow**
 
-<details>
-<summary>📊 Code Flow</summary>
-
 ![Code Flow](../../assets/diagrams/dependencies/dependencies_customer_chatbot_1.png)
-
-</details>
 
 
 ---
