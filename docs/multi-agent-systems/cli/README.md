@@ -8,7 +8,7 @@ Application entry point for running API and UI services.
 
 ## **📍 Location**
 
-`main.py`
+[`main.py`](../../../main.py)
 
 
 ---

@@ -8,7 +8,7 @@ SQLite database containing ERP (Enterprise Resource Planning) data.
 
 ## **📍 Location**
 
-`data/erp_database.db`
+[`data/erp_database.db`](../../../data/erp_database.db)
 
 
 ---

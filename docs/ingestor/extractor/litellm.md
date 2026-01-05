@@ -4,7 +4,7 @@ LLM-based structured data extraction using LiteLLM client.
 
 ## Location
 
-`ingestor/extractor/litellm/main.py`
+[`ingestor/extractor/litellm/main.py`](../../../ingestor/extractor/litellm/main.py)
 
 ## Class
 

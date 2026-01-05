@@ -8,7 +8,7 @@ Configuration files for multi-agent chatbots.
 
 ## **📍 Location**
 
-`configs/agents/`
+[`configs/agents/`](../../../configs/agents/)
 
 
 ---

@@ -8,7 +8,7 @@ Generate SQL for BI analytics queries.
 
 ## **📍 Location**
 
-`prompts/tools/client/analytics_sql.prompt`
+[`prompts/tools/client/analytics_sql.prompt`](../../../prompts/tools/client/analytics_sql.prompt)
 
 
 ---

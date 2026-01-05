@@ -8,7 +8,7 @@ Generate SQL for querying chat conversation history.
 
 ## **📍 Location**
 
-`prompts/tools/client/chat_history_sql.prompt`
+[`prompts/tools/client/chat_history_sql.prompt`](../../../prompts/tools/client/chat_history_sql.prompt)
 
 
 ---

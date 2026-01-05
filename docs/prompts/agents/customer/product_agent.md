@@ -8,7 +8,7 @@ System prompt for customer shopping assistant.
 
 ## **📍 Location**
 
-`prompts/agents/customer/product_agent.prompt`
+[`prompts/agents/customer/product_agent.prompt`](../../../prompts/agents/customer/product_agent.prompt)
 
 
 ---

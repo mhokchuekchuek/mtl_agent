@@ -22,7 +22,7 @@ Current implementation writes to PostgreSQL store **synchronously on every turn*
 <details>
 <summary>📊 Current Flow</summary>
 
-![Current Flow](../assets/diagrams/future_improvements/future_improvements_async_store_writes_1.png)
+![Current Flow](../../assets/diagrams/future_improvements/future_improvements_async_store_writes_1.png)
 
 </details>
 
@@ -42,7 +42,7 @@ Use message queue for immediate async writes on every turn.
 <details>
 <summary>📊 Option 1: Message Queue (Real-time)</summary>
 
-![Option 1: Message Queue (Real-time)](../assets/diagrams/future_improvements/future_improvements_async_store_writes_2.png)
+![Option 1: Message Queue (Real-time)](../../assets/diagrams/future_improvements/future_improvements_async_store_writes_2.png)
 
 </details>
 
@@ -67,7 +67,7 @@ Use workflow orchestrator to trigger every 5 mins, check Redis TTL, save only wh
 <details>
 <summary>📊 Option 2: Workflow Orchestrator (Scheduled TTL-based)</summary>
 
-![Option 2: Workflow Orchestrator (Scheduled TTL-based)](../assets/diagrams/future_improvements/future_improvements_async_store_writes_3.png)
+![Option 2: Workflow Orchestrator (Scheduled TTL-based)](../../assets/diagrams/future_improvements/future_improvements_async_store_writes_3.png)
 
 </details>
 

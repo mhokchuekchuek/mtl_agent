@@ -4,7 +4,7 @@ Orchestrates PDF ingestion: parse → extract → embed → store.
 
 ## Location
 
-`ingestor/pipeline.py`
+[`ingestor/pipeline.py`](../../ingestor/pipeline.py)
 
 ## Class
 

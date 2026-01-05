@@ -4,7 +4,7 @@ SQL security validation to prevent injection and unauthorized operations.
 
 ## Location
 
-`src/modules/tools/knowledge_retrieval/sql/base/validator.py`
+[`src/modules/tools/knowledge_retrieval/sql/base/validator.py`](../../../../../../../src/modules/tools/knowledge_retrieval/sql/base/validator.py)
 
 ## Class: SQLValidator
 

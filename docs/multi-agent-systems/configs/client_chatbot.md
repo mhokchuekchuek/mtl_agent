@@ -8,7 +8,7 @@ Configuration for internal BI chatbot.
 
 ## **📍 Location**
 
-`configs/agents/client_chatbot.yaml`
+[`configs/agents/client_chatbot.yaml`](../../../configs/agents/client_chatbot.yaml)
 
 
 ---

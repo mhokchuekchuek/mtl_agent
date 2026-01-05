@@ -8,7 +8,7 @@ Streamlit UI for BI analytics chatbot.
 
 ## **📍 Location**
 
-`ui/client_app.py`
+[`ui/client_app.py`](../../../ui/client_app.py)
 
 
 ---

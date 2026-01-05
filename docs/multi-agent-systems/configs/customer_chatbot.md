@@ -8,7 +8,7 @@ Configuration for customer shopping assistant.
 
 ## **📍 Location**
 
-`configs/agents/customer_chatbot.yaml`
+[`configs/agents/customer_chatbot.yaml`](../../../configs/agents/customer_chatbot.yaml)
 
 
 ---

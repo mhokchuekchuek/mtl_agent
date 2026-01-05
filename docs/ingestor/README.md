@@ -21,7 +21,7 @@ Data ingestion pipeline for processing product PDFs into vector embeddings.
 
 ## **📍 Location**
 
-`ingestor/`
+[`ingestor/`](../../ingestor/)
 
 
 ---

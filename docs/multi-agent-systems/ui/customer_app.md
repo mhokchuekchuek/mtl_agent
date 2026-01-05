@@ -8,7 +8,7 @@ Streamlit UI for customer support chatbot.
 
 ## **📍 Location**
 
-`ui/customer_app.py`
+[`ui/customer_app.py`](../../../ui/customer_app.py)
 
 
 ---

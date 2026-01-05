@@ -4,7 +4,7 @@ Base class for all SQL query tools.
 
 ## Location
 
-`src/modules/tools/knowledge_retrieval/sql/base/main.py`
+[`src/modules/tools/knowledge_retrieval/sql/base/main.py`](../../../../../../../src/modules/tools/knowledge_retrieval/sql/base/main.py)
 
 ## Class: SQLTool
 

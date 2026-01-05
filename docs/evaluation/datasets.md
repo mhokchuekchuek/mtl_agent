@@ -8,7 +8,7 @@ Test case format and structure.
 
 ## **📍 Location**
 
-`data/eval_datasets/`
+[`data/eval_datasets/`](../../data/eval_datasets/)
 
 ---
 

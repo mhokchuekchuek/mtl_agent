@@ -8,7 +8,7 @@ PDF files containing detailed product information for the RAG knowledge base.
 
 ## **📍 Location**
 
-`data/product_details/`
+[`data/product_details/`](../../data/product_details/)
 
 
 ---

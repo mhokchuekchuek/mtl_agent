@@ -8,7 +8,7 @@ Common infrastructure settings inherited by all chatbots.
 
 ## **📍 Location**
 
-`configs/agents/shared.yaml`
+[`configs/agents/shared.yaml`](../../../configs/agents/shared.yaml)
 
 
 ---

@@ -8,7 +8,7 @@ Generate Plotly chart code.
 
 ## **📍 Location**
 
-`prompts/tools/client/visualization.prompt`
+[`prompts/tools/client/visualization.prompt`](../../../prompts/tools/client/visualization.prompt)
 
 
 ---

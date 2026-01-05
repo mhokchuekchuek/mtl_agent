@@ -7,7 +7,8 @@ PostgreSQL database client implementing `BaseSQLDatabase` interface.
 
 
 ## **📍 Location**
-`libs/database/sql/postgres/main.py`
+
+[`libs/database/sql/postgres/main.py`](../../../libs/database/sql/postgres/main.py)
 
 ---
 

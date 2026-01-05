@@ -8,7 +8,7 @@ Route client queries to appropriate agents.
 
 ## **📍 Location**
 
-`prompts/agents/client/orchestrator.prompt`
+[`prompts/agents/client/orchestrator.prompt`](../../../prompts/agents/client/orchestrator.prompt)
 
 
 ---

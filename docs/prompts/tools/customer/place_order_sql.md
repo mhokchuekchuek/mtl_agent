@@ -8,7 +8,7 @@ Generate SQL statements for placing customer orders.
 
 ## **📍 Location**
 
-`prompts/tools/customer/place_order_sql.prompt`
+[`prompts/tools/customer/place_order_sql.prompt`](../../../prompts/tools/customer/place_order_sql.prompt)
 
 
 ---

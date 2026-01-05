@@ -8,7 +8,7 @@ Generate SQL for order queries.
 
 ## **📍 Location**
 
-`prompts/tools/customer/order_sql.prompt`
+[`prompts/tools/customer/order_sql.prompt`](../../../prompts/tools/customer/order_sql.prompt)
 
 
 ---

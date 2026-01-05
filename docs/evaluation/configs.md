@@ -8,7 +8,7 @@ Evaluation configuration files.
 
 ## **📍 Location**
 
-`configs/evaluation/`
+[`configs/evaluation/`](../../configs/evaluation/)
 
 ---
 
