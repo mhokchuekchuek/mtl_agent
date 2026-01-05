@@ -16,7 +16,7 @@ LLM-as-Judge prompt for evaluating chart generation.
 
 ## **📍 Location**
 
-[`prompts/evaluation/judges/visualization_judge.prompt`](../../../prompts/evaluation/judges/visualization_judge.prompt)
+[`prompts/evaluation/judges/visualization_judge.prompt`](../../../../prompts/evaluation/judges/visualization_judge.prompt)
 
 
 ---

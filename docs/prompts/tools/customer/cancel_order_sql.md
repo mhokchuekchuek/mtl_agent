@@ -8,7 +8,7 @@ Generate SQL statements for cancelling customer orders.
 
 ## **📍 Location**
 
-[`prompts/tools/customer/cancel_order_sql.prompt`](../../../prompts/tools/customer/cancel_order_sql.prompt)
+[`prompts/tools/customer/cancel_order_sql.prompt`](../../../../prompts/tools/customer/cancel_order_sql.prompt)
 
 
 ---

@@ -16,7 +16,7 @@ LLM-as-Judge prompt for evaluating response quality.
 
 ## **📍 Location**
 
-[`prompts/evaluation/judges/response_quality_judge.prompt`](../../../prompts/evaluation/judges/response_quality_judge.prompt)
+[`prompts/evaluation/judges/response_quality_judge.prompt`](../../../../prompts/evaluation/judges/response_quality_judge.prompt)
 
 
 ---

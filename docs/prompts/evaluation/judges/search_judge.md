@@ -16,7 +16,7 @@ LLM-as-Judge prompt for evaluating vector search quality.
 
 ## **📍 Location**
 
-[`prompts/evaluation/judges/search_judge.prompt`](../../../prompts/evaluation/judges/search_judge.prompt)
+[`prompts/evaluation/judges/search_judge.prompt`](../../../../prompts/evaluation/judges/search_judge.prompt)
 
 
 ---

@@ -8,7 +8,7 @@ Evaluate SQL query correctness.
 
 ## **📍 Location**
 
-[`prompts/evaluation/judges/sql_judge.prompt`](../../../prompts/evaluation/judges/sql_judge.prompt)
+[`prompts/evaluation/judges/sql_judge.prompt`](../../../../prompts/evaluation/judges/sql_judge.prompt)
 
 
 ---

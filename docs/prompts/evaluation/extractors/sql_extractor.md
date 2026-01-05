@@ -16,7 +16,7 @@ Extraction prompt for pulling SQL operations from agent steps.
 
 ## **📍 Location**
 
-[`prompts/evaluation/extractors/sql_extractor.prompt`](../../../prompts/evaluation/extractors/sql_extractor.prompt)
+[`prompts/evaluation/extractors/sql_extractor.prompt`](../../../../prompts/evaluation/extractors/sql_extractor.prompt)
 
 
 ---

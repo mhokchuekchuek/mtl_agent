@@ -8,7 +8,7 @@ Generate SQL for product queries.
 
 ## **📍 Location**
 
-[`prompts/tools/customer/product_sql.prompt`](../../../prompts/tools/customer/product_sql.prompt)
+[`prompts/tools/customer/product_sql.prompt`](../../../../prompts/tools/customer/product_sql.prompt)
 
 
 ---

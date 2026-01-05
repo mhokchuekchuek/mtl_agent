@@ -16,7 +16,7 @@ System prompt for the customer insight and BI analytics agent.
 
 ## **📍 Location**
 
-[`prompts/agents/client/insight.prompt`](../../../prompts/agents/client/insight.prompt)
+[`prompts/agents/client/insight.prompt`](../../../../prompts/agents/client/insight.prompt)
 
 
 ---

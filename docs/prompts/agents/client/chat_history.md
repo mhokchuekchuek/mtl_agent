@@ -16,7 +16,7 @@ System prompt for the customer chat history lookup agent.
 
 ## **📍 Location**
 
-[`prompts/agents/client/chat_history.prompt`](../../../prompts/agents/client/chat_history.prompt)
+[`prompts/agents/client/chat_history.prompt`](../../../../prompts/agents/client/chat_history.prompt)
 
 
 ---

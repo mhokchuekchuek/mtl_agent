@@ -16,7 +16,7 @@ System prompt for translating text between Thai and English.
 
 ## **📍 Location**
 
-[`prompts/agents/translation.prompt`](../../prompts/agents/translation.prompt)
+[`prompts/agents/translation.prompt`](../../../prompts/agents/translation.prompt)
 
 
 ---

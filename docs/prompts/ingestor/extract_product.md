@@ -8,7 +8,7 @@ Extract structured product information from PDF text.
 
 ## **📍 Location**
 
-[`prompts/ingestor/extract_product.prompt`](../../prompts/ingestor/extract_product.prompt)
+[`prompts/ingestor/extract_product.prompt`](../../../prompts/ingestor/extract_product.prompt)
 
 
 ---
