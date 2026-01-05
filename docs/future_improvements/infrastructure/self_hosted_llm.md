@@ -1,8 +1,6 @@
 # **🖥️ Self-Hosted LLM with vLLM**
 
-
 ---
-
 
 ## **📋 Overview**
 
@@ -10,13 +8,11 @@ Deploy private LLM infrastructure using vLLM for inference on Kubernetes.
 
 ---
 
-
 ## **❓ Why Consider This**
-
 
 ### 🧠 **LLMs Are Getting Smarter**
 
-- Future models require fewer tokens to produce better results
+- Smaller models achieve equal or better quality than older large models
 - Cost per query decreases as model efficiency improves
 - Self-hosting becomes more economical at scale
 
@@ -32,86 +28,52 @@ Deploy private LLM infrastructure using vLLM for inference on Kubernetes.
 
 ---
 
-
 ## **☸️ Kubernetes Deployment Options**
-
 
 ### 1️⃣ **Single-Node: Deployment**
 
-Standard Kubernetes Deployment for single GPU node:
+Standard Kubernetes Deployment for single GPU node. Best for models that fit in one GPU (7B-13B parameters with quantization).
 
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: vllm
-spec:
-  replicas: 1
-  template:
-    spec:
-      containers:
-      - name: vllm
-        image: vllm/vllm-openai:latest
-        resources:
-          limits:
-            nvidia.com/gpu: 1
-        ports:
-        - containerPort: 8000
-        livenessProbe:
-          httpGet:
-            path: /health
-            port: 8000
-```
+- Native K8s, no extra operators needed
+- Simple scaling with HPA
+- Use `nvidia.com/gpu` resource limits
 
 ### 2️⃣ **Multi-Node: LeaderWorkerSet (LWS)**
 
-For large models sharded across multiple nodes, use LeaderWorkerSet instead of Deployment or StatefulSet:
+Kubernetes SIG project for deploying pods as a group. The leader (index 0) coordinates workers for distributed inference.
 
-```yaml
-apiVersion: leaderworkerset.x-k8s.io/v1
-kind: LeaderWorkerSet
-metadata:
-  name: vllm-multi-node
-spec:
-  replicas: 1
-  leaderWorkerTemplate:
-    size: 2  # 1 leader + 1 worker
-    leaderTemplate:
-      spec:
-        containers:
-        - name: vllm
-          image: vllm/vllm-openai:latest
-          resources:
-            limits:
-              nvidia.com/gpu: 8
-```
+![LeaderWorkerSet Concept](../../assets/diagrams/future_improvements/lws_concept.png)
 
-### 3️⃣ **Production: Helm Charts**
+- **Gang Scheduling**: All pods in a replica scheduled together (all-or-nothing)
+- **Dual Templates**: Separate specs for leader and workers
+- **Unique Indexing**: Each pod gets index 0 to n-1
+- Used by NVIDIA NIM, llm-d, Amazon EKS for multi-node LLM serving
 
-vLLM Production Stack provides ready-to-use Helm charts:
+### 3️⃣ **Multi-Node: Ray (KubeRay)**
 
-```bash
-helm repo add vllm https://vllm-project.github.io/production-stack
-helm install vllm vllm/vllm-stack -f values.yaml
-```
+KubeRay operator brings Ray's distributed computing to Kubernetes. Used by OpenAI for ChatGPT training.
+
+![Ray E2E LLM](../../assets/diagrams/future_improvements/ray_e2e_llm.png)
+
+- **Ray Serve** (`ray.serve.llm`): Auto-scaling, load balancing, vLLM integration
+- **3-Level Autoscaling**: Ray Serve replicas → KubeRay workers → Cluster Autoscaler
+- Part of PyTorch Foundation (2025)
+
+### **⚖️ Comparison**
+
+| Option | Pros | Cons |
+|--------|------|------|
+| **Deployment** | Simple setup, native K8s | Single node only |
+| **LeaderWorkerSet** | Multi-node, native K8s CRD | Less ecosystem tooling |
+| **Ray** | Used by OpenAI/ChatGPT, auto-scaling, dashboard, PyTorch Foundation | Extra operator overhead |
 
 ---
-
 
 ## **🔗 LiteLLM Integration**
 
-Connect to vLLM via LiteLLM proxy:
-
-```yaml
-model_list:
-  - model_name: llama-3-70b
-    litellm_params:
-      model: hosted_vllm/meta-llama/Llama-3-70B-Instruct
-      api_base: http://vllm-service:8000
-```
+Connect to vLLM via LiteLLM proxy for unified API gateway with caching, rate limiting, and observability.
 
 ---
-
 
 ## **⚖️ Trade-offs**
 
@@ -123,7 +85,6 @@ model_list:
 | Customizable | Need enough traffic to justify cost |
 
 ---
-
 
 ## **🤔 When to Self-Host vs API**
 
@@ -137,17 +98,18 @@ model_list:
 
 ---
 
-
 ## **📚 See Also**
 
-- [Caching Strategy](caching.md) - LMCache, LiteLLM caching, semantic cache
+- [Caching Strategy](caching.md) - LiteLLM cache, LMCache
 
 ---
-
 
 ## **🔗 References**
 
 - [vLLM Kubernetes Docs](https://docs.vllm.ai/en/stable/deployment/k8s/)
 - [vLLM Production Stack](https://github.com/vllm-project/production-stack)
+- [LeaderWorkerSet Docs](https://lws.sigs.k8s.io/docs/overview/)
 - [LeaderWorkerSet for Multi-Node LLM](https://www.cecg.io/blog/multinode-llm-serving)
+- [KubeRay vLLM Integration](https://docs.vllm.ai/en/latest/deployment/integrations/kuberay/)
+- [Ray LLM End-to-End Example](https://docs.ray.io/en/latest/ray-overview/examples/entity-recognition-with-llms/README.html)
 - [LiteLLM vLLM Integration](https://docs.litellm.ai/docs/providers/vllm)
