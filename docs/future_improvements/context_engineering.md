@@ -2,12 +2,9 @@
 
 Techniques for managing LLM context windows effectively in the MTL Agent system.
 
-<details>
-<summary>📊 Context Engineering Strategies</summary>
+![Context Engineering Categories](../assets/diagrams/future_improvements/context_categories.png)
 
-![Context Engineering Strategies](../assets/diagrams/future_improvements/context_engineering.png)
-
-</details>
+*Source: [LangChain Blog](https://blog.langchain.com/context-engineering-for-agents/)*
 
 
 ---
@@ -15,10 +12,12 @@ Techniques for managing LLM context windows effectively in the MTL Agent system.
 
 ## **📋 What is Context Engineering?**
 
-Context engineering is the art of filling the context window with **just the right information** at each step of an agent's trajectory. Think of it like RAM management for LLMs.
+> "The delicate art and science of filling the context window with just the right information for the next step."
+> — Andrej Karpathy
 
-> "Context engineering is becoming the most important skill an AI engineer can develop."
-> — [LangChain Blog](https://blog.langchain.com/context-engineering-for-agents/)
+Context engineering treats the LLM's context window like **RAM in an operating system** - managing limited capacity to hold relevant information as agents perform tasks.
+
+**Why it matters**: Long-running agent tasks accumulate tokens that can exceed context limits, increase costs/latency, and degrade performance. This is effectively the #1 job of engineers building AI agents.
 
 
 ---
@@ -40,12 +39,13 @@ Context engineering is the art of filling the context window with **just the rig
 
 Save information outside the context window for later retrieval.
 
-| Problem | Solution |
-|---------|----------|
-| SQL results (1000+ rows) bloat context | Save to scratchpad, keep only summary in messages |
-| Context grows with each tool call | Write large data externally, reference by key |
+![Write Context](../assets/diagrams/future_improvements/context_write.png)
 
-**Techniques**: Scratchpad tools (`write_scratch`, `read_scratch`), Long-term memory store
+**Examples**:
+- **Scratchpads**: Agents take notes during tasks by writing to files or state objects
+- **Memories**: Auto-generate long-term memories across sessions (like ChatGPT, Cursor)
+
+**MTL Agent**: Save large SQL results to scratchpad, keep only summary in messages
 
 
 ---
@@ -55,12 +55,15 @@ Save information outside the context window for later retrieval.
 
 Pull only relevant information into the context window.
 
-| Problem | Solution |
-|---------|----------|
-| All 100+ messages loaded | Semantic selection - embed and find relevant messages |
-| Agent gets distracted by irrelevant history | Keep only top-k similar + recent messages |
+![Select Context](../assets/diagrams/future_improvements/context_select.png)
 
-**Techniques**: Embedding-based message selection, Tool selection with RAG
+**Examples**:
+- Pulling scratchpad notes via tool calls
+- Using embeddings to retrieve task-relevant memories
+- RAG for tool descriptions to fetch only appropriate tools
+- Code agents selecting instructions from `.md` rules files
+
+**MTL Agent**: Semantic selection of relevant messages, tool selection with RAG
 
 
 ---
@@ -70,12 +73,13 @@ Pull only relevant information into the context window.
 
 Reduce token count while retaining essential information.
 
-| Problem | Solution |
-|---------|----------|
-| Messages grow unbounded (50K+ tokens) | Auto-summarize old messages |
-| Large tool outputs | Show sample + summary, save full data to scratchpad |
+![Compress Context](../assets/diagrams/future_improvements/context_compress.png)
 
-**Techniques**: LLM summarization, Tool output compression
+**Examples**:
+- **Summarization**: Claude Code applies "auto-compact" when context exceeds 95% capacity
+- **Trimming**: Filter older messages or use trained pruners
+
+**MTL Agent**: Auto-summarize old messages, compress large tool outputs
 
 
 ---
@@ -85,14 +89,14 @@ Reduce token count while retaining essential information.
 
 Split context across agents to maintain focus.
 
-| Problem | Solution |
-|---------|----------|
-| Single agent sees everything | Route to specialized agents with isolated tools |
-| Context bleeding between tasks | State schema isolation per agent |
+![Isolate Context](../assets/diagrams/future_improvements/context_isolate.png)
 
-**Current Implementation**: Orchestrator routes to ChatHistoryAgent or InsightAgent (each with own tools)
+**Examples**:
+- **Multi-agent systems**: Specialized agents each maintain separate context windows
+- **Sandboxed environments**: Token-heavy objects (images, audio) remain external to LLM
+- **State objects**: Expose only necessary information at each step
 
-**Enhancement**: Parallel agent execution with isolated state fields
+**MTL Agent**: Orchestrator routes to ChatHistoryAgent or InsightAgent (each with own tools)
 
 
 ---
