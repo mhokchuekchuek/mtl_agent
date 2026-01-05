@@ -72,23 +72,23 @@ Raw text extracted from PDF.
 ---
 
 
-## **📦 Submodules**
-
-| | |
-|:---:|:---:|
-| [📄 **Product PDFs**](product-pdfs.md)<br/>100 product detail PDF files | [🔍 **Extractor**](extractor/README.md)<br/>LLM-based structured data extraction |
-| [🔄 **Pipeline**](pipeline.md)<br/>Orchestration of parse → extract → embed → store | |
-
-
----
-
-
 ## **🔗 Related**
 
 - [Why PyPDF2 Parser](../decisions/why_pypdf2_parser.md) - Why use PyPDF2 for PDF parsing
 - [Why LLM Extractor](../decisions/why_llm_extractor.md) - Why use LLM for data extraction
 - [Why Flat Text Payload](../decisions/why_flat_text_payload.md) - Why store data as flat text
 - [Future: Workflow Orchestrator](../future_improvements/ingestion/workflow_orchestrator.md) - Production enhancements
+
+
+---
+
+
+## **📦 Submodules**
+
+| | |
+|:---:|:---:|
+| [📄 **Product PDFs**](product-pdfs.md)<br/>100 product detail PDF files | [🔍 **Extractor**](extractor/README.md)<br/>LLM-based structured data extraction |
+| [🔄 **Pipeline**](pipeline.md)<br/>Orchestration of parse → extract → embed → store | |
 
 
 ---
