@@ -15,10 +15,6 @@ Documentation for the MTL Agent ERP multi-agent system.
 
 Ingest product PDFs into vector database for semantic search.
 
-```bash
-python scripts/ingest_pdfs.py
-```
-
 ![Ingestor Pipeline](assets/diagrams/guides/guides_data-science_1.png)
 
 → See [Ingestor Pipeline](ingestor/README.md)
@@ -42,11 +38,6 @@ Process user queries through agents, tools, and workflows.
 ### 3️⃣ **Evaluation & Improvement**
 
 Run LLM-as-Judge evaluation to measure and improve quality.
-
-```bash
-python scripts/run_eval.py customer
-python scripts/run_eval.py client
-```
 
 ![Evaluation Cycle](assets/diagrams/evaluation/eval_cycle_1.png)
 
