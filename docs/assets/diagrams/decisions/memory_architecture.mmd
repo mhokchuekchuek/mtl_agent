@@ -1,0 +1,38 @@
+flowchart TB
+    subgraph User["User Request"]
+        U[User Message]
+    end
+
+    subgraph Workflow["LangGraph Workflow"]
+        W1[Load State]
+        W2[Process]
+        W3[Save State]
+    end
+
+    subgraph ShortTerm["Short-term Memory"]
+        R[(Redis Checkpointer<br/>TTL: 60 min)]
+    end
+
+    subgraph LongTerm["Long-term Memory"]
+        P[(PostgreSQL Store<br/>Permanent)]
+    end
+
+    U --> W1
+    R -->|auto load| W1
+    W1 --> W2
+    W2 --> W3
+    W3 -->|auto save| R
+    W3 -->|manual save| P
+    W3 --> Response[Response to User]
+
+    classDef user fill:#dbeafe,stroke:#3b82f6,stroke-width:2px,color:#1e40af
+    classDef workflow fill:#ede9fe,stroke:#8b5cf6,stroke-width:2px,color:#5b21b6
+    classDef redis fill:#fee2e2,stroke:#ef4444,stroke-width:2px,color:#b91c1c
+    classDef postgres fill:#d1fae5,stroke:#10b981,stroke-width:2px,color:#065f46
+    classDef output fill:#fef3c7,stroke:#f59e0b,stroke-width:2px,color:#b45309
+
+    class U user
+    class W1,W2,W3 workflow
+    class R redis
+    class P postgres
+    class Response output

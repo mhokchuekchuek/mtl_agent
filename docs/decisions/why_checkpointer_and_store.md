@@ -32,11 +32,12 @@ We needed to decide how to manage conversation memory for the customer chatbot.
 
 ### 1️⃣ **Checkpointer Only (Redis)**
 
-```
-User → Workflow → Redis (TTL: 60 min)
-                      ↓ (TTL expires)
-                    [Lost]
-```
+<details>
+<summary>📊 Option 1: Checkpointer Only</summary>
+
+![Checkpointer Only](../assets/diagrams/decisions/memory_option_1_checkpointer_only.png)
+
+</details>
 
 - Simple setup
 - Memory lost after TTL expires
@@ -45,9 +46,12 @@ User → Workflow → Redis (TTL: 60 min)
 
 ### 2️⃣ **Store Only (Postgres)**
 
-```
-User → Workflow → Postgres
-```
+<details>
+<summary>📊 Option 2: Store Only</summary>
+
+![Store Only](../assets/diagrams/decisions/memory_option_2_store_only.png)
+
+</details>
 
 - Permanent storage
 - Slower than Redis
@@ -56,11 +60,12 @@ User → Workflow → Postgres
 
 ### 3️⃣ **Checkpointer + Store (Chosen)**
 
-```
-User → Workflow → Redis (short-term, auto-managed)
-              ↓
-           Postgres (long-term, manual save)
-```
+<details>
+<summary>📊 Option 3: Checkpointer + Store</summary>
+
+![Checkpointer + Store](../assets/diagrams/decisions/memory_option_3_both.png)
+
+</details>
 
 - Fast working memory (Redis)
 - Permanent backup (Postgres)
