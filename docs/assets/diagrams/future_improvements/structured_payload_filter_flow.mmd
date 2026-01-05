@@ -1,0 +1,14 @@
+flowchart TD
+    U["User: 'lightweight phone accessories'"] --> LLM[LLM Extract Filters]
+    LLM --> F["{ category: 'Mobile Accessories',<br/>weight_max: 1.0 }"]
+    F --> Q[(Qdrant:<br/>filter + vector search)]
+
+    classDef user fill:#dbeafe,stroke:#3b82f6,stroke-width:2px,color:#1e40af
+    classDef llm fill:#ede9fe,stroke:#8b5cf6,stroke-width:2px,color:#5b21b6
+    classDef filter fill:#fef3c7,stroke:#f59e0b,stroke-width:2px,color:#b45309
+    classDef db fill:#d1fae5,stroke:#10b981,stroke-width:2px,color:#065f46
+
+    class U user
+    class LLM llm
+    class F filter
+    class Q db

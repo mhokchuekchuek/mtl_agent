@@ -54,11 +54,7 @@ When ingesting product data to Qdrant, we can either:
 
 With structured fields, user query must be parsed to match exact field names:
 
-```
-User: "lightweight phone accessories under 1kg"
-       ↓ (LLM extraction needed)
-Filters: category="Mobile Accessories", weight<1.0
-```
+![Filter Mapping](../assets/diagrams/decisions/flat_text_filter_mapping.png)
 
 This adds complexity and potential for mismatches.
 

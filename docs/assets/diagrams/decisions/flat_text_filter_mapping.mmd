@@ -1,0 +1,11 @@
+flowchart TD
+    U["User: 'lightweight phone accessories under 1kg'"] --> LLM[LLM Extraction]
+    LLM --> F["Filters:<br/>category='Mobile Accessories'<br/>weight < 1.0"]
+
+    classDef user fill:#dbeafe,stroke:#3b82f6,stroke-width:2px,color:#1e40af
+    classDef llm fill:#ede9fe,stroke:#8b5cf6,stroke-width:2px,color:#5b21b6
+    classDef filter fill:#fef3c7,stroke:#f59e0b,stroke-width:2px,color:#b45309
+
+    class U user
+    class LLM llm
+    class F filter

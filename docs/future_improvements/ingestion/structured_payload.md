@@ -46,13 +46,7 @@ Store extracted fields separately for filtering:
 
 Requires extra LLM call to extract filters from user query:
 
-```
-User: "lightweight phone accessories"
-        ↓
-LLM: { "category": "Mobile Accessories", "weight_max": 1.0 }
-        ↓
-Qdrant: filter + vector search
-```
+![Filter Flow](../../assets/diagrams/future_improvements/structured_payload_filter_flow.png)
 
 
 ---
