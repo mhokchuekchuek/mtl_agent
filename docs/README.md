@@ -2,7 +2,7 @@
 
 Documentation for the MTL Agent ERP multi-agent system.
 
-> 💡 **Tip:** New to the project? Start with the [Quick Start](../README.md#-quick-start) guide.
+> 💡 **Tip:** New to the project? Start with the [Quick Start](../README.md#-quick-start) guide or explore the [Guides](guides/README.md).
 
 
 ---

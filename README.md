@@ -216,4 +216,4 @@ curl -X POST http://localhost:8000/api/v1/chatbot/client/chat \
 
 ## **📚 Documentation**
 
-For complete documentation, see [📚 **Full Docs**](docs/README.md).
+For complete documentation, see [📚 **Full Docs**](docs/README.md)
