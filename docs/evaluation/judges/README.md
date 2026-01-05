@@ -92,14 +92,24 @@ class JudgeResult:
 
 ## **❌ Negative Cases**
 
-For testing that the agent correctly refuses or skips actions:
+Negative cases test that the agent correctly **refuses unauthorized actions** or **skips unnecessary operations**.
 
 | Expected Value | Meaning |
 |----------------|---------|
 | `sql: "null"` | Should not generate SQL |
-| `search_results: []` | Should return no results |
+| `search_results: "null"` | Should not search |
 | `has_chart: false` | Should not create chart |
-| `response_quality: "null"` | Should not respond |
+
+### **Detailed Examples**
+
+Each judge documents specific negative case scenarios:
+
+| Judge | Example Scenario | Details |
+|-------|------------------|---------|
+| SQL | Customer asking about other customer's data | [sql.md → Negative Cases](sql.md#-negative-cases) |
+| Search | Non-existent or competitor products | [search.md → Negative Cases](search.md#-negative-cases) |
+| Visualization | Simple counts that don't need charts | [visualization.md → Negative Cases](visualization.md#-negative-cases) |
+| Response Quality | Requests requiring polite refusal | [response_quality.md → Negative Cases](response_quality.md#-negative-cases) |
 
 
 ---

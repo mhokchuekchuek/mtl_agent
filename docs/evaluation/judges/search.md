@@ -53,6 +53,8 @@ expected_output:
 
 ## **❌ Negative Cases**
 
+Use `search_results: "null"` to test that the agent correctly **refuses** to search.
+
 ```yaml
 # Should not search
 expected_output:
@@ -62,6 +64,22 @@ expected_output:
 expected_output:
   search_results: []
 ```
+
+- **Pass**: No search operations found
+- **Fail**: Search was executed
+
+
+### 👤 **Customer Chatbot**
+
+Should refuse or return empty:
+
+| Category | Example | Expected |
+|----------|---------|----------|
+| Non-existent products | "Do you have flying cars?" | `search_results: "null"` |
+| Competitor products | "I want iPhone 15" | `search_results: "null"` |
+| Out of scope | "Find me a restaurant nearby" | `search_results: "null"` |
+
+See [`data/eval_datasets/customer/negative/`](../../../data/eval_datasets/customer/negative/) for more examples.
 
 
 ---
