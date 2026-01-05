@@ -1,6 +1,6 @@
 # **🔴 Redis**
 
-Caching layer for LiteLLM responses and session memory.
+Key-value store for LangGraph Checkpointer (short-term memory) and LiteLLM caching.
 
 
 ---
@@ -33,5 +33,14 @@ redis:
 
 ## **💡 Purpose**
 
+- LangGraph Checkpointer for short-term memory (conversation state)
 - Caching for LiteLLM responses
-- Session memory storage
+
+
+---
+
+
+## **🔗 Related**
+
+- [Redis Client](../../libs/database/key_value/redis.md)
+- [Why Checkpointer + Store](../../decisions/why_checkpointer_and_store.md)

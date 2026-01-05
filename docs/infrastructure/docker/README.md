@@ -43,9 +43,9 @@ docker-compose down -v && docker-compose up -d
 
 | Volume | Service | Purpose |
 |--------|---------|---------|
-| `redis_data` | Redis | Cache data |
-| `postgres_data` | PostgreSQL | LiteLLM database |
-| `qdrant_storage` | Qdrant | Vector embeddings |
+| `redis_data` | Redis | LangGraph Checkpointer (short-term memory) |
+| `postgres_data` | PostgreSQL | LangGraph Store + LiteLLM database |
+| `qdrant_storage` | Qdrant | Product vector embeddings |
 
 
 ### 📂 **Mounted Files**

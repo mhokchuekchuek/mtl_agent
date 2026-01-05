@@ -38,3 +38,12 @@ qdrant:
 
 - Store product PDF embeddings
 - Semantic search for RAG agent
+
+
+---
+
+
+## **🔗 Related**
+
+- [Qdrant Schema](../databases/qdrant.md)
+- [Qdrant Client](../../libs/database/vector/qdrant.md)
