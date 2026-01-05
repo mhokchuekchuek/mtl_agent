@@ -91,12 +91,13 @@ python main.py client_ui
 
 ## **📝 Design Decisions**
 
-| Decision | Link |
-|----------|------|
-| ReAct & LangGraph | [why_react_and_langgraph.md](../decisions/why_react_and_langgraph.md) |
-| Checkpointer + Store | [why_checkpointer_and_store.md](../decisions/why_checkpointer_and_store.md) |
-| OpenAI Model | [why_openai_model.md](../decisions/why_openai_model.md) |
-| Langfuse | [why_langfuse.md](../decisions/why_langfuse.md) |
+| Decision | Description | Applies To | Link |
+|----------|-------------|------------|------|
+| ReAct & LangGraph | When to use ReAct agents vs LangGraph workflows | All agents, workflows | [why_react_and_langgraph.md](../decisions/why_react_and_langgraph.md) |
+| Checkpointer + Store | Redis for short-term, Postgres for long-term memory | All workflows | [why_checkpointer_and_store.md](../decisions/why_checkpointer_and_store.md) |
+| OpenAI Model | Model selection rationale | All agents | [why_openai_model.md](../decisions/why_openai_model.md) |
+| LiteLLM | Centralized LLM gateway | All agents | [why_litellm.md](../decisions/why_litellm.md) |
+| Langfuse | Observability and prompt management | All agents, tools | [why_langfuse.md](../decisions/why_langfuse.md) |
 
 
 ---
@@ -104,8 +105,13 @@ python main.py client_ui
 
 ## **🔮 Future Improvements**
 
-| Improvement | Link |
-|-------------|------|
-| Workflow Orchestrator | [workflow_orchestrator.md](../future_improvements/ingestion/workflow_orchestrator.md) |
-| Async Store Writes | [async_store_writes.md](../future_improvements/chat_history/async_store_writes.md) |
-| Embedding Models | [embedding_models.md](../future_improvements/ingestion/embedding_models.md) |
+| Improvement | Description | Improves | Link |
+|-------------|-------------|----------|------|
+| Embedding Models | Better semantic search | ProductAgent, VectorDB tools | [embedding_models.md](../future_improvements/ingestion/embedding_models.md) |
+| Search Algorithms | Hybrid search strategies | ProductAgent, VectorDB tools | [search_algorithms.md](../future_improvements/ingestion/search_algorithms.md) |
+| Structured Payload | Type-safe tool outputs | All tools | [structured_payload.md](../future_improvements/ingestion/structured_payload.md) |
+| Context Engineering | Managing LLM context windows | All agents | [context_engineering.md](../future_improvements/context_engineering.md) |
+| Deep Agents Integration | LangChain Deep Agents patterns | All workflows | [deep_agents_integration.md](../future_improvements/deep_agents_integration.md) |
+| Caching Strategy | LiteLLM, semantic cache, embedding cache | All agents | [caching.md](../future_improvements/infrastructure/caching.md) |
+| Self-Hosted LLM | vLLM, Ollama deployment | All agents | [self_hosted_llm.md](../future_improvements/infrastructure/self_hosted_llm.md) |
+| Async Store Writes | Non-blocking memory persistence | All workflows | [async_store_writes.md](../future_improvements/chat_history/async_store_writes.md) |
