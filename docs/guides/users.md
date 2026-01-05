@@ -2,27 +2,6 @@
 
 Guide for end users and business users who want to use the chatbot.
 
-
----
-
-
-## **📋 Parameters**
-
-These parameters are used by both UI and API:
-
-| Parameter | Purpose |
-|-----------|---------|
-| `thread_id` | Conversation ID for multi-turn chat |
-| `user_id` | Customer ID (1-100) for order operations |
-
-> 💡 **Tip:** Use the same `thread_id` for follow-up questions to maintain context.
-
-
----
-
-
-## **🤖 Chatbots**
-
 | Chatbot | Purpose | Port |
 |---------|---------|------|
 | Customer Chatbot | Product search, orders, support | 8501 |
@@ -32,47 +11,72 @@ These parameters are used by both UI and API:
 ---
 
 
-## **👤 Customer Chatbot**
+## **🖥️ UI**
+
+### **👤 Customer Chatbot**
 
 **Features**: Product search, stock/price check, place/cancel orders, view orders
+
+**First Steps**: Enter your User ID (1-100) in the sidebar before chatting.
+
+![Customer Do First](../assets/screenshots/customer-chatbot-do-first.png)
 
 **Example Queries**:
 - "Do you have gaming products?"
 - "I want to order 2 Gaming Chairs"
 - "Cancel my order #123"
 
-**Screenshots**: [Customer App](../multi-agent-systems/ui/customer_app.md#screenshots)
+![Customer Ask Product](../assets/screenshots/customer_ask_for_product.png)
 
-**API**: [Customer Chat API](../multi-agent-systems/api/customer_chat.md)
+![Customer Order](../assets/screenshots/customer_order.png)
+
+![Customer View Order](../assets/screenshots/customer_view_their_order.png)
+
+![Customer Cancel Order](../assets/screenshots/customer_cancel_order.png)
 
 
----
-
-
-## **💼 Client Chatbot**
+### **💼 Client Chatbot**
 
 **Features**: Sales analytics, revenue reports, visualizations, chat history lookup
+
+**First Steps**: Click "New Conversation" in the sidebar to start a new session.
+
+![Client Do First](../assets/screenshots/client-chatbot-do-first.png)
 
 **Example Queries**:
 - "Show me this month's sales"
 - "Revenue by category as a chart"
 - "What did customer 123 ask yesterday?"
 
-**Screenshots**: [Client App](../multi-agent-systems/ui/client_app.md#screenshots)
+![Client Graph](../assets/screenshots/client_graph.png)
 
-**API**: [Client Chat API](../multi-agent-systems/api/client_chat.md)
+![Client Without Graph](../assets/screenshots/client_without_graph.png)
+
+![Client Lookup Customer Chat](../assets/screenshots/client_lookup_customer_chat.png)
 
 
 ---
 
 
-## **🔗 API Usage**
+## **🔗 API**
 
-
-### 📤 **Request**
+### **👤 Customer Chatbot**
 
 ```bash
-curl -X POST http://localhost:8000/api/v1/chatbot/{customer|client}/chat \
+curl -X POST http://localhost:8000/api/v1/chatbot/customer/chat \
   -H "Content-Type: application/json" \
-  -d '{"query": "...", "thread_id": "session-123", "user_id": "15"}'
+  -d '{"query": "Do you have gaming products?", "thread_id": "session-123", "user_id": "15"}'
 ```
+
+→ See [Customer Chat API](../multi-agent-systems/api/customer_chat.md)
+
+
+### **💼 Client Chatbot**
+
+```bash
+curl -X POST http://localhost:8000/api/v1/chatbot/client/chat \
+  -H "Content-Type: application/json" \
+  -d '{"query": "Show me this month sales", "thread_id": "session-456"}'
+```
+
+→ See [Client Chat API](../multi-agent-systems/api/client_chat.md)
