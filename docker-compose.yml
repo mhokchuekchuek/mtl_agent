@@ -59,6 +59,10 @@ services:
       - ./prompts:/app/prompts:ro
     env_file:
       - .env
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/litellm
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
     command:
       ["--config", "/app/config.yaml", "--port", "4000", "--detailed_debug"]
     depends_on:
