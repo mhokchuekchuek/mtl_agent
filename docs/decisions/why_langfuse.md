@@ -71,18 +71,7 @@ Built-in dashboard for monitoring costs, model usage distribution, and trace vol
 *Dashboard showing trace counts, total cost, model usage breakdown, and trends*
 
 
-### 4️⃣ **Evaluation & Scoring**
-
-Langfuse provides evaluation capabilities:
-- **Scores**: Attach scores to traces (manual or automated)
-- **Datasets**: Create test datasets from production traces
-- **Experiments**: Run prompt experiments and compare results
-- **LLM-as-Judge**: Use LLM evaluators for automated scoring
-
-> 💡 **Tip:** This enables continuous improvement of prompts based on real production data.
-
-
-### 5️⃣ **Self-Hosting Option**
+### 4️⃣ **Self-Hosting Option**
 
 Can be self-hosted for data privacy requirements, or use cloud version for quick setup.
 
@@ -92,13 +81,17 @@ Can be self-hosted for data privacy requirements, or use cloud version for quick
 
 ## **⚖️ Trade-offs**
 
-| Pros | Cons |
-|------|------|
-| Free tier sufficient for development | Cloud version has usage limits |
-| Prompt management built-in | Self-hosting requires infrastructure |
-| Native LiteLLM integration | Fewer integrations than LangSmith |
-| Evaluation & datasets included | Smaller community than alternatives |
-| Open source option | |
+### ✅ Pros
+- Free tier sufficient for development
+- Prompt management built-in
+- Native LiteLLM integration
+- Open source option
+
+### ❌ Cons
+- Cloud version has usage limits
+- Self-hosting requires infrastructure
+- Fewer integrations than LangSmith
+- Smaller community than alternatives
 
 
 ---
