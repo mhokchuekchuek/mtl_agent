@@ -1,49 +1,16 @@
-flowchart TB
-    subgraph Request["User Request"]
-        Q[Query]
+flowchart LR
+    subgraph LiteLLM["LiteLLM"]
+        RC[LLM Response Cache]
     end
 
-    subgraph AppCache["Application Layer Cache"]
-        TC[Tool Cache<br/>Redis 5min TTL]
-        EC[Embedding Cache<br/>Redis 24hr TTL]
+    subgraph SelfHosted["Self-Hosted LLM #40;vLLM#41;"]
+        LMC["LMCache<br/>#40;KV Cache#41;"]
     end
 
-    subgraph LiteLLM["LiteLLM Proxy"]
-        RC[Response Cache<br/>Exact Match]
-        SC[Semantic Cache<br/>Similarity 0.8]
-    end
-
-    subgraph Provider["LLM Provider"]
-        subgraph API["External API"]
-            OAI[OpenAI]
-            ANT[Anthropic]
-        end
-        subgraph SelfHosted["Self-Hosted"]
-            VLLM[vLLM]
-            LMC[LMCache<br/>KV Cache]
-        end
-    end
-
-    Q --> TC
-    Q --> EC
-    TC -->|miss| LiteLLM
-    EC -->|miss| LiteLLM
-
-    RC -->|miss| SC
-    SC -->|miss| Provider
-
-    LiteLLM --> API
     LiteLLM --> SelfHosted
-    VLLM --> LMC
 
-    classDef request fill:#dbeafe,stroke:#3b82f6,stroke-width:2px,color:#1e40af
-    classDef appcache fill:#d1fae5,stroke:#10b981,stroke-width:2px,color:#065f46
     classDef proxy fill:#fef3c7,stroke:#f59e0b,stroke-width:2px,color:#b45309
-    classDef external fill:#ede9fe,stroke:#8b5cf6,stroke-width:2px,color:#5b21b6
     classDef selfhost fill:#cffafe,stroke:#06b6d4,stroke-width:2px,color:#0e7490
 
-    class Q request
-    class TC,EC appcache
-    class RC,SC proxy
-    class OAI,ANT external
-    class VLLM,LMC selfhost
+    class RC proxy
+    class LMC selfhost

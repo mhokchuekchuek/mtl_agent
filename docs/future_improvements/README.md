@@ -21,7 +21,7 @@ Potential enhancements for production readiness and better performance.
 
 | Topic | Description |
 |-------|-------------|
-| [Caching Strategy](infrastructure/caching.md) | LiteLLM, semantic cache, LMCache, embedding cache |
+| [Caching Strategy](infrastructure/caching.md) | LiteLLM (LLM Response Cache), LMCache (KV Cache) |
 | [Self-Hosted LLM](infrastructure/self_hosted_llm.md) | vLLM + Kubernetes deployment |
 
 
