@@ -80,6 +80,6 @@ results = db.query("SELECT * FROM store WHERE prefix LIKE %s", ("users/%",))
 
 ## **🔗 Related**
 
-- [Docker Setup](../docker/postgres.md)
-- [PostgreSQL Client](../../libs/database/sql/postgres.md)
+- [Docker Setup](../infrastructure/docker/postgres.md)
+- [PostgreSQL Client](../libs/database/sql/postgres.md)
 - [Why Checkpointer + Store](../../decisions/why_checkpointer_and_store.md)

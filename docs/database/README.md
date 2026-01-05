@@ -26,4 +26,4 @@ Database systems used in the project.
 | Redis | Key-Value | Short-term memory (LangGraph Checkpointer) | Docker container |
 | Qdrant | Vector | Product embeddings for semantic search | Docker container |
 
-> 📝 **Note:** Redis is used as LangGraph Checkpointer. See [Redis Docker](../docker/redis.md) and [Redis Client](../../libs/database/key_value/redis.md) for details.
+> 📝 **Note:** Redis is used as LangGraph Checkpointer. See [Redis Docker](../infrastructure/docker/redis.md) and [Redis Client](../libs/database/key_value/redis.md) for details.

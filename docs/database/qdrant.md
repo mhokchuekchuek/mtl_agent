@@ -78,7 +78,7 @@ results = db.search(
 
 ## **🔗 Related**
 
-- [Docker Setup](../docker/qdrant.md)
-- [Qdrant Client](../../libs/database/vector/qdrant.md)
+- [Docker Setup](../infrastructure/docker/qdrant.md)
+- [Qdrant Client](../libs/database/vector/qdrant.md)
 - [Product Search Tool](../../multi-agent-systems/modules/tools/knowledge_retrieval/vectordb/search.md)
 - [Ingestor Pipeline](../../ingestor/README.md)
