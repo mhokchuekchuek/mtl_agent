@@ -45,13 +45,7 @@ expected_output:
 3. **Compare** - LLM compares agent's SQL operations with expected result
 4. **Score** - Return result_match (70%) + efficiency (30%)
 
-<details>
-<summary>📊 Flow Diagram</summary>
-
 ![Flow](../../assets/diagrams/evaluation/judges_sql_1.png)
-
-</details>
-
 
 ---
 
