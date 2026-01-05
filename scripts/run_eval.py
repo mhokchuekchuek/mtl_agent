@@ -2,8 +2,18 @@
 """Unified evaluation script for chatbots.
 
 Usage:
+    # Run all tests for a chatbot
     python scripts/run_eval.py customer
     python scripts/run_eval.py client
+
+    # Run specific directory
+    python scripts/run_eval.py customer --path data/eval_datasets/customer/browse_products
+
+    # Run single yaml file
+    python scripts/run_eval.py customer --path data/eval_datasets/customer/browse_products/single_turn/search.yaml
+
+    # Run multiple paths
+    python scripts/run_eval.py customer --path data/eval_datasets/customer/browse_products --path data/eval_datasets/customer/place_order
 """
 
 import argparse
@@ -26,6 +36,14 @@ def main():
         choices=["customer", "client"],
         help="Chatbot to evaluate",
     )
+    parser.add_argument(
+        "--path",
+        action="append",
+        dest="paths",
+        help="Dataset path(s) to evaluate. Can be directory or yaml file. "
+        "Use multiple --path flags for multiple paths. "
+        "If not specified, uses default dataset path from config.",
+    )
     args = parser.parse_args()
 
     logger.info(f"Starting {args.chatbot} chatbot evaluation")
@@ -37,9 +55,16 @@ def main():
         from evaluation.dependencies.client import build_evaluation_service
 
     # Build service
-    service, dataset_path, results_path = build_evaluation_service()
+    service, default_dataset_path, results_path = build_evaluation_service()
 
-    logger.info(f"Dataset path: {dataset_path}")
+    # Determine dataset path(s)
+    if args.paths:
+        # Single path or list of paths
+        dataset_path = args.paths[0] if len(args.paths) == 1 else args.paths
+        logger.info(f"Using custom path(s): {dataset_path}")
+    else:
+        dataset_path = default_dataset_path
+        logger.info(f"Using default dataset path: {dataset_path}")
 
     # Run evaluation
     summary = service.run_evaluation(dataset_path)

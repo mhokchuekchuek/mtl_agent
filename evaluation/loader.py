@@ -24,32 +24,79 @@ class DatasetLoader:
         """
         self.project_root = project_root or PROJECT_ROOT
 
-    def load_dataset(self, dataset_path: str) -> list[TestCase]:
-        """Load all test cases from a dataset path recursively.
+    def load_dataset(self, dataset_path: str | list[str]) -> list[TestCase]:
+        """Load test cases from dataset path(s).
 
-        Scans all subdirectories (e.g., sql/, search/, response_quality/)
-        and their turn type folders (single_turn/, multi_turn/, negative/).
+        Supports:
+        - Single directory path (recursive)
+        - Single yaml file path
+        - List of paths (directories or files)
 
         Args:
-            dataset_path: Path like "evaluation/datasets/customer".
+            dataset_path: Path or list of paths to load.
+                - Directory: loads all .yaml files recursively
+                - File: loads single .yaml file
+                - List: loads from multiple paths
 
         Returns:
             List of TestCase objects from all YAML files.
+
+        Examples:
+            loader.load_dataset("data/eval_datasets/customer")
+            loader.load_dataset("data/eval_datasets/customer/browse_products/single_turn/search.yaml")
+            loader.load_dataset([
+                "data/eval_datasets/customer/browse_products",
+                "data/eval_datasets/customer/place_order/single_turn/order.yaml"
+            ])
+        """
+        # Handle list of paths
+        if isinstance(dataset_path, list):
+            test_cases = []
+            for path in dataset_path:
+                test_cases.extend(self._load_single_path(path))
+            logger.info(
+                f"Loaded {len(test_cases)} test cases from {len(dataset_path)} paths"
+            )
+            return test_cases
+
+        return self._load_single_path(dataset_path)
+
+    def _load_single_path(self, dataset_path: str) -> list[TestCase]:
+        """Load test cases from a single path (file or directory).
+
+        Args:
+            dataset_path: Path to file or directory.
+
+        Returns:
+            List of TestCase objects.
         """
         full_path = self.project_root / dataset_path
         if not full_path.exists():
             logger.warning(f"Dataset path not found: {full_path}")
             return []
 
-        test_cases = []
+        # Single file
+        if full_path.is_file():
+            if not full_path.suffix == ".yaml":
+                logger.warning(f"Not a YAML file: {full_path}")
+                return []
+            try:
+                cases = self._load_yaml_file(full_path)
+                # Use parent directory name as source_folder
+                source_folder = full_path.parent.name
+                for case in cases:
+                    case.source_folder = source_folder
+                logger.info(f"Loaded {len(cases)} test cases from {dataset_path}")
+                return cases
+            except Exception as e:
+                logger.error(f"Error loading {full_path}: {e}")
+                return []
 
-        # Recursively find all YAML files
+        # Directory - recursive
+        test_cases = []
         for yaml_file in full_path.rglob("*.yaml"):
             try:
-                # Determine source_folder from path (full relative path without filename)
-                # e.g., customer/sql/single_turn/aggregation.yaml -> sql/single_turn
                 relative_path = yaml_file.relative_to(full_path)
-                # Get parent directories (exclude filename)
                 source_folder = str(relative_path.parent)
 
                 cases = self._load_yaml_file(yaml_file)

@@ -36,12 +36,31 @@ Evaluates chatbot responses using multiple judges that assess different aspects 
 
 ## **🚀 Quick Start**
 
-```bash
-# Run customer chatbot evaluation
-python scripts/run_eval.py customer
+### **Run All Tests**
 
-# Run client chatbot evaluation
+```bash
+python scripts/run_eval.py customer
 python scripts/run_eval.py client
+```
+
+### **Run Specific Directory**
+
+```bash
+python scripts/run_eval.py customer --path data/eval_datasets/customer/browse_products
+```
+
+### **Run Single YAML File**
+
+```bash
+python scripts/run_eval.py customer --path data/eval_datasets/customer/browse_products/single_turn/search.yaml
+```
+
+### **Run Multiple Paths**
+
+```bash
+python scripts/run_eval.py customer \
+    --path data/eval_datasets/customer/browse_products \
+    --path data/eval_datasets/customer/place_order
 ```
 
 
