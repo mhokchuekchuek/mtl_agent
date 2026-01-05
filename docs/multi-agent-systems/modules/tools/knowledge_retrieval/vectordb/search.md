@@ -63,12 +63,7 @@ Customer's query is converted to a vector embedding:
 
 The query vector is compared against all product vectors in Qdrant:
 
-<details>
-<summary>📊 Step 2: Vector Search</summary>
-
 ![Step 2: Vector Search](../../../../../assets/diagrams/modules/vectordb_search_2.png)
-
-</details>
 
 
 ### 3️⃣ **Similarity Scoring**

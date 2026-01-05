@@ -75,12 +75,7 @@ ChatbotService → ChatbotRepository.invoke()
 
 ### 3️⃣ **Workflow Execution**
 
-<details>
-<summary>📊 3. Workflow Execution</summary>
-
 ![3. Workflow Execution](../../assets/diagrams/architecture/architecture_system_3.png)
-
-</details>
 
 | Step | Node | Action |
 |------|------|--------|
@@ -120,12 +115,7 @@ Result → API → User
 
 End-to-end flow for customer-facing chatbot (product search, orders).
 
-<details>
-<summary>📊 Customer Chatbot Flow</summary>
-
 ![Customer Chatbot Flow](../../assets/diagrams/architecture/architecture_system_4.png)
-
-</details>
 
 
 ---

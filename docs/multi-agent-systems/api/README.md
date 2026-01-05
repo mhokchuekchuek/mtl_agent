@@ -16,12 +16,7 @@ REST API layer for multi-agent chatbots.
 
 ## **📋 Overview**
 
-<details>
-<summary>📊 Overview</summary>
-
 ![Overview](../../assets/diagrams/api/api_README_1.png)
-
-</details>
 
 
 ---

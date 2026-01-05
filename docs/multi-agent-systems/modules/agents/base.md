@@ -34,12 +34,7 @@ Provides common interface and utilities for all agents. All agents inherit from 
 
 ### 🔄 **Code Flow**
 
-<details>
-<summary>📊 Code Flow</summary>
-
 ![Code Flow](../../../assets/diagrams/modules/agents_base_1.png)
-
-</details>
 
 
 ### 💡 **Usage**

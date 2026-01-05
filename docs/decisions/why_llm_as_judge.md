@@ -67,12 +67,7 @@ We need to evaluate chatbot responses across multiple dimensions (SQL correctnes
 
 All judges follow the same pattern:
 
-<details>
-<summary>📊 Pattern</summary>
-
 ![Pattern](../assets/diagrams/decisions/decisions_why_llm_as_judge_1.png)
-
-</details>
 
 
 ---

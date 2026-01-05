@@ -102,12 +102,7 @@ Output: fig = px.bar(...)
 
 ### 5️⃣ **Execute in Sandbox**
 
-<details>
-<summary>📊 Step 5: Execute in Sandbox</summary>
-
 ![Step 5: Execute in Sandbox](../../../../assets/diagrams/modules/visualization_main_3.png)
-
-</details>
 
 > 🚨 **Security:** The code runs in a restricted environment to prevent malicious code execution.
 

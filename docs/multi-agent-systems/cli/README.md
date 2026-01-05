@@ -16,12 +16,7 @@ Application entry point for running API and UI services.
 
 ## **📋 Overview**
 
-<details>
-<summary>📊 Overview</summary>
-
 ![Overview](../../assets/diagrams/cli/cli_README_1.png)
-
-</details>
 
 
 ---
