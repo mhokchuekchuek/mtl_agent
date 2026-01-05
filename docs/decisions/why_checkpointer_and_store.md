@@ -50,12 +50,7 @@ We needed to decide how to manage conversation memory for the customer chatbot.
 
 ### 3️⃣ **Checkpointer + Store (Chosen)**
 
-<details>
-<summary>📊 Option 3: Checkpointer + Store</summary>
-
 ![Checkpointer + Store](../assets/diagrams/decisions/memory_option_3_both.png)
-
-</details>
 
 - Fast working memory (Redis)
 - Permanent backup (Postgres)

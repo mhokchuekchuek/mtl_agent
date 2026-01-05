@@ -51,12 +51,7 @@ Single word: `chat_history` or `insight`
 
 ## **📊 Categories**
 
-<details>
-<summary>📊 Categories</summary>
-
 ![Categories](../../../assets/diagrams/prompts/client_orchestrator_1.png)
-
-</details>
 
 | Category | When to Use | Examples |
 |----------|-------------|----------|

@@ -27,12 +27,7 @@ Ingest product PDFs into vector database for semantic search.
 
 Process user queries through agents, tools, and workflows.
 
-<details>
-<summary>📊 Full Architecture</summary>
-
 ![Full Architecture](assets/diagrams/misc/README_1.png)
-
-</details>
 
 → See [Multi-Agent Systems](multi-agent-systems/README.md)
 

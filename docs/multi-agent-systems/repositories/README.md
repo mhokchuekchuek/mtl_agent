@@ -52,12 +52,7 @@ Repositories bridge the gap between modules (workflows/agents) and infrastructur
 
 ## **🧠 Memory Architecture**
 
-<details>
-<summary>📊 Memory Architecture</summary>
-
 ![Memory Architecture](../../assets/diagrams/repositories/repositories_README_2.png)
-
-</details>
 
 | Type | Storage | TTL | Purpose |
 |------|---------|-----|---------|

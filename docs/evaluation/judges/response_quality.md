@@ -40,12 +40,7 @@ expected_output:
 
 ## **🔄 Flow**
 
-<details>
-<summary>📊 Flow</summary>
-
 ![Flow](../../assets/diagrams/evaluation/judges_response_quality_1.png)
-
-</details>
 
 
 ---

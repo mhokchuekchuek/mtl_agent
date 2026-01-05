@@ -75,12 +75,7 @@ Query product information - details, prices, stock levels. **Read-only** tool re
 
 ### 🔒 **Security Validation**
 
-<details>
-<summary>📊 Security Validation</summary>
-
 ![Security Validation](../../../../../../assets/diagrams/modules/customer_product_2.png)
-
-</details>
 
 > 🚨 **Warning:** Blocked patterns:
 - `DROP`, `DELETE`, `UPDATE`, `INSERT` (write operations)

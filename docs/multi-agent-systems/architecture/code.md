@@ -56,12 +56,7 @@ Each layer has a specific responsibility following Clean Architecture principles
 
 Data access layer that abstracts storage and memory management from business logic.
 
-<details>
-<summary>📊 Repository Layer</summary>
-
 ![Repository Layer](../../assets/diagrams/architecture/architecture_code_2.png)
-
-</details>
 
 | Repository | Purpose |
 |------------|---------|
@@ -77,12 +72,7 @@ Data access layer that abstracts storage and memory management from business log
 
 Core domain logic layer containing LangGraph workflows, LLM agents, and tools.
 
-<details>
-<summary>📊 Modules Layer</summary>
-
 ![Modules Layer](../../assets/diagrams/architecture/architecture_code_3.png)
-
-</details>
 
 | Module | Purpose |
 |--------|---------|
