@@ -164,7 +164,7 @@ Value: {
 }
 ```
 
-> 📝 **Note:** Namespace = folder hierarchy เพื่อจัดกลุ่มข้อมูล เช่น `("users", "user-123", "conversations")` เหมือน path `users/user-123/conversations/`
+> 📝 **Note:** Namespace = folder hierarchy for organizing data, e.g., `("users", "user-123", "conversations")` similar to path `users/user-123/conversations/`
 
 
 ---
