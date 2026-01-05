@@ -6,19 +6,6 @@ Data ingestion pipeline for processing product PDFs into vector embeddings.
 ---
 
 
-## **📑 Table of Contents**
-
-- [Location](#-location)
-- [Submodules](#-submodules)
-- [Architecture](#-architecture)
-- [Pipeline Flow](#-pipeline-flow)
-- [Configuration](#-configuration)
-- [Script](#-script)
-
-
----
-
-
 ## **📍 Location**
 
 [`ingestor/`](../../ingestor/)
@@ -40,9 +27,10 @@ Data ingestion pipeline for processing product PDFs into vector embeddings.
 
 ## **🔗 Related**
 
-- [Decisions](../decisions/README.md) - Architecture and technology decisions
-- [Future Improvements](../future_improvements/ingestion/workflow_orchestrator.md) - Production enhancements
-- [Why Langfuse](../decisions/why_langfuse.md) - Observability and prompt management
+- [Why PyPDF2 Parser](../decisions/why_pypdf2_parser.md) - Why use PyPDF2 for PDF parsing
+- [Why LLM Extractor](../decisions/why_llm_extractor.md) - Why use LLM for data extraction
+- [Why Flat Text Payload](../decisions/why_flat_text_payload.md) - Why store data as flat text
+- [Future: Workflow Orchestrator](../future_improvements/ingestion/workflow_orchestrator.md) - Production enhancements
 
 
 ---
@@ -66,35 +54,12 @@ ingestor/
 
 ## **🔄 Pipeline Flow**
 
-```mermaid
-flowchart LR
-    subgraph Input
-        PDF[PDF Files]
-    end
+<details>
+<summary>📊 Pipeline Flow</summary>
 
-    subgraph Parse
-        Parser[PDF Parser<br/>PyPDF2/Docling]
-    end
+![Pipeline Flow](../assets/diagrams/ingestor/ingestor_README_1.png)
 
-    subgraph Extract
-        LLM[LLM Extractor<br/>gpt-4o-mini]
-        Prompt[Langfuse Prompt<br/>ingestor_extract_product]
-    end
-
-    subgraph Embed
-        Embedder[Embedding Model<br/>text-embedding-3-small]
-    end
-
-    subgraph Store
-        Qdrant[(Qdrant<br/>Vector DB)]
-    end
-
-    PDF --> Parser
-    Parser -->|markdown/text| LLM
-    Prompt -.->|inject| LLM
-    LLM -->|structured JSON| Embedder
-    Embedder -->|vectors| Qdrant
-```
+</details>
 
 | Stage | Description | Details |
 |-------|-------------|---------|
