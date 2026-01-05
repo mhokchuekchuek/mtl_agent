@@ -74,6 +74,14 @@ Two LangGraph-based chatbot workflows:
 ---
 
 
+## **🗄️ Databases**
+
+See [Infrastructure Databases](../infrastructure/databases/README.md) for database documentation.
+
+
+---
+
+
 ## **🚀 Quick Start**
 
 ```bash
