@@ -14,13 +14,12 @@ The extractor uses LLM to convert raw PDF text into structured product data.
 
 ## **🔄 Flow**
 
-```mermaid
-flowchart LR
-    A[Raw Text<br/>from PDF] --> B[Build Prompt<br/>text + schema]
-    B --> C[Call LLM<br/>gpt-4o-mini]
-    C --> D[Parse Response<br/>extract JSON]
-    D --> E[Structured<br/>Data]
-```
+<details>
+<summary>📊 Extraction Flow</summary>
+
+![Extraction Flow](../../assets/diagrams/ingestor/extractor_how_it_works_1.png)
+
+</details>
 
 
 ---

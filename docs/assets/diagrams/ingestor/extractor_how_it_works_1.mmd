@@ -1,0 +1,15 @@
+flowchart LR
+    A[Raw Text<br/>from PDF] --> B[Build Prompt<br/>text + schema]
+    B --> C[Call LLM<br/>gpt-4o-mini]
+    C --> D[Parse Response<br/>extract JSON]
+    D --> E[Structured<br/>Data]
+
+    classDef input fill:#dbeafe,stroke:#3b82f6,stroke-width:2px,color:#1e40af
+    classDef process fill:#ede9fe,stroke:#8b5cf6,stroke-width:2px,color:#5b21b6
+    classDef llm fill:#fef3c7,stroke:#f59e0b,stroke-width:2px,color:#b45309
+    classDef output fill:#d1fae5,stroke:#10b981,stroke-width:2px,color:#065f46
+
+    class A input
+    class B,D process
+    class C llm
+    class E output
