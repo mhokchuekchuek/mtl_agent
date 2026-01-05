@@ -97,11 +97,13 @@ Tools are domain logic components that agents can invoke.
 
 ## **📝 Design Decisions**
 
-| Decision | Description | Link |
-|----------|-------------|------|
-| ReAct & LangGraph | When to use ReAct agents vs LangGraph workflows | [why_react_and_langgraph.md](../../decisions/why_react_and_langgraph.md) |
-| OpenAI Model | Model selection rationale | [why_openai_model.md](../../decisions/why_openai_model.md) |
-| Langfuse | Observability choice | [why_langfuse.md](../../decisions/why_langfuse.md) |
+| Decision | Description | Applies To | Link |
+|----------|-------------|------------|------|
+| ReAct & LangGraph | When to use ReAct agents vs LangGraph workflows | All agents, workflows | [why_react_and_langgraph.md](../../decisions/why_react_and_langgraph.md) |
+| Checkpointer + Store | Redis for short-term, Postgres for long-term memory | All workflows | [why_checkpointer_and_store.md](../../decisions/why_checkpointer_and_store.md) |
+| OpenAI Model | Model selection rationale | All agents | [why_openai_model.md](../../decisions/why_openai_model.md) |
+| LiteLLM | Centralized LLM gateway | All agents | [why_litellm.md](../../decisions/why_litellm.md) |
+| Langfuse | Observability and prompt management | All agents, tools | [why_langfuse.md](../../decisions/why_langfuse.md) |
 
 
 ---
@@ -109,12 +111,13 @@ Tools are domain logic components that agents can invoke.
 
 ## **🔮 Future Improvements**
 
-| Improvement | Description | Link |
-|-------------|-------------|------|
-| Workflow Orchestrator | Dynamic agent routing | [workflow_orchestrator.md](../../future_improvements/ingestion/workflow_orchestrator.md) |
-| Embedding Models | Better semantic search | [embedding_models.md](../../future_improvements/ingestion/embedding_models.md) |
-| Search Algorithms | Hybrid search strategies | [search_algorithms.md](../../future_improvements/ingestion/search_algorithms.md) |
-| Structured Payload | Type-safe tool outputs | [structured_payload.md](../../future_improvements/ingestion/structured_payload.md) |
+| Improvement | Description | Improves | Link |
+|-------------|-------------|----------|------|
+| Embedding Models | Better semantic search | ProductAgent, VectorDB tools | [embedding_models.md](../../future_improvements/ingestion/embedding_models.md) |
+| Search Algorithms | Hybrid search strategies | ProductAgent, VectorDB tools | [search_algorithms.md](../../future_improvements/ingestion/search_algorithms.md) |
+| Structured Payload | Type-safe tool outputs | All tools | [structured_payload.md](../../future_improvements/ingestion/structured_payload.md) |
+| Context Engineering | Managing LLM context windows | All agents | [context_engineering.md](../../future_improvements/context_engineering.md) |
+| Deep Agents Integration | LangChain Deep Agents patterns | All workflows | [deep_agents_integration.md](../../future_improvements/deep_agents_integration.md) |
 
 
 ---
