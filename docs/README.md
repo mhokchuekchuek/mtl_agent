@@ -15,7 +15,7 @@ Documentation for the MTL Agent ERP multi-agent system.
 
 Ingest product PDFs into vector database for semantic search.
 
-![Ingestor Pipeline](assets/diagrams/guides/guides_data-science_1.png)
+![Ingestor Pipeline](assets/diagrams/ingestor/ingestor_README_1.png)
 
 → See [Ingestor Pipeline](ingestor/README.md)
 
